@@ -1,4 +1,4 @@
 #!/bin/sh
 
-jb build --all mynewbook/
-ghp-import -n -p -f mynewbook/_build/html/
+jb build --all book/
+ghp-import -n -p -f book/_build/html/
