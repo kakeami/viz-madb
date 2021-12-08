@@ -3,7 +3,7 @@
 
 title: MADBで始めるデータ・ビジュアライゼーション
 author: kakeami
-logo: logo.png
+logo: figs/logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
