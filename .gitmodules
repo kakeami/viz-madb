@@ -1,0 +1,3 @@
+[submodule "madb"]
+	path = madb
+	url = https://github.com/mediaarts-db/dataset
