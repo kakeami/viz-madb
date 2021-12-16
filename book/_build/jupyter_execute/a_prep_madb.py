@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 前処理
+# # Appendix A: MADBの前処理
 
-# - `madb`からcsv形式でデータを取得
-# - `pytrend`で各漫画作品のGoogle検索量を取得
+# `madb`から必要なデータを抽出し，扱いやすいようcsvに変換
 
 # ## 環境構築
 

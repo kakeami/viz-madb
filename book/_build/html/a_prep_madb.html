@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>前処理 &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
+    <title>Appendix A: MADBの前処理 &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -99,7 +99,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Appendix A：前処理
+   Appendix A：MADBの前処理
   </a>
  </li>
 </ul>
@@ -143,7 +143,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/preprocess.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/a_prep_madb.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -163,7 +163,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Fpreprocess.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Fa_prep_madb.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -184,7 +184,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/preprocess.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/a_prep_madb.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -207,27 +207,27 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
+  <a class="reference internal nav-link" href="#id1">
    環境構築
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
+  <a class="reference internal nav-link" href="#id2">
    関数
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
+  <a class="reference internal nav-link" href="#id3">
    解凍
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
+  <a class="reference internal nav-link" href="#id4">
    前処理
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id5">
      対象
     </a>
    </li>
@@ -262,14 +262,11 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>前処理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">madb</span></code>からcsv形式でデータを取得</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pytrend</span></code>で各漫画作品のGoogle検索量を取得</p></li>
-</ul>
-<div class="section" id="id2">
-<h2>環境構築<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="appendix-a-madb">
+<h1>Appendix A: MADBの前処理<a class="headerlink" href="#appendix-a-madb" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">madb</span></code>から必要なデータを抽出し，扱いやすいようcsvに変換</p>
+<div class="section" id="id1">
+<h2>環境構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notebook初期設定</span>
@@ -351,8 +348,8 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>関数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2>関数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_json</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
@@ -389,8 +386,8 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 </div>
 </div>
-<div class="section" id="id4">
-<h2>解凍<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>解凍<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>マンガ系のデータ（<code class="docutils literal notranslate"><span class="pre">*cm*</span></code>）のみ<code class="docutils literal notranslate"><span class="pre">DIR_TMP</span></code>に解凍する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -415,10 +412,10 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </script></div>
 </div>
 </div>
+<div class="section" id="id4">
+<h2>前処理<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id5">
-<h2>前処理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id6">
-<h3>対象<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3>対象<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cm</span> <span class="o">=</span> <span class="p">{</span><span class="n">cm</span><span class="p">:</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s1">/*</span><span class="si">{</span><span class="n">cm</span><span class="si">}</span><span class="s1">*/*&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">cm</span> <span class="ow">in</span> <span class="n">FNS_CM</span><span class="p">}</span>

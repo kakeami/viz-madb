@@ -4,5 +4,5 @@
 format: jb-book
 root: intro
 chapters:
-- file: preprocess
-  title: Appendix A：前処理
+- file: a_prep_madb
+  title: Appendix A：MADBの前処理
