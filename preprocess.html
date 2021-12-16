@@ -227,6 +227,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     対象
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cm105">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -387,6 +392,8 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="section" id="id5">
 <h2>前処理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>対象<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cm</span> <span class="o">=</span> <span class="p">{</span><span class="n">cm</span><span class="p">:</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s1">/*</span><span class="si">{</span><span class="n">cm</span><span class="si">}</span><span class="s1">*/*&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">cm</span> <span class="ow">in</span> <span class="n">FNS_CM</span><span class="p">}</span>
@@ -406,6 +413,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
  &#39;cm105&#39;: [&#39;../data/preprocess/tmp/metadata_cm-col_cm105_json/metadata_cm-col_cm105_json\\metadata_cm-col_cm105_00001.json&#39;],
  &#39;cm106&#39;: [&#39;../data/preprocess/tmp/metadata_cm-col_cm106_json/metadata_cm-col_cm106_json\\metadata_cm-col_cm106_00001.json&#39;]}
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -429,30 +437,26 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_published_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;nameからpublished_nameを取得&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No published_name in </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_furigana</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;nameから振り仮名を取得&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">name</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;@value&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 雑誌名を取得</span>
+<span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_published_name</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_published_name</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cm105</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 例</span>
+<span class="n">df_cm105</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
@@ -475,378 +479,63 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
       <th>identifier</th>
+      <td>C117451</td>
+      <td>C117452</td>
+      <td>C117453</td>
+    </tr>
+    <tr>
       <th>label</th>
+      <td>斬鬼</td>
+      <td>月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL</td>
+      <td>YOUNG YOU Special</td>
+    </tr>
+    <tr>
       <th>note</th>
+      <td>・『ヤングキングSPECIAL増刊 斬鬼』から独立創刊。　／　・通巻号数は『ヤングキングSP...</td>
+      <td>NaN</td>
+      <td>[編]集英社　／　「Young you」の増刊</td>
+    </tr>
+    <tr>
       <th>publicationPeriodicity</th>
+      <td>隔月刊</td>
+      <td>不定期刊 （no determinable frequency）</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
       <th>name</th>
+      <td>[斬鬼, {'@language': 'ja-hrkt', '@value': 'ザンキ'}]</td>
+      <td>[月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL, {'@lan...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'ヤングユースペシャ...</td>
+    </tr>
+    <tr>
       <th>publisher</th>
+      <td>少年画報社</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>集英社</td>
+    </tr>
+    <tr>
       <th>dayPublishedFinal</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
       <th>mcname</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>C117451</td>
-      <td>斬鬼</td>
-      <td>・『ヤングキングSPECIAL増刊 斬鬼』から独立創刊。　／　・通巻号数は『ヤングキングSP...</td>
-      <td>隔月刊</td>
-      <td>[斬鬼, {'@language': 'ja-hrkt', '@value': 'ザンキ'}]</td>
-      <td>少年画報社</td>
-      <td>NaN</td>
-      <td>斬鬼</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>C117452</td>
-      <td>月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL</td>
-      <td>NaN</td>
-      <td>不定期刊 （no determinable frequency）</td>
-      <td>[月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL, {'@lan...</td>
-      <td>集英社　∥　シュウエイシャ</td>
-      <td>NaN</td>
-      <td>月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>C117453</td>
-      <td>YOUNG YOU Special</td>
-      <td>[編]集英社　／　「Young you」の増刊</td>
-      <td>NaN</td>
-      <td>[{'@language': 'ja-hrkt', '@value': 'ヤングユースペシャ...</td>
-      <td>集英社</td>
-      <td>NaN</td>
-      <td>{'@language': 'ja-hrkt', '@value': 'ヤングユースペシャル...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>C117455</td>
-      <td>YOUNG YOU</td>
-      <td>『月刊セブンティーン特別編集 ヤングユー』 - 『ヤングユー』独立創刊　／　・『月刊セブンテ...</td>
-      <td>月刊 （monthly）</td>
-      <td>[{'@language': 'ja-hrkt', '@value': 'ヤングユー'}, ...</td>
-      <td>集英社　∥　シュウエイシャ</td>
-      <td>2005-11-01</td>
-      <td>{'@language': 'ja-hrkt', '@value': 'ヤングユー'}</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>C117456</td>
-      <td>別冊YOUNG YOU</td>
-      <td>別冊 YOUNG YOU　／　刊行頻度,大きさの変更あり 増刊とも　／　1987年4月30日...</td>
-      <td>隔月刊</td>
-      <td>[{'@language': 'ja-hrkt', '@value': 'ベッサツヤングユー...</td>
-      <td>集英社　∥　シュウエイシャ</td>
-      <td>2002-12-30</td>
-      <td>{'@language': 'ja-hrkt', '@value': 'ベッサツヤングユー,...</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>5723</th>
-      <td>C123543</td>
-      <td>comicアンスリウム</td>
-      <td>・『DMM』の増刊より独立。</td>
-      <td>NaN</td>
-      <td>[comicアンスリウム, {'@language': 'ja-hrkt', '@value...</td>
-      <td>ジーオーティー</td>
-      <td>NaN</td>
-      <td>comicアンスリウム</td>
-    </tr>
-    <tr>
-      <th>5724</th>
-      <td>C123544</td>
-      <td>月刊ASUKAファンタジーDX増刊</td>
-      <td>『月刊ASUKAファンタジーDX』の増刊</td>
-      <td>NaN</td>
-      <td>[{'@language': 'ja-hrkt', '@value': 'ゲッカンアスカファ...</td>
-      <td>角川書店</td>
-      <td>NaN</td>
-      <td>{'@language': 'ja-hrkt', '@value': 'ゲッカンアスカファン...</td>
-    </tr>
-    <tr>
-      <th>5725</th>
-      <td>C123545</td>
-      <td>少年ビッグコミック特別編集</td>
-      <td>『少年ビッグコミック』の『ビッグコミック』の雑誌コードがあり、かつISBNのあるものもある</td>
-      <td>NaN</td>
-      <td>[{'@language': 'ja-hrkt', '@value': 'ショウネンビッグコ...</td>
-      <td>小学館</td>
-      <td>NaN</td>
-      <td>{'@language': 'ja-hrkt', '@value': 'ショウネンビッグコミ...</td>
-    </tr>
-    <tr>
-      <th>5726</th>
-      <td>C123546</td>
-      <td>いつかどこかで増刊</td>
-      <td>1977年3月に、季刊から隔月刊へ変わる際に刊行</td>
-      <td>NaN</td>
-      <td>[いつかどこかで増刊, {'@language': 'ja-hrkt', '@value':...</td>
-      <td>立風書房</td>
-      <td>NaN</td>
-      <td>いつかどこかで増刊</td>
-    </tr>
-    <tr>
-      <th>5727</th>
-      <td>C123547</td>
-      <td>月刊WHAT増刊</td>
-      <td>『月刊WHAT』の増刊</td>
-      <td>NaN</td>
-      <td>[{'@language': 'ja-hrkt', '@value': 'ゲッカンワットゾウ...</td>
-      <td>東京三世社</td>
-      <td>NaN</td>
-      <td>{'@language': 'ja-hrkt', '@value': 'ゲッカンワットゾウカン'}</td>
-    </tr>
-  </tbody>
-</table>
-<p>5728 rows × 8 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cm105</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>@id</th>
-      <td>https://mediaarts-db.bunka.go.jp/id/C117451</td>
-      <td>https://mediaarts-db.bunka.go.jp/id/C117452</td>
-      <td>https://mediaarts-db.bunka.go.jp/id/C117453</td>
-      <td>https://mediaarts-db.bunka.go.jp/id/C117455</td>
-      <td>https://mediaarts-db.bunka.go.jp/id/C117456</td>
-    </tr>
-    <tr>
-      <th>rdf:type</th>
-      <td>class:Collection</td>
-      <td>class:Collection</td>
-      <td>class:Collection</td>
-      <td>class:Collection</td>
-      <td>class:Collection</td>
-    </tr>
-    <tr>
-      <th>label</th>
       <td>斬鬼</td>
       <td>月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL</td>
       <td>YOUNG YOU Special</td>
-      <td>YOUNG YOU</td>
-      <td>別冊YOUNG YOU</td>
-    </tr>
-    <tr>
-      <th>identifier</th>
-      <td>C117451</td>
-      <td>C117452</td>
-      <td>C117453</td>
-      <td>C117455</td>
-      <td>C117456</td>
-    </tr>
-    <tr>
-      <th>additionalType</th>
-      <td>class:CM</td>
-      <td>class:CM</td>
-      <td>class:CM</td>
-      <td>class:CM</td>
-      <td>class:CM</td>
-    </tr>
-    <tr>
-      <th>genre</th>
-      <td>雑誌全号</td>
-      <td>雑誌全号</td>
-      <td>雑誌全号</td>
-      <td>雑誌全号</td>
-      <td>雑誌全号</td>
-    </tr>
-    <tr>
-      <th>mtid</th>
-      <td>ZANKrgl</td>
-      <td>YZKSjmp</td>
-      <td>YYOUspe</td>
-      <td>YYOUrgl</td>
-      <td>YYOUoth</td>
-    </tr>
-    <tr>
-      <th>oldDateModified</th>
-      <td>2013-11-13T11:48:02</td>
-      <td>2017-02-08T11:33:24</td>
-      <td>2013-11-13T11:48:02</td>
-      <td>2018-08-15T01:43:26</td>
-      <td>2015-03-15T16:30:15</td>
-    </tr>
-    <tr>
-      <th>note</th>
-      <td>・『ヤングキングSPECIAL増刊 斬鬼』から独立創刊。　／　・通巻号数は『ヤングキングSP...</td>
-      <td>NaN</td>
-      <td>[編]集英社　／　「Young you」の増刊</td>
-      <td>『月刊セブンティーン特別編集 ヤングユー』 - 『ヤングユー』独立創刊　／　・『月刊セブンテ...</td>
-      <td>別冊 YOUNG YOU　／　刊行頻度,大きさの変更あり 増刊とも　／　1987年4月30日...</td>
-    </tr>
-    <tr>
-      <th>publicationPeriodicity</th>
-      <td>隔月刊</td>
-      <td>不定期刊 （no determinable frequency）</td>
-      <td>NaN</td>
-      <td>月刊 （monthly）</td>
-      <td>隔月刊</td>
-    </tr>
-    <tr>
-      <th>datePublished</th>
-      <td>2003-10-01</td>
-      <td>NaN</td>
-      <td>1994-05-30</td>
-      <td>1986-12-01</td>
-      <td>1987-04-20</td>
-    </tr>
-    <tr>
-      <th>inLanguage</th>
-      <td>日本語</td>
-      <td>日本語</td>
-      <td>日本語</td>
-      <td>日本語</td>
-      <td>日本語</td>
-    </tr>
-    <tr>
-      <th>location</th>
-      <td>東京</td>
-      <td>NaN</td>
-      <td>東京</td>
-      <td>東京</td>
-      <td>東京</td>
-    </tr>
-    <tr>
-      <th>name</th>
-      <td>[斬鬼, {'@language': 'ja-hrkt', '@value': 'ザンキ'}]</td>
-      <td>[月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL, {'@lan...</td>
-      <td>[{'@language': 'ja-hrkt', '@value': 'ヤングユースペシャ...</td>
-      <td>[{'@language': 'ja-hrkt', '@value': 'ヤングユー'}, ...</td>
-      <td>[{'@language': 'ja-hrkt', '@value': 'ベッサツヤングユー...</td>
-    </tr>
-    <tr>
-      <th>publisher</th>
-      <td>少年画報社</td>
-      <td>集英社　∥　シュウエイシャ</td>
-      <td>集英社</td>
-      <td>集英社　∥　シュウエイシャ</td>
-      <td>集英社　∥　シュウエイシャ</td>
-    </tr>
-    <tr>
-      <th>jpno</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>00099297</td>
-      <td>00050426</td>
-      <td>00115942</td>
-    </tr>
-    <tr>
-      <th>dayPublishedFinal</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2005-11-01</td>
-      <td>2002-12-30</td>
-    </tr>
-    <tr>
-      <th>issueNumberDisplayedFinal</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>11</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>issueNumberPublished</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>11</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>volumeNumberFinal</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>20</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>issn</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>08851</td>
-      <td>08851</td>
-    </tr>
-    <tr>
-      <th>description</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>totalVolumeNumberFinal</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COL_CM105</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;identifier&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;label&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;note&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;publicationPeriodicity&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;publisher&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;dayPublishedFinal&#39;</span><span class="p">,</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>
