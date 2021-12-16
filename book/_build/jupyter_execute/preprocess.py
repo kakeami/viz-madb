@@ -89,6 +89,21 @@ def read_json(path):
     return dct
 
 
+# In[35]:
+
+
+def save_json(path, dct):
+    """
+    辞書をjson形式で保存する関数．
+
+    Params:
+        path (str): jsonファイルの保存先
+        dct (dict): 保存対象辞書
+    """
+    with open(path, 'w') as f:
+        json.dump(dct, f, ensure_ascii=False, indent=4)
+
+
 # ## 解凍
 # 
 # マンガ系のデータ（`*cm*`）のみ`DIR_TMP`に解凍する．
@@ -163,3 +178,58 @@ df_cm105['mcname'] = df_cm105['name'].apply(lambda x: get_published_name(x))
 # 例
 df_cm105.head(3).T
 
+
+# In[34]:
+
+
+# mcnameからmcidを引く辞書
+mcname2mcid = df_cm105.groupby('mcname')['identifier'].first().to_dict()
+
+
+# In[36]:
+
+
+# 保存
+save_json(os.path.join(DIR_TMP, 'mcname2mcid.json'), mcname2mcid)
+
+
+# ### `cm102`
+
+# In[38]:
+
+
+cm102 = read_json(ps_cm['cm102'][0])
+
+
+# In[54]:
+
+
+def get_items_by_genre(graph, genre):
+    """graphから所定のgenreのアイテム群を取得"""
+    items = [
+        x for x in graph 
+        if 'genre' in x.keys() and x['genre'] == genre]
+    return items
+
+
+# In[61]:
+
+
+# 各ジャンルのアイテム群を取得
+mis = get_items_by_genre(cm102['@graph'], '雑誌巻号')
+eps = get_items_by_genre(cm102['@graph'], 'マンガ作品')
+
+
+# In[59]:
+
+
+len(mis)
+
+
+# In[60]:
+
+
+len(eps)
+
+
+# misとepsで必要な情報だけ残して，あとはマージすればOK
