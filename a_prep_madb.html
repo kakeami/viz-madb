@@ -1,0 +1,1093 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appendix A: MADBの前処理 &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="はじめに" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MADBで始めるデータ・ビジュアライゼーション</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   はじめに
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Appendix A：MADBの前処理
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/a_prep_madb.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/kakeami/viz-madb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Fa_prep_madb.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/a_prep_madb.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   環境構築
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   関数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   解凍
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   前処理
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     対象
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cm105">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cm105
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cm102">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cm102
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="appendix-a-madb">
+<h1>Appendix A: MADBの前処理<a class="headerlink" href="#appendix-a-madb" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">madb</span></code>から必要なデータを抽出し，扱いやすいようcsvに変換</p>
+<div class="section" id="id1">
+<h2>環境構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notebook初期設定</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_IN</span> <span class="o">=</span> <span class="s1">&#39;../madb/data/json-ld&#39;</span>
+<span class="n">DIR_TMP</span> <span class="o">=</span> <span class="s1">&#39;../data/preprocess/tmp&#39;</span>
+<span class="n">DIR_OUT</span> <span class="o">=</span> <span class="s1">&#39;../data/preprocess/out&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FNS_CM</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;cm102&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cm105&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cm106&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CM105で使用するカラム</span>
+<span class="n">COL_CM105</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;identifier&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;note&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;publicationPeriodicity&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;publisher&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dayPublishedFinal&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls <span class="o">{</span>DIR_IN<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>metadata_an-col_an207_json.zip	 metadata_cm-item_cm101_json.zip
+metadata_an-col_an208_json.zip	 metadata_cm-item_cm102_json.zip
+metadata_an-col_an210_json.zip	 metadata_cm-item_cm103_json.zip
+metadata_an-item_an201_json.zip  metadata_co-curate_co504_json.zip
+metadata_an-item_an202_json.zip  metadata_gm-col_gm305_json.zip
+metadata_an-item_an205_json.zip  metadata_gm-col_gm306_json.zip
+metadata_cm-col_cm104_json.zip	 metadata_gm-item_gm301_json.zip
+metadata_cm-col_cm105_json.zip	 metadata_ma-col_ma408_json.zip
+metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>関数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_json</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    jsonファイルを辞書として読み込む関数．</span>
+
+<span class="sd">    Params:</span>
+<span class="sd">        path (str): 読込対象ファイルパス</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: 辞書</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">dct</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dct</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">save_json</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    辞書をjson形式で保存する関数．</span>
+
+<span class="sd">    Params:</span>
+<span class="sd">        path (str): jsonファイルの保存先</span>
+<span class="sd">        dct (dict): 保存対象辞書</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>解凍<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>マンガ系のデータ（<code class="docutils literal notranslate"><span class="pre">*cm*</span></code>）のみ<code class="docutils literal notranslate"><span class="pre">DIR_TMP</span></code>に解凍する．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cm</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DIR_IN</span><span class="si">}</span><span class="s1">/*_cm*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p_from</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">):</span>
+    <span class="n">p_to</span> <span class="o">=</span> <span class="n">p_from</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">DIR_IN</span><span class="p">,</span> <span class="n">DIR_TMP</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">p_from</span><span class="p">)</span> <span class="k">as</span> <span class="n">z</span><span class="p">:</span>
+        <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">p_to</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "8cc33d94c27b4999bccef5244b322d31", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>前処理<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>対象<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cm</span> <span class="o">=</span> <span class="p">{</span><span class="n">cm</span><span class="p">:</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s1">/*</span><span class="si">{</span><span class="n">cm</span><span class="si">}</span><span class="s1">*/*&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">cm</span> <span class="ow">in</span> <span class="n">FNS_CM</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;cm102&#39;: [&#39;../data/preprocess/tmp/metadata_cm-item_cm102_json/metadata_cm-item_cm102_json\\metadata_cm-item_cm102_00001.json&#39;,
+  &#39;../data/preprocess/tmp/metadata_cm-item_cm102_json/metadata_cm-item_cm102_json\\metadata_cm-item_cm102_00002.json&#39;],
+ &#39;cm105&#39;: [&#39;../data/preprocess/tmp/metadata_cm-col_cm105_json/metadata_cm-col_cm105_json\\metadata_cm-col_cm105_00001.json&#39;],
+ &#39;cm106&#39;: [&#39;../data/preprocess/tmp/metadata_cm-col_cm106_json/metadata_cm-col_cm106_json\\metadata_cm-col_cm106_00001.json&#39;]}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cm105">
+<h3><code class="docutils literal notranslate"><span class="pre">cm105</span></code><a class="headerlink" href="#cm105" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm105</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s1">&#39;cm105&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cm105</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cm105</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">])[</span><span class="n">COL_CM105</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_published_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;nameからpublished_nameを取得&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No published_name in </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 雑誌名を取得</span>
+<span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_published_name</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 例</span>
+<span class="n">df_cm105</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>identifier</th>
+      <td>C117451</td>
+      <td>C117452</td>
+      <td>C117453</td>
+    </tr>
+    <tr>
+      <th>label</th>
+      <td>斬鬼</td>
+      <td>月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL</td>
+      <td>YOUNG YOU Special</td>
+    </tr>
+    <tr>
+      <th>note</th>
+      <td>・『ヤングキングSPECIAL増刊 斬鬼』から独立創刊。　／　・通巻号数は『ヤングキングSP...</td>
+      <td>NaN</td>
+      <td>[編]集英社　／　「Young you」の増刊</td>
+    </tr>
+    <tr>
+      <th>publicationPeriodicity</th>
+      <td>隔月刊</td>
+      <td>不定期刊 （no determinable frequency）</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td>[斬鬼, {'@language': 'ja-hrkt', '@value': 'ザンキ'}]</td>
+      <td>[月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL, {'@lan...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'ヤングユースペシャ...</td>
+    </tr>
+    <tr>
+      <th>publisher</th>
+      <td>少年画報社</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>集英社</td>
+    </tr>
+    <tr>
+      <th>dayPublishedFinal</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>mcname</th>
+      <td>斬鬼</td>
+      <td>月刊少年ジャンプ 週刊ヤングジャンプ共同編集 弓月光ジャンプSPECIAL</td>
+      <td>YOUNG YOU Special</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mcnameからmcidを引く辞書</span>
+<span class="n">mcname2mcid</span> <span class="o">=</span> <span class="n">df_cm105</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;identifier&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
+<span class="n">save_json</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="s1">&#39;mcname2mcid.json&#39;</span><span class="p">),</span> <span class="n">mcname2mcid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cm102">
+<h3><code class="docutils literal notranslate"><span class="pre">cm102</span></code><a class="headerlink" href="#cm102" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm102</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s1">&#39;cm102&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_items_by_genre</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">genre</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;graphから所定のgenreのアイテム群を取得&quot;&quot;&quot;</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">graph</span> 
+        <span class="k">if</span> <span class="s1">&#39;genre&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;genre&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">genre</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">items</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 各ジャンルのアイテム群を取得</span>
+<span class="n">mis</span> <span class="o">=</span> <span class="n">get_items_by_genre</span><span class="p">(</span><span class="n">cm102</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">],</span> <span class="s1">&#39;雑誌巻号&#39;</span><span class="p">)</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="n">get_items_by_genre</span><span class="p">(</span><span class="n">cm102</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">],</span> <span class="s1">&#39;マンガ作品&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">mis</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mis</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>@id</th>
+      <td>https://mediaarts-db.bunka.go.jp/id/M533119</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/M533120</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/M533121</td>
+    </tr>
+    <tr>
+      <th>rdf:type</th>
+      <td>class:Item</td>
+      <td>class:Item</td>
+      <td>class:Item</td>
+    </tr>
+    <tr>
+      <th>label</th>
+      <td>マーガレット 2004年 表示号数13</td>
+      <td>マーガレット 2004年 表示号数12</td>
+      <td>マーガレット 2004年 表示号数11</td>
+    </tr>
+    <tr>
+      <th>identifier</th>
+      <td>M533119</td>
+      <td>M533120</td>
+      <td>M533121</td>
+    </tr>
+    <tr>
+      <th>additionalType</th>
+      <td>class:CM</td>
+      <td>class:CM</td>
+      <td>class:CM</td>
+    </tr>
+    <tr>
+      <th>genre</th>
+      <td>雑誌巻号</td>
+      <td>雑誌巻号</td>
+      <td>雑誌巻号</td>
+    </tr>
+    <tr>
+      <th>oldDateModified</th>
+      <td>2016-04-20T20:25:10</td>
+      <td>2016-04-20T20:25:10</td>
+      <td>2016-04-20T20:25:10</td>
+    </tr>
+    <tr>
+      <th>mid</th>
+      <td>MARGrgl20040620</td>
+      <td>MARGrgl20040605</td>
+      <td>MARGrgl20040520</td>
+    </tr>
+    <tr>
+      <th>dayDisplayed</th>
+      <td>20</td>
+      <td>5</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>issueNumberDisplayed</th>
+      <td>13</td>
+      <td>12</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>monthDisplayed</th>
+      <td>6</td>
+      <td>6</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>note</th>
+      <td>平綴　／　ファイル</td>
+      <td>平綴　／　友達の法則(逐刊)</td>
+      <td>平綴　／　ミニドラマCD</td>
+    </tr>
+    <tr>
+      <th>totalVolumeNumber</th>
+      <td>1682</td>
+      <td>1681</td>
+      <td>1680</td>
+    </tr>
+    <tr>
+      <th>yearDisplayed</th>
+      <td>2004</td>
+      <td>2004</td>
+      <td>2004</td>
+    </tr>
+    <tr>
+      <th>datePublished</th>
+      <td>2004-06-20</td>
+      <td>2004-06-05</td>
+      <td>2004-05-20</td>
+    </tr>
+    <tr>
+      <th>isPartOf</th>
+      <td>https://mediaarts-db.bunka.go.jp/id/C119009</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/C119009</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/C119009</td>
+    </tr>
+    <tr>
+      <th>issueNumber</th>
+      <td>13</td>
+      <td>12</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td>[マーガレット, {'@language': 'ja-hrkt', '@value': 'マ...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'マーガレット'},...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'マーガレット'},...</td>
+    </tr>
+    <tr>
+      <th>numberOfPages</th>
+      <td>431p</td>
+      <td>429p</td>
+      <td>426p</td>
+    </tr>
+    <tr>
+      <th>provider</th>
+      <td>[_:b50445, _:b50446]</td>
+      <td>[_:b91312, _:b62961, _:b91313]</td>
+      <td>[_:b93019, _:b93020, _:b93021]</td>
+    </tr>
+    <tr>
+      <th>publisher</th>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>集英社　∥　シュウエイシャ</td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td>26cm</td>
+      <td>26cm</td>
+      <td>26cm</td>
+    </tr>
+    <tr>
+      <th>volumeNumber</th>
+      <td>42</td>
+      <td>42</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>combinedIssue</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>issueNumberDisplayedCombined</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>dayPublishedCombined</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>monthPublished</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>subIssueNumber</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>price</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ma:publisher</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>alternateName</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>editor</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>dayCombined</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>monthCombined</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>dateReleased</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>hasPart</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ndc</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>contentRating</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>dcterms:publisher</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>119771
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>@id</th>
+      <td>_:b10</td>
+      <td>_:b1000</td>
+      <td>_:b10000</td>
+    </tr>
+    <tr>
+      <th>genre</th>
+      <td>マンガ作品</td>
+      <td>マンガ作品</td>
+      <td>マンガ作品</td>
+    </tr>
+    <tr>
+      <th>oldDateModified</th>
+      <td>2015-02-24T09:54:48</td>
+      <td>2015-02-24T06:33:58</td>
+      <td>2015-02-12T11:26:39</td>
+    </tr>
+    <tr>
+      <th>mcid</th>
+      <td>002</td>
+      <td>037</td>
+      <td>005</td>
+    </tr>
+    <tr>
+      <th>note</th>
+      <td>4色カラー</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pageExclude</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>relatedCollection</th>
+      <td>https://mediaarts-db.bunka.go.jp/id/C108614</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/C106366</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/C93096</td>
+    </tr>
+    <tr>
+      <th>alternativeHeadline</th>
+      <td>第37回</td>
+      <td>NaN</td>
+      <td>第七話 青春とは鎖につながれないことである①</td>
+    </tr>
+    <tr>
+      <th>creator</th>
+      <td>[篠塚ひろむ, {'@language': 'ja-hrkt', '@value': 'シノ...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'フクベトモミ'},...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'ヤマサキヒロミ  ...</td>
+    </tr>
+    <tr>
+      <th>isPartOf</th>
+      <td>https://mediaarts-db.bunka.go.jp/id/M617830</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/M617736</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/M578854</td>
+    </tr>
+    <tr>
+      <th>pageEnd</th>
+      <td>47.0</td>
+      <td>616.0</td>
+      <td>74.0</td>
+    </tr>
+    <tr>
+      <th>pageStart</th>
+      <td>26.0</td>
+      <td>616.0</td>
+      <td>55.0</td>
+    </tr>
+    <tr>
+      <th>originalWorkCreator</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>[小池一夫, {'@language': 'ja-hrkt', '@value': 'コイケ...</td>
+    </tr>
+    <tr>
+      <th>contributor</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>itemCondition</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ma:relatedCollection</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>misとepsで必要な情報だけ残して，あとはマージすればOK</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">はじめに</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By kakeami<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
