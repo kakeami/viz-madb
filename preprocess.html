@@ -623,6 +623,275 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mis</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>@id</th>
+      <td>https://mediaarts-db.bunka.go.jp/id/M533119</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/M533120</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/M533121</td>
+    </tr>
+    <tr>
+      <th>rdf:type</th>
+      <td>class:Item</td>
+      <td>class:Item</td>
+      <td>class:Item</td>
+    </tr>
+    <tr>
+      <th>label</th>
+      <td>マーガレット 2004年 表示号数13</td>
+      <td>マーガレット 2004年 表示号数12</td>
+      <td>マーガレット 2004年 表示号数11</td>
+    </tr>
+    <tr>
+      <th>identifier</th>
+      <td>M533119</td>
+      <td>M533120</td>
+      <td>M533121</td>
+    </tr>
+    <tr>
+      <th>additionalType</th>
+      <td>class:CM</td>
+      <td>class:CM</td>
+      <td>class:CM</td>
+    </tr>
+    <tr>
+      <th>genre</th>
+      <td>雑誌巻号</td>
+      <td>雑誌巻号</td>
+      <td>雑誌巻号</td>
+    </tr>
+    <tr>
+      <th>oldDateModified</th>
+      <td>2016-04-20T20:25:10</td>
+      <td>2016-04-20T20:25:10</td>
+      <td>2016-04-20T20:25:10</td>
+    </tr>
+    <tr>
+      <th>mid</th>
+      <td>MARGrgl20040620</td>
+      <td>MARGrgl20040605</td>
+      <td>MARGrgl20040520</td>
+    </tr>
+    <tr>
+      <th>dayDisplayed</th>
+      <td>20</td>
+      <td>5</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>issueNumberDisplayed</th>
+      <td>13</td>
+      <td>12</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>monthDisplayed</th>
+      <td>6</td>
+      <td>6</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>note</th>
+      <td>平綴　／　ファイル</td>
+      <td>平綴　／　友達の法則(逐刊)</td>
+      <td>平綴　／　ミニドラマCD</td>
+    </tr>
+    <tr>
+      <th>totalVolumeNumber</th>
+      <td>1682</td>
+      <td>1681</td>
+      <td>1680</td>
+    </tr>
+    <tr>
+      <th>yearDisplayed</th>
+      <td>2004</td>
+      <td>2004</td>
+      <td>2004</td>
+    </tr>
+    <tr>
+      <th>datePublished</th>
+      <td>2004-06-20</td>
+      <td>2004-06-05</td>
+      <td>2004-05-20</td>
+    </tr>
+    <tr>
+      <th>isPartOf</th>
+      <td>https://mediaarts-db.bunka.go.jp/id/C119009</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/C119009</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/C119009</td>
+    </tr>
+    <tr>
+      <th>issueNumber</th>
+      <td>13</td>
+      <td>12</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td>[マーガレット, {'@language': 'ja-hrkt', '@value': 'マ...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'マーガレット'},...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'マーガレット'},...</td>
+    </tr>
+    <tr>
+      <th>numberOfPages</th>
+      <td>431p</td>
+      <td>429p</td>
+      <td>426p</td>
+    </tr>
+    <tr>
+      <th>provider</th>
+      <td>[_:b50445, _:b50446]</td>
+      <td>[_:b91312, _:b62961, _:b91313]</td>
+      <td>[_:b93019, _:b93020, _:b93021]</td>
+    </tr>
+    <tr>
+      <th>publisher</th>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>集英社　∥　シュウエイシャ</td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td>26cm</td>
+      <td>26cm</td>
+      <td>26cm</td>
+    </tr>
+    <tr>
+      <th>volumeNumber</th>
+      <td>42</td>
+      <td>42</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>combinedIssue</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>issueNumberDisplayedCombined</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>dayPublishedCombined</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>monthPublished</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>subIssueNumber</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>price</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ma:publisher</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>alternateName</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>editor</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>dayCombined</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>monthCombined</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>dateReleased</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>hasPart</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ndc</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>contentRating</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>dcterms:publisher</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -632,6 +901,137 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>@id</th>
+      <td>_:b10</td>
+      <td>_:b1000</td>
+      <td>_:b10000</td>
+    </tr>
+    <tr>
+      <th>genre</th>
+      <td>マンガ作品</td>
+      <td>マンガ作品</td>
+      <td>マンガ作品</td>
+    </tr>
+    <tr>
+      <th>oldDateModified</th>
+      <td>2015-02-24T09:54:48</td>
+      <td>2015-02-24T06:33:58</td>
+      <td>2015-02-12T11:26:39</td>
+    </tr>
+    <tr>
+      <th>mcid</th>
+      <td>002</td>
+      <td>037</td>
+      <td>005</td>
+    </tr>
+    <tr>
+      <th>note</th>
+      <td>4色カラー</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pageExclude</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>relatedCollection</th>
+      <td>https://mediaarts-db.bunka.go.jp/id/C108614</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/C106366</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/C93096</td>
+    </tr>
+    <tr>
+      <th>alternativeHeadline</th>
+      <td>第37回</td>
+      <td>NaN</td>
+      <td>第七話 青春とは鎖につながれないことである①</td>
+    </tr>
+    <tr>
+      <th>creator</th>
+      <td>[篠塚ひろむ, {'@language': 'ja-hrkt', '@value': 'シノ...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'フクベトモミ'},...</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'ヤマサキヒロミ  ...</td>
+    </tr>
+    <tr>
+      <th>isPartOf</th>
+      <td>https://mediaarts-db.bunka.go.jp/id/M617830</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/M617736</td>
+      <td>https://mediaarts-db.bunka.go.jp/id/M578854</td>
+    </tr>
+    <tr>
+      <th>pageEnd</th>
+      <td>47.0</td>
+      <td>616.0</td>
+      <td>74.0</td>
+    </tr>
+    <tr>
+      <th>pageStart</th>
+      <td>26.0</td>
+      <td>616.0</td>
+      <td>55.0</td>
+    </tr>
+    <tr>
+      <th>originalWorkCreator</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>[小池一夫, {'@language': 'ja-hrkt', '@value': 'コイケ...</td>
+    </tr>
+    <tr>
+      <th>contributor</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>itemCondition</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ma:relatedCollection</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>misとepsで必要な情報だけ残して，あとはマージすればOK</p>
 </div>
