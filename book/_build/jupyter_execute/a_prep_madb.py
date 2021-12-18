@@ -23,8 +23,10 @@ warnings.filterwarnings('ignore')
 
 import glob
 import json
+import numpy as np
 import os
 import pandas as pd
+from pprint import pprint
 from tqdm import tqdm_notebook as tqdm
 import zipfile
 
@@ -65,12 +67,45 @@ COL_CM105 = [
 # In[6]:
 
 
+# cm102, genre=='雑誌巻号'
+COLS_MIS = {
+    'identifier': 'miid',
+    'label': 'miname',
+    'datePublished': 'datePublished',
+    'isPartOf': 'mcid',
+    'issueNumber': 'issueNumber',
+    'numberOfPages': 'numberOfPages',
+    'publisher': 'publisher',
+    'volumeNumber': 'volumeNumber',
+    'price': 'price',
+    'editor': 'editor',
+}
+
+
+# In[7]:
+
+
+# cm102, genre=='マンガ作品'
+COLS_EPS = {
+    'relatedCollection': 'cid',
+    'creator': 'creator',
+    'note': 'note',
+    'alternativeHeadline': 'epname',
+    'pageStart': 'pageStart',
+    'pageEnd': 'pageEnd',
+    'isPartOf': 'miid',
+}
+
+
+# In[8]:
+
+
 get_ipython().system('ls {DIR_IN}')
 
 
 # ## 関数
 
-# In[7]:
+# In[9]:
 
 
 def read_json(path):
@@ -88,7 +123,7 @@ def read_json(path):
     return dct
 
 
-# In[35]:
+# In[10]:
 
 
 def save_json(path, dct):
@@ -127,80 +162,78 @@ for p_from in tqdm(ps_cm):
 
 # ### 対象
 
-# In[9]:
+# In[11]:
 
 
 ps_cm = {cm: glob.glob(f'{DIR_TMP}/*{cm}*/*') for cm in FNS_CM}
 
 
-# In[10]:
+# In[12]:
 
 
-ps_cm
+pprint(ps_cm)
 
 
 # ### `cm105`
 
-# In[11]:
+# In[17]:
+
+
+def format_magazine_name(name):
+    """nameからpublished_nameを取得"""
+    for x in name:
+        if type(x) is str:
+            return x
+    raise Exception(f'No magazine name in {name}!')
+
+
+# In[18]:
 
 
 cm105 = read_json(ps_cm['cm105'][0])
 
 
-# In[12]:
+# In[19]:
 
 
 df_cm105 = pd.DataFrame(cm105['@graph'])[COL_CM105]
 
 
-# In[26]:
-
-
-def get_published_name(name):
-    """nameからpublished_nameを取得"""
-    for x in name:
-        if type(x) is str:
-            return x
-    raise Exception(f'No published_name in {name}!')
-
-
-# In[31]:
+# In[20]:
 
 
 # 雑誌名を取得
-df_cm105['mcname'] = df_cm105['name'].apply(lambda x: get_published_name(x))
+df_cm105['mcname'] = df_cm105['name'].apply(
+    lambda x: format_magazine_name(x))
 
 
-# In[32]:
+# In[21]:
 
 
-# 例
-df_cm105.head(3).T
+# 週刊少年ジャンプのmcidを取得
+df_cm105[df_cm105['mcname']=='週刊少年ジャンプ']
 
 
-# In[34]:
+# In[22]:
 
 
-# mcnameからmcidを引く辞書
-mcname2mcid = df_cm105.groupby('mcname')['identifier'].first().to_dict()
-
-
-# In[36]:
-
-
-# 保存
-save_json(os.path.join(DIR_TMP, 'mcname2mcid.json'), mcname2mcid)
+mcids = ['C119459']
 
 
 # ### `cm102`
 
-# In[38]:
+# In[23]:
 
 
-cm102 = read_json(ps_cm['cm102'][0])
+def format_cols(df, cols_rename):
+    """cols_renameのcolのみを抽出し，renmae"""
+    df_new = df.copy()
+    df_new = df_new[cols_rename]
+    df_new = df_new.rename(columns=cols_rename)
+    return df_new
 
 
-# In[54]:
+# In[24]:
 
 
 def get_items_by_genre(graph, genre):
@@ -211,36 +244,122 @@ def get_items_by_genre(graph, genre):
     return items
 
 
-# In[61]:
+# In[25]:
 
 
-# 各ジャンルのアイテム群を取得
-mis = get_items_by_genre(cm102['@graph'], '雑誌巻号')
-eps = get_items_by_genre(cm102['@graph'], 'マンガ作品')
+def get_id_from_url(url):
+    """url表記から末尾のidを取得"""
+    if url is np.nan:
+        return None
+    else:
+        return url.split('/')[-1]
 
 
-# In[59]:
+# In[26]:
 
 
-len(mis)
+def format_nop(numberOfPages):
+    """numberOfPagesからpやPを除外"""
+    nop = numberOfPages
+    if nop is np.nan:
+        return None
+    else:
+        return int(nop.replace('p', '').replace('P', ''))
 
 
-# In[63]:
+# In[27]:
 
 
-pd.DataFrame(mis).head(3).T
+def format_price(price):
+    """priceを整形"""
+    if price is np.nan:
+        return None
+    else:
+        price_new = price.replace('円', '').replace('+税', '')
+        # M542801, 週刊少年ジャンプ 2010年 表示号数42
+        # 何故かpriceが'238p'
+        price_new = price_new.replace('p', '')
+        return int(price_new)
 
 
-# In[60]:
+# In[28]:
 
 
-len(eps)
+def format_creator(creator):
+    """creatorから著者名を取得"""
+    if creator is np.nan:
+        return None
+    for x in creator:
+        if type(x) is str:
+            return x
+    raise Exception('No creator name!')
 
 
-# In[64]:
+# In[29]:
 
 
-pd.DataFrame(eps).head(3).T
+def create_df_mis(mis, mcids):
+    """辞書形式のmisからdf_misを構築
+    ただし，mcidsに含まれるデータのみ抽出"""
+    df_mis = pd.DataFrame(mis)
+    # 列を整理
+    df_mis = format_cols(df_mis, COLS_MIS)
+    # mcidを取得
+    df_mis['mcid'] = df_mis['mcid'].apply(
+        lambda x: get_id_from_url(x))
+    # 特定のmcidsに該当する行のみ抽出
+    df_mis = df_mis[df_mis['mcid'].isin(mcids)].reset_index(drop=True)
+    # datePublishedでソート
+    df_mis['datePublished'] = pd.to_datetime(df_mis['datePublished'])
+    df_mis  = df_mis.sort_values('datePublished', ignore_index=True)
+    # numberOfPagesを整形
+    df_mis['numberOfPages'] = df_mis['numberOfPages'].apply(
+        lambda x: format_nop(x))
+    # priceを整形
+    df_mis['price'] = df_mis['price'].apply(
+        lambda x: format_price(x))
+    return df_mis
 
 
-# misとepsで必要な情報だけ残して，あとはマージすればOK
+# In[30]:
+
+
+def create_df_eps(eps, miids):
+    """辞書形式のepsからdf_epsを構築
+    ただし，miidsに含まれるデータのみ抽出"""
+    df_eps = pd.DataFrame(eps)
+    # 列を整形
+    df_eps = format_cols(df_eps, COLS_EPS)
+    # url表記から各idを取得
+    df_eps['cid'] = df_eps['cid'].apply(lambda x: get_id_from_url(x))
+    df_eps['miid'] = df_eps['miid'].apply(lambda x: get_id_from_url(x))
+    # miidsに該当するepsのみ抽出
+    df_eps = df_eps[df_eps['miid'].isin(miids)].reset_index(drop=True)
+    # 著者名を取得
+    df_eps['creator'] = df_eps['creator'].apply(
+        lambda x: format_creator(x))
+    return df_eps
+
+
+# In[1]:
+
+
+df_mis_all = pd.DataFrame()
+df_eps_all = pd.DataFrame()
+for p in tqdm(ps_cm['cm102']):
+    cm102 = read_json(p)
+    
+    # 各ジャンルのアイテム群を取得
+    mis = get_items_by_genre(cm102['@graph'], '雑誌巻号')
+    eps = get_items_by_genre(cm102['@graph'], 'マンガ作品')
+    # pd.DataFrameとして整形
+    df_mis = create_df_mis(mis, mcids)
+    miids = set(df_mis['miid'].unique())
+    df_eps = create_df_eps(eps, miids)
+    
+    # 結合
+    df_mis_all = pd.concat([df_mis_all, df_mis])
+    df_eps_all = pd.concat([df_eps_all, df_eps])
+
+
+# 途中でメモリ不足で落ちちゃうので対応を考えること．おそらくepsやmisが重すぎる
