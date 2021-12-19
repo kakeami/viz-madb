@@ -176,7 +176,7 @@ pprint(ps_cm)
 
 # ### `cm105`
 
-# In[17]:
+# In[13]:
 
 
 def format_magazine_name(name):
@@ -187,19 +187,19 @@ def format_magazine_name(name):
     raise Exception(f'No magazine name in {name}!')
 
 
-# In[18]:
+# In[14]:
 
 
 cm105 = read_json(ps_cm['cm105'][0])
 
 
-# In[19]:
+# In[15]:
 
 
 df_cm105 = pd.DataFrame(cm105['@graph'])[COL_CM105]
 
 
-# In[20]:
+# In[16]:
 
 
 # 雑誌名を取得
@@ -207,14 +207,14 @@ df_cm105['mcname'] = df_cm105['name'].apply(
     lambda x: format_magazine_name(x))
 
 
-# In[21]:
+# In[17]:
 
 
 # 週刊少年ジャンプのmcidを取得
 df_cm105[df_cm105['mcname']=='週刊少年ジャンプ']
 
 
-# In[22]:
+# In[18]:
 
 
 mcids = ['C119459']
@@ -222,7 +222,7 @@ mcids = ['C119459']
 
 # ### `cm102`
 
-# In[23]:
+# In[19]:
 
 
 def format_cols(df, cols_rename):
@@ -233,7 +233,7 @@ def format_cols(df, cols_rename):
     return df_new
 
 
-# In[24]:
+# In[20]:
 
 
 def get_items_by_genre(graph, genre):
@@ -244,7 +244,7 @@ def get_items_by_genre(graph, genre):
     return items
 
 
-# In[25]:
+# In[21]:
 
 
 def get_id_from_url(url):
@@ -255,7 +255,7 @@ def get_id_from_url(url):
         return url.split('/')[-1]
 
 
-# In[26]:
+# In[22]:
 
 
 def format_nop(numberOfPages):
@@ -267,22 +267,27 @@ def format_nop(numberOfPages):
         return int(nop.replace('p', '').replace('P', ''))
 
 
-# In[27]:
+# In[23]:
 
 
 def format_price(price):
     """priceを整形"""
     if price is np.nan:
         return None
+    elif price == 'JUMPガラガラウなかも':
+        # M544740, 週刊少年ジャンプ 1971年 表示号数47
+        # price = 'JUMPガラガラウなかも'
+        return None
+    elif price == '238p':
+        # M542801, 週刊少年ジャンプ 2010年 表示号数42
+        # price = '238p'
+        return 238
     else:
         price_new = price.replace('円', '').replace('+税', '')
-        # M542801, 週刊少年ジャンプ 2010年 表示号数42
-        # 何故かpriceが'238p'
-        price_new = price_new.replace('p', '')
         return int(price_new)
 
 
-# In[28]:
+# In[24]:
 
 
 def format_creator(creator):
@@ -295,7 +300,7 @@ def format_creator(creator):
     raise Exception('No creator name!')
 
 
-# In[29]:
+# In[25]:
 
 
 def create_df_mis(mis, mcids):
@@ -321,7 +326,7 @@ def create_df_mis(mis, mcids):
     return df_mis
 
 
-# In[30]:
+# In[26]:
 
 
 def create_df_eps(eps, miids):
@@ -341,25 +346,35 @@ def create_df_eps(eps, miids):
     return df_eps
 
 
-# In[1]:
+# In[27]:
 
 
-df_mis_all = pd.DataFrame()
-df_eps_all = pd.DataFrame()
-for p in tqdm(ps_cm['cm102']):
+for i, p in tqdm(enumerate(ps_cm['cm102'])):
     cm102 = read_json(p)
     
     # 各ジャンルのアイテム群を取得
     mis = get_items_by_genre(cm102['@graph'], '雑誌巻号')
     eps = get_items_by_genre(cm102['@graph'], 'マンガ作品')
+    del cm102
     # pd.DataFrameとして整形
     df_mis = create_df_mis(mis, mcids)
     miids = set(df_mis['miid'].unique())
     df_eps = create_df_eps(eps, miids)
+    del mis, eps
     
-    # 結合
-    df_mis_all = pd.concat([df_mis_all, df_mis])
-    df_eps_all = pd.concat([df_eps_all, df_eps])
+    # 保存
+    fn_mis = os.path.join(DIR_TMP, f'mis_{i+1:05}.csv')
+    fn_eps = os.path.join(DIR_TMP, f'eps_{i+1:05}.csv')
+    df_mis.to_csv(fn_mis, index=False)
+    df_eps.to_csv(fn_eps, index=False)
 
 
-# 途中でメモリ不足で落ちちゃうので対応を考えること．おそらくepsやmisが重すぎる
+# ### `cm106`
+
+# ## 結合
+
+# In[ ]:
+
+
+
+

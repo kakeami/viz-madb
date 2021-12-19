@@ -249,7 +249,21 @@
      </code>
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cm106">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cm106
+      </span>
+     </code>
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   結合
+  </a>
  </li>
 </ul>
 
@@ -630,11 +644,16 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
     <span class="sd">&quot;&quot;&quot;priceを整形&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">price</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">price</span> <span class="o">==</span> <span class="s1">&#39;JUMPガラガラウなかも&#39;</span><span class="p">:</span>
+        <span class="c1"># M544740, 週刊少年ジャンプ 1971年 表示号数47</span>
+        <span class="c1"># price = &#39;JUMPガラガラウなかも&#39;</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">price</span> <span class="o">==</span> <span class="s1">&#39;238p&#39;</span><span class="p">:</span>
+        <span class="c1"># M542801, 週刊少年ジャンプ 2010年 表示号数42</span>
+        <span class="c1"># price = &#39;238p&#39;</span>
+        <span class="k">return</span> <span class="mi">238</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">price_new</span> <span class="o">=</span> <span class="n">price</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;円&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;+税&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="c1"># M542801, 週刊少年ジャンプ 2010年 表示号数42</span>
-        <span class="c1"># 何故かpriceが&#39;238p&#39;</span>
-        <span class="n">price_new</span> <span class="o">=</span> <span class="n">price_new</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">price_new</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -704,42 +723,39 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_mis_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df_eps_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s1">&#39;cm102&#39;</span><span class="p">]):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s1">&#39;cm102&#39;</span><span class="p">])):</span>
     <span class="n">cm102</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     
     <span class="c1"># 各ジャンルのアイテム群を取得</span>
     <span class="n">mis</span> <span class="o">=</span> <span class="n">get_items_by_genre</span><span class="p">(</span><span class="n">cm102</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">],</span> <span class="s1">&#39;雑誌巻号&#39;</span><span class="p">)</span>
     <span class="n">eps</span> <span class="o">=</span> <span class="n">get_items_by_genre</span><span class="p">(</span><span class="n">cm102</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">],</span> <span class="s1">&#39;マンガ作品&#39;</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">cm102</span>
     <span class="c1"># pd.DataFrameとして整形</span>
     <span class="n">df_mis</span> <span class="o">=</span> <span class="n">create_df_mis</span><span class="p">(</span><span class="n">mis</span><span class="p">,</span> <span class="n">mcids</span><span class="p">)</span>
     <span class="n">miids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_mis</span><span class="p">[</span><span class="s1">&#39;miid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
     <span class="n">df_eps</span> <span class="o">=</span> <span class="n">create_df_eps</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">miids</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">mis</span><span class="p">,</span> <span class="n">eps</span>
     
-    <span class="c1"># 結合</span>
-    <span class="n">df_mis_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_mis_all</span><span class="p">,</span> <span class="n">df_mis</span><span class="p">])</span>
-    <span class="n">df_eps_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_eps_all</span><span class="p">,</span> <span class="n">df_eps</span><span class="p">])</span>
+    <span class="c1"># 保存</span>
+    <span class="n">fn_mis</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;mis_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s1">05</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span>
+    <span class="n">fn_eps</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;eps_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s1">05</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span>
+    <span class="n">df_mis</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fn_mis</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">df_eps</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fn_eps</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_441</span><span class="o">/</span><span class="mf">3957689300.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_mis_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df_eps_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s1">&#39;cm102&#39;</span><span class="p">]):</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">cm102</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-
-<span class="ne">NameError</span>: name &#39;pd&#39; is not defined
-</pre></div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2aeb8fe4db6a4427b6a9c19f50873017", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 </div>
+<div class="section" id="cm106">
+<h3><code class="docutils literal notranslate"><span class="pre">cm106</span></code><a class="headerlink" href="#cm106" title="Permalink to this headline">¶</a></h3>
 </div>
-<p>途中でメモリ不足で落ちちゃうので対応を考えること．おそらくepsやmisが重すぎる</p>
 </div>
+<div class="section" id="id6">
+<h2>結合<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
