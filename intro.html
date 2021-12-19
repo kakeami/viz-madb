@@ -148,9 +148,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/intro.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -184,6 +184,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -195,13 +212,18 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#madb-lab">
-   MADB Lab
+  <a class="reference internal nav-link" href="#id2">
+   背景
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plotly">
-   Plotly
+  <a class="reference internal nav-link" href="#id3">
+   データ概要
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   構成
   </a>
  </li>
 </ul>
@@ -217,13 +239,15 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>はじめに<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>データ分析は地味で辛いです．</p>
-<div class="section" id="madb-lab">
-<h2>MADB Lab<a class="headerlink" href="#madb-lab" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://mediag.bunka.go.jp/madb_lab/">MADB Lab</a></p>
+<div class="section" id="id2">
+<h2>背景<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="plotly">
-<h2>Plotly<a class="headerlink" href="#plotly" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>データ概要<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>扱うデータの概要を説明します．</p>
+</div>
+<div class="section" id="id4">
+<h2>構成<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="toctree-wrapper compound">
 </div>
