@@ -4,5 +4,7 @@
 format: jb-book
 root: intro
 chapters:
+- file: chart_hist
+  title: ヒストグラム
 - file: a_prep_madb
   title: Appendix A：MADBの前処理

@@ -97,6 +97,16 @@ COLS_EPS = {
 }
 
 
+# In[47]:
+
+
+# cm106
+COLS_CS = {
+    'identifier': 'cid', 
+    'name': 'cname'
+}
+
+
 # In[8]:
 
 
@@ -168,13 +178,15 @@ for p_from in tqdm(ps_cm):
 ps_cm = {cm: glob.glob(f'{DIR_TMP}/*{cm}*/*') for cm in FNS_CM}
 
 
-# In[12]:
+# In[48]:
 
 
 pprint(ps_cm)
 
 
 # ### `cm105`
+# 
+# 漫画雑誌に関するデータを整形し，分析対象のIDを特定．
 
 # In[13]:
 
@@ -221,6 +233,8 @@ mcids = ['C119459']
 
 
 # ### `cm102`
+# 
+# 雑誌巻号およびマンガ作品に関するデータを整形し，一次保存．
 
 # In[19]:
 
@@ -370,11 +384,111 @@ for i, p in tqdm(enumerate(ps_cm['cm102'])):
 
 
 # ### `cm106`
+# 
+# 掲載作品に関するデータを整形し，一次保存．
+
+# In[40]:
+
+
+def format_cname(cname):
+    """cnameから著者名を取得"""
+    if cname is np.nan:
+        return None
+    for x in cname:
+        if type(x) is str:
+            return x
+    raise Exception('No comic name!')
+
+
+# In[30]:
+
+
+cm106 = read_json(ps_cm['cm106'][0])
+
+
+# In[43]:
+
+
+# 雑誌掲載ジャンルのアイテムを抽出
+cs = get_items_by_genre(cm106['@graph'], '雑誌掲載')
+# DataFrame化
+df_cs = pd.DataFrame(cs)
+# カラムを整理
+df_cs = format_cols(df_cs, COLS_CS)
+# cnameを整形
+df_cs['cname'] = df_cs['cname'].apply(
+    lambda x: format_cname(x))
+
+
+# In[45]:
+
+
+# 保存
+df_cs.to_csv(os.path.join(DIR_TMP, 'cs.csv'), index=False)
+
 
 # ## 結合
 
-# In[ ]:
+# In[53]:
 
 
+def read_and_concat_csvs(pathes):
+    """pathesのcsvを順番に呼び出し，concat"""
+    df_all = pd.DataFrame()
+    for p in pathes:
+        df = pd.read_csv(p)
+        df_all = pd.concat([df_all, df], ignore_index=True)
+    return df_all
 
+
+# In[65]:
+
+
+def sort_date(df, col_date):
+    """dfをcol_dateでソート"""
+    df_new = df.copy()
+    df_new[col_date] = pd.to_datetime(df_new[col_date])
+    df_new = df_new.sort_values(col_date, ignore_index=True)
+    return df_new
+
+
+# In[76]:
+
+
+# 各ファイルのパスを抽出
+ps_mis = glob.glob(f'{DIR_TMP}/mis*.csv')
+ps_eps = glob.glob(f'{DIR_TMP}/eps*.csv')
+ps_cs = glob.glob(f'{DIR_TMP}/cs*.csv')
+
+
+# In[77]:
+
+
+# データの読み出し
+df_mis = read_and_concat_csvs(ps_mis)
+df_eps = read_and_concat_csvs(ps_eps)
+df_cs = read_and_concat_csvs(ps_cs)
+
+
+# In[81]:
+
+
+# 結合
+df_all = pd.merge(df_eps, df_cs, on='cid', how='left')
+df_all = pd.merge(df_all, df_mis, on='miid', how='left')
+
+
+# In[104]:
+
+
+# ソート
+df_all['datePublished'] = pd.to_datetime(df_all['datePublished'])
+df_all = df_all.sort_values(['datePublished', 'pageStart'], ignore_index=False)
+
+
+# In[114]:
+
+
+# 保存
+df_all.to_csv(os.path.join(DIR_OUT, 'wj.csv'), index=False)
 
