@@ -7,7 +7,7 @@
 
 # ## 環境構築
 
-# In[115]:
+# In[1]:
 
 
 # Notebook初期設定
@@ -18,7 +18,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[116]:
+# In[2]:
 
 
 import glob
@@ -31,7 +31,7 @@ from tqdm import tqdm_notebook as tqdm
 import zipfile
 
 
-# In[117]:
+# In[3]:
 
 
 DIR_IN = '../madb/data/json-ld'
@@ -39,7 +39,7 @@ DIR_TMP = '../data/preprocess/tmp'
 DIR_OUT = '../data/preprocess/out'
 
 
-# In[118]:
+# In[4]:
 
 
 FNS_CM = [
@@ -49,7 +49,7 @@ FNS_CM = [
 ]
 
 
-# In[119]:
+# In[5]:
 
 
 # CM105で使用するカラム
@@ -64,7 +64,7 @@ COL_CM105 = [
 ]
 
 
-# In[120]:
+# In[6]:
 
 
 # cm102, genre=='雑誌巻号'
@@ -82,7 +82,7 @@ COLS_MIS = {
 }
 
 
-# In[121]:
+# In[7]:
 
 
 # cm102, genre=='マンガ作品'
@@ -97,7 +97,7 @@ COLS_EPS = {
 }
 
 
-# In[122]:
+# In[8]:
 
 
 # cm106
@@ -107,7 +107,7 @@ COLS_CS = {
 }
 
 
-# In[123]:
+# In[9]:
 
 
 get_ipython().system('ls {DIR_IN}')
@@ -115,7 +115,7 @@ get_ipython().system('ls {DIR_IN}')
 
 # ## 関数
 
-# In[124]:
+# In[10]:
 
 
 def read_json(path):
@@ -133,7 +133,7 @@ def read_json(path):
     return dct
 
 
-# In[125]:
+# In[11]:
 
 
 def save_json(path, dct):
@@ -172,13 +172,13 @@ for p_from in tqdm(ps_cm):
 
 # ### 対象
 
-# In[126]:
+# In[12]:
 
 
 ps_cm = {cm: glob.glob(f'{DIR_TMP}/*{cm}*/*') for cm in FNS_CM}
 
 
-# In[127]:
+# In[13]:
 
 
 pprint(ps_cm)
@@ -188,7 +188,7 @@ pprint(ps_cm)
 # 
 # 漫画雑誌に関するデータを整形し，分析対象のIDを特定．
 
-# In[128]:
+# In[14]:
 
 
 def format_magazine_name(name):
@@ -199,19 +199,14 @@ def format_magazine_name(name):
     raise Exception(f'No magazine name in {name}!')
 
 
-# In[129]:
+# In[15]:
 
 
 cm105 = read_json(ps_cm['cm105'][0])
-
-
-# In[130]:
-
-
 df_cm105 = pd.DataFrame(cm105['@graph'])[COL_CM105]
 
 
-# In[131]:
+# In[16]:
 
 
 # 雑誌名を取得
@@ -219,7 +214,7 @@ df_cm105['mcname'] = df_cm105['name'].apply(
     lambda x: format_magazine_name(x))
 
 
-# In[132]:
+# In[17]:
 
 
 MCNAMES = [
@@ -229,24 +224,25 @@ MCNAMES = [
 ]
 
 
-# In[134]:
+# In[18]:
 
 
 # 所定の雑誌のmcidを取得
 df_cm105[df_cm105['mcname'].isin(MCNAMES)].T
 
 
-# In[135]:
+# In[19]:
 
 
 mcids =     df_cm105[df_cm105['mcname'].isin(MCNAMES)]['identifier'].unique()
+del cm105, df_cm105
 
 
 # ### `cm102`
 # 
 # 雑誌巻号およびマンガ作品に関するデータを整形し，一次保存．
 
-# In[136]:
+# In[20]:
 
 
 def format_cols(df, cols_rename):
@@ -257,7 +253,7 @@ def format_cols(df, cols_rename):
     return df_new
 
 
-# In[137]:
+# In[21]:
 
 
 def get_items_by_genre(graph, genre):
@@ -268,7 +264,7 @@ def get_items_by_genre(graph, genre):
     return items
 
 
-# In[138]:
+# In[22]:
 
 
 def get_id_from_url(url):
@@ -279,7 +275,7 @@ def get_id_from_url(url):
         return url.split('/')[-1]
 
 
-# In[139]:
+# In[23]:
 
 
 def format_nop(numberOfPages):
@@ -287,11 +283,15 @@ def format_nop(numberOfPages):
     nop = numberOfPages
     if nop is np.nan:
         return None
+    elif nop == '1冊' or nop == '1サツ':
+        # M577294, 週刊少年サンデー 2010年 表示号数17
+        # nop = '1冊'
+        return None
     else:
         return int(nop.replace('p', '').replace('P', ''))
 
 
-# In[140]:
+# In[24]:
 
 
 def format_price(price):
@@ -311,7 +311,7 @@ def format_price(price):
         return int(price_new)
 
 
-# In[141]:
+# In[25]:
 
 
 def format_creator(creator):
@@ -324,7 +324,7 @@ def format_creator(creator):
     raise Exception('No creator name!')
 
 
-# In[142]:
+# In[26]:
 
 
 def create_df_mis(mis, mcids):
@@ -350,7 +350,7 @@ def create_df_mis(mis, mcids):
     return df_mis
 
 
-# In[143]:
+# In[27]:
 
 
 def create_df_eps(eps, miids):

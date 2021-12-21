@@ -524,13 +524,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm105</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s1">&#39;cm105&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cm105</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cm105</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">])[</span><span class="n">COL_CM105</span><span class="p">]</span>
+<span class="n">df_cm105</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cm105</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">])[</span><span class="n">COL_CM105</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -643,6 +637,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcids</span> <span class="o">=</span> \
     <span class="n">df_cm105</span><span class="p">[</span><span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">MCNAMES</span><span class="p">)][</span><span class="s1">&#39;identifier&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="k">del</span> <span class="n">cm105</span><span class="p">,</span> <span class="n">df_cm105</span>
 </pre></div>
 </div>
 </div>
@@ -693,6 +688,10 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
     <span class="sd">&quot;&quot;&quot;numberOfPagesからpやPを除外&quot;&quot;&quot;</span>
     <span class="n">nop</span> <span class="o">=</span> <span class="n">numberOfPages</span>
     <span class="k">if</span> <span class="n">nop</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">nop</span> <span class="o">==</span> <span class="s1">&#39;1冊&#39;</span> <span class="ow">or</span> <span class="n">nop</span> <span class="o">==</span> <span class="s1">&#39;1サツ&#39;</span><span class="p">:</span>
+        <span class="c1"># M577294, 週刊少年サンデー 2010年 表示号数17</span>
+        <span class="c1"># nop = &#39;1冊&#39;</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">nop</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
@@ -808,7 +807,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "9c1d8d0d96c346008d42a588898e57d7", "version_major": 2, "version_minor": 0}
+{"model_id": "ad269e7c527543b8917c6e6f8c8b6a6f", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 </div>
