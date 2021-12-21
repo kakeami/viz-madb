@@ -283,7 +283,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="appendix-a-madb">
 <h1>Appendix A: MADBの前処理<a class="headerlink" href="#appendix-a-madb" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">madb</span></code>から必要なデータを抽出し，扱いやすいようcsvに変換</p>
+<p><code class="docutils literal notranslate"><span class="pre">madb</span></code>から必要なデータを抽出し，縦持ちのcsvに変換します．</p>
 <div class="section" id="id1">
 <h2>環境構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
@@ -546,8 +546,19 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 週刊少年ジャンプのmcidを取得</span>
-<span class="n">df_cm105</span><span class="p">[</span><span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;週刊少年ジャンプ&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MCNAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;週刊少年ジャンプ&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;週刊少年マガジン&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;週刊少年サンデー&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 所定の雑誌のmcidを取得</span>
+<span class="n">df_cm105</span><span class="p">[</span><span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">MCNAMES</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
@@ -570,26 +581,58 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>identifier</th>
-      <th>label</th>
-      <th>note</th>
-      <th>publicationPeriodicity</th>
-      <th>name</th>
-      <th>publisher</th>
-      <th>dayPublishedFinal</th>
-      <th>mcname</th>
+      <th>148</th>
+      <th>1449</th>
+      <th>1828</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>1828</th>
+      <th>identifier</th>
+      <td>C117607</td>
+      <td>C119033</td>
       <td>C119459</td>
+    </tr>
+    <tr>
+      <th>label</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年マガジン</td>
       <td>週刊少年ジャンプ</td>
+    </tr>
+    <tr>
+      <th>note</th>
+      <td>・創刊号の発売日は1959年3月17日　／　別タイトル：Weekly少年サンデー</td>
+      <td>『ぼくら』 - 1969年11月18日号より『週刊ぼくらマガジン』1971年6月まで - 『...</td>
       <td>『少年ジャンプ』 - 『週刊少年ジャンプ』　／　・先行誌『少年ジャンプ』　／　新しい漫画新幹線</td>
+    </tr>
+    <tr>
+      <th>publicationPeriodicity</th>
       <td>週刊</td>
+      <td>週刊</td>
+      <td>週刊</td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td>[{'@language': 'ja-hrkt', '@value': 'シュウカンショウネ...</td>
+      <td>[週刊少年マガジン, {'@language': 'ja-hrkt', '@value': ...</td>
       <td>[週刊少年ジャンプ, {'@language': 'ja-hrkt', '@value': ...</td>
+    </tr>
+    <tr>
+      <th>publisher</th>
+      <td>小学館　∥　ショウガクカン</td>
+      <td>講談社　∥　コウダンシャ</td>
       <td>集英社　∥　シュウエイシャ</td>
+    </tr>
+    <tr>
+      <th>dayPublishedFinal</th>
       <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>mcname</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年マガジン</td>
       <td>週刊少年ジャンプ</td>
     </tr>
   </tbody>
@@ -598,7 +641,8 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C119459&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcids</span> <span class="o">=</span> \
+    <span class="n">df_cm105</span><span class="p">[</span><span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">MCNAMES</span><span class="p">)][</span><span class="s1">&#39;identifier&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -764,7 +808,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "2aeb8fe4db6a4427b6a9c19f50873017", "version_major": 2, "version_minor": 0}
+{"model_id": "9c1d8d0d96c346008d42a588898e57d7", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 </div>
