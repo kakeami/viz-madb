@@ -91,7 +91,7 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
+  <a class="reference internal" href="index.html">
    はじめに
   </a>
  </li>
@@ -300,7 +300,20 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install ijson
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ijson in /opt/conda/lib/python3.9/site-packages (3.1.4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">ijson</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -452,6 +465,32 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_json_w_filters</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">items</span><span class="p">,</span> <span class="n">filters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;itemsのうち，filtersの条件を満たすもののみを抽出</span>
+<span class="sd">    path: jsonファイルのパス</span>
+<span class="sd">    items: jsonファイル中でitemsを取得するキー</span>
+<span class="sd">    filters: dict形式．item[key] in valueで条件づけする想定</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">parse</span> <span class="o">=</span> <span class="n">ijson</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">parse</span><span class="p">:</span>
+            <span class="c1"># filtersの条件をすべて満足するもの以外はbreak</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">filters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">break</span>
+                <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># breakしなかった場合はoutに追加</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="id3">
 <h2>解凍<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -551,7 +590,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 所定の雑誌のmcidを取得</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mcnameで抽出</span>
 <span class="n">df_cm105</span><span class="p">[</span><span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">MCNAMES</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
@@ -635,7 +674,8 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcids</span> <span class="o">=</span> \
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 所定の雑誌のMCID一覧を保存</span>
+<span class="n">MCIDS</span> <span class="o">=</span> \
     <span class="n">df_cm105</span><span class="p">[</span><span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">MCNAMES</span><span class="p">)][</span><span class="s1">&#39;identifier&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 <span class="k">del</span> <span class="n">cm105</span><span class="p">,</span> <span class="n">df_cm105</span>
 </pre></div>
@@ -651,7 +691,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">format_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cols_rename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;cols_renameのcolのみを抽出し，renmae&quot;&quot;&quot;</span>
     <span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[</span><span class="n">cols_rename</span><span class="p">]</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[</span><span class="n">cols_rename</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
     <span class="n">df_new</span> <span class="o">=</span> <span class="n">df_new</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols_rename</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df_new</span>
 </pre></div>
@@ -736,17 +776,21 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_df_mis</span><span class="p">(</span><span class="n">mis</span><span class="p">,</span> <span class="n">mcids</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;辞書形式のmisからdf_misを構築</span>
-<span class="sd">    ただし，mcidsに含まれるデータのみ抽出&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_df_mis</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">mcids</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;pathとmcidsからdf_misを構築&quot;&quot;&quot;</span>    
+    <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;genre&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;雑誌巻号&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;isPartOf&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s1">&#39;https://mediaarts-db.bunka.go.jp/id/</span><span class="si">{</span><span class="n">mcid</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">mcid</span> <span class="ow">in</span> <span class="n">mcids</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="n">mis</span> <span class="o">=</span> <span class="n">read_json_w_filters</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;@graph.item&#39;</span><span class="p">,</span> <span class="n">filters</span><span class="p">)</span>
     <span class="n">df_mis</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mis</span><span class="p">)</span>
+    
     <span class="c1"># 列を整理</span>
     <span class="n">df_mis</span> <span class="o">=</span> <span class="n">format_cols</span><span class="p">(</span><span class="n">df_mis</span><span class="p">,</span> <span class="n">COLS_MIS</span><span class="p">)</span>
     <span class="c1"># mcidを取得</span>
     <span class="n">df_mis</span><span class="p">[</span><span class="s1">&#39;mcid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_mis</span><span class="p">[</span><span class="s1">&#39;mcid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_id_from_url</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="c1"># 特定のmcidsに該当する行のみ抽出</span>
-    <span class="n">df_mis</span> <span class="o">=</span> <span class="n">df_mis</span><span class="p">[</span><span class="n">df_mis</span><span class="p">[</span><span class="s1">&#39;mcid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mcids</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="c1"># datePublishedでソート</span>
     <span class="n">df_mis</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_mis</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">])</span>
     <span class="n">df_mis</span>  <span class="o">=</span> <span class="n">df_mis</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;datePublished&#39;</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -763,17 +807,21 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_df_eps</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">miids</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;辞書形式のepsからdf_epsを構築</span>
-<span class="sd">    ただし，miidsに含まれるデータのみ抽出&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_df_eps</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">miids</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;pathとmiidsからdf_epsを構築&quot;&quot;&quot;</span>
+    <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;genre&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;マンガ作品&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;isPartOf&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s1">&#39;https://mediaarts-db.bunka.go.jp/id/</span><span class="si">{</span><span class="n">miid</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">miid</span> <span class="ow">in</span> <span class="n">miids</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="n">read_json_w_filters</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;@graph.item&#39;</span><span class="p">,</span> <span class="n">filters</span><span class="p">)</span>
     <span class="n">df_eps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+    
     <span class="c1"># 列を整形</span>
     <span class="n">df_eps</span> <span class="o">=</span> <span class="n">format_cols</span><span class="p">(</span><span class="n">df_eps</span><span class="p">,</span> <span class="n">COLS_EPS</span><span class="p">)</span>
     <span class="c1"># url表記から各idを取得</span>
     <span class="n">df_eps</span><span class="p">[</span><span class="s1">&#39;cid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_eps</span><span class="p">[</span><span class="s1">&#39;cid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_id_from_url</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     <span class="n">df_eps</span><span class="p">[</span><span class="s1">&#39;miid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_eps</span><span class="p">[</span><span class="s1">&#39;miid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_id_from_url</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="c1"># miidsに該当するepsのみ抽出</span>
-    <span class="n">df_eps</span> <span class="o">=</span> <span class="n">df_eps</span><span class="p">[</span><span class="n">df_eps</span><span class="p">[</span><span class="s1">&#39;miid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">miids</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="c1"># 著者名を取得</span>
     <span class="n">df_eps</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_eps</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">format_creator</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -785,17 +833,10 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s1">&#39;cm102&#39;</span><span class="p">])):</span>
-    <span class="n">cm102</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-    
-    <span class="c1"># 各ジャンルのアイテム群を取得</span>
-    <span class="n">mis</span> <span class="o">=</span> <span class="n">get_items_by_genre</span><span class="p">(</span><span class="n">cm102</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">],</span> <span class="s1">&#39;雑誌巻号&#39;</span><span class="p">)</span>
-    <span class="n">eps</span> <span class="o">=</span> <span class="n">get_items_by_genre</span><span class="p">(</span><span class="n">cm102</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">],</span> <span class="s1">&#39;マンガ作品&#39;</span><span class="p">)</span>
-    <span class="k">del</span> <span class="n">cm102</span>
-    <span class="c1"># pd.DataFrameとして整形</span>
-    <span class="n">df_mis</span> <span class="o">=</span> <span class="n">create_df_mis</span><span class="p">(</span><span class="n">mis</span><span class="p">,</span> <span class="n">mcids</span><span class="p">)</span>
+    <span class="n">df_mis</span> <span class="o">=</span> <span class="n">create_df_mis</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">MCIDS</span><span class="p">)</span>
+    <span class="c1"># 雑誌巻号のmiidを取得し，epsの抽出に利用</span>
     <span class="n">miids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_mis</span><span class="p">[</span><span class="s1">&#39;miid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-    <span class="n">df_eps</span> <span class="o">=</span> <span class="n">create_df_eps</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">miids</span><span class="p">)</span>
-    <span class="k">del</span> <span class="n">mis</span><span class="p">,</span> <span class="n">eps</span>
+    <span class="n">df_eps</span> <span class="o">=</span> <span class="n">create_df_eps</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">miids</span><span class="p">)</span>
     
     <span class="c1"># 保存</span>
     <span class="n">fn_mis</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;mis_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s1">05</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span>
@@ -807,7 +848,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ad269e7c527543b8917c6e6f8c8b6a6f", "version_major": 2, "version_minor": 0}
+{"model_id": "44efa9d04f0f4952b9ae7fd30033ce29", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 </div>
@@ -928,7 +969,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
-<span class="n">df_all</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s1">&#39;wj.csv&#39;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_all</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s1">&#39;magazines.csv&#39;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

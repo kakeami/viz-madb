@@ -21,7 +21,14 @@ warnings.filterwarnings('ignore')
 # In[2]:
 
 
+get_ipython().system('pip install ijson')
+
+
+# In[3]:
+
+
 import glob
+import ijson
 import json
 import numpy as np
 import os
@@ -31,7 +38,7 @@ from tqdm import tqdm_notebook as tqdm
 import zipfile
 
 
-# In[3]:
+# In[4]:
 
 
 DIR_IN = '../madb/data/json-ld'
@@ -39,7 +46,7 @@ DIR_TMP = '../data/preprocess/tmp'
 DIR_OUT = '../data/preprocess/out'
 
 
-# In[4]:
+# In[5]:
 
 
 FNS_CM = [
@@ -49,7 +56,7 @@ FNS_CM = [
 ]
 
 
-# In[5]:
+# In[6]:
 
 
 # CM105で使用するカラム
@@ -64,7 +71,7 @@ COL_CM105 = [
 ]
 
 
-# In[6]:
+# In[54]:
 
 
 # cm102, genre=='雑誌巻号'
@@ -82,7 +89,7 @@ COLS_MIS = {
 }
 
 
-# In[7]:
+# In[55]:
 
 
 # cm102, genre=='マンガ作品'
@@ -97,7 +104,7 @@ COLS_EPS = {
 }
 
 
-# In[8]:
+# In[56]:
 
 
 # cm106
@@ -107,7 +114,7 @@ COLS_CS = {
 }
 
 
-# In[9]:
+# In[57]:
 
 
 get_ipython().system('ls {DIR_IN}')
@@ -115,7 +122,7 @@ get_ipython().system('ls {DIR_IN}')
 
 # ## 関数
 
-# In[10]:
+# In[11]:
 
 
 def read_json(path):
@@ -133,7 +140,7 @@ def read_json(path):
     return dct
 
 
-# In[11]:
+# In[12]:
 
 
 def save_json(path, dct):
@@ -146,6 +153,31 @@ def save_json(path, dct):
     """
     with open(path, 'w') as f:
         json.dump(dct, f, ensure_ascii=False, indent=4)
+
+
+# In[40]:
+
+
+def read_json_w_filters(path, items, filters):
+    """itemsのうち，filtersの条件を満たすもののみを抽出
+    path: jsonファイルのパス
+    items: jsonファイル中でitemsを取得するキー
+    filters: dict形式．item[key] in valueで条件づけする想定
+    """
+    out = []
+    with open(path, 'r') as f:
+        parse = ijson.items(f, items)
+        for item in parse:
+            # filtersの条件をすべて満足するもの以外はbreak
+            for k, v in filters.items():
+                if k not in item.keys():
+                    break
+                if item[k] not in v:
+                    break
+            else:
+                # breakしなかった場合はoutに追加
+                out.append(item)
+    return out
 
 
 # ## 解凍
@@ -172,13 +204,13 @@ for p_from in tqdm(ps_cm):
 
 # ### 対象
 
-# In[12]:
+# In[13]:
 
 
 ps_cm = {cm: glob.glob(f'{DIR_TMP}/*{cm}*/*') for cm in FNS_CM}
 
 
-# In[13]:
+# In[14]:
 
 
 pprint(ps_cm)
@@ -188,7 +220,7 @@ pprint(ps_cm)
 # 
 # 漫画雑誌に関するデータを整形し，分析対象のIDを特定．
 
-# In[14]:
+# In[15]:
 
 
 def format_magazine_name(name):
@@ -199,14 +231,14 @@ def format_magazine_name(name):
     raise Exception(f'No magazine name in {name}!')
 
 
-# In[15]:
+# In[16]:
 
 
 cm105 = read_json(ps_cm['cm105'][0])
 df_cm105 = pd.DataFrame(cm105['@graph'])[COL_CM105]
 
 
-# In[16]:
+# In[17]:
 
 
 # 雑誌名を取得
@@ -214,7 +246,7 @@ df_cm105['mcname'] = df_cm105['name'].apply(
     lambda x: format_magazine_name(x))
 
 
-# In[17]:
+# In[18]:
 
 
 MCNAMES = [
@@ -224,17 +256,18 @@ MCNAMES = [
 ]
 
 
-# In[18]:
-
-
-# 所定の雑誌のmcidを取得
-df_cm105[df_cm105['mcname'].isin(MCNAMES)].T
-
-
 # In[19]:
 
 
-mcids =     df_cm105[df_cm105['mcname'].isin(MCNAMES)]['identifier'].unique()
+# mcnameで抽出
+df_cm105[df_cm105['mcname'].isin(MCNAMES)].T
+
+
+# In[20]:
+
+
+# 所定の雑誌のMCID一覧を保存
+MCIDS =     df_cm105[df_cm105['mcname'].isin(MCNAMES)]['identifier'].unique()
 del cm105, df_cm105
 
 
@@ -242,18 +275,18 @@ del cm105, df_cm105
 # 
 # 雑誌巻号およびマンガ作品に関するデータを整形し，一次保存．
 
-# In[20]:
+# In[58]:
 
 
 def format_cols(df, cols_rename):
     """cols_renameのcolのみを抽出し，renmae"""
     df_new = df.copy()
-    df_new = df_new[cols_rename]
+    df_new = df_new[cols_rename.keys()]
     df_new = df_new.rename(columns=cols_rename)
     return df_new
 
 
-# In[21]:
+# In[22]:
 
 
 def get_items_by_genre(graph, genre):
@@ -264,7 +297,7 @@ def get_items_by_genre(graph, genre):
     return items
 
 
-# In[22]:
+# In[23]:
 
 
 def get_id_from_url(url):
@@ -275,7 +308,7 @@ def get_id_from_url(url):
         return url.split('/')[-1]
 
 
-# In[23]:
+# In[24]:
 
 
 def format_nop(numberOfPages):
@@ -291,7 +324,7 @@ def format_nop(numberOfPages):
         return int(nop.replace('p', '').replace('P', ''))
 
 
-# In[24]:
+# In[25]:
 
 
 def format_price(price):
@@ -311,7 +344,7 @@ def format_price(price):
         return int(price_new)
 
 
-# In[25]:
+# In[26]:
 
 
 def format_creator(creator):
@@ -324,20 +357,24 @@ def format_creator(creator):
     raise Exception('No creator name!')
 
 
-# In[26]:
+# In[74]:
 
 
-def create_df_mis(mis, mcids):
-    """辞書形式のmisからdf_misを構築
-    ただし，mcidsに含まれるデータのみ抽出"""
+def create_df_mis(path, mcids):
+    """pathとmcidsからdf_misを構築"""    
+    filters = {
+        'genre': ['雑誌巻号'],
+        'isPartOf': [
+            f'https://mediaarts-db.bunka.go.jp/id/{mcid}' for mcid in mcids],
+    }
+    mis = read_json_w_filters(path, '@graph.item', filters)
     df_mis = pd.DataFrame(mis)
+    
     # 列を整理
     df_mis = format_cols(df_mis, COLS_MIS)
     # mcidを取得
     df_mis['mcid'] = df_mis['mcid'].apply(
         lambda x: get_id_from_url(x))
-    # 特定のmcidsに該当する行のみ抽出
-    df_mis = df_mis[df_mis['mcid'].isin(mcids)].reset_index(drop=True)
     # datePublishedでソート
     df_mis['datePublished'] = pd.to_datetime(df_mis['datePublished'])
     df_mis  = df_mis.sort_values('datePublished', ignore_index=True)
@@ -350,41 +387,38 @@ def create_df_mis(mis, mcids):
     return df_mis
 
 
-# In[27]:
+# In[75]:
 
 
-def create_df_eps(eps, miids):
-    """辞書形式のepsからdf_epsを構築
-    ただし，miidsに含まれるデータのみ抽出"""
+def create_df_eps(path, miids):
+    """pathとmiidsからdf_epsを構築"""
+    filters = {
+        'genre': ['マンガ作品'],
+        'isPartOf': [
+            f'https://mediaarts-db.bunka.go.jp/id/{miid}' for miid in miids],
+    }
+    eps = read_json_w_filters(path, '@graph.item', filters)
     df_eps = pd.DataFrame(eps)
+    
     # 列を整形
     df_eps = format_cols(df_eps, COLS_EPS)
     # url表記から各idを取得
     df_eps['cid'] = df_eps['cid'].apply(lambda x: get_id_from_url(x))
     df_eps['miid'] = df_eps['miid'].apply(lambda x: get_id_from_url(x))
-    # miidsに該当するepsのみ抽出
-    df_eps = df_eps[df_eps['miid'].isin(miids)].reset_index(drop=True)
     # 著者名を取得
     df_eps['creator'] = df_eps['creator'].apply(
         lambda x: format_creator(x))
     return df_eps
 
 
-# In[ ]:
+# In[77]:
 
 
 for i, p in tqdm(enumerate(ps_cm['cm102'])):
-    cm102 = read_json(p)
-    
-    # 各ジャンルのアイテム群を取得
-    mis = get_items_by_genre(cm102['@graph'], '雑誌巻号')
-    eps = get_items_by_genre(cm102['@graph'], 'マンガ作品')
-    del cm102
-    # pd.DataFrameとして整形
-    df_mis = create_df_mis(mis, mcids)
+    df_mis = create_df_mis(p, MCIDS)
+    # 雑誌巻号のmiidを取得し，epsの抽出に利用
     miids = set(df_mis['miid'].unique())
-    df_eps = create_df_eps(eps, miids)
-    del mis, eps
+    df_eps = create_df_eps(p, miids)
     
     # 保存
     fn_mis = os.path.join(DIR_TMP, f'mis_{i+1:05}.csv')
@@ -393,29 +427,11 @@ for i, p in tqdm(enumerate(ps_cm['cm102'])):
     df_eps.to_csv(fn_eps, index=False)
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
 # ### `cm106`
 # 
 # 掲載作品に関するデータを整形し，一次保存．
 
-# In[40]:
+# In[80]:
 
 
 def format_cname(cname):
@@ -428,13 +444,13 @@ def format_cname(cname):
     raise Exception('No comic name!')
 
 
-# In[30]:
+# In[81]:
 
 
 cm106 = read_json(ps_cm['cm106'][0])
 
 
-# In[43]:
+# In[82]:
 
 
 # 雑誌掲載ジャンルのアイテムを抽出
@@ -448,7 +464,7 @@ df_cs['cname'] = df_cs['cname'].apply(
     lambda x: format_cname(x))
 
 
-# In[45]:
+# In[83]:
 
 
 # 保存
@@ -457,7 +473,7 @@ df_cs.to_csv(os.path.join(DIR_TMP, 'cs.csv'), index=False)
 
 # ## 結合
 
-# In[53]:
+# In[84]:
 
 
 def read_and_concat_csvs(pathes):
@@ -469,7 +485,7 @@ def read_and_concat_csvs(pathes):
     return df_all
 
 
-# In[65]:
+# In[85]:
 
 
 def sort_date(df, col_date):
@@ -480,7 +496,7 @@ def sort_date(df, col_date):
     return df_new
 
 
-# In[76]:
+# In[86]:
 
 
 # 各ファイルのパスを抽出
@@ -489,7 +505,7 @@ ps_eps = glob.glob(f'{DIR_TMP}/eps*.csv')
 ps_cs = glob.glob(f'{DIR_TMP}/cs*.csv')
 
 
-# In[77]:
+# In[87]:
 
 
 # データの読み出し
@@ -498,7 +514,7 @@ df_eps = read_and_concat_csvs(ps_eps)
 df_cs = read_and_concat_csvs(ps_cs)
 
 
-# In[81]:
+# In[88]:
 
 
 # 結合
@@ -506,7 +522,7 @@ df_all = pd.merge(df_eps, df_cs, on='cid', how='left')
 df_all = pd.merge(df_all, df_mis, on='miid', how='left')
 
 
-# In[104]:
+# In[89]:
 
 
 # ソート
@@ -514,9 +530,9 @@ df_all['datePublished'] = pd.to_datetime(df_all['datePublished'])
 df_all = df_all.sort_values(['datePublished', 'pageStart'], ignore_index=False)
 
 
-# In[114]:
+# In[91]:
 
 
 # 保存
-df_all.to_csv(os.path.join(DIR_OUT, 'wj.csv'), index=False)
+df_all.to_csv(os.path.join(DIR_OUT, 'magazines.csv'), index=False)
 
