@@ -8,7 +8,7 @@
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://plotly.com/python/)
 ```
 
-このサイトの特徴は以下です．
+このサイトは，MADB Labで公開されている週刊少年ジャンプのデータを用いて，データビジュアライゼーションに入門することを目指します．
 
 :::{panels}
 :container: +full-width text-center
@@ -21,7 +21,7 @@
 あああ
 
 ---
-👁️**[Plotly](https://plotly.com/python/)によるインタラクティブなビジュアライゼーション👁️**
+👁️**[Plotly](https://plotly.com/python/)によるインタラクティブなビジュアライゼーション**👁️
 ^^^
 あああ
 
@@ -36,3 +36,43 @@
 あああ
 
 :::
+
+## 構成
+
+:::{panels}
+:container: +full-width
+:column: col-lg-4 px-2 py-2
+---
+:header: bg-jb-one
+量を見る
+^^^
+あああ
+
+---
+:header: bg-jb-two
+分布を見る
+^^^
+あああ
+
+---
+:header: bg-jb-three
+比率を見る
+^^^
+あああ
+
+---
+:header: bg-jb-four
+2変数の関係を見る
+^^^
+あああ
+
+---
+:header: bg-jb-five
+推移を見る
+^^^
+あああ
+
+:::
+
+## 謝辞
+
