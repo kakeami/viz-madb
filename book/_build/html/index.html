@@ -189,6 +189,24 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   構成
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   謝辞
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -199,13 +217,141 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>はじめに<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-{only}html notranslate"><div class="highlight"><pre><span></span>[![Jupyter Book Badge](https://jupyterbook.org/_images/badge.svg)](https://jupyterbook.org)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![made-with-numpy](https://img.shields.io/badge/Made%20with-NumPy-1f425f.svg)](https://numpy.org/)
-[![made-with-numpy](https://img.shields.io/badge/Made%20with-Pandas-1f425f.svg)](https://pandas.pydata.org/)
-</pre></div>
+<p><a class="reference external" href="https://jupyterbook.org"><img alt="Jupyter Book Badge" src="https://jupyterbook.org/_images/badge.svg" /></a>
+<a class="reference external" href="https://www.python.org/"><img alt="made-with-python" src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" /></a>
+<a class="reference external" href="https://pandas.pydata.org/"><img alt="made-with-pandas" src="https://img.shields.io/badge/Made%20with-Pandas-1f425f.svg" /></a>
+<a class="reference external" href="https://plotly.com/python/"><img alt="made-with-plotly" src="https://img.shields.io/badge/Made%20with-Plotly-1f425f.svg" /></a>
+<a class="reference external" href="https://plotly.com/python/"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a></p>
+<p>このサイトは，MADB Labで公開されている週刊少年ジャンプのデータを用いて，データビジュアライゼーションに入門することを目指します．</p>
+<div class="sphinx-bs container pb-4 full-width text-center docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text">📚<strong>週刊少年ジャンプの漫画作品データで気軽に入門</strong>📚</p>
 </div>
-<p>このサイトでは，</p>
+<div class="card-body docutils">
+<p class="card-text">あああ</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text">👁️<strong>Plotlyによるインタラクティブなビジュアライゼーション</strong>👁️</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">あああ</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text">👮<strong>用途に応じてビジュアライゼーション手法を紹介</strong>👮</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">あああ</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text">🇯🇵<strong>文化庁のメディア芸術データベース・ラボのデータを利用</strong>🇯🇵</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">あああ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>構成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Fundamentals of Data Visualizationを基に，グラフを以下の5グループに分類しました．
+いくつかのグラフは取り扱っておりませんのでご了承ください．</p>
+<div class="sphinx-bs container pb-4 full-width docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-4 px-2 py-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong>量を見る</strong></p>
+</div>
+<div class="card-body docutils">
+<ul class="simple">
+<li><p class="card-text">棒グラフ</p></li>
+<li><p class="card-text">積み上げ棒グラフ</p></li>
+<li><p class="card-text">ヒートマップ</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-4 px-2 py-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong>分布を見る</strong></p>
+</div>
+<div class="card-body docutils">
+<ul class="simple">
+<li><p class="card-text">ヒストグラム</p></li>
+<li><p class="card-text">カーネル密度推定</p></li>
+<li><p class="card-text">累積密度分布</p></li>
+<li><p class="card-text">Q-Qプロット</p></li>
+<li><p class="card-text">バイオリンプロット</p></li>
+<li><p class="card-text">箱ひげ図</p></li>
+<li><p class="card-text">ストリップチャート</p></li>
+<li><p class="card-text">リッジラインプロット</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-4 px-2 py-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong>比率を見る</strong></p>
+</div>
+<div class="card-body docutils">
+<ul class="simple">
+<li><p class="card-text">円グラフ</p></li>
+<li><p class="card-text">積み上げ棒グラフ</p></li>
+<li><p class="card-text">モザイクプロット</p></li>
+<li><p class="card-text">パラレルセットプロット</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-4 px-2 py-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong>変数間の関係を見る</strong></p>
+</div>
+<div class="card-body docutils">
+<ul class="simple">
+<li><p class="card-text">散布図</p></li>
+<li><p class="card-text">バブルチャート</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-4 px-2 py-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong>推移を見る</strong></p>
+</div>
+<div class="card-body docutils">
+<ul class="simple">
+<li><p class="card-text">折れ線グラフ</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>謝辞<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>
