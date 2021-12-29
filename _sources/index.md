@@ -43,32 +43,27 @@
 :container: +full-width
 :column: col-lg-4 px-2 py-2
 ---
-:header: bg-jb-one
-量を見る
+**1. 量を見る**
 ^^^
 あああ
 
 ---
-:header: bg-jb-two
-分布を見る
+**2. 分布を見る**
 ^^^
 あああ
 
 ---
-:header: bg-jb-three
-比率を見る
+**3. 比率を見る**
 ^^^
 あああ
 
 ---
-:header: bg-jb-four
-変数間の関係を見る
+**4. 変数間の関係を見る**
 ^^^
 あああ
 
 ---
-:header: bg-jb-five
-推移を見る
+**5. 推移を見る**
 ^^^
 あああ
 
