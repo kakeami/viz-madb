@@ -1,7 +1,30 @@
 format: jb-book
 root: index
-chapters:
-- file: chart_hist
-  title: ヒストグラム
-- file: a_prep_madb
-  title: Appendix A：MADBの前処理
+parts:
+  - caption: 量を見る
+    numbered: True
+    chapters:
+    - file: charts4amounts/bars
+    - file: charts4amounts/grouped_bars
+    - file: charts4amounts/stacked_bars
+  - caption: 分布を見る
+    numbered: True
+    chapters:
+    - file: charts4dists/hist
+  - caption: 比率を見る
+    numbered: True
+    chapters:
+    - file: charts4props/pie
+  - caption: 推移を見る
+    numbered: True
+    chapters:
+    - file: charts4ts/line
+  - caption: 変数間の関係を見る
+    numbered: True
+    chapters:
+    - file: charts4assocs/scatter
+  - caption: Appendix
+    numbered: True
+    chapters:
+    - file: appendix/preprocess
+      title: MADBの前処理
