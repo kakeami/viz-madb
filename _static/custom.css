@@ -1,11 +1,19 @@
 .bg-jb-one {
-    background-color: #FEDFE1;
+    background-color: #fcebc5;
 }
 
 .bg-jb-two {
-    background-color: #FAD689;
+    background-color: #f6fcd7;
 }
 
 .bg-jb-three {
-    background-color: #e7b07b96;
+    background-color: #e3fdff;
+}
+
+.bg-jb-four {
+    background-color: #f5dbff;
+}
+
+.bg-jb-five {
+    background-color: #ffd4d8;
 }
