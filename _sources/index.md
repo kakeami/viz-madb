@@ -5,10 +5,9 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![made-with-pandas](https://img.shields.io/badge/Made%20with-Pandas-1f425f.svg)](https://pandas.pydata.org/)
 [![made-with-plotly](https://img.shields.io/badge/Made%20with-Plotly-1f425f.svg)](https://plotly.com/python/)
-[![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://plotly.com/python/)
 ```
 
-このサイトは，MADB Labで公開されている週刊少年ジャンプのデータを用いて，データビジュアライゼーションに入門することを目指します．
+このサイトは，[MADB Lab](https://mediag.bunka.go.jp/madb_lab/)で公開されている週刊少年ジャンプのデータを用いて，データビジュアライゼーションの入門に手助けすることを目指します．
 
 :::{panels}
 :container: +full-width text-center
@@ -16,9 +15,11 @@
 :card:
 
 ---
-📚**週刊少年ジャンプの漫画作品データで気軽に入門**📚
+📚**週刊少年ジャンプの漫画作品データで実践**📚
 ^^^
-あああ
+データビジュアライゼーションの実践的な学習において最も重要なのは，**分析対象のデータに興味を持てるかどうか**だと思います．
+なぜならデータビジュアライゼーションの目的は，グラフを描画することではなく，グラフを用いて**データの本質**を抽出することだからです．
+データの本質を理解するためには，データの背景の理解や
 
 ---
 👁️**Plotlyによるインタラクティブなビジュアライゼーション**👁️
