@@ -465,8 +465,25 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id6">
-   1.5. 結合
+   1.5. 加工
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     1.5.1. 結合
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     1.5.2. 各雑誌の期間を揃える
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     1.5.3. 保存
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -525,9 +542,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_IN</span> <span class="o">=</span> <span class="s1">&#39;../madb/data/json-ld&#39;</span>
-<span class="n">DIR_TMP</span> <span class="o">=</span> <span class="s1">&#39;../data/preprocess/tmp&#39;</span>
-<span class="n">DIR_OUT</span> <span class="o">=</span> <span class="s1">&#39;../data/preprocess/out&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DIR_IN</span> <span class="o">=</span> <span class="s1">&#39;../../madb/data/json-ld&#39;</span>
+<span class="n">DIR_TMP</span> <span class="o">=</span> <span class="s1">&#39;../../data/preprocess/tmp&#39;</span>
+<span class="n">DIR_OUT</span> <span class="o">=</span> <span class="s1">&#39;../../data/preprocess/out&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -545,15 +562,11 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CM105で使用するカラム</span>
-<span class="n">COL_CM105</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;identifier&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;label&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;note&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;publicationPeriodicity&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;publisher&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;dayPublishedFinal&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 分析対象とする雑誌名</span>
+<span class="n">MCNAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;週刊少年ジャンプ&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;週刊少年マガジン&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;週刊少年サンデー&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -601,6 +614,18 @@
     <span class="s1">&#39;identifier&#39;</span><span class="p">:</span> <span class="s1">&#39;cid&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cname&#39;</span>
 <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 最終的に出力するカラム</span>
+<span class="n">COLS_OUT</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;miname&#39;</span><span class="p">,</span> <span class="s1">&#39;cname&#39;</span><span class="p">,</span> <span class="s1">&#39;epname&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;creator&#39;</span><span class="p">,</span> <span class="s1">&#39;pageStart&#39;</span><span class="p">,</span> <span class="s1">&#39;pageEnd&#39;</span><span class="p">,</span> <span class="s1">&#39;numberOfPages&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;datePublished&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">,</span> <span class="s1">&#39;editor&#39;</span><span class="p">,</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -734,10 +759,10 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;cm102&#39;: [&#39;../data/preprocess/tmp/metadata_cm-item_cm102_json/metadata_cm-item_cm102_json\\metadata_cm-item_cm102_00001.json&#39;,
-           &#39;../data/preprocess/tmp/metadata_cm-item_cm102_json/metadata_cm-item_cm102_json\\metadata_cm-item_cm102_00002.json&#39;],
- &#39;cm105&#39;: [&#39;../data/preprocess/tmp/metadata_cm-col_cm105_json/metadata_cm-col_cm105_json\\metadata_cm-col_cm105_00001.json&#39;],
- &#39;cm106&#39;: [&#39;../data/preprocess/tmp/metadata_cm-col_cm106_json/metadata_cm-col_cm106_json\\metadata_cm-col_cm106_00001.json&#39;]}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;cm102&#39;: [&#39;../../data/preprocess/tmp/metadata_cm-item_cm102_json/metadata_cm-item_cm102_json\\metadata_cm-item_cm102_00001.json&#39;,
+           &#39;../../data/preprocess/tmp/metadata_cm-item_cm102_json/metadata_cm-item_cm102_json\\metadata_cm-item_cm102_00002.json&#39;],
+ &#39;cm105&#39;: [&#39;../../data/preprocess/tmp/metadata_cm-col_cm105_json/metadata_cm-col_cm105_json\\metadata_cm-col_cm105_00001.json&#39;],
+ &#39;cm106&#39;: [&#39;../../data/preprocess/tmp/metadata_cm-col_cm106_json/metadata_cm-col_cm106_json\\metadata_cm-col_cm106_00001.json&#39;]}
 </pre></div>
 </div>
 </div>
@@ -771,17 +796,6 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 雑誌名を取得</span>
 <span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
     <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">format_magazine_name</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MCNAMES</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;週刊少年ジャンプ&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;週刊少年マガジン&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;週刊少年サンデー&#39;</span><span class="p">,</span>
-<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -872,10 +886,18 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 所定の雑誌のMCID一覧を保存</span>
-<span class="n">MCIDS</span> <span class="o">=</span> \
-    <span class="n">df_cm105</span><span class="p">[</span><span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">MCNAMES</span><span class="p">)][</span><span class="s1">&#39;identifier&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-<span class="k">del</span> <span class="n">cm105</span><span class="p">,</span> <span class="n">df_cm105</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 雑誌ID:雑誌名</span>
+<span class="n">mcid2mcname</span> <span class="o">=</span> \
+    <span class="n">df_cm105</span><span class="p">[</span><span class="n">df_cm105</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">MCNAMES</span><span class="p">)]</span><span class="o">.</span>\
+    <span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;identifier&#39;</span><span class="p">)[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
+<span class="n">save_json</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="s1">&#39;mcid2mcname.json&#39;</span><span class="p">),</span> <span class="n">mcid2mcname</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1031,7 +1053,8 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s1">&#39;cm102&#39;</span><span class="p">])):</span>
-    <span class="n">df_mis</span> <span class="o">=</span> <span class="n">create_df_mis</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">MCIDS</span><span class="p">)</span>
+    <span class="n">mcids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mcid2mcname</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">df_mis</span> <span class="o">=</span> <span class="n">create_df_mis</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">mcids</span><span class="p">)</span>
     <span class="c1"># 雑誌巻号のmiidを取得し，epsの抽出に利用</span>
     <span class="n">miids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_mis</span><span class="p">[</span><span class="s1">&#39;miid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
     <span class="n">df_eps</span> <span class="o">=</span> <span class="n">create_df_eps</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">miids</span><span class="p">)</span>
@@ -1046,7 +1069,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "44efa9d04f0f4952b9ae7fd30033ce29", "version_major": 2, "version_minor": 0}
+{"model_id": "fe0950d165fe4f0abaaf7d0489bcc4d4", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 </div>
@@ -1100,7 +1123,9 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 </div>
 <div class="section" id="id6">
-<h2><span class="section-number">1.5. </span>結合<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.5. </span>加工<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3><span class="section-number">1.5.1. </span>結合<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_and_concat_csvs</span><span class="p">(</span><span class="n">pathes</span><span class="p">):</span>
@@ -1142,6 +1167,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <span class="n">df_mis</span> <span class="o">=</span> <span class="n">read_and_concat_csvs</span><span class="p">(</span><span class="n">ps_mis</span><span class="p">)</span>
 <span class="n">df_eps</span> <span class="o">=</span> <span class="n">read_and_concat_csvs</span><span class="p">(</span><span class="n">ps_eps</span><span class="p">)</span>
 <span class="n">df_cs</span> <span class="o">=</span> <span class="n">read_and_concat_csvs</span><span class="p">(</span><span class="n">ps_cs</span><span class="p">)</span>
+<span class="n">mcid2mcname</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">,</span> <span class="s1">&#39;mcid2mcname.json&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1151,6 +1177,16 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 結合</span>
 <span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_eps</span><span class="p">,</span> <span class="n">df_cs</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;cid&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 <span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_all</span><span class="p">,</span> <span class="n">df_mis</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;miid&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;mcid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">mcid2mcname</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 必要な列のみ抽出</span>
+<span class="n">df_all</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="n">COLS_OUT</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1159,16 +1195,114 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ソート</span>
 <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">])</span>
-<span class="n">df_all</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;datePublished&#39;</span><span class="p">,</span> <span class="s1">&#39;pageStart&#39;</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_all</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;datePublished&#39;</span><span class="p">,</span> <span class="s1">&#39;pageStart&#39;</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">1.5.2. </span>各雑誌の期間を揃える<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
+週刊少年サンデー   1959-04-05
+週刊少年ジャンプ   1969-11-03
+週刊少年マガジン   1959-03-26
+Name: datePublished, dtype: datetime64[ns]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
-<span class="n">df_all</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s1">&#39;magazines.csv&#39;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
+週刊少年サンデー   2017-07-12
+週刊少年ジャンプ   2017-07-31
+週刊少年マガジン   2017-07-26
+Name: datePublished, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ジャンプ，サンデー，マガジンのうちDBに存在する期間が最も短いものに合わせる</span>
+<span class="n">date_min</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">date_max</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">df_all</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">date_min</span><span class="p">)</span><span class="o">&amp;</span>\
+    <span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">date_max</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
+週刊少年サンデー   1969-11-09
+週刊少年ジャンプ   1969-11-03
+週刊少年マガジン   1969-11-09
+Name: datePublished, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
+週刊少年サンデー   2017-07-12
+週刊少年ジャンプ   2017-07-10
+週刊少年マガジン   2017-07-12
+Name: datePublished, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
+週刊少年サンデー    46582
+週刊少年マガジン    45705
+週刊少年ジャンプ    43609
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3><span class="section-number">1.5.3. </span>保存<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s1">&#39;magazines.csv&#39;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
