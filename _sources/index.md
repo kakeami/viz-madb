@@ -7,7 +7,7 @@
 [![made-with-plotly](https://img.shields.io/badge/Made%20with-Plotly-1f425f.svg)](https://plotly.com/python/)
 ```
 
-このサイトは，[MADB Lab](https://mediag.bunka.go.jp/madb_lab/)で公開されている週刊少年ジャンプのデータを用いて，データ・ビジュアライゼーションの学習を手助けすることを目指しています．
+このサイトは，[MADB Lab](https://mediag.bunka.go.jp/madb_lab/)で公開されている週刊少年ジャンプ（ときどきマガジン，サンデーも含む）のデータを用いて，データ・ビジュアライゼーションの学習を手助けすることを目指しています．
 
 :::{panels}
 :container: +full-width
