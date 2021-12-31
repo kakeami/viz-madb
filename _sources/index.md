@@ -7,7 +7,7 @@
 [![made-with-plotly](https://img.shields.io/badge/Made%20with-Plotly-1f425f.svg)](https://plotly.com/python/)
 ```
 
-このサイトは，[MADB Lab](https://mediag.bunka.go.jp/madb_lab/)で公開されている週刊少年ジャンプのデータを用いて，データビジュアライゼーションの入門に手助けすることを目指します．
+このサイトは，[MADB Lab](https://mediag.bunka.go.jp/madb_lab/)で公開されている週刊少年ジャンプのデータを用いて，データ・ビジュアライゼーションの学習を手助けすることを目指しています．
 
 :::{panels}
 :container: +full-width
@@ -36,8 +36,8 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 ^^^
 
 本サイトはJupyter Labで作成したソースコードをJupyter Bookでビルドして構築しています．
-GitHubからダウンロードすることで，手元で環境を再現可能です．
-詳細は[README.mdの環境構築方法](https://github.com/kakeami/viz-madb)をご参照ください．
+GitHubからダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でデータを分析しましょう．
+なお，詳細は[README.md](https://github.com/kakeami/viz-madb)をご参照ください．
 
 （いい感じのgifを貼る）
 
@@ -49,10 +49,9 @@ GitHubからダウンロードすることで，手元で環境を再現可能�
 
 :::
 
-## 構成
+## こんなとき何を描く？
 
-Fundamentals of Data Visualizationを基に，グラフを以下の5グループに分類しました．
-いくつかのグラフは取り扱っておりませんのでご了承ください．
+本サイトで紹介するビジュアライゼーション手法を，Fundamentals of Data Visualizationを参考に分類しました．
 
 :::{panels}
 :container: +full-width
@@ -83,3 +82,6 @@ Fundamentals of Data Visualizationを基に，グラフを以下の5グループ
 
 ## 謝辞
 
+## 参考文献
+
+- [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
