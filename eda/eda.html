@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Bars &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
+    <title>そもそもどんなデータを扱うの？ &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,8 +52,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Stacked bars" href="stacked_bars.html" />
-    <link rel="prev" title="1. Pie chart" href="pie.html" />
+    <link rel="next" title="1. Bars" href="../charts4amounts/bars.html" />
+    <link rel="prev" title="はじめに" href="../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -102,9 +102,9 @@
   分析対象
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../eda/eda.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    そもそもどんなデータを扱うの？
   </a>
  </li>
@@ -203,39 +203,39 @@
   比率を見たい
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="pie.html">
+  <a class="reference internal" href="../charts4props/pie.html">
    1. Pie chart
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../charts4props/bars.html">
    2. Bars
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="stacked_bars.html">
+  <a class="reference internal" href="../charts4props/stacked_bars.html">
    3. Stacked bars
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="stacked_den.html">
+  <a class="reference internal" href="../charts4props/stacked_den.html">
    4. Stacked densities
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mosaic.html">
+  <a class="reference internal" href="../charts4props/mosaic.html">
    5. Mosaic plot
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tree.html">
+  <a class="reference internal" href="../charts4props/tree.html">
    6. Tree map
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="parallel.html">
+  <a class="reference internal" href="../charts4props/parallel.html">
    7. Parallel sets
   </a>
  </li>
@@ -351,7 +351,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/charts4props/bars.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/eda/eda.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -371,7 +371,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Fcharts4props/bars.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Feda/eda.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -392,7 +392,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/charts4props/bars.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/eda/eda.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -417,8 +417,8 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bars">
-<h1><span class="section-number">2. </span>Bars<a class="headerlink" href="#bars" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>そもそもどんなデータを扱うの？<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 </div>
 
     <script type="text/x-thebe-config">
@@ -434,7 +434,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./charts4props"
+            path: "./eda"
         },
         predefinedOutput: true
     }
@@ -446,17 +446,17 @@
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="pie.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>Pie chart</p>
+            <p class="prev-next-title">はじめに</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="stacked_bars.html" title="next page">
+    <a class='right-next' id="next-link" href="../charts4amounts/bars.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Stacked bars</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Bars</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
