@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Appendix A: MADBの前処理 &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
+    <title>1. MADBの前処理 &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -89,16 +89,21 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  分析対象
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   はじめに
+  <a class="reference internal" href="../eda/eda.html">
+   そもそもどんなデータを扱うの？
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  量を見る
+  量を見たい
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -125,7 +130,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  分布を見る
+  分布を見たい
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -187,7 +192,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  比率を見る
+  比率を見たい
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -229,7 +234,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  推移を見る
+  推移を見たい
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -246,7 +251,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  変数間の関係を見る
+  変数間の関係を見たい
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -474,8 +479,8 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="appendix-a-madb">
-<h1><span class="section-number">1. </span>Appendix A: MADBの前処理<a class="headerlink" href="#appendix-a-madb" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="madb">
+<h1><span class="section-number">1. </span>MADBの前処理<a class="headerlink" href="#madb" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">madb</span></code>から必要なデータを抽出し，縦持ちのcsvに変換します．</p>
 <div class="section" id="id1">
 <h2><span class="section-number">1.1. </span>環境構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>

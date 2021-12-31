@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Appendix A: MADBの前処理
+# # MADBの前処理
 
 # `madb`から必要なデータを抽出し，縦持ちのcsvに変換します．
 

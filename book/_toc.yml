@@ -1,14 +1,17 @@
 format: jb-book
 root: index
 parts:
-  - caption: 量を見る
+  - caption: 分析対象
+    chapters:
+    - file: eda/eda.ipynb
+  - caption: 量を見たい
     numbered: True
     chapters:
     - file: charts4amounts/bars
     - file: charts4amounts/grouped_bars
     - file: charts4amounts/stacked_bars
     - file: charts4amounts/dots
-  - caption: 分布を見る
+  - caption: 分布を見たい
     numbered: True
     chapters:
     - file: charts4dists/hist
@@ -22,7 +25,7 @@ parts:
     - file: charts4dists/stacked_hist
     - file: charts4dists/overlap
     - file: charts4dists/ridgeline
-  - caption: 比率を見る
+  - caption: 比率を見たい
     numbered: True
     chapters:
     - file: charts4props/pie
@@ -32,13 +35,13 @@ parts:
     - file: charts4props/mosaic
     - file: charts4props/tree
     - file: charts4props/parallel
-  - caption: 推移を見る
+  - caption: 推移を見たい
     numbered: True
     chapters:
     - file: charts4ts/line
     - file: charts4ts/connected
     - file: charts4ts/smooth
-  - caption: 変数間の関係を見る
+  - caption: 変数間の関係を見たい
     numbered: True
     chapters:
     - file: charts4assocs/scatter

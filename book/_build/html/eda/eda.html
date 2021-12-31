@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7. Strip charts &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
+    <title>そもそもどんなデータを扱うの？ &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,8 +52,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. Sina plots" href="sina.html" />
-    <link rel="prev" title="6. Violins" href="violin.html" />
+    <link rel="next" title="1. Bars" href="../charts4amounts/bars.html" />
+    <link rel="prev" title="はじめに" href="../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,9 +95,9 @@
   分析対象
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../eda/eda.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    そもそもどんなデータを扱うの？
   </a>
  </li>
@@ -134,59 +134,59 @@
   分布を見たい
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="hist.html">
+  <a class="reference internal" href="../charts4dists/hist.html">
    1. Histogram
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="density.html">
+  <a class="reference internal" href="../charts4dists/density.html">
    2. Density plot
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="cumulative.html">
+  <a class="reference internal" href="../charts4dists/cumulative.html">
    3. Cumulative density
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="qq.html">
+  <a class="reference internal" href="../charts4dists/qq.html">
    4. Quantile-quantile plot
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="box.html">
+  <a class="reference internal" href="../charts4dists/box.html">
    5. Box plot
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="violin.html">
+  <a class="reference internal" href="../charts4dists/violin.html">
    6. Violins
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../charts4dists/strip.html">
    7. Strip charts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="sina.html">
+  <a class="reference internal" href="../charts4dists/sina.html">
    8. Sina plots
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="stacked_hist.html">
+  <a class="reference internal" href="../charts4dists/stacked_hist.html">
    9. Stacked histograms
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="overlap.html">
+  <a class="reference internal" href="../charts4dists/overlap.html">
    10. Overlapping densities
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="ridgeline.html">
+  <a class="reference internal" href="../charts4dists/ridgeline.html">
    11. Ridgeline plot
   </a>
  </li>
@@ -344,7 +344,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/charts4dists/strip.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/eda/eda.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -364,7 +364,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Fcharts4dists/strip.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Feda/eda.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -385,7 +385,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/charts4dists/strip.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/eda/eda.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -402,6 +402,24 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   環境構築
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   概要
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -410,8 +428,113 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="strip-charts">
-<h1><span class="section-number">7. </span>Strip charts<a class="headerlink" href="#strip-charts" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>そもそもどんなデータを扱うの？<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>本サイトで扱うデータについてまとめます．</p>
+<div class="section" id="id2">
+<h2>環境構築<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PATH_DATA</span> <span class="o">=</span> <span class="s1">&#39;../../data/preprocess/out/magazines.csv&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PATH_DATA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>概要<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>まず，データサイズを見てみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(144885, 17)
+</pre></div>
+</div>
+</div>
+</div>
+<p>カラムは次のようなものです．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;cid&#39;, &#39;creator&#39;, &#39;note&#39;, &#39;epname&#39;, &#39;pageStart&#39;, &#39;pageEnd&#39;, &#39;miid&#39;,
+       &#39;cname&#39;, &#39;miname&#39;, &#39;datePublished&#39;, &#39;mcid&#39;, &#39;issueNumber&#39;,
+       &#39;numberOfPages&#39;, &#39;publisher&#39;, &#39;volumeNumber&#39;, &#39;price&#39;, &#39;editor&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cid</span></code>: マンガ作品のID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">creator</span></code>: 作者名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">note</span></code>: 補足</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>: サブタイトル</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>: 雑誌掲載時の開始ページ数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>: 雑誌掲載時の終了ページ数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">miid</span></code>: 雑誌巻号のID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>: マンガ作品名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">miname</span></code>: 雑誌巻号名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>: 雑誌発行日</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mcid</span></code>: 雑誌のID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">issueNumber</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">volumeNumber</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- `</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">`&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- `cid`
+- `creator`
+- `note`
+- `epname`
+- `pageStart`
+- `pageEnd`
+- `miid`
+- `cname`
+- `miname`
+- `datePublished`
+- `mcid`
+- `issueNumber`
+- `numberOfPages`
+- `publisher`
+- `volumeNumber`
+- `price`
+- `editor`
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -427,7 +550,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./charts4dists"
+            path: "./eda"
         },
         predefinedOutput: true
     }
@@ -439,17 +562,17 @@
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="violin.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">6. </span>Violins</p>
+            <p class="prev-next-title">はじめに</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="sina.html" title="next page">
+    <a class='right-next' id="next-link" href="../charts4amounts/bars.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">8. </span>Sina plots</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Bars</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
