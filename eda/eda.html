@@ -441,6 +441,9 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -470,7 +473,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(144885, 17)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(135896, 12)
 </pre></div>
 </div>
 </div>
@@ -483,61 +486,135 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;cid&#39;, &#39;creator&#39;, &#39;note&#39;, &#39;epname&#39;, &#39;pageStart&#39;, &#39;pageEnd&#39;, &#39;miid&#39;,
-       &#39;cname&#39;, &#39;miname&#39;, &#39;datePublished&#39;, &#39;mcid&#39;, &#39;issueNumber&#39;,
-       &#39;numberOfPages&#39;, &#39;publisher&#39;, &#39;volumeNumber&#39;, &#39;price&#39;, &#39;editor&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;mcname&#39;, &#39;miname&#39;, &#39;cname&#39;, &#39;epname&#39;, &#39;creator&#39;, &#39;pageStart&#39;,
+       &#39;pageEnd&#39;, &#39;numberOfPages&#39;, &#39;datePublished&#39;, &#39;price&#39;, &#39;publisher&#39;,
+       &#39;editor&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cid</span></code>: マンガ作品のID</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">creator</span></code>: 作者名</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">note</span></code>: 補足</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>: サブタイトル</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>: 雑誌掲載時の開始ページ数</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>: 雑誌掲載時の終了ページ数</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">miid</span></code>: 雑誌巻号のID</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>: マンガ作品名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>: 雑誌名</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">miname</span></code>: 雑誌巻号名</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>: 雑誌発行日</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mcid</span></code>: 雑誌のID</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">issueNumber</span></code>:</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">volumeNumber</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>: マンガ作品名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>: 各話タイトル</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">creator</span></code>: 作者名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>: 開始ページ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>: 終了ページ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>: 雑誌の合計ページ数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>: 雑誌の発行日</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>: 雑誌の価格</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>: 雑誌の発行元</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code>: 雑誌の編集者（編集長）</p></li>
 </ul>
+<p>冒頭数行を見てみます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- `</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">`&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- `cid`
-- `creator`
-- `note`
-- `epname`
-- `pageStart`
-- `pageEnd`
-- `miid`
-- `cname`
-- `miname`
-- `datePublished`
-- `mcid`
-- `issueNumber`
-- `numberOfPages`
-- `publisher`
-- `volumeNumber`
-- `price`
-- `editor`
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mcname</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ</td>
+    </tr>
+    <tr>
+      <th>miname</th>
+      <td>週刊少年ジャンプ 1969年 表示号数20</td>
+      <td>週刊少年ジャンプ 1969年 表示号数20</td>
+      <td>週刊少年ジャンプ 1969年 表示号数20</td>
+    </tr>
+    <tr>
+      <th>cname</th>
+      <td>ハレンチ学園</td>
+      <td>モサ</td>
+      <td>漫画コント55号</td>
+    </tr>
+    <tr>
+      <th>epname</th>
+      <td>赤い嵐の巻</td>
+      <td>盗まれた金の巻</td>
+      <td>ゆうかい魔の巻</td>
+    </tr>
+    <tr>
+      <th>creator</th>
+      <td>永井豪とダイナミックプロ</td>
+      <td>ちばてつや</td>
+      <td>榎本有也</td>
+    </tr>
+    <tr>
+      <th>pageStart</th>
+      <td>7.0</td>
+      <td>39.0</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>pageEnd</th>
+      <td>37.0</td>
+      <td>53.0</td>
+      <td>55.0</td>
+    </tr>
+    <tr>
+      <th>numberOfPages</th>
+      <td>296.0</td>
+      <td>296.0</td>
+      <td>296.0</td>
+    </tr>
+    <tr>
+      <th>datePublished</th>
+      <td>1969-11-03</td>
+      <td>1969-11-03</td>
+      <td>1969-11-03</td>
+    </tr>
+    <tr>
+      <th>price</th>
+      <td>90.0</td>
+      <td>90.0</td>
+      <td>90.0</td>
+    </tr>
+    <tr>
+      <th>publisher</th>
+      <td>集英社</td>
+      <td>集英社</td>
+      <td>集英社</td>
+    </tr>
+    <tr>
+      <th>editor</th>
+      <td>長野規</td>
+      <td>長野規</td>
+      <td>長野規</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 </div>
