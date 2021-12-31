@@ -7,22 +7,47 @@ parts:
     - file: charts4amounts/bars
     - file: charts4amounts/grouped_bars
     - file: charts4amounts/stacked_bars
+    - file: charts4amounts/dots
   - caption: 分布を見る
     numbered: True
     chapters:
     - file: charts4dists/hist
+    - file: charts4dists/density
+    - file: charts4dists/cumulative
+    - file: charts4dists/qq
+    - file: charts4dists/box
+    - file: charts4dists/violin
+    - file: charts4dists/strip
+    - file: charts4dists/sina
+    - file: charts4dists/stacked_hist
+    - file: charts4dists/overlap
+    - file: charts4dists/ridgeline
   - caption: 比率を見る
     numbered: True
     chapters:
     - file: charts4props/pie
+    - file: charts4props/bars
+    - file: charts4props/stacked_bars
+    - file: charts4props/stacked_den
+    - file: charts4props/mosaic
+    - file: charts4props/tree
+    - file: charts4props/parallel
   - caption: 推移を見る
     numbered: True
     chapters:
     - file: charts4ts/line
+    - file: charts4ts/connected
+    - file: charts4ts/smooth
   - caption: 変数間の関係を見る
     numbered: True
     chapters:
     - file: charts4assocs/scatter
+    - file: charts4assocs/bubble
+    - file: charts4assocs/slope
+    - file: charts4assocs/countours
+    - file: charts4assocs/2d
+    - file: charts4assocs/hex
+    - file: charts4assocs/correlo
   - caption: Appendix
     numbered: True
     chapters:

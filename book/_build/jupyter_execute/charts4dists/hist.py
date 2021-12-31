@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # ヒストグラム
+# # Histogram
 
-# データのばらつきを見たい場合は，ヒストグラムを利用します．
+# データのばらつきを見たいときは，ヒストグラムを利用してみると良いでしょう．
 
 # ## 環境構築
 
-# In[2]:
+# In[1]:
 
 
 # Notebook初期設定
@@ -18,7 +18,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[9]:
+# In[2]:
 
 
 import os
@@ -26,14 +26,14 @@ import pandas as pd
 import plotly.express as px
 
 
-# In[6]:
+# In[11]:
 
 
-DIR_IN = '../data/preprocess/out'
-FN_WJ = 'wj.csv'
+DIR_IN = '../../data/preprocess/out'
+FN_MG = 'magazines.csv'
 
 
-# In[7]:
+# In[12]:
 
 
 RENDERER = 'plotly_mimetype+notebook'
@@ -41,7 +41,7 @@ RENDERER = 'plotly_mimetype+notebook'
 
 # ## 関数
 
-# In[12]:
+# In[13]:
 
 
 def show_fig(fig):
@@ -51,71 +51,21 @@ def show_fig(fig):
 
 # ## データの読み込み
 
-# In[10]:
-
-
-df = pd.read_csv(os.path.join(DIR_IN, FN_WJ))
-
-
 # In[14]:
+
+
+df = pd.read_csv(os.path.join(DIR_IN, FN_MG))
+
+
+# In[15]:
 
 
 df.head(2).T
 
 
-# ## 掲載作品数の分布
+# ## ページ数の分布を見る
 
-# 掲載作品数の分布を見てみます．
-
-# In[34]:
-
-
-df_tmp = df.value_counts('datePublished').reset_index()
-df_tmp.columns = ['date', '掲載作品数']
-fig = px.histogram(df_tmp, x='掲載作品数')
-show_fig(fig)
-
-
-# - 最小で12，最大で57の漫画作品が掲載されており，
-# - 掲載数16および20にピークがある
-# 
-# ことがわかります．
-
-# 掲載作品数が少ないのは，
-
-# In[37]:
-
-
-df_tmp.sort_values('掲載作品数').head()
-
-
-# 過去の巻号が多そうです．そこで，subplotを使って年代ごとにヒストグラムを描いてみます．
-
-# In[48]:
-
-
-df_tmp['year'] = pd.to_datetime(df_tmp['date']).dt.year
-df_tmp['year_10'] = df_tmp['year'] // 10 * 10 # 10年刻み
-year_10s = sorted(df_tmp['year_10'].unique())
-
-
-# In[ ]:
-
-
-fig = px.histogram(df_tmp, x='
-
-
-# In[45]:
-
-
-df_tmp['year'] // 10 * 10
-
-
-# ## ページ数の分布
-
-# 合計ページ数の分布を見てみます．
-
-# In[26]:
+# In[16]:
 
 
 df_tmp =     df.groupby('datePublished')['numberOfPages'].first().reset_index()
