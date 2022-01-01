@@ -568,6 +568,18 @@
     <span class="s1">&#39;週刊少年ジャンプ&#39;</span><span class="p">,</span>
     <span class="s1">&#39;週刊少年マガジン&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;週刊少年サンデー&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;週刊少年チャンピオン&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLS_CM105</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;identifier&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -787,7 +799,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm105</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">ps_cm</span><span class="p">[</span><span class="s1">&#39;cm105&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">df_cm105</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cm105</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">])[</span><span class="n">COL_CM105</span><span class="p">]</span>
+<span class="n">df_cm105</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cm105</span><span class="p">[</span><span class="s1">&#39;@graph&#39;</span><span class="p">])[</span><span class="n">COLS_CM105</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -830,6 +842,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
       <th>148</th>
       <th>1449</th>
       <th>1828</th>
+      <th>2569</th>
     </tr>
   </thead>
   <tbody>
@@ -838,48 +851,28 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
       <td>C117607</td>
       <td>C119033</td>
       <td>C119459</td>
+      <td>C120282</td>
     </tr>
     <tr>
       <th>label</th>
       <td>週刊少年サンデー</td>
       <td>週刊少年マガジン</td>
       <td>週刊少年ジャンプ</td>
-    </tr>
-    <tr>
-      <th>note</th>
-      <td>・創刊号の発売日は1959年3月17日　／　別タイトル：Weekly少年サンデー</td>
-      <td>『ぼくら』 - 1969年11月18日号より『週刊ぼくらマガジン』1971年6月まで - 『...</td>
-      <td>『少年ジャンプ』 - 『週刊少年ジャンプ』　／　・先行誌『少年ジャンプ』　／　新しい漫画新幹線</td>
-    </tr>
-    <tr>
-      <th>publicationPeriodicity</th>
-      <td>週刊</td>
-      <td>週刊</td>
-      <td>週刊</td>
+      <td>週刊少年チャンピオン</td>
     </tr>
     <tr>
       <th>name</th>
       <td>[{'@language': 'ja-hrkt', '@value': 'シュウカンショウネ...</td>
       <td>[週刊少年マガジン, {'@language': 'ja-hrkt', '@value': ...</td>
       <td>[週刊少年ジャンプ, {'@language': 'ja-hrkt', '@value': ...</td>
-    </tr>
-    <tr>
-      <th>publisher</th>
-      <td>小学館　∥　ショウガクカン</td>
-      <td>講談社　∥　コウダンシャ</td>
-      <td>集英社　∥　シュウエイシャ</td>
-    </tr>
-    <tr>
-      <th>dayPublishedFinal</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>[{'@language': 'ja-hrkt', '@value': 'シュウカンショウネ...</td>
     </tr>
     <tr>
       <th>mcname</th>
       <td>週刊少年サンデー</td>
       <td>週刊少年マガジン</td>
       <td>週刊少年ジャンプ</td>
+      <td>週刊少年チャンピオン</td>
     </tr>
   </tbody>
 </table>
@@ -1070,7 +1063,7 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "fe0950d165fe4f0abaaf7d0489bcc4d4", "version_major": 2, "version_minor": 0}
+{"model_id": "a37df1d007dc4899a8dc24f8cf78aeb8", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 </div>
@@ -1212,9 +1205,10 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
-週刊少年サンデー   1959-04-05
-週刊少年ジャンプ   1969-11-03
-週刊少年マガジン   1959-03-26
+週刊少年サンデー     1959-04-05
+週刊少年ジャンプ     1969-11-03
+週刊少年チャンピオン   1970-07-27
+週刊少年マガジン     1959-03-26
 Name: datePublished, dtype: datetime64[ns]
 </pre></div>
 </div>
@@ -1228,9 +1222,10 @@ Name: datePublished, dtype: datetime64[ns]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
-週刊少年サンデー   2017-07-12
-週刊少年ジャンプ   2017-07-31
-週刊少年マガジン   2017-07-26
+週刊少年サンデー     2017-07-12
+週刊少年ジャンプ     2017-07-31
+週刊少年チャンピオン   2017-07-13
+週刊少年マガジン     2017-07-26
 Name: datePublished, dtype: datetime64[ns]
 </pre></div>
 </div>
@@ -1238,7 +1233,7 @@ Name: datePublished, dtype: datetime64[ns]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ジャンプ，サンデー，マガジンのうちDBに存在する期間が最も短いものに合わせる</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 全雑誌のうちDBに存在する期間が最も短いものに合わせる</span>
 <span class="n">date_min</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="n">date_max</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
 <span class="n">df_all</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span>
@@ -1256,9 +1251,10 @@ Name: datePublished, dtype: datetime64[ns]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
-週刊少年サンデー   1969-11-09
-週刊少年ジャンプ   1969-11-03
-週刊少年マガジン   1969-11-09
+週刊少年サンデー     1970-08-02
+週刊少年ジャンプ     1970-08-03
+週刊少年チャンピオン   1970-08-03
+週刊少年マガジン     1970-08-02
 Name: datePublished, dtype: datetime64[ns]
 </pre></div>
 </div>
@@ -1272,9 +1268,10 @@ Name: datePublished, dtype: datetime64[ns]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
-週刊少年サンデー   2017-07-12
-週刊少年ジャンプ   2017-07-10
-週刊少年マガジン   2017-07-12
+週刊少年サンデー     2017-07-05
+週刊少年ジャンプ     2017-07-03
+週刊少年チャンピオン   2017-07-06
+週刊少年マガジン     2017-07-05
 Name: datePublished, dtype: datetime64[ns]
 </pre></div>
 </div>
@@ -1288,9 +1285,10 @@ Name: datePublished, dtype: datetime64[ns]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
-週刊少年サンデー    46582
-週刊少年マガジン    45705
-週刊少年ジャンプ    43609
+週刊少年サンデー      46153
+週刊少年チャンピオン    45410
+週刊少年マガジン      45293
+週刊少年ジャンプ      43010
 dtype: int64
 </pre></div>
 </div>
