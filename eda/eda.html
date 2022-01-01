@@ -595,7 +595,7 @@
 </div>
 </div>
 </div>
-<p>一行あたり一作品を格納するため，約14万行のデータとなっています．列は下記です．</p>
+<p>マンガ作品x週を1行に格納するため，約14万行のデータとなっています．列は下記です．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
@@ -827,9 +827,9 @@
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>および<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>はすべての行でデータがありますが，それ以外は<code class="docutils literal notranslate"><span class="pre">NaN</span></code>（数値なし）が結構ありそうです</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>の最小値，最大値が想定外に広がっていたので，あとで深堀りします．</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>も同様です．後で深堀りします．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>はすべての行でデータがありますが，それ以外は<code class="docutils literal notranslate"><span class="pre">NaN</span></code>（数値なし）が結構ありそうです</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>の最小値，最大値が想定外に広がっていたので，あとで深堀りします</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>も同様です．後で深堀りします</p></li>
 </ul>
 <p>次に，<code class="docutils literal notranslate"><span class="pre">NaN</span></code>の数を列ごとに集計します．</p>
 <div class="cell docutils container">
@@ -901,7 +901,7 @@ Name: mcname, dtype: int64
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌名）ごとに集計した<code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号名）は：</p>
+<p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌）ごとに集計した<code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号）は：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;miname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
@@ -919,7 +919,7 @@ Name: miname, dtype: int64
 </div>
 </div>
 <p>ジャンプとマガジンは同一ですが，サンデーが3号分多いことがわかります．</p>
-<p>次は，<code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号名）ごとに<code class="docutils literal notranslate"><span class="pre">mcname</span></code>（マンガ作品名）数を集計してみます．</p>
+<p>次は，<code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号）ごとに<code class="docutils literal notranslate"><span class="pre">mcname</span></code>（マンガ作品）数を集計してみます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
@@ -1014,6 +1014,7 @@ Name: miname, dtype: int64
 </div>
 <div class="section" id="cname">
 <h3><code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品名）<a class="headerlink" href="#cname" title="Permalink to this headline">¶</a></h3>
+<p>ユニークな<code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品）数を集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
@@ -1026,6 +1027,216 @@ Name: miname, dtype: int64
 </div>
 </div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌）ごとに<code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品）数を集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
+週刊少年サンデー    1524
+週刊少年ジャンプ    2185
+週刊少年マガジン    1594
+Name: cname, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>ジャンプが圧倒的に多いですね…．試しに<code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品）ごとに掲載数を集計してみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;cname&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_tmp</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;cname&#39;</span><span class="p">,</span> <span class="s1">&#39;counts&#39;</span><span class="p">]</span>
+<span class="n">df_tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>cname</th>
+      <th>counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年ジャンプ</td>
+      <td>こちら葛飾区亀有公園前派出所</td>
+      <td>1968</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年マガジン</td>
+      <td>はじめの一歩</td>
+      <td>1185</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年サンデー</td>
+      <td>名探偵コナン</td>
+      <td>1009</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年ジャンプ</td>
+      <td>ONE PIECE</td>
+      <td>890</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>週刊少年サンデー</td>
+      <td>MAJOR</td>
+      <td>748</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>5298</th>
+      <td>週刊少年ジャンプ</td>
+      <td>ジャンプ魂</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5299</th>
+      <td>週刊少年ジャンプ</td>
+      <td>ジャン助!フェス太!のレッツゴージャンプフェスタ2002</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5300</th>
+      <td>週刊少年ジャンプ</td>
+      <td>ジュゲムジュゲム</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5301</th>
+      <td>週刊少年ジャンプ</td>
+      <td>スカルジャッカー</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5302</th>
+      <td>週刊少年マガジン</td>
+      <td>～HWGP～ 東村山ウエスト・ゲート・パーク</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5303 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>連載期間が長い方を見てみると，こち亀，はじめの一歩，名探偵コナンと各雑誌のレジェンドが連なり面白いですね．</p>
+<p>逆に連載期間が短い方を見てみると，<code class="docutils literal notranslate"><span class="pre">ジャン助!フェス太!のレッツゴージャンプフェスタ2002</span></code>等のマンガもDBに登録されていることがわかります．読み切り作品も登録されているようなので，そのあたりも合計マンガ作品数の差に響いているのかもしれません．</p>
+<p>雑誌ごとに，マンガ作品の連載期間に関して基礎集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;counts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>mcname</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>週刊少年サンデー</th>
+      <td>1524.0</td>
+      <td>30.563648</td>
+      <td>73.222929</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>27.0</td>
+      <td>1009.0</td>
+    </tr>
+    <tr>
+      <th>週刊少年ジャンプ</th>
+      <td>2185.0</td>
+      <td>19.957895</td>
+      <td>73.908870</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>11.0</td>
+      <td>1968.0</td>
+    </tr>
+    <tr>
+      <th>週刊少年マガジン</th>
+      <td>1594.0</td>
+      <td>28.670640</td>
+      <td>74.795986</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>20.0</td>
+      <td>1185.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>やはりジャンプの平均掲載期間が，他誌と比べて短いことがわかります．</p>
 </div>
 <div class="section" id="epname">
 <h3><code class="docutils literal notranslate"><span class="pre">epname</span></code><a class="headerlink" href="#epname" title="Permalink to this headline">¶</a></h3>
