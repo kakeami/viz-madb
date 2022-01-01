@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>そもそもどんなデータを扱うの？ &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
+    <title>そもそもどんなデータを扱うの？ &#8212; 四大少年誌で始めるデータ・ビジュアライゼーション</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -82,7 +82,7 @@
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">MADBで始めるデータ・ビジュアライゼーション</h1>
+      <h1 class="site-logo" id="site-title">四大少年誌で始めるデータ・ビジュアライゼーション</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -245,8 +245,13 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../charts4ts/connected.html">
+   2. Connected line graph
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../charts4ts/smooth.html">
-   2. Smooth line graph
+   3. Smooth line graph
   </a>
  </li>
 </ul>
@@ -417,6 +422,115 @@
    概要
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   各列
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mcname">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       mcname
+      </span>
+     </code>
+     （雑誌名）
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#miname">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       miname
+      </span>
+     </code>
+     （雑誌巻号名）
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cname">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       cname
+      </span>
+     </code>
+     （マンガ作品名）
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#epname">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       epname
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creator">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       creator
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pagestart">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageStart
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pageend">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageEnd
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numberofpages">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       numberOfPages
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datepublished">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       datePublished
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#publisher">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       publisher
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editor">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       editor
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
             </nav>
@@ -430,19 +544,24 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>そもそもどんなデータを扱うの？<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>本サイトで扱うデータについてまとめます．</p>
+<p>ここでは，本サイトで分析対象とするデータについて簡単に紹介します．
+なお，このデータは，<a class="reference external" href="https://github.com/mediaarts-db/dataset/tree/1.0">MADB Lab v1.0</a>を<a class="reference external" href="https://kakeami.github.io/viz-madb/appendix/preprocess.html">こちら</a>の手順で前処理したものです．</p>
 <div class="section" id="id2">
 <h2>環境構築<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PATH_DATA</span> <span class="o">=</span> <span class="s1">&#39;../../data/preprocess/out/magazines.csv&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 前処理の結果，以下に分析対象ファイルが格納されていることを想定</span>
+<span class="n">PATH_DATA</span> <span class="o">=</span> <span class="s1">&#39;../../data/preprocess/out/magazines.csv&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -457,7 +576,13 @@
 </div>
 <div class="section" id="id3">
 <h2>概要<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>まず，データサイズを見てみます．</p>
+<p><code class="docutils literal notranslate"><span class="pre">df</span></code>は</p>
+<ul class="simple">
+<li><p>週刊少年ジャンプ</p></li>
+<li><p>週刊少年サンデー</p></li>
+<li><p>週刊少年マガジン</p></li>
+</ul>
+<p>の<code class="docutils literal notranslate"><span class="pre">1969-11-03</span></code>から<code class="docutils literal notranslate"><span class="pre">2017-07-12</span></code>までのすべてのマンガ作品のデータを格納した<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>です．サイズを見てみます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
@@ -465,12 +590,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(144885, 17)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(179866, 12)
 </pre></div>
 </div>
 </div>
 </div>
-<p>カラムは次のようなものです．</p>
+<p>マンガ作品x週を1行に格納するため，約18万行のデータとなっています．列は下記です．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
@@ -478,61 +603,671 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;cid&#39;, &#39;creator&#39;, &#39;note&#39;, &#39;epname&#39;, &#39;pageStart&#39;, &#39;pageEnd&#39;, &#39;miid&#39;,
-       &#39;cname&#39;, &#39;miname&#39;, &#39;datePublished&#39;, &#39;mcid&#39;, &#39;issueNumber&#39;,
-       &#39;numberOfPages&#39;, &#39;publisher&#39;, &#39;volumeNumber&#39;, &#39;price&#39;, &#39;editor&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;mcname&#39;, &#39;miname&#39;, &#39;cname&#39;, &#39;epname&#39;, &#39;creator&#39;, &#39;pageStart&#39;,
+       &#39;pageEnd&#39;, &#39;numberOfPages&#39;, &#39;datePublished&#39;, &#39;price&#39;, &#39;publisher&#39;,
+       &#39;editor&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cid</span></code>: マンガ作品のID</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">creator</span></code>: 作者名</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">note</span></code>: 補足</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>: サブタイトル</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>: 雑誌掲載時の開始ページ数</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>: 雑誌掲載時の終了ページ数</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">miid</span></code>: 雑誌巻号のID</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>: マンガ作品名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>: 雑誌名</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">miname</span></code>: 雑誌巻号名</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>: 雑誌発行日</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mcid</span></code>: 雑誌のID</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">issueNumber</span></code>:</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">volumeNumber</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>: マンガ作品名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>: 各話タイトル</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">creator</span></code>: 作者名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>: 開始ページ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>: 終了ページ</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>: 雑誌の合計ページ数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>: 雑誌の発行日</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>: 雑誌の価格</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>: 雑誌の発行元</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code>: 雑誌の編集者（編集長）</p></li>
 </ul>
+<p>冒頭数行を見てみましょう．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- `</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">`&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- `cid`
-- `creator`
-- `note`
-- `epname`
-- `pageStart`
-- `pageEnd`
-- `miid`
-- `cname`
-- `miname`
-- `datePublished`
-- `mcid`
-- `issueNumber`
-- `numberOfPages`
-- `publisher`
-- `volumeNumber`
-- `price`
-- `editor`
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mcname</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年サンデー</td>
+    </tr>
+    <tr>
+      <th>miname</th>
+      <td>週刊少年サンデー 1970年 表示号数32</td>
+      <td>週刊少年マガジン 1970年 表示号数32</td>
+      <td>週刊少年サンデー 1970年 表示号数32</td>
+    </tr>
+    <tr>
+      <th>cname</th>
+      <td>ぶッかれ*ダン</td>
+      <td>アシュラ</td>
+      <td>男どアホウ甲子園</td>
+    </tr>
+    <tr>
+      <th>epname</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>creator</th>
+      <td>赤塚不二夫</td>
+      <td>ジョージ秋山</td>
+      <td>水島新司と水島プロ</td>
+    </tr>
+    <tr>
+      <th>pageStart</th>
+      <td>3.0</td>
+      <td>19.0</td>
+      <td>33.0</td>
+    </tr>
+    <tr>
+      <th>pageEnd</th>
+      <td>32.0</td>
+      <td>66.0</td>
+      <td>50.0</td>
+    </tr>
+    <tr>
+      <th>numberOfPages</th>
+      <td>288.0</td>
+      <td>282.0</td>
+      <td>288.0</td>
+    </tr>
+    <tr>
+      <th>datePublished</th>
+      <td>1970-08-02</td>
+      <td>1970-08-02</td>
+      <td>1970-08-02</td>
+    </tr>
+    <tr>
+      <th>price</th>
+      <td>80.0</td>
+      <td>80.0</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>publisher</th>
+      <td>小学館</td>
+      <td>講談社　∥　コウダンシャ</td>
+      <td>小学館</td>
+    </tr>
+    <tr>
+      <th>editor</th>
+      <td>NaN</td>
+      <td>内田勝</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>の<code class="docutils literal notranslate"><span class="pre">describe()</span></code>コマンドでざっくり集計してみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pageStart</th>
+      <th>pageEnd</th>
+      <th>numberOfPages</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>179866.000000</td>
+      <td>179860.000000</td>
+      <td>179559.000000</td>
+      <td>179828.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>210.909330</td>
+      <td>228.364308</td>
+      <td>417.366002</td>
+      <td>203.870732</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>126.082707</td>
+      <td>122.080065</td>
+      <td>67.403584</td>
+      <td>41.928839</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>36.000000</td>
+      <td>80.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>107.000000</td>
+      <td>126.000000</td>
+      <td>356.000000</td>
+      <td>180.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>205.000000</td>
+      <td>222.000000</td>
+      <td>437.000000</td>
+      <td>210.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>305.000000</td>
+      <td>322.000000</td>
+      <td>464.000000</td>
+      <td>236.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>9999.000000</td>
+      <td>1578.000000</td>
+      <td>600.000000</td>
+      <td>371.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>はすべての行でデータがありますが，それ以外は<code class="docutils literal notranslate"><span class="pre">NaN</span></code>（数値なし）が結構ありそうです</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>の最小値，最大値が想定外に広がっていたので，あとで深堀りします</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>も同様です．後で深堀りします</p></li>
+</ul>
+<p>次に，<code class="docutils literal notranslate"><span class="pre">NaN</span></code>の数を列ごとに集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname               0
+miname               0
+cname                9
+epname           26814
+creator            441
+pageStart            0
+pageEnd              6
+numberOfPages      307
+datePublished        0
+price               38
+publisher        24588
+editor            2092
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>特に<code class="docutils literal notranslate"><span class="pre">epname</span></code>と<code class="docutils literal notranslate"><span class="pre">publisher</span></code>の欠損が多いことがわかります．</p>
+</div>
+<div class="section" id="id4">
+<h2>各列<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mcname">
+<h3><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌名）<a class="headerlink" href="#mcname" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>週刊少年サンデー      46153
+週刊少年チャンピオン    45410
+週刊少年マガジン      45293
+週刊少年ジャンプ      43010
+Name: mcname, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>上記は<code class="docutils literal notranslate"><span class="pre">mcname</span></code>ごとの行数を表します．それぞれ同一期間で集計しましたが，掲載作品数の違いが生じています．</p>
+</div>
+<div class="section" id="miname">
+<h3><code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号名）<a class="headerlink" href="#miname" title="Permalink to this headline">¶</a></h3>
+<p>ユニークな<code class="docutils literal notranslate"><span class="pre">miname</span></code>数を集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;miname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9215
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌）ごとに集計した<code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号）は：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;miname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
+週刊少年サンデー      2303
+週刊少年ジャンプ      2299
+週刊少年チャンピオン    2313
+週刊少年マガジン      2300
+Name: miname, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>ほぼ同数ですが，雑誌によって微妙に巻号数が異なることがわかります．</p>
+<p>次は，<code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号）ごとに<code class="docutils literal notranslate"><span class="pre">mcname</span></code>（マンガ作品）数を集計してみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>miname</th>
+      <th>cname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年マガジン 1975年 表示号数1</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年マガジン 1971年 表示号数1</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年マガジン 1974年 表示号数45</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年サンデー 1973年 表示号数5</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>週刊少年サンデー 1974年 表示号数33</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9210</th>
+      <td>週刊少年マガジン 2010年 表示号数7</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>9211</th>
+      <td>週刊少年ジャンプ 2014年 表示号数4</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>9212</th>
+      <td>週刊少年チャンピオン 2004年 表示号数1</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>9213</th>
+      <td>週刊少年ジャンプ 2003年 表示号数37</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>9214</th>
+      <td>週刊少年サンデー 2013年 表示号数6</td>
+      <td>49</td>
+    </tr>
+  </tbody>
+</table>
+<p>9215 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>1970年付近の黎明期は掲載数が少なめだったようです．また，雑誌によってタイミングはバラバラですが，非常に沢山のマンガを掲載する<strong>外れ値</strong>が存在することもわかります．</p>
+</div>
+<div class="section" id="cname">
+<h3><code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品名）<a class="headerlink" href="#cname" title="Permalink to this headline">¶</a></h3>
+<p>ユニークな<code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品）数を集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6830
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌）ごとに<code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品）数を集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
+週刊少年サンデー      1485
+週刊少年ジャンプ      2105
+週刊少年チャンピオン    1713
+週刊少年マガジン      1558
+Name: cname, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>ジャンプが圧倒的に多いですね…．試しに<code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品）ごとに掲載数を集計してみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;cname&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_tmp</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;cname&#39;</span><span class="p">,</span> <span class="s1">&#39;counts&#39;</span><span class="p">]</span>
+<span class="n">df_tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>cname</th>
+      <th>counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年ジャンプ</td>
+      <td>こちら葛飾区亀有公園前派出所</td>
+      <td>1968</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年マガジン</td>
+      <td>はじめの一歩</td>
+      <td>1184</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年サンデー</td>
+      <td>名探偵コナン</td>
+      <td>1008</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年ジャンプ</td>
+      <td>ONE PIECE</td>
+      <td>890</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>週刊少年サンデー</td>
+      <td>MAJOR</td>
+      <td>748</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6856</th>
+      <td>週刊少年ジャンプ</td>
+      <td>大衆娯楽漫画きくらげ劇場</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6857</th>
+      <td>週刊少年ジャンプ</td>
+      <td>大攻防戦</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6858</th>
+      <td>週刊少年ジャンプ</td>
+      <td>大山岳</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6859</th>
+      <td>週刊少年ジャンプ</td>
+      <td>大宮ジェット</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6860</th>
+      <td>週刊少年マガジン</td>
+      <td>～HWGP～ 東村山ウエスト・ゲート・パーク</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>6861 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>連載期間が長い方を見てみると，こち亀，はじめの一歩，名探偵コナンと各雑誌のレジェンドが連なり面白いですね．</p>
+<p>逆に連載期間が短い方を見てみると，読み切り作品も登録されているようなので，そのあたりも合計マンガ作品数の差に響いているのかもしれません．</p>
+<p>雑誌ごとに，マンガ作品の連載期間に関して基礎集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;counts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>mcname</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>週刊少年サンデー</th>
+      <td>1485.0</td>
+      <td>31.077441</td>
+      <td>73.995156</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>27.0</td>
+      <td>1008.0</td>
+    </tr>
+    <tr>
+      <th>週刊少年ジャンプ</th>
+      <td>2105.0</td>
+      <td>20.431829</td>
+      <td>75.075635</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>11.0</td>
+      <td>1968.0</td>
+    </tr>
+    <tr>
+      <th>週刊少年チャンピオン</th>
+      <td>1713.0</td>
+      <td>26.508465</td>
+      <td>60.133614</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>24.0</td>
+      <td>635.0</td>
+    </tr>
+    <tr>
+      <th>週刊少年マガジン</th>
+      <td>1558.0</td>
+      <td>29.068678</td>
+      <td>75.465729</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>21.0</td>
+      <td>1184.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>やはりジャンプの平均掲載期間が，他誌と比べて短いことがわかります．</p>
+</div>
+<div class="section" id="epname">
+<h3><code class="docutils literal notranslate"><span class="pre">epname</span></code><a class="headerlink" href="#epname" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="creator">
+<h3><code class="docutils literal notranslate"><span class="pre">creator</span></code><a class="headerlink" href="#creator" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="pagestart">
+<h3><code class="docutils literal notranslate"><span class="pre">pageStart</span></code><a class="headerlink" href="#pagestart" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="pageend">
+<h3><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code><a class="headerlink" href="#pageend" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="numberofpages">
+<h3><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code><a class="headerlink" href="#numberofpages" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="datepublished">
+<h3><code class="docutils literal notranslate"><span class="pre">datePublished</span></code><a class="headerlink" href="#datepublished" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="publisher">
+<h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code><a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="editor">
+<h3><code class="docutils literal notranslate"><span class="pre">editor</span></code><a class="headerlink" href="#editor" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>

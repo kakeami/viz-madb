@@ -7,24 +7,20 @@
 
 # ## 環境構築
 
-# In[1]:
+# In[3]:
 
-
-# Notebook初期設定
-get_ipython().run_line_magic('matplotlib', 'inline')
-get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
 
 import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[4]:
 
 
 get_ipython().system('pip install ijson')
 
 
-# In[3]:
+# In[5]:
 
 
 import glob
@@ -38,15 +34,15 @@ from tqdm import tqdm_notebook as tqdm
 import zipfile
 
 
-# In[4]:
+# In[6]:
 
 
-DIR_IN = '../madb/data/json-ld'
-DIR_TMP = '../data/preprocess/tmp'
-DIR_OUT = '../data/preprocess/out'
+DIR_IN = '../../madb/data/json-ld'
+DIR_TMP = '../../data/preprocess/tmp'
+DIR_OUT = '../../data/preprocess/out'
 
 
-# In[5]:
+# In[7]:
 
 
 FNS_CM = [
@@ -56,22 +52,29 @@ FNS_CM = [
 ]
 
 
-# In[6]:
+# In[8]:
 
 
-# CM105で使用するカラム
-COL_CM105 = [
-    'identifier',
-    'label',
-    'note',
-    'publicationPeriodicity',
-    'name',
-    'publisher',
-    'dayPublishedFinal',
+# 分析対象とする雑誌名
+MCNAMES = [
+    '週刊少年ジャンプ',
+    '週刊少年マガジン', 
+    '週刊少年サンデー',
+    '週刊少年チャンピオン',
 ]
 
 
-# In[54]:
+# In[22]:
+
+
+COLS_CM105 = [
+    'identifier',
+    'label',
+    'name',
+]
+
+
+# In[9]:
 
 
 # cm102, genre=='雑誌巻号'
@@ -89,7 +92,7 @@ COLS_MIS = {
 }
 
 
-# In[55]:
+# In[10]:
 
 
 # cm102, genre=='マンガ作品'
@@ -104,7 +107,7 @@ COLS_EPS = {
 }
 
 
-# In[56]:
+# In[11]:
 
 
 # cm106
@@ -114,7 +117,18 @@ COLS_CS = {
 }
 
 
-# In[57]:
+# In[12]:
+
+
+# 最終的に出力するカラム
+COLS_OUT = [
+    'mcname', 'miname', 'cname', 'epname',
+    'creator', 'pageStart', 'pageEnd', 'numberOfPages',
+    'datePublished', 'price', 'publisher', 'editor',
+]
+
+
+# In[13]:
 
 
 get_ipython().system('ls {DIR_IN}')
@@ -122,7 +136,7 @@ get_ipython().system('ls {DIR_IN}')
 
 # ## 関数
 
-# In[11]:
+# In[14]:
 
 
 def read_json(path):
@@ -140,7 +154,7 @@ def read_json(path):
     return dct
 
 
-# In[12]:
+# In[15]:
 
 
 def save_json(path, dct):
@@ -155,7 +169,7 @@ def save_json(path, dct):
         json.dump(dct, f, ensure_ascii=False, indent=4)
 
 
-# In[40]:
+# In[16]:
 
 
 def read_json_w_filters(path, items, filters):
@@ -204,13 +218,13 @@ for p_from in tqdm(ps_cm):
 
 # ### 対象
 
-# In[13]:
+# In[17]:
 
 
 ps_cm = {cm: glob.glob(f'{DIR_TMP}/*{cm}*/*') for cm in FNS_CM}
 
 
-# In[14]:
+# In[18]:
 
 
 pprint(ps_cm)
@@ -220,7 +234,7 @@ pprint(ps_cm)
 # 
 # 漫画雑誌に関するデータを整形し，分析対象のIDを特定．
 
-# In[15]:
+# In[23]:
 
 
 def format_magazine_name(name):
@@ -231,14 +245,14 @@ def format_magazine_name(name):
     raise Exception(f'No magazine name in {name}!')
 
 
-# In[16]:
+# In[25]:
 
 
 cm105 = read_json(ps_cm['cm105'][0])
-df_cm105 = pd.DataFrame(cm105['@graph'])[COL_CM105]
+df_cm105 = pd.DataFrame(cm105['@graph'])[COLS_CM105]
 
 
-# In[17]:
+# In[26]:
 
 
 # 雑誌名を取得
@@ -246,36 +260,32 @@ df_cm105['mcname'] = df_cm105['name'].apply(
     lambda x: format_magazine_name(x))
 
 
-# In[18]:
-
-
-MCNAMES = [
-    '週刊少年ジャンプ',
-    '週刊少年マガジン', 
-    '週刊少年サンデー',
-]
-
-
-# In[19]:
+# In[27]:
 
 
 # mcnameで抽出
 df_cm105[df_cm105['mcname'].isin(MCNAMES)].T
 
 
-# In[20]:
+# In[28]:
 
 
-# 所定の雑誌のMCID一覧を保存
-MCIDS =     df_cm105[df_cm105['mcname'].isin(MCNAMES)]['identifier'].unique()
-del cm105, df_cm105
+# 雑誌ID:雑誌名
+mcid2mcname =     df_cm105[df_cm105['mcname'].isin(MCNAMES)].    groupby('identifier')['mcname'].first().to_dict()
+
+
+# In[29]:
+
+
+# 保存
+save_json(os.path.join(DIR_TMP, 'mcid2mcname.json'), mcid2mcname)
 
 
 # ### `cm102`
 # 
 # 雑誌巻号およびマンガ作品に関するデータを整形し，一次保存．
 
-# In[58]:
+# In[30]:
 
 
 def format_cols(df, cols_rename):
@@ -286,7 +296,7 @@ def format_cols(df, cols_rename):
     return df_new
 
 
-# In[22]:
+# In[31]:
 
 
 def get_items_by_genre(graph, genre):
@@ -297,7 +307,7 @@ def get_items_by_genre(graph, genre):
     return items
 
 
-# In[23]:
+# In[32]:
 
 
 def get_id_from_url(url):
@@ -308,7 +318,7 @@ def get_id_from_url(url):
         return url.split('/')[-1]
 
 
-# In[24]:
+# In[33]:
 
 
 def format_nop(numberOfPages):
@@ -324,7 +334,7 @@ def format_nop(numberOfPages):
         return int(nop.replace('p', '').replace('P', ''))
 
 
-# In[25]:
+# In[34]:
 
 
 def format_price(price):
@@ -344,7 +354,7 @@ def format_price(price):
         return int(price_new)
 
 
-# In[26]:
+# In[35]:
 
 
 def format_creator(creator):
@@ -357,7 +367,7 @@ def format_creator(creator):
     raise Exception('No creator name!')
 
 
-# In[74]:
+# In[36]:
 
 
 def create_df_mis(path, mcids):
@@ -387,7 +397,7 @@ def create_df_mis(path, mcids):
     return df_mis
 
 
-# In[75]:
+# In[37]:
 
 
 def create_df_eps(path, miids):
@@ -411,11 +421,12 @@ def create_df_eps(path, miids):
     return df_eps
 
 
-# In[77]:
+# In[38]:
 
 
 for i, p in tqdm(enumerate(ps_cm['cm102'])):
-    df_mis = create_df_mis(p, MCIDS)
+    mcids = list(mcid2mcname.keys())
+    df_mis = create_df_mis(p, mcids)
     # 雑誌巻号のmiidを取得し，epsの抽出に利用
     miids = set(df_mis['miid'].unique())
     df_eps = create_df_eps(p, miids)
@@ -431,7 +442,7 @@ for i, p in tqdm(enumerate(ps_cm['cm102'])):
 # 
 # 掲載作品に関するデータを整形し，一次保存．
 
-# In[80]:
+# In[39]:
 
 
 def format_cname(cname):
@@ -444,13 +455,13 @@ def format_cname(cname):
     raise Exception('No comic name!')
 
 
-# In[81]:
+# In[40]:
 
 
 cm106 = read_json(ps_cm['cm106'][0])
 
 
-# In[82]:
+# In[41]:
 
 
 # 雑誌掲載ジャンルのアイテムを抽出
@@ -464,16 +475,18 @@ df_cs['cname'] = df_cs['cname'].apply(
     lambda x: format_cname(x))
 
 
-# In[83]:
+# In[42]:
 
 
 # 保存
 df_cs.to_csv(os.path.join(DIR_TMP, 'cs.csv'), index=False)
 
 
-# ## 結合
+# ## 加工
 
-# In[84]:
+# ### 結合
+
+# In[43]:
 
 
 def read_and_concat_csvs(pathes):
@@ -485,7 +498,7 @@ def read_and_concat_csvs(pathes):
     return df_all
 
 
-# In[85]:
+# In[44]:
 
 
 def sort_date(df, col_date):
@@ -496,7 +509,7 @@ def sort_date(df, col_date):
     return df_new
 
 
-# In[86]:
+# In[45]:
 
 
 # 各ファイルのパスを抽出
@@ -505,34 +518,88 @@ ps_eps = glob.glob(f'{DIR_TMP}/eps*.csv')
 ps_cs = glob.glob(f'{DIR_TMP}/cs*.csv')
 
 
-# In[87]:
+# In[46]:
 
 
 # データの読み出し
 df_mis = read_and_concat_csvs(ps_mis)
 df_eps = read_and_concat_csvs(ps_eps)
 df_cs = read_and_concat_csvs(ps_cs)
+mcid2mcname = read_json(os.path.join(DIR_TMP, 'mcid2mcname.json'))
 
 
-# In[88]:
+# In[47]:
 
 
 # 結合
 df_all = pd.merge(df_eps, df_cs, on='cid', how='left')
 df_all = pd.merge(df_all, df_mis, on='miid', how='left')
+df_all['mcname'] = df_all['mcid'].apply(
+    lambda x: mcid2mcname[x])
 
 
-# In[89]:
+# In[48]:
+
+
+# 必要な列のみ抽出
+df_all = df_all[COLS_OUT]
+
+
+# In[49]:
 
 
 # ソート
 df_all['datePublished'] = pd.to_datetime(df_all['datePublished'])
-df_all = df_all.sort_values(['datePublished', 'pageStart'], ignore_index=False)
+df_all = df_all.sort_values(['datePublished', 'pageStart'], ignore_index=True)
 
 
-# In[91]:
+# ### 各雑誌の期間を揃える
+
+# In[50]:
 
 
-# 保存
+df_all.groupby('mcname')['datePublished'].min()
+
+
+# In[51]:
+
+
+df_all.groupby('mcname')['datePublished'].max()
+
+
+# In[53]:
+
+
+# 全雑誌のうちDBに存在する期間が最も短いものに合わせる
+date_min = df_all.groupby('mcname')['datePublished'].min().max()
+date_max = df_all.groupby('mcname')['datePublished'].max().min()
+df_all = df_all[
+    (df_all['datePublished']>=date_min)&\
+    (df_all['datePublished']<=date_max)].reset_index(drop=True)
+
+
+# In[54]:
+
+
+df_all.groupby('mcname')['datePublished'].min()
+
+
+# In[55]:
+
+
+df_all.groupby('mcname')['datePublished'].max()
+
+
+# In[56]:
+
+
+df_all.value_counts('mcname')
+
+
+# ### 保存
+
+# In[57]:
+
+
 df_all.to_csv(os.path.join(DIR_OUT, 'magazines.csv'), index=False)
 

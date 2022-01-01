@@ -1,4 +1,4 @@
-title: MADBで始めるデータ・ビジュアライゼーション
+title: 四大少年誌で始めるデータ・ビジュアライゼーション
 author: kakeami
 logo: figs/logo.png
 
@@ -21,7 +21,7 @@ html:
   use_issues_button: true
   use_repository_button: true
   use_multitoc_numbering: false
-  home_page_in_navbar       : false
+  home_page_in_navbar: false
 
 # Plotly
 sphinx:

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; MADBで始めるデータ・ビジュアライゼーション</title>
+    <title>2. Connected line graph &#8212; 四大少年誌で始めるデータ・ビジュアライゼーション</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,7 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. Smooth line graph" href="smooth.html" />
+    <link rel="next" title="3. Smooth line graph" href="smooth.html" />
     <link rel="prev" title="1. Line graph" href="line.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -82,7 +82,7 @@
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">MADBで始めるデータ・ビジュアライゼーション</h1>
+      <h1 class="site-logo" id="site-title">四大少年誌で始めるデータ・ビジュアライゼーション</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -238,15 +238,20 @@
   推移を見たい
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="line.html">
    1. Line graph
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Connected line graph
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="smooth.html">
-   2. Smooth line graph
+   3. Smooth line graph
   </a>
  </li>
 </ul>
@@ -380,19 +385,28 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/charts4ts/connected.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -401,7 +415,10 @@
         
               <div>
                 
-  
+  <div class="tex2jax_ignore mathjax_ignore section" id="connected-line-graph">
+<h1><span class="section-number">2. </span>Connected line graph<a class="headerlink" href="#connected-line-graph" title="Permalink to this headline">¶</a></h1>
+</div>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -437,7 +454,7 @@
     <a class='right-next' id="next-link" href="smooth.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Smooth line graph</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Smooth line graph</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
