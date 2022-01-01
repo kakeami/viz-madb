@@ -1163,7 +1163,7 @@ Name: cname, dtype: int64
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title">あれ，あの長編作品は…？</p>
-<p>シーズンごとに作品名が変わっているシリーズ作品（刃牙，ジョジョ等）は，それぞれ別作品として集計されていることにご注意ください．</p>
+<p>シーズンごとに作品名が変わっているシリーズ作品（ドカベン，刃牙，ジョジョ等）は，それぞれ別作品として集計されていることにご注意ください．</p>
 </div>
 <p>連載期間が長いものを見てみましょう．こち亀，はじめの一歩，名探偵コナン，ONEPIECE，MAJORと各雑誌のレジェンドが連なります．
 一方で，連載期間が短いものの中には，企画ものや読み切りが存在するようです．</p>
@@ -1267,9 +1267,372 @@ Name: cname, dtype: int64
 </div>
 <div class="section" id="epname">
 <h3><code class="docutils literal notranslate"><span class="pre">epname</span></code>（各話タイトル）<a class="headerlink" href="#epname" title="Permalink to this headline">¶</a></h3>
+<p>ユニークな<code class="docutils literal notranslate"><span class="pre">epname</span></code>（各話タイトル）数を集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;epname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>150241
+</pre></div>
+</div>
+</div>
+</div>
+<p>意外と重複しているようです．集計してみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;epname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>epname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>プロ野球編</td>
+      <td>186</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>後編</td>
+      <td>134</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>前編</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>最終回</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>第三部 孤狼青春編</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>150236</th>
+      <td>＄33 カミナリ、おそるべし</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>150237</th>
+      <td>星に願いを・・・・　／　笑っていいですよ　／　朝食</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>150238</th>
+      <td>〔□67〕時間目 日替わり勉強!!</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>150239</th>
+      <td>C.C.S.9/ 亀裂</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>150240</th>
+      <td>サンプルの巻 2</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>150241 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>プロ野球編ってことは…．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;epname&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;プロ野球編&#39;</span><span class="p">][</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>cname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ドカベン</td>
+      <td>186</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>やっぱりドカベンですね！ドカベンってもしかして<strong>〇〇編</strong>の粒度でしかタイトルをつけないのでしょうか…？ドカベンの<code class="docutils literal notranslate"><span class="pre">epname</span></code>を集計してみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;ドカベン&#39;</span><span class="p">][</span><span class="s1">&#39;epname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>epname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>プロ野球編</td>
+      <td>186</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>新潟明訓対神奈川明訓</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>外伝 不知火・土門伝説</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>殿馬一人外伝 秘打「白鳥の湖」誕生秘話</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;ドカベン&#39;</span><span class="p">][</span><span class="s1">&#39;epname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>446
+</pre></div>
+</div>
+</div>
+</div>
+<p>プロ野球編以外のドカベンの各話タイトルは欠測しているため，これ以上のことはわからなそうです．</p>
 </div>
 <div class="section" id="creator">
 <h3><code class="docutils literal notranslate"><span class="pre">creator</span></code>（作者）<a class="headerlink" href="#creator" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">df</span></code>に存在する<code class="docutils literal notranslate"><span class="pre">creator</span></code>（作者）数を集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2740
+</pre></div>
+</div>
+</div>
+</div>
+<p>合計作品数が多い<code class="docutils literal notranslate"><span class="pre">creator</span></code>を調べてみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>creator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>水島新司</td>
+      <td>2968</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>秋本治</td>
+      <td>1876</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>高橋留美子</td>
+      <td>1735</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>浜岡賢次</td>
+      <td>1381</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>青山剛昌</td>
+      <td>1285</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>あだち充</td>
+      <td>1270</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>森川ジョージ</td>
+      <td>1224</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>満田拓也</td>
+      <td>1222</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>板垣恵介</td>
+      <td>1171</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>藤田和日郎</td>
+      <td>1101</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>レジェンドすぎる…．
+個人的こち亀の<code class="docutils literal notranslate"><span class="pre">秋本治</span></code>先生が一番だと思っていましたが，<code class="docutils literal notranslate"><span class="pre">水島新司</span></code>先生が圧倒的でした．</p>
+<p>余談ですが，こち亀の作者名を集計すると</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;こちら葛飾区亀有公園前派出所&#39;</span><span class="p">][</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>creator</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>秋本治</td>
+      <td>1866</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>山止たつひこ</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>秋本治ととみさわちなつ</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">秋本治</span></code>先生は，デビュー時<code class="docutils literal notranslate"><span class="pre">山下たつひこ</span></code>というペンネームを使っていました．この101話分を足しても全然追いつかない<code class="docutils literal notranslate"><span class="pre">水島新司</span></code>先生がすごすぎる…．</p>
 </div>
 <div class="section" id="pagestart">
 <h3><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>（開始ページ数）<a class="headerlink" href="#pagestart" title="Permalink to this headline">¶</a></h3>
