@@ -860,9 +860,9 @@ dtype: int64
 <li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品名）が不明なものが8行もあります．今の所，補完する手立てはありません．</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>（各話タイトル）がない行が想定より多く，22000行に上ります．こちらも同様に，補完する手立てはありません．</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">creator</span></code>（作者）がない行が378行存在します．<code class="docutils literal notranslate"><span class="pre">cname</span></code>が同一のものがあれば補完できる可能性があります．</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>がない行が17行あります．前後の巻号から推定可能です．</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>がない行が17896行あります．<code class="docutils literal notranslate"><span class="pre">miname</span></code>が同一のものから補完可能です（そもそも<code class="docutils literal notranslate"><span class="pre">講談社</span></code>か<code class="docutils literal notranslate"><span class="pre">小学館</span></code>の2パターンしかありません）</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code>がない行が1992行あります．こちらも，前後の巻号から推定可能ですが，編集長が交代するタイミングだと打つ手がありません．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>（雑誌の販売価格）がない行が17行あります．前後の巻号から推定可能です．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）がない行が17896行あります．<code class="docutils literal notranslate"><span class="pre">miname</span></code>が同一のものから補完可能です（そもそも<code class="docutils literal notranslate"><span class="pre">講談社</span></code>か<code class="docutils literal notranslate"><span class="pre">小学館</span></code>の2パターンしかありません）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code>（編集長）がない行が1992行あります．こちらも，前後の巻号から推定可能ですが，編集長が交代するタイミングだと打つ手がありません．</p></li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -1014,6 +1014,18 @@ Name: miname, dtype: int64
 </div>
 <div class="section" id="cname">
 <h3><code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品名）<a class="headerlink" href="#cname" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5283
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="epname">
 <h3><code class="docutils literal notranslate"><span class="pre">epname</span></code><a class="headerlink" href="#epname" title="Permalink to this headline">¶</a></h3>
