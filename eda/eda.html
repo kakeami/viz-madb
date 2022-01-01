@@ -465,7 +465,13 @@
 </div>
 <div class="section" id="id3">
 <h2>概要<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>まず，データサイズを見てみます．</p>
+<p><code class="docutils literal notranslate"><span class="pre">df</span></code>は</p>
+<ul class="simple">
+<li><p>週刊少年ジャンプ</p></li>
+<li><p>週刊少年サンデー</p></li>
+<li><p>週刊少年マガジン</p></li>
+</ul>
+<p>の<code class="docutils literal notranslate"><span class="pre">1969-11-03</span></code>から<code class="docutils literal notranslate"><span class="pre">2017-07-12</span></code>までのすべてのマンガ作品のデータを格納した<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>です．サイズを見てみます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
@@ -478,7 +484,7 @@
 </div>
 </div>
 </div>
-<p>カラムは次のようなものです．</p>
+<p>一行あたり一作品を格納するため，約14万行のデータとなっています．列は下記です．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
@@ -508,7 +514,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>: 雑誌の発行元</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code>: 雑誌の編集者（編集長）</p></li>
 </ul>
-<p>冒頭数行を見てみます．</p>
+<p>冒頭数行を見てみましょう．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -616,6 +622,137 @@
 </table>
 </div></div></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>の<code class="docutils literal notranslate"><span class="pre">describe()</span></code>コマンドでざっくり集計してみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pageStart</th>
+      <th>pageEnd</th>
+      <th>numberOfPages</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>135896.000000</td>
+      <td>135890.000000</td>
+      <td>135653.000000</td>
+      <td>135879.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>213.197213</td>
+      <td>230.853172</td>
+      <td>421.200740</td>
+      <td>202.327107</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>125.282380</td>
+      <td>123.402589</td>
+      <td>70.453981</td>
+      <td>42.839723</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>36.000000</td>
+      <td>70.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>109.000000</td>
+      <td>128.000000</td>
+      <td>356.000000</td>
+      <td>180.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>207.000000</td>
+      <td>224.000000</td>
+      <td>444.000000</td>
+      <td>210.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>307.000000</td>
+      <td>325.000000</td>
+      <td>474.000000</td>
+      <td>230.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2275.000000</td>
+      <td>1578.000000</td>
+      <td>600.000000</td>
+      <td>371.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>および<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>はすべての行でデータがありますが，それ以外は<code class="docutils literal notranslate"><span class="pre">NaN</span></code>（数値なし）が結構ありそうです</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>の最小値，最大値が想定外に広がっていたので，あとで深堀りします．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>も同様です．後で深堀りします．</p></li>
+</ul>
+<p>次に，<code class="docutils literal notranslate"><span class="pre">NaN</span></code>の数を列ごとに集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname               0
+miname               0
+cname                8
+epname           22000
+creator            378
+pageStart            0
+pageEnd              6
+numberOfPages      243
+datePublished        0
+price               17
+publisher        17896
+editor            1992
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>が不明なものが8行もあります．補完する手立てはありません．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>（各話タイトル）がない行が想定より多く，22000行に上ります．補完する手立てはありません．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">creator</span></code>（作者）がない行が378行存在します．<code class="docutils literal notranslate"><span class="pre">cname</span></code>が同一のものがあれば補完できる可能性があります．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>がない行が17行あります．前後の巻号から推定可能です．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>がない行が17896行あります．<code class="docutils literal notranslate"><span class="pre">miname</span></code>が同一のものから補完可能です（そもそも<code class="docutils literal notranslate"><span class="pre">講談社</span></code>か<code class="docutils literal notranslate"><span class="pre">小学館</span></code>の2パターンしかありません）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code>がない行が1992行あります．こちらも，前後の巻号から推定可能ですが，編集長が交代するタイミングだと打つ手がありません．</p></li>
+</ul>
 </div>
 </div>
 
