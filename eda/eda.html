@@ -581,8 +581,10 @@
 <li><p>週刊少年ジャンプ</p></li>
 <li><p>週刊少年サンデー</p></li>
 <li><p>週刊少年マガジン</p></li>
+<li><p>週刊少年チャンピオン</p></li>
 </ul>
-<p>の<code class="docutils literal notranslate"><span class="pre">1969-11-03</span></code>から<code class="docutils literal notranslate"><span class="pre">2017-07-12</span></code>までのすべてのマンガ作品のデータを格納した<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>です．サイズを見てみます．</p>
+<p>の<code class="docutils literal notranslate"><span class="pre">1970-08-02</span></code>から<code class="docutils literal notranslate"><span class="pre">2017-07-06</span></code>までのすべての掲載作品のデータを格納した<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>です．
+まずはサイズを見てみましょう．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
@@ -595,7 +597,8 @@
 </div>
 </div>
 </div>
-<p>マンガ作品x週を1行に格納するため，約18万行のデータとなっています．列は下記です．</p>
+<p>各週の掲載作品を一行ずつ格納しているため，合計で約18万行程度の規模になります．
+以下に，各列の構成を示します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
@@ -625,7 +628,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>: 雑誌の発行元</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code>: 雑誌の編集者（編集長）</p></li>
 </ul>
-<p>冒頭数行を見てみましょう．</p>
+<p>冒頭数行を見て，データのイメージを掴んでみましょう．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
