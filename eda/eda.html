@@ -3099,11 +3099,10 @@
 </div>
 <div class="section" id="publisher">
 <h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）<a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）をdescribeで基礎集計します． 前述したようにdfを直接describeするとバイアスが乗るので，minameで中間集計したdf_tmpに対して分析を実施します．</p>
+<p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）に関して集計します． 前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接集計するとバイアスが乗るので，minameで中間集計したdf_tmpに対して分析を実施します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[</span>
-    <span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">]]</span><span class="o">.</span>\
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">]]</span><span class="o">.</span>\
     <span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -3111,59 +3110,130 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span>\
+    <span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1024</span><span class="o">/</span><span class="mf">3121515550.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> 
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">reset_index</span><span class="nt">(self, level, drop, name, inplace)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1440</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1441</span>             <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1442</span>             <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="n">drop</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1443</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1444</span>     <span class="c1"># ----------------------------------------------------------------------</span>
-
-<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> 
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
-
-<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">reset_index</span><span class="nt">(self, level, drop, inplace, col_level, col_fill)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5797</span>                     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5798</span> 
-<span class="ne">-&gt; </span><span class="mi">5799</span>                 <span class="n">new_obj</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">level_values</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5800</span> 
-<span class="g g-Whitespace">   </span><span class="mi">5801</span>         <span class="n">new_obj</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">new_index</span>
-
-<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">insert</span><span class="nt">(self, loc, column, value, allow_duplicates)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4412</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_duplicates</span> <span class="ow">and</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4413</span>             <span class="c1"># Should this be a different kind of error??</span>
-<span class="ne">-&gt; </span><span class="mi">4414</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cannot insert </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">, already exists&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4415</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">4416</span>             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;loc must be int&quot;</span><span class="p">)</span>
-
-<span class="ne">ValueError</span>: cannot insert publisher, already exists
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>publisher</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年サンデー</td>
+      <td>小学館　∥　ショウガクカン</td>
+      <td>1715</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年サンデー</td>
+      <td>小学館</td>
+      <td>222</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年サンデー</td>
+      <td>小学館　∥　ショウガクカン,小学館</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年ジャンプ</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>1335</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>週刊少年ジャンプ</td>
+      <td>集英社　∥　シュウエイシャ,集英社</td>
+      <td>383</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>週刊少年ジャンプ</td>
+      <td>集英社</td>
+      <td>377</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>週刊少年チャンピオン</td>
+      <td>秋田書店　∥　アキタショテン</td>
+      <td>1622</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>週刊少年チャンピオン</td>
+      <td>秋田書店　∥　アキタ ショテン</td>
+      <td>338</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>週刊少年チャンピオン</td>
+      <td>秋田書店</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>週刊少年チャンピオン</td>
+      <td>秋田書店　∥　アキタショテン,秋田書店　∥　アキタ ショテン</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>週刊少年マガジン</td>
+      <td>講談社　∥　コウダンシャ</td>
+      <td>1808</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>週刊少年マガジン</td>
+      <td>講談社</td>
+      <td>217</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>週刊少年マガジン</td>
+      <td>講談社　∥　コウダンシャ,講談社</td>
+      <td>68</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>かなり表記がぶれているようです．</p>
+</div>
+<div class="section" id="editor">
+<h3><code class="docutils literal notranslate"><span class="pre">editor</span></code>（編集者）<a class="headerlink" href="#editor" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;editor&#39;</span><span class="p">]]</span><span class="o">.</span>\
+    <span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="editor">
-<h3><code class="docutils literal notranslate"><span class="pre">editor</span></code>（編集者）<a class="headerlink" href="#editor" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
