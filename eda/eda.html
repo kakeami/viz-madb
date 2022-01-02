@@ -2156,9 +2156,386 @@ Name: cname, dtype: int64
 </div>
 <div class="section" id="numberofpages">
 <h3><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>（各号の合計ページ数）<a class="headerlink" href="#numberofpages" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>（雑誌の合計ページ数）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．
+なお，普通に<code class="docutils literal notranslate"><span class="pre">describe</span></code>してしまうと掲載作品数が多い巻号に重みのついた統計量となってしまうため，注意が必要です．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[</span>
+    <span class="p">[</span><span class="s1">&#39;numberOfPages&#39;</span><span class="p">,</span> <span class="s1">&#39;datePublished&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">]]</span><span class="o">.</span>\
+    <span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;numberOfPages&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>numberOfPages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>9202.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>402.709737</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>72.033356</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>36.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>344.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>420.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>458.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>600.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>最小値が小さすぎる気がします．
+試しに<code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>でソートすると，</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;numberOfPages&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>miname</th>
+      <th>numberOfPages</th>
+      <th>datePublished</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7839</th>
+      <td>週刊少年マガジン 1989年 表示号数10</td>
+      <td>36.0</td>
+      <td>1989-02-22</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>6665</th>
+      <td>週刊少年チャンピオン 2012年 表示号数28</td>
+      <td>36.0</td>
+      <td>2012-06-07</td>
+      <td>257.0</td>
+    </tr>
+    <tr>
+      <th>5835</th>
+      <td>週刊少年チャンピオン 1995年 表示号数13</td>
+      <td>214.0</td>
+      <td>1995-03-09</td>
+      <td>200.0</td>
+    </tr>
+    <tr>
+      <th>2478</th>
+      <td>週刊少年ジャンプ 1974年 表示号数11</td>
+      <td>234.0</td>
+      <td>1974-03-11</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>7095</th>
+      <td>週刊少年マガジン 1974年 表示号数16</td>
+      <td>236.0</td>
+      <td>1974-04-14</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>7092</th>
+      <td>週刊少年マガジン 1974年 表示号数13</td>
+      <td>236.0</td>
+      <td>1974-03-24</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>7121</th>
+      <td>週刊少年マガジン 1974年 表示号数40</td>
+      <td>236.0</td>
+      <td>1974-09-29</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>7090</th>
+      <td>週刊少年マガジン 1974年 表示号数11</td>
+      <td>236.0</td>
+      <td>1974-03-10</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>2486</th>
+      <td>週刊少年ジャンプ 1974年 表示号数19</td>
+      <td>236.0</td>
+      <td>1974-05-06</td>
+      <td>130.0</td>
+    </tr>
+    <tr>
+      <th>7123</th>
+      <td>週刊少年マガジン 1974年 表示号数42</td>
+      <td>236.0</td>
+      <td>1974-10-13</td>
+      <td>130.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>最初の二つに関しては入力ミスが疑われます．降順にソートしてみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;numberOfPages&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>miname</th>
+      <th>numberOfPages</th>
+      <th>datePublished</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2109</th>
+      <td>週刊少年サンデー 2013年 表示号数36</td>
+      <td>600.0</td>
+      <td>2013-08-07</td>
+      <td>257.0</td>
+    </tr>
+    <tr>
+      <th>8621</th>
+      <td>週刊少年マガジン 2005年 表示号数2</td>
+      <td>574.0</td>
+      <td>2005-01-12</td>
+      <td>238.0</td>
+    </tr>
+    <tr>
+      <th>8576</th>
+      <td>週刊少年マガジン 2004年 表示号数22</td>
+      <td>573.0</td>
+      <td>2004-05-19</td>
+      <td>229.0</td>
+    </tr>
+    <tr>
+      <th>8640</th>
+      <td>週刊少年マガジン 2005年 表示号数4</td>
+      <td>572.0</td>
+      <td>2005-01-19</td>
+      <td>238.0</td>
+    </tr>
+    <tr>
+      <th>3979</th>
+      <td>週刊少年ジャンプ 2004年 表示号数37</td>
+      <td>572.0</td>
+      <td>2004-08-23</td>
+      <td>229.0</td>
+    </tr>
+    <tr>
+      <th>8410</th>
+      <td>週刊少年マガジン 2000年 表示号数49</td>
+      <td>570.0</td>
+      <td>2000-11-15</td>
+      <td>230.0</td>
+    </tr>
+    <tr>
+      <th>1872</th>
+      <td>週刊少年サンデー 2008年 表示号数4</td>
+      <td>568.0</td>
+      <td>2008-01-14</td>
+      <td>248.0</td>
+    </tr>
+    <tr>
+      <th>2108</th>
+      <td>週刊少年サンデー 2013年 表示号数35</td>
+      <td>568.0</td>
+      <td>2013-07-31</td>
+      <td>257.0</td>
+    </tr>
+    <tr>
+      <th>2107</th>
+      <td>週刊少年サンデー 2013年 表示号数34</td>
+      <td>566.0</td>
+      <td>2013-07-24</td>
+      <td>257.0</td>
+    </tr>
+    <tr>
+      <th>1853</th>
+      <td>週刊少年サンデー 2008年 表示号数2</td>
+      <td>565.0</td>
+      <td>2008-01-07</td>
+      <td>238.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>特別号の可能性があるので，妥当性の判断が難しいです．</p>
+<p>いずれにしても<code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>は欠測数が多いため，積極的に分析に利用する必要はなさそうに見えます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;numberOfPages&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="datepublished">
 <h3><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>（発行日）<a class="headerlink" href="#datepublished" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>（発行日）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．
+なお，普通に<code class="docutils literal notranslate"><span class="pre">describe</span></code>してしまうと掲載作品数が多い巻号に重みのついた統計量となってしまうため，注意が必要です．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]]</span><span class="o">.</span>\
+    <span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">])</span>
+<span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>datePublished</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>9215</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>unique</td>
+      <td>6362</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>top</td>
+      <td>1988-01-01 00:00:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>freq</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>first</td>
+      <td>1970-08-02 00:00:00</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>last</td>
+      <td>2017-07-06 00:00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </div>
 <div class="section" id="publisher">
 <h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）<a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
