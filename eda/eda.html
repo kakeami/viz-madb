@@ -518,6 +518,16 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#price">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       price
+      </span>
+     </code>
+     （雑誌価格）
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#publisher">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -845,27 +855,97 @@
 <p>次に，<code class="docutils literal notranslate"><span class="pre">NaN</span></code>の数を列ごとに集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname               0
-miname               0
-cname                9
-epname           26814
-creator            441
-pageStart            0
-pageEnd              6
-numberOfPages      307
-datePublished        0
-price               38
-publisher        24588
-editor            2092
-dtype: int64
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>mcname</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>miname</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>cname</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>epname</td>
+      <td>26814</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>creator</td>
+      <td>441</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>pageStart</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>pageEnd</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>numberOfPages</td>
+      <td>307</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>datePublished</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>price</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>publisher</td>
+      <td>24588</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>editor</td>
+      <td>2092</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title">前処理が原因の欠測</p>
@@ -879,19 +959,57 @@ dtype: int64
 <h3><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌名）<a class="headerlink" href="#mcname" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>週刊少年サンデー      46153
-週刊少年チャンピオン    45410
-週刊少年マガジン      45293
-週刊少年ジャンプ      43010
-Name: mcname, dtype: int64
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>mcname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年サンデー</td>
+      <td>46153</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年チャンピオン</td>
+      <td>45410</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年マガジン</td>
+      <td>45293</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年ジャンプ</td>
+      <td>43010</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>上記は<code class="docutils literal notranslate"><span class="pre">mcname</span></code>ごとの行数を表します．それぞれ同一期間で集計しましたが，掲載作品数の違いが生じています．</p>
 </div>
@@ -913,20 +1031,57 @@ Name: mcname, dtype: int64
 <p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌）ごとに集計した<code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号）は：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;miname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;miname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
-週刊少年サンデー      2303
-週刊少年ジャンプ      2299
-週刊少年チャンピオン    2313
-週刊少年マガジン      2300
-Name: miname, dtype: int64
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>miname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年サンデー</td>
+      <td>2303</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年ジャンプ</td>
+      <td>2299</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年チャンピオン</td>
+      <td>2313</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年マガジン</td>
+      <td>2300</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>ほぼ同数ですが，雑誌によって微妙に巻号数が異なることがわかります．</p>
 <p>次は，<code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号）ごとに<code class="docutils literal notranslate"><span class="pre">mcname</span></code>（マンガ作品）数を集計してみます．</p>
@@ -1040,20 +1195,57 @@ Name: miname, dtype: int64
 <p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌）ごとに<code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品）数を集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;cname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
-週刊少年サンデー      1485
-週刊少年ジャンプ      2105
-週刊少年チャンピオン    1713
-週刊少年マガジン      1558
-Name: cname, dtype: int64
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>cname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年サンデー</td>
+      <td>1485</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年ジャンプ</td>
+      <td>2105</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年チャンピオン</td>
+      <td>1713</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年マガジン</td>
+      <td>1558</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>ジャンプが圧倒的に多いですね…．試しに<code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品）ごとに掲載数を集計してみます．</p>
 <div class="cell docutils container">
@@ -1162,7 +1354,7 @@ Name: cname, dtype: int64
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title">あれ，あの長編作品は…？</p>
-<p>シーズンごとに作品名が変わっているシリーズ作品（ドカベン，刃牙，ジョジョ等）は，それぞれ別作品として集計されていることにご注意ください．</p>
+<p>シーズンごとに作品名が変わっているシリーズ作品（ドカベン，刃牙，浦鉄，ジョジョ等）は，それぞれ別作品として集計されていることにご注意ください．</p>
 </div>
 <p>連載期間が長いものを見てみましょう．こち亀，はじめの一歩，名探偵コナン，ONEPIECE，MAJORと各雑誌のレジェンドが連なります．
 一方で，連載期間が短いものの中には，企画ものや読み切りが存在するようです．</p>
@@ -2157,7 +2349,8 @@ Name: cname, dtype: int64
 <div class="section" id="numberofpages">
 <h3><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>（各号の合計ページ数）<a class="headerlink" href="#numberofpages" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>（雑誌の合計ページ数）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．
-なお，普通に<code class="docutils literal notranslate"><span class="pre">describe</span></code>してしまうと掲載作品数が多い巻号に重みのついた統計量となってしまうため，注意が必要です．</p>
+なお，<code class="docutils literal notranslate"><span class="pre">df</span></code>をそのまま<code class="docutils literal notranslate"><span class="pre">describe</span></code>してしまうと掲載作品数が多い雑誌巻号にバイアスのかかった統計量になってしまうため注意が必要です．
+そこで，ここでは<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>を<code class="docutils literal notranslate"><span class="pre">describe</span></code>します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[</span>
@@ -2468,11 +2661,12 @@ Name: cname, dtype: int64
 <div class="section" id="datepublished">
 <h3><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>（発行日）<a class="headerlink" href="#datepublished" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>（発行日）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．
-なお，普通に<code class="docutils literal notranslate"><span class="pre">describe</span></code>してしまうと掲載作品数が多い巻号に重みのついた統計量となってしまうため，注意が必要です．</p>
+前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接<code class="docutils literal notranslate"><span class="pre">describe</span></code>するとバイアスが乗るので，<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>に対して分析を実施します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]]</span><span class="o">.</span>\
     <span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="c1"># 日付処理を容易にするため，`pd.to_datetime`で型変換</span>
 <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">])</span>
 <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
@@ -2815,8 +3009,158 @@ Name: cname, dtype: int64
 </div>
 <p>集計開始年（<code class="docutils literal notranslate"><span class="pre">1970</span></code>）および集計終了年（<code class="docutils literal notranslate"><span class="pre">2017</span></code>）以外は，年間およそ190-205回ほど発行していることがわかります．</p>
 </div>
+<div class="section" id="price">
+<h3><code class="docutils literal notranslate"><span class="pre">price</span></code>（雑誌価格）<a class="headerlink" href="#price" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">price</span></code>（雑誌価格）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．
+前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接<code class="docutils literal notranslate"><span class="pre">describe</span></code>するとバイアスが乗るので，<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>に対して分析を実施します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[[</span><span class="s1">&#39;price&#39;</span><span class="p">]]</span><span class="o">.</span>\
+    <span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>9213.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>195.063606</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>44.769360</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>80.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>170.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>200.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>229.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>371.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>80円だった時代があったのでしょうか…？後ほど分析します．</p>
+</div>
 <div class="section" id="publisher">
 <h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）<a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）をdescribeで基礎集計します． 前述したようにdfを直接describeするとバイアスが乗るので，minameで中間集計したdf_tmpに対して分析を実施します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[</span>
+    <span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">]]</span><span class="o">.</span>\
+    <span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1024</span><span class="o">/</span><span class="mf">3121515550.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/core/series.py</span> in <span class="ni">reset_index</span><span class="nt">(self, level, drop, name, inplace)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1440</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1441</span>             <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1442</span>             <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="n">drop</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1443</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1444</span>     <span class="c1"># ----------------------------------------------------------------------</span>
+
+<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">reset_index</span><span class="nt">(self, level, drop, inplace, col_level, col_fill)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5797</span>                     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5798</span> 
+<span class="ne">-&gt; </span><span class="mi">5799</span>                 <span class="n">new_obj</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">level_values</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5800</span> 
+<span class="g g-Whitespace">   </span><span class="mi">5801</span>         <span class="n">new_obj</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">new_index</span>
+
+<span class="nn">/opt/conda/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">insert</span><span class="nt">(self, loc, column, value, allow_duplicates)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4412</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_duplicates</span> <span class="ow">and</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4413</span>             <span class="c1"># Should this be a different kind of error??</span>
+<span class="ne">-&gt; </span><span class="mi">4414</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cannot insert </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">, already exists&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4415</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4416</span>             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;loc must be int&quot;</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: cannot insert publisher, already exists
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="editor">
 <h3><code class="docutils literal notranslate"><span class="pre">editor</span></code>（編集者）<a class="headerlink" href="#editor" title="Permalink to this headline">¶</a></h3>
