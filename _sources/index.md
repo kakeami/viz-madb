@@ -81,6 +81,13 @@ GitHubからダウンロードすることで，手元で環境を再現可能�
 
 ## 謝辞
 
+- [Python]
+- [Pandas]
+- [Plotly]
+- [Jupyter lab]
+- [Jupyter Book]
+
 ## 参考文献
 
 - [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
+- [総務省統計局，なるほど統計学園](https://www.stat.go.jp/naruhodo/)
