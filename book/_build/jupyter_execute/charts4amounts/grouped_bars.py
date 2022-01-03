@@ -22,7 +22,7 @@
 #     color='col_group', barmode='group')
 # ```
 
-# 上記の例では，`df`の`col_x`を横軸，`col_y`を縦軸とし，`col_group`によって色を塗り分けたGrouped barsを作図可能です．
+# 上記の例では，`df`の`col_x`を横軸，`col_y`を縦軸とし，`col_group`によって色を塗り分けたGrouped barsのオブジェクト`fig`を作成します．
 
 # ## MADB Labを用いた作図例
 

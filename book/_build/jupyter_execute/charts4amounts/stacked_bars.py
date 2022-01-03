@@ -15,7 +15,88 @@
 
 # ## Plotlyによる作図方法
 
+# Plotlyでは，`plotly.express.bar()`で`barmode='stack'`を指定することで作図可能です．
+
+# ```python
+# import plotly.express as px
+# fig = px.bar(
+#     df, x='col_x', y='col_y',
+#     color='col_group', barmode='stack')
+# ```
+
+# 上記の例では，`df`の`col_x`を横軸，`col_y`を縦軸とし，`col_group`によって色を塗り分けたStacked barsのオブジェクト`fig`を作成します．
+
 # ## MADB Labを用いた作図例
+
+# ### 下準備
+
+# In[3]:
+
+
+import pandas as pd
+import plotly.express as px
+
+import warnings
+warnings.filterwarnings('ignore')
+
+
+# In[4]:
+
+
+# 前処理の結果，以下に分析対象ファイルが格納されていることを想定
+PATH_DATA = '../../data/preprocess/out/magazines.csv'
+# Jupyter Book用のPlotlyのrenderer
+RENDERER = 'plotly_mimetype+notebook'
+
+
+# In[5]:
+
+
+def show_fig(fig):
+    """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.show(renderer=RENDERER)
+
+
+# In[6]:
+
+
+df = pd.read_csv(PATH_DATA)
+
+
+# ### 作品別・年代別の合計連載週（上位20作品）
+
+# In[7]:
+
+
+# datePublishedを10年単位で区切るyears列を追加
+df['datePublished'] = pd.to_datetime(df['datePublished'])
+df['years'] = df['datePublished'].dt.year // 10 * 10
+df['years'] = df['years'].astype(str)
+df_plot = df.groupby('cname')['years'].value_counts().    reset_index(name='weeks')
+
+
+# In[8]:
+
+
+# 連載週刊上位10作品を抽出
+cnames = list(df.value_counts('cname').head(20).index)
+df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
+# 降順ソート
+df_plot['order'] = df_plot['cname'].apply(
+    lambda x: cnames.index(x))
+df_plot = df_plot.sort_values(['order', 'years'], ignore_index=True)
+
+
+# In[9]:
+
+
+# 作図
+fig = px.bar(
+    df_plot, x='cname', y='weeks', color='years',
+    color_discrete_sequence= px.colors.diverging.Portland,
+    barmode='stack', title='作品別・年代別の合計連載週数')
+show_fig(fig)
+
 
 # In[ ]:
 
