@@ -23,7 +23,7 @@
 # fig = px.bar(df, x='col_x', y='col_y')
 # ```
 
-# 上記の例では，`df`の`col_x`を横軸，`col_y`を縦軸とした棒グラフのオブジェクト`fig`を作成します．
+# 上記の例では，`df`の`col_x`列を横軸，`col_y`列を縦軸とした棒グラフのオブジェクト`fig`を作成します．
 
 # ## MADB Labを用いた作図例
 
@@ -48,18 +48,18 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[9]:
-
-
-df = pd.read_csv(PATH_DATA)
-
-
-# In[10]:
+# In[28]:
 
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
     fig.show(renderer=RENDERER)
+
+
+# In[9]:
+
+
+df = pd.read_csv(PATH_DATA)
 
 
 # ### 作品別の合計連載週数（上位20作品）
