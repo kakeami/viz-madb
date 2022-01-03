@@ -1,5 +1,5 @@
 # MADBで始めるデータビジュアライゼーション
 
-## 目的
+https://kakeami.github.io/viz-madb/
 
 ## 環境構築
