@@ -97,8 +97,8 @@ df.describe()
 df.isna().sum().reset_index()
 
 
-# ```{margin} 前処理が原因の欠測
-# `numberOfPages`，`price`に関しては，想定外のパターンのデータを`NaN`に変換するよう[前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html#cm102)を施しています．
+# ```{admonition} 前処理が原因の欠測
+# `numberOfPages`，`price`に関しては，想定外のパターンのデータを`NaN`に変換するよう[前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html#cm102)を施しています．詳細はAppendixをご参照ください．
 # ```
 # 
 # 特に`epname`と`publisher`の欠損が多いことがわかります．
@@ -173,7 +173,7 @@ df_tmp.columns = ['mcname', 'cname', 'counts']
 df_tmp
 
 
-# ```{margin} あれ，あの長編作品は…？
+# ```{admonition} あれ，あの長編作品は…？
 # シーズンごとに作品名が変わっているシリーズ作品（ドカベン，刃牙，浦鉄，ジョジョ等）は，それぞれ別作品として集計されていることにご注意ください．
 # ```
 # 
