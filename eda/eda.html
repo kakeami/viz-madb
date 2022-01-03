@@ -534,7 +534,7 @@
        publisher
       </span>
      </code>
-     （発行者）
+     （出版社）
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -633,17 +633,17 @@
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>: 雑誌名</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">miname</span></code>: 雑誌巻号名</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>: マンガ作品名</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>: 各話タイトル</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>: 雑誌名（<strong>M</strong>gazine <strong>C</strong>ollection <strong>NAME</strong>）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">miname</span></code>: 雑誌巻号名（<strong>M</strong>agazine <strong>I</strong>tem <strong>NAME</strong>）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>: マンガ作品名（<strong>C</strong>omic <strong>NAME</strong>）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>: 各話タイトル（<strong>EP</strong>isode <strong>NAME</strong>）</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">creator</span></code>: 作者名</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>: 開始ページ</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>: 終了ページ</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>: 雑誌の合計ページ数</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>: 雑誌の発行日</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>: 雑誌の価格</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>: 雑誌の発行元</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>: 雑誌の出版社</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code>: 雑誌の編集者（編集長）</p></li>
 </ul>
 <p>冒頭数行を見て，データのイメージを掴んでみましょう．</p>
@@ -3098,8 +3098,8 @@
 <p>一冊80円だった時代があったのでしょうか…？後ほど分析します．</p>
 </div>
 <div class="section" id="publisher">
-<h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）<a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）に関して集計します． 前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接集計するとバイアスが乗るので，minameで中間集計したdf_tmpに対して分析を実施します．</p>
+<h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（出版社）<a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（出版社）に関して集計します． 前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接集計するとバイアスが乗るので，minameで中間集計したdf_tmpに対して分析を実施します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">]]</span><span class="o">.</span>\
@@ -3108,6 +3108,7 @@
 </div>
 </div>
 </div>
+<p>雑誌ごとに出版社名を集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span>\
@@ -3555,6 +3556,7 @@
 </ul>
 </li>
 </ul>
+<p>数も少ないですし，確証が持てないため特に修正しないことにします．</p>
 </div>
 </div>
 </div>
