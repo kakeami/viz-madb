@@ -51,10 +51,14 @@ GitHubからダウンロードすることで，手元で環境を再現可能�
 ^^^
 
 MADB Labは，文化庁が提供する，メディア芸術作品に関するデータをより広く活用するためのウェブサイトです．
+本サイトでは，[v1.0](https://github.com/mediaarts-db/dataset/tree/1.0)を[前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html)したデータを用いてビジュアライゼーション手法を紹介します．
+
 MADB Labの公開するデータセットは，下記を留意する限り，自由な二次利用が可能です
 
 - データを編集・加工する場合は，それを行ったことを記載すること
 - 当該データが自由に二次利用可能であることの表記を保持すること
+
+詳細は[公式リポジトリ](https://github.com/mediaarts-db/dataset)をご参照ください．
 
 ![madb](figs/madb.png)
 
