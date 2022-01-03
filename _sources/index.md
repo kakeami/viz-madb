@@ -52,7 +52,7 @@ GitHubからダウンロードすることで，手元で環境を再現可能�
 
 （いい感じのgifを貼る）
 
-![madb](madb.png)
+![madb](figs/madb.png)
 
 :::
 
