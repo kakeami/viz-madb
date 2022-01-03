@@ -407,6 +407,29 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   2.1. 概要
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotly">
+   2.2. Plotlyによる作図方法
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#madb-lab">
+   2.3. MADB Labを用いた作図例
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -417,6 +440,24 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="grouped-bars">
 <h1><span class="section-number">2. </span>Grouped bars<a class="headerlink" href="#grouped-bars" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><span class="section-number">2.1. </span>概要<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><strong>Grouped bars</strong>とは，複数の要素をまとめて描画した棒グラフです．</p>
+</div>
+<div class="section" id="plotly">
+<h2><span class="section-number">2.2. </span>Plotlyによる作図方法<a class="headerlink" href="#plotly" title="Permalink to this headline">¶</a></h2>
+<p>Plotlyでは，<code class="docutils literal notranslate"><span class="pre">plotly.express.bar()</span></code>で<code class="docutils literal notranslate"><span class="pre">barmode='group'</span></code>を指定することで描画可能です．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;col_x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;col_y&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;col_group&#39;</span><span class="p">,</span> <span class="n">barmode</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上記の例では，<code class="docutils literal notranslate"><span class="pre">df</span></code>の<code class="docutils literal notranslate"><span class="pre">col_x</span></code>を横軸，<code class="docutils literal notranslate"><span class="pre">col_y</span></code>を縦軸とし，<code class="docutils literal notranslate"><span class="pre">col_group</span></code>によって色を塗り分けたGrouped barsを作図可能です．</p>
+</div>
+<div class="section" id="madb-lab">
+<h2><span class="section-number">2.3. </span>MADB Labを用いた作図例<a class="headerlink" href="#madb-lab" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

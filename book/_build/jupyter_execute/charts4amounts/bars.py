@@ -12,9 +12,9 @@
 # 
 # *総務省統計局，なるほど統計学園，棒グラフ*より
 
-# ## [Plotly](https://plotly.com/python/)による作図方法
+# ## Plotlyによる作図方法
 
-# [Plotly](https://plotly.com/python/)では`plotly.express.bar()`で棒グラフを作成可能です．
+# Plotlyでは`plotly.express.bar()`で棒グラフを作成可能です．
 
 # ```python
 # import plotly.express as px
@@ -78,12 +78,4 @@ show_fig(fig)
 df_plot = df.value_counts('creator').reset_index(name='weeks').head(20)
 fig = px.bar(df_plot, x='creator', y='weeks', title='作者別の合計連載週数')
 show_fig(fig)
-
-
-# ### 作者別の合計掲載作品数（上位20名）
-
-# In[ ]:
-
-
-
 
