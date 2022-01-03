@@ -419,13 +419,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plotly">
-   1.2.
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     plotly
-    </span>
-   </code>
-   による実装
+   1.2. Plotlyによる実装
   </a>
  </li>
 </ul>
@@ -451,7 +445,13 @@
 <p><em>総務省統計局，なるほど統計学園，棒グラフ</em>より</p>
 </div>
 <div class="section" id="plotly">
-<h2><span class="section-number">1.2. </span><code class="docutils literal notranslate"><span class="pre">plotly</span></code>による実装<a class="headerlink" href="#plotly" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2. </span><a class="reference external" href="https://plotly.com/python/">Plotly</a>による実装<a class="headerlink" href="#plotly" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://plotly.com/python/">Plotly</a>では<code class="docutils literal notranslate"><span class="pre">plotly.express.bar()</span></code>で棒グラフを作成可能です．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;col_x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;col_y&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上記の例では，<code class="docutils literal notranslate"><span class="pre">df</span></code>の<code class="docutils literal notranslate"><span class="pre">col_x</span></code>を横軸，<code class="docutils literal notranslate"><span class="pre">col_y</span></code>を縦軸とした棒グラフのオブジェクト<code class="docutils literal notranslate"><span class="pre">fig</span></code>を作成します．</p>
 </div>
 </div>
 
