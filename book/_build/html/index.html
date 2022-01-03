@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>はじめに &#8212; 四大少年誌で始めるデータ・ビジュアライゼーション</title>
+    <title>はじめに &#8212; 四大少年誌で学ぶデータ・ビジュアライゼーション</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -81,7 +81,7 @@
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">四大少年誌で始めるデータ・ビジュアライゼーション</h1>
+      <h1 class="site-logo" id="site-title">四大少年誌で学ぶデータ・ビジュアライゼーション</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -426,7 +426,12 @@
 <a class="reference external" href="https://www.python.org/"><img alt="made-with-python" src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" /></a>
 <a class="reference external" href="https://pandas.pydata.org/"><img alt="made-with-pandas" src="https://img.shields.io/badge/Made%20with-Pandas-1f425f.svg" /></a>
 <a class="reference external" href="https://plotly.com/python/"><img alt="made-with-plotly" src="https://img.shields.io/badge/Made%20with-Plotly-1f425f.svg" /></a></p>
-<p>このサイトは，<a class="reference external" href="https://mediag.bunka.go.jp/madb_lab/">MADB Lab</a>で公開されている四大少年誌（週刊少年ジャンプ，週刊少年サンデー，週刊少年マガジン，週刊少年チャンピオン）のデータを用いて，データ・ビジュアライゼーションの学習を手助けすることを目指しています．</p>
+<p>このサイトは，<a class="reference external" href="https://mediag.bunka.go.jp/madb_lab/">文化庁の<strong>メディア芸術データベース・ラボ</strong>（<strong>MADB Lab</strong>）</a>で公開されている<strong>四大少年誌</strong>（
+<a class="reference external" href="https://www.shonenjump.com/j/">週刊少年ジャンプ</a>，
+<a class="reference external" href="https://websunday.net/">週刊少年サンデー</a>，
+<a class="reference external" href="https://shonenmagazine.com/">週刊少年マガジン</a>，
+<a class="reference external" href="https://www.akitashoten.co.jp/w-champion">週刊少年チャンピオン</a>
+）のデータを用いて，<strong>データ・ビジュアライゼーション</strong>の学習を手助けすることを目指しています．</p>
 <div class="sphinx-bs container pb-4 full-width docutils">
 <div class="row docutils">
 <div class="d-flex col-lg-6 px-2 py-2 docutils">
@@ -449,7 +454,7 @@
 <div class="card-body docutils">
 <p class="card-text">Plotlyで自由にズームイン・ズームアウトが可能なグラフを出力しています．
 興味の赴くまま，グリグリグラフを動かしてみましょう．
-新たな切り口の分析のヒントが得られるかもしれません．</p>
+新たな分析のヒントが得られるかもしれません．</p>
 <p class="card-text">（いい感じのgifを貼る）</p>
 </div>
 </div>
@@ -461,7 +466,7 @@
 </div>
 <div class="card-body docutils">
 <p class="card-text">本サイトはJupyter Labで作成したソースコードをJupyter Bookでビルドして構築しています．
-GitHubからダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でデータを分析しましょう．
+GitHubからダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でビジュアライゼーションしましょう．
 なお，詳細は<a class="reference external" href="https://github.com/kakeami/viz-madb">README.md</a>をご参照ください．</p>
 <p class="card-text">（いい感じのgifを貼る）</p>
 </div>
@@ -470,10 +475,13 @@ GitHubからダウンロードすることで，手元で環境を再現可能�
 <div class="d-flex col-lg-6 px-2 py-2 docutils">
 <div class="card w-100 docutils">
 <div class="card-header docutils">
-<p class="card-text">🇯🇵<strong>文化庁のメディア芸術データベース・ラボのデータを利用</strong>🇯🇵</p>
+<p class="card-text">🇯🇵<strong>メディア芸術データベース・ラボ（MADB Lab）を利用</strong>🇯🇵</p>
 </div>
 <div class="card-body docutils">
-<p class="card-text">（いい感じのgifを貼る）</p>
+<p class="card-text">MADB Labは，文化庁が提供する，メディア芸術作品に関するデータをより広く活用するためのウェブサイトです．
+本サイトでは，<a class="reference external" href="https://github.com/mediaarts-db/dataset/tree/1.0">v1.0として公開されているデータ</a>を<a class="reference external" href="https://kakeami.github.io/viz-madb/appendix/preprocess.html">前処理</a>して利用しています．
+データセットの詳細は<a class="reference external" href="https://github.com/mediaarts-db/dataset">公式リポジトリ</a>をご参照ください．</p>
+<p class="card-text"><img alt="madb" src="_images/madb.png" /></p>
 </div>
 </div>
 </div>
@@ -534,11 +542,20 @@ GitHubからダウンロードすることで，手元で環境を再現可能�
 </div>
 <div class="section" id="id3">
 <h2>謝辞<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mediag.bunka.go.jp/madb_lab/">文部科学省文化庁，メディア芸術データベース・ラボ</a></p></li>
+<li><p>[Python]</p></li>
+<li><p>[Pandas]</p></li>
+<li><p>[Plotly]</p></li>
+<li><p>[Jupyter lab]</p></li>
+<li><p>[Jupyter Book]</p></li>
+</ul>
 </div>
 <div class="section" id="id4">
 <h2>参考文献<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a></p></li>
+<li><p><a class="reference external" href="https://www.stat.go.jp/naruhodo/">総務省統計局，なるほど統計学園</a></p></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">

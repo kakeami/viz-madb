@@ -3,9 +3,7 @@
 
 # # そもそもどんなデータを扱うの？
 
-# ここでは，本サイトで分析対象とするデータについて簡単に紹介し，基礎分析を実施します．
-# 
-# なお，このデータは[MADB Labでv1.0として公開されているもの](https://github.com/mediaarts-db/dataset/tree/1.0)に[こちらの前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html)を実施したものです．ご興味のある方はAppendixをご参照ください．
+# ここでは，本サイトで分析対象とするデータについて簡単に紹介し，基礎分析を実施します．なお，このデータは[MADB Labでv1.0として公開されているもの](https://github.com/mediaarts-db/dataset/tree/1.0)に[こちらの前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html)を実施したものです．
 
 # ## 環境構築
 
@@ -58,17 +56,17 @@ df.shape
 df.columns
 
 
-# - `mcname`: 雑誌名
-# - `miname`: 雑誌巻号名
-# - `cname`: マンガ作品名
-# - `epname`: 各話タイトル
+# - `mcname`: 雑誌名（**M**gazine **C**ollection **NAME**）
+# - `miname`: 雑誌巻号名（**M**agazine **I**tem **NAME**）
+# - `cname`: マンガ作品名（**C**omic **NAME**）
+# - `epname`: 各話タイトル（**EP**isode **NAME**）
 # - `creator`: 作者名
 # - `pageStart`: 開始ページ
 # - `pageEnd`: 終了ページ
 # - `numberOfPages`: 雑誌の合計ページ数
 # - `datePublished`: 雑誌の発行日
 # - `price`: 雑誌の価格
-# - `publisher`: 雑誌の発行元
+# - `publisher`: 雑誌の出版社
 # - `editor`: 雑誌の編集者（編集長）
 
 # 冒頭数行を見て，データのイメージを掴んでみましょう．
@@ -409,11 +407,11 @@ df_tmp = df.groupby('miname')[['price']].    first().reset_index()
 df_tmp['price'].describe().reset_index()
 
 
-# 80円だった時代があったのでしょうか…？後ほど分析します．
+# 一冊80円だった時代があったのでしょうか…？後ほど分析します．
 
-# ### `publisher`（発行者）
+# ### `publisher`（出版社）
 
-# `publisher`（発行者）に関して集計します． 前述したように`df`を直接集計するとバイアスが乗るので，minameで中間集計したdf_tmpに対して分析を実施します．
+# `publisher`（出版社）に関して集計します． 前述したように`df`を直接集計するとバイアスが乗るので，minameで中間集計したdf_tmpに対して分析を実施します．
 
 # In[184]:
 
@@ -421,24 +419,38 @@ df_tmp['price'].describe().reset_index()
 df_tmp = df.groupby('miname')[['mcname', 'publisher']].    first().reset_index()
 
 
+# 雑誌ごとに出版社名を集計します．
+
 # In[185]:
 
 
 df_tmp.groupby('mcname')['publisher'].    value_counts().reset_index(name='count')
 
 
-# かなり表記がぶれているようです．
+# かなり表記がぶれているようですが，今後積極的に使う情報ではないため，このままにしておきます．
 
 # ### `editor`（編集者）
 
-# In[182]:
+# `editor`（編集者）に関して集計します． 前述したように`df`を直接集計するとバイアスが乗るので，`miname`で中間集計した`df_tmp`に対して分析を実施します．
+
+# In[188]:
 
 
 df_tmp = df.groupby('miname')[['mcname', 'editor']].    first().reset_index()
 
 
-# In[ ]:
+# In[193]:
 
 
+df_tmp.groupby('mcname')['editor'].value_counts().    reset_index(name='count')
 
 
+# 誤記と思われるものがいくつかあります：
+# 
+# - `週刊少年サンデー`
+#     - `三上伸一`さん（おそらく`三上信一`さん？）
+# - `週刊少年ジャンプ`
+#     - `鳥島和彦`さん（おそらく`鳥嶋和彦`さん？）
+#     - `高校俊昌`さん（おそらく`高橋俊昌`さん？）
+
+# 数も少ないですし，確証が持てないため特に修正しないことにします．

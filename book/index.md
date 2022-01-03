@@ -7,7 +7,12 @@
 [![made-with-plotly](https://img.shields.io/badge/Made%20with-Plotly-1f425f.svg)](https://plotly.com/python/)
 ```
 
-このサイトは，[MADB Lab](https://mediag.bunka.go.jp/madb_lab/)で公開されている四大少年誌（週刊少年ジャンプ，週刊少年サンデー，週刊少年マガジン，週刊少年チャンピオン）のデータを用いて，データ・ビジュアライゼーションの学習を手助けすることを目指しています．
+このサイトは，[文化庁の**メディア芸術データベース・ラボ**（**MADB Lab**）](https://mediag.bunka.go.jp/madb_lab/)で公開されている**四大少年誌**（
+[週刊少年ジャンプ](https://www.shonenjump.com/j/)，
+[週刊少年サンデー](https://websunday.net/)，
+[週刊少年マガジン](https://shonenmagazine.com/)，
+[週刊少年チャンピオン](https://www.akitashoten.co.jp/w-champion)
+）のデータを用いて，**データ・ビジュアライゼーション**の学習を手助けすることを目指しています．
 
 :::{panels}
 :container: +full-width
@@ -27,7 +32,7 @@
 ^^^
 Plotlyで自由にズームイン・ズームアウトが可能なグラフを出力しています．
 興味の赴くまま，グリグリグラフを動かしてみましょう．
-新たな切り口の分析のヒントが得られるかもしれません．
+新たな分析のヒントが得られるかもしれません．
 
 （いい感じのgifを貼る）
 
@@ -36,16 +41,20 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 ^^^
 
 本サイトはJupyter Labで作成したソースコードをJupyter Bookでビルドして構築しています．
-GitHubからダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でデータを分析しましょう．
+GitHubからダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でビジュアライゼーションしましょう．
 なお，詳細は[README.md](https://github.com/kakeami/viz-madb)をご参照ください．
 
 （いい感じのgifを貼る）
 
 ---
-🇯🇵**文化庁のメディア芸術データベース・ラボのデータを利用**🇯🇵
+🇯🇵**メディア芸術データベース・ラボ（MADB Lab）を利用**🇯🇵
 ^^^
 
-（いい感じのgifを貼る）
+MADB Labは，文化庁が提供する，メディア芸術作品に関するデータをより広く活用するためのウェブサイトです．
+本サイトでは，[v1.0として公開されているデータ](https://github.com/mediaarts-db/dataset/tree/1.0)を[前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html)して利用しています．
+データセットの詳細は[公式リポジトリ](https://github.com/mediaarts-db/dataset)をご参照ください．
+
+![madb](figs/madb.png)
 
 :::
 
@@ -81,6 +90,14 @@ GitHubからダウンロードすることで，手元で環境を再現可能�
 
 ## 謝辞
 
+- [文部科学省文化庁，メディア芸術データベース・ラボ](https://mediag.bunka.go.jp/madb_lab/)
+- [Python]
+- [Pandas]
+- [Plotly]
+- [Jupyter lab]
+- [Jupyter Book]
+
 ## 参考文献
 
 - [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
+- [総務省統計局，なるほど統計学園](https://www.stat.go.jp/naruhodo/)
