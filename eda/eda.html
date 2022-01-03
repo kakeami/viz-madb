@@ -3095,7 +3095,7 @@
 </table>
 </div></div></div>
 </div>
-<p>80円だった時代があったのでしょうか…？後ほど分析します．</p>
+<p>一冊80円だった時代があったのでしょうか…？後ほど分析します．</p>
 </div>
 <div class="section" id="publisher">
 <h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（発行者）<a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
@@ -3222,10 +3222,11 @@
 </table>
 </div></div></div>
 </div>
-<p>かなり表記がぶれているようです．</p>
+<p>かなり表記がぶれているようですが，今後積極的に使う情報ではないため，このままにしておきます．</p>
 </div>
 <div class="section" id="editor">
 <h3><code class="docutils literal notranslate"><span class="pre">editor</span></code>（編集者）<a class="headerlink" href="#editor" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">editor</span></code>（編集者）に関して集計します． 前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接集計するとバイアスが乗るので，<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>に対して分析を実施します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[[</span><span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;editor&#39;</span><span class="p">]]</span><span class="o">.</span>\
@@ -3234,6 +3235,326 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;editor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span>\
+    <span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>editor</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年サンデー</td>
+      <td>田中一喜</td>
+      <td>384</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年サンデー</td>
+      <td>熊谷玄典</td>
+      <td>301</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年サンデー</td>
+      <td>井上敬三</td>
+      <td>244</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年サンデー</td>
+      <td>林正人</td>
+      <td>226</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>週刊少年サンデー</td>
+      <td>奥山豊彦</td>
+      <td>176</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>週刊少年サンデー</td>
+      <td>三上信一</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>週刊少年サンデー</td>
+      <td>猪俣光一郎</td>
+      <td>148</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>週刊少年サンデー</td>
+      <td>平山隆</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>週刊少年サンデー</td>
+      <td>縄田正樹</td>
+      <td>142</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>週刊少年サンデー</td>
+      <td>鳥光裕</td>
+      <td>127</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>週刊少年サンデー</td>
+      <td>市原武法</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>週刊少年サンデー</td>
+      <td>都築伸一郎</td>
+      <td>66</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>週刊少年サンデー</td>
+      <td>渡辺静夫</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>週刊少年サンデー</td>
+      <td>木下賀雄</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>週刊少年サンデー</td>
+      <td>三上伸一</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>週刊少年ジャンプ</td>
+      <td>西村繁男</td>
+      <td>403</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>週刊少年ジャンプ</td>
+      <td>後藤広喜</td>
+      <td>366</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>週刊少年ジャンプ</td>
+      <td>瓶子吉久</td>
+      <td>270</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>週刊少年ジャンプ</td>
+      <td>鳥嶋和彦</td>
+      <td>254</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>週刊少年ジャンプ</td>
+      <td>茨木政彦</td>
+      <td>247</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>週刊少年ジャンプ</td>
+      <td>中野祐介</td>
+      <td>201</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>週刊少年ジャンプ</td>
+      <td>長野規</td>
+      <td>186</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>週刊少年ジャンプ</td>
+      <td>佐々木尚</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>週刊少年ジャンプ</td>
+      <td>堀江信彦</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>週刊少年ジャンプ</td>
+      <td>高橋俊昌</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>週刊少年ジャンプ</td>
+      <td>鳥島和彦</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>週刊少年ジャンプ</td>
+      <td>後藤広喜</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>週刊少年ジャンプ</td>
+      <td>高校俊昌</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>週刊少年チャンピオン</td>
+      <td>壁村耐三</td>
+      <td>693</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>週刊少年チャンピオン</td>
+      <td>沢考史</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>週刊少年チャンピオン</td>
+      <td>大塚公平</td>
+      <td>354</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>週刊少年チャンピオン</td>
+      <td>岡本三司</td>
+      <td>250</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>週刊少年チャンピオン</td>
+      <td>樋口茂</td>
+      <td>184</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>週刊少年チャンピオン</td>
+      <td>神永悦也</td>
+      <td>109</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>週刊少年チャンピオン</td>
+      <td>成田清美</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>週刊少年チャンピオン</td>
+      <td>阿久津邦彦</td>
+      <td>66</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>週刊少年チャンピオン</td>
+      <td>武川新吾</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>週刊少年マガジン</td>
+      <td>五十嵐隆夫</td>
+      <td>525</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>週刊少年マガジン</td>
+      <td>三樹創作</td>
+      <td>411</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>週刊少年マガジン</td>
+      <td>森田浩章</td>
+      <td>409</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>週刊少年マガジン</td>
+      <td>宮原照夫</td>
+      <td>341</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>週刊少年マガジン</td>
+      <td>野内雅宏</td>
+      <td>288</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>週刊少年マガジン</td>
+      <td>菅原喜一郎</td>
+      <td>176</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>週刊少年マガジン</td>
+      <td>工富保</td>
+      <td>86</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>週刊少年マガジン</td>
+      <td>内田勝</td>
+      <td>46</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>誤記と思われるものがいくつかあります：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">週刊少年サンデー</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">三上伸一</span></code>さん（おそらく<code class="docutils literal notranslate"><span class="pre">三上信一</span></code>さん？）</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">週刊少年ジャンプ</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">鳥島和彦</span></code>さん（おそらく<code class="docutils literal notranslate"><span class="pre">鳥嶋和彦</span></code>さん？）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">高校俊昌</span></code>さん（おそらく<code class="docutils literal notranslate"><span class="pre">高橋俊昌</span></code>さん？）</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
