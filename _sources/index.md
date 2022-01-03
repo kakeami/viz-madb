@@ -44,7 +44,7 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 GitHubからダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でビジュアライゼーションしましょう．
 なお，詳細は[README.md](https://github.com/kakeami/viz-madb)をご参照ください．
 
-（いい感じのgifを貼る）
+![jupyter](figs/jupyter.png)
 
 ---
 🇯🇵**メディア芸術データベース・ラボ（MADB Lab）を利用**🇯🇵
