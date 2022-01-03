@@ -42,7 +42,7 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 
 本サイトはJupyter Labで作成したソースコードをJupyter Bookでビルドして構築しています．
 GitHubからダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でビジュアライゼーションしましょう．
-なお，詳細は[README.md](https://github.com/kakeami/viz-madb)をご参照ください．
+環境構築に関する詳細は[README.md](https://github.com/kakeami/viz-madb)をご参照ください．
 
 ![jupyter](figs/jupyter.png)
 
