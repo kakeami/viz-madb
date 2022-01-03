@@ -12,7 +12,9 @@
 # 
 # （「[総務省統計局，なるほど統計学園，棒グラフ](http://www.stat.go.jp/naruhodo/4_graph/shokyu/bou-graph.html)」より抜粋）
 # 
-# です．
+# です．例えば以下のようなものです．
+# 
+# ![bars](../figs/bars.png)
 
 # ## Plotlyによる作図方法
 

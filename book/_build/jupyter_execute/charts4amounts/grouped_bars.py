@@ -6,6 +6,9 @@
 # ## 概要
 # 
 # **Grouped bars**とは，複数の要素をまとめて描画した棒グラフです．
+# 例えば以下のようなものです．
+# 
+# ![grouped_bars](../figs/grouped_bars.png)
 
 # ## Plotlyによる作図方法
 
