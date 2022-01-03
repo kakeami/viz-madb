@@ -10,7 +10,7 @@
 # Stacked barsを利用することで，単純な棒グラフでは確認できなかった各要素の内訳を可視化し，その**比率**を比較することができます．
 # 
 # ```{admonition} Stacked barsとGrouped barsの使い分け
-# 私は，要素の内訳の比率に注目したい場合はStacked barsを，絶対量を横並びで比較したい場合はGrouped barsを利用することにしています．
+# 私は，要素の内訳の比率に注目して欲しい場合はStacked barsを，絶対量を横並びで比較して欲しい場合はGrouped barsを利用することにしています．
 # ```
 
 # ## Plotlyによる作図方法

@@ -96,7 +96,7 @@ fig = px.bar(
 show_fig(fig)
 
 
-# ```{note}
+# ```{admonition} PlotlyにおけるX軸の順序
 # `barmode='group'`の場合，`color`で指定した列の要素に応じてX軸の順序が変わってしまうことがあります．
 # ```
 
