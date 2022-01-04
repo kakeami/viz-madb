@@ -75,7 +75,7 @@ df['years'] = df['years'].astype(str)
 df_plot = df.groupby('cname')['years'].value_counts().    reset_index(name='weeks')
 
 
-# In[8]:
+# In[30]:
 
 
 # 連載週刊上位10作品を抽出
@@ -87,7 +87,7 @@ df_plot['order'] = df_plot['cname'].apply(
 df_plot = df_plot.sort_values(['order', 'years'], ignore_index=True)
 
 
-# In[9]:
+# In[31]:
 
 
 # 作図
@@ -96,6 +96,51 @@ fig = px.bar(
     color_discrete_sequence= px.colors.diverging.Portland,
     barmode='stack', title='作品別・年代別の合計連載週数')
 show_fig(fig)
+
+
+# In[32]:
+
+
+import itertools
+
+
+# In[33]:
+
+
+df_plot[df_plot['years']==years]
+
+
+# In[28]:
+
+
+yearss = df_plot['years'].unique()
+for cname, years in itertools.product(
+        cnames, yearss):
+    df_tmp = df_plot[
+        (df_plot['cname']==cname)&\
+        (df_plot['years']==years)
+    ]
+    if df_tmp.shape[0] == 0:
+        df_plot = df_plot.append( 
+            [cname, years, 0, cnames.index(cname)])
+
+
+# In[29]:
+
+
+df_plot
+
+
+# In[17]:
+
+
+cnames.index()
+
+
+# In[18]:
+
+
+cnames
 
 
 # In[ ]:
