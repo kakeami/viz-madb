@@ -91,13 +91,14 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 ## 謝辞
 
 - [文部科学省文化庁，メディア芸術データベース・ラボ](https://mediag.bunka.go.jp/madb_lab/)
-- [Python]
-- [Pandas]
-- [Plotly]
-- [Jupyter lab]
-- [Jupyter Book]
+- [Python](https://www.python.org/)
+- [Pandas](https://pandas.pydata.org/)
+- [Plotly](https://plotly.com/)
+- [Jupyter](https://jupyter.org/)
+- [Jupyter Book](https://jupyterbook.org/)
 
 ## 参考文献
 
 - [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
+- [小久保 奈都弥，データ分析者のためのPythonデータビジュアライゼーション入門 コードと連動してわかる可視化手法](https://www.shoeisha.co.jp/book/detail/9784798163970)
 - [総務省統計局，なるほど統計学園](https://www.stat.go.jp/naruhodo/)
