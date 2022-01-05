@@ -90,6 +90,12 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 :::
 
+``` {admonition} 本サイトで取り扱わないこと
+- 位置情報データ：
+- テキストデータ：
+- Quantile-quantile plot：
+```
+
 ## 謝辞
 
 - [Python](https://www.python.org/)
