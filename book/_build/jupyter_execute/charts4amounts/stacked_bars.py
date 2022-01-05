@@ -7,6 +7,8 @@
 # 
 # **Stacked bars**（積み上げ棒グラフ）とは，例えば下図のように，棒グラフの各要素の内訳を色分けした棒グラフです．
 # 
+# ![stacked](../figs/stacked_bars.png)
+# 
 # Stacked barsを利用することで，単純な棒グラフでは確認できなかった各要素の内訳を可視化し，その**比率**を比較することができます．
 # 
 # ```{admonition} Stacked barsとGrouped barsの使い分け
@@ -165,6 +167,10 @@ fig = px.bar(
     barmode='stack', title='作品別・年代別の合計連載週数')
 show_fig(fig)
 
+
+# ```{admonition}stack対象に欠測があるとX軸の順序が自動調整されてしまう
+# おそらく`px.bar()`の仕様ですが，`barmode='stack'`を選択した際に`color`で指定した列に欠測があると，X軸の順序が変わってしまうことを確認しました．これを回避するため，`resample_df_by_cname_and_years(df_plot)`で欠測を補完しています．以降も同様です．
+# ```
 
 # ### 作者別・年代別の合計連載週数（上位20名）
 

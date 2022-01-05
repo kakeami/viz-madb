@@ -163,6 +163,10 @@ fig = px.bar(
 show_fig(fig)
 
 
+# ```{admonition}group対象に欠測があるとX軸の順序が自動調整されてしまう
+# おそらく`px.bar()`の仕様ですが，`barmode='group'`を選択した際に`color`で指定した列に欠測があると，X軸の順序が変わってしまうことを確認しました．これを回避するため，`resample_df_by_cname_and_years(df_plot)`で欠測を補完しています．以降も同様です．
+# ```
+
 # ### 作者別・年代別の合計連載週数（上位10名）
 
 # In[121]:
