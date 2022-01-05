@@ -96,9 +96,9 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 - [Jupyter](https://jupyter.org/)
 - [Jupyter Book](https://jupyterbook.org/)
 - [文部科学省文化庁，メディア芸術データベース・ラボ](https://mediag.bunka.go.jp/madb_lab/)
-- [週刊少年ジャンプ](https://www.shonenjump.com/j/)，
-- [週刊少年サンデー](https://websunday.net/)，
-- [週刊少年マガジン](https://shonenmagazine.com/)，
+- [週刊少年ジャンプ](https://www.shonenjump.com/j/)
+- [週刊少年サンデー](https://websunday.net/)
+- [週刊少年マガジン](https://shonenmagazine.com/)
 - [週刊少年チャンピオン](https://www.akitashoten.co.jp/w-champion)
 
 ## 参考文献
