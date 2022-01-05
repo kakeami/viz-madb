@@ -4,8 +4,22 @@
 # # Heatmap
 
 # ## 概要
+# 
+# **Heatmap**とは，例えば下図のように，2変数の組み合わせの量を色で表現する手法です．
+# 
+# ![heatmap](../figs/heatmap.png)
 
 # ## Plotlyによる作図方法
+
+# Plotlyでは，`plotly.express.density_heatmap()を用いて作図できます．
+
+# ```python
+# import plotly.express as px
+# fig = px.density_heatmap(
+#     df, x='col_x', y='col_y', z='col_z')
+# ```
+
+# 上記の例では，`df`の`col_x`を横軸，`col_y`を縦軸とし，`col_z`の量に応じて色を塗り分けたHeatmapのオブジェクト`fig`を作成します．
 
 # ## MADB Labを用いた作図例
 
