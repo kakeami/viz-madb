@@ -3,16 +3,21 @@
 
 # # Histogram
 
-# データのばらつきを見たいときは，ヒストグラムを利用してみると良いでしょう．
+# ## 概要
 
-# ## 環境構築
+# **Histogram**（ヒストグラム）とは，例えば下図のように，
+
+# ## Plotlyによる作図方法
+
+# ## MADB Labを用いた作図例
+
+# ### 下準備
 
 # In[1]:
 
 
-# Notebook初期設定
-get_ipython().run_line_magic('matplotlib', 'inline')
-get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
+import pandas as pd
+import plotly.express as px
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -21,27 +26,13 @@ warnings.filterwarnings('ignore')
 # In[2]:
 
 
-import os
-import pandas as pd
-import plotly.express as px
-
-
-# In[11]:
-
-
-DIR_IN = '../../data/preprocess/out'
-FN_MG = 'magazines.csv'
-
-
-# In[12]:
-
-
+# 前処理の結果，以下に分析対象ファイルが格納されていることを想定
+PATH_DATA = '../../data/preprocess/out/magazines.csv'
+# Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# ## 関数
-
-# In[13]:
+# In[3]:
 
 
 def show_fig(fig):
@@ -49,32 +40,38 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# ## データの読み込み
+# In[4]:
+
+
+df = pd.read_csv(PATH_DATA)
+
+
+# ### 作品別の合計連載週数
+
+# In[7]:
+
+
+df_plot = df.value_counts('cname').reset_index(name='weeks')
+
+
+# In[13]:
+
+
+fig = px.histogram(df_plot, x='weeks', log_y=True)
+show_fig(fig)
+
+
+# ### 作者別の合計連載週数
 
 # In[14]:
 
 
-df = pd.read_csv(os.path.join(DIR_IN, FN_MG))
+df_plot = df.value_counts('creator').reset_index(name='weeks')
 
 
 # In[15]:
 
 
-df.head(2).T
-
-
-# ## ページ数の分布を見る
-
-# In[16]:
-
-
-df_tmp =     df.groupby('datePublished')['numberOfPages'].first().reset_index()
-fig = px.histogram(df_tmp, x='numberOfPages')
+fig = px.histogram(df_plot, x='weeks', log_y=True)
 show_fig(fig)
-
-
-# In[ ]:
-
-
-
 

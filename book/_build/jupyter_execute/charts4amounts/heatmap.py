@@ -5,13 +5,13 @@
 
 # ## 概要
 # 
-# **Heatmap**とは，例えば下図のように，2変数の組み合わせの量を色で表現する手法です．
+# **Heatmap**（ヒートマップ）とは，例えば下図のように，2変数の組み合わせの量を色で表現する手法です．
 # 
 # ![heatmap](../figs/heatmap.png)
 
 # ## Plotlyによる作図方法
 
-# Plotlyでは，`plotly.express.density_heatmap()を用いて作図できます．
+# Plotlyでは，`plotly.express.density_heatmap()`を用いて作図できます．
 
 # ```python
 # import plotly.express as px
