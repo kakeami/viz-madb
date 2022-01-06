@@ -34,12 +34,6 @@ parts:
     - file: charts4props/mosaic
     - file: charts4props/tree
     - file: charts4props/parallel
-  - caption: 推移を見たい
-    numbered: True
-    chapters:
-    - file: charts4ts/line
-    - file: charts4ts/connected
-    - file: charts4ts/smooth
   - caption: 変数間の関係を見たい
     numbered: True
     chapters:
@@ -50,6 +44,9 @@ parts:
     - file: charts4assocs/2d
     - file: charts4assocs/hex
     - file: charts4assocs/correlo
+    - file: charts4assocs/line
+    - file: charts4assocs/smooth
+    - file: charts4assocs/connected
   - caption: Appendix
     numbered: True
     chapters:
