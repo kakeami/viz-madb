@@ -92,7 +92,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 :::
 
-[^qq]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)ではQuantile-quantile plotを分布を見る手法の一つとして紹介していますが，本サイトでは省略しています．これは，同手法の主な目的が，理論的な確率分布と標本集団の分布の一致を見るために用いるものであるため，本サイトのスコープを越えているためです．
+[^qq]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)ではQuantile-quantile plotを分布を見る手法の一つとして紹介していますが，本サイトではスコープ外としました．これは，本手法の結果の解釈に高度な数理統計学の知識が必要なためです．
 
 
 ## 謝辞
