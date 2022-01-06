@@ -17,7 +17,6 @@ parts:
     - file: charts4dists/hist
     - file: charts4dists/density
     - file: charts4dists/cumulative
-    - file: charts4dists/qq
     - file: charts4dists/box
     - file: charts4dists/violin
     - file: charts4dists/strip
