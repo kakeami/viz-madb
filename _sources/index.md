@@ -62,7 +62,8 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 ## こんなとき何を描く？
 
-本サイトで紹介するビジュアライゼーション手法を，Fundamentals of Data Visualizationを参考に分類しました．
+本サイトで紹介するビジュアライゼーション手法を，
+[Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)を参考に分類しました．
 
 :::{panels}
 :container: +full-width
@@ -78,10 +79,6 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 ---
 **比率を見たい**
-^^^
-
----
-**推移を見たい**
 ^^^
 
 ---
