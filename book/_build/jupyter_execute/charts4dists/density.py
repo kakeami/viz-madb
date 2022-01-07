@@ -11,11 +11,12 @@
 
 # ### 下準備
 
-# In[1]:
+# In[5]:
 
 
 import pandas as pd
 import plotly.express as px
+import plotly.figure_factory as ff
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -46,12 +47,21 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の合計連載週数
 
-# In[5]:
+# In[18]:
 
 
 df_plot = df.value_counts('cname').reset_index(name='weeks')
+fig = ff.create_distplot(
+    df_plot['weeks'].values.reshape(1, -1), 
+    ['全雑誌'], show_hist=False)
+fig.update_layout(title_text='作品別の合計連載週数')
+show_fig(fig)
 
 
-# ### 作者別の合計連載週数
+# ### 作品別の合計連載週数
 
-# 
+# In[ ]:
+
+
+
+

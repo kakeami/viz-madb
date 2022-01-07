@@ -63,11 +63,12 @@ df = pd.read_csv(PATH_DATA)
 df_plot = df.value_counts('cname').reset_index(name='weeks')
 
 
-# In[7]:
+# In[21]:
 
 
 fig = px.histogram(
-    df_plot, x='weeks', nbins=100)
+    df_plot, x='weeks', nbins=100,
+    title='作品別の合計連載週数')
 show_fig(fig)
 
 
@@ -79,11 +80,12 @@ show_fig(fig)
 # 
 # 
 
-# In[12]:
+# In[22]:
 
 
 fig = px.histogram(
-    df_plot, x='weeks', nbins=100, log_y=True)
+    df_plot, x='weeks', nbins=100, log_y=True,
+    title='作品別の合計連載週数')
 show_fig(fig)
 
 
@@ -97,19 +99,23 @@ show_fig(fig)
 df_plot = df.value_counts('creator').reset_index(name='weeks')
 
 
-# In[18]:
+# In[23]:
 
 
-fig = px.histogram(df_plot, x='weeks', nbins=100)
+fig = px.histogram(
+    df_plot, x='weeks', nbins=100,
+    title='作者別の合計連載週数')
 show_fig(fig)
 
 
 # こちらに関しても，かなり0に寄ったヒストグラムとなってしまったため，Y軸を対数変換します．
 
-# In[20]:
+# In[24]:
 
 
-fig = px.histogram(df_plot, x='weeks', nbins=100, log_y=True)
+fig = px.histogram(
+    df_plot, x='weeks', nbins=100, log_y=True,
+    title='作者別の合計連載週数')
 show_fig(fig)
 
 
