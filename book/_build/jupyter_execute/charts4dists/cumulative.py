@@ -5,7 +5,18 @@
 
 # ## 概要
 
+# **Cumulative density**とは
+
 # ## Plotlyによる作図方法
+
+# Plotlyでは，`plotly.express.histogram()`でCumulative densityを作成可能です．
+
+# ```python
+# import plotly.express as px
+# fig = px.histogram(df, x='col_x', cumulative=True)
+# ```
+
+# 上記の例では，`df`の`col_x`列をX軸，その度数をY軸に取ったCumulative densityのオブジェクト`fig`を作成します．
 
 # ## MADB Labを用いた作図例
 

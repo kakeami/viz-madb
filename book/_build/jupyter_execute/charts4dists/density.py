@@ -5,7 +5,25 @@
 
 # ## 概要
 
+# **Density plot**とは
+
 # ## Plotlyによる作図方法
+
+# Plotlyでは，`plotly.figure_factory.create_distplot()`でDensity plotを作成可能です．
+
+# ```python
+# import plotly.figure_factory as ff
+# fig = ff.create_distplot(
+#     df['x_col'].values.reshape(1, -1), 
+#     ['label'], show_hist=False)
+# ```
+
+# 上記の例では，`df`の`col_x`列をX軸，その確率密度をY軸にとったDensity plotのオブジェクト`fig`を作成します．
+# ただし，`label`のように凡例名を指定する必要があることにご注意ください．
+
+# ```{admonition} `show_hist=False`
+# `plotly.figure_factory.create_distplot()`はデフォルト設定でヒストグラムとDensity plotの両方を作図します．Density plotのみ表示したい場合は，`show_hist=False`を指定しましょう．
+# ```
 
 # ## MADB Labを用いた作図例
 
