@@ -46,10 +46,34 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の合計連載週数
 
+# In[11]:
+
+
+df_plot = df.value_counts('cname').reset_index(name='weeks')
+
+
+# In[12]:
+
+
+fig = px.histogram(
+    df_plot, x='weeks', nbins=100,
+    title='作品別の合計連載週数', cumulative=True)
+show_fig(fig)
+
+
 # ### 作者別の合計連載週数
 
-# In[ ]:
+# In[13]:
 
 
+df_plot = df.value_counts('creator').reset_index(name='weeks')
 
+
+# In[14]:
+
+
+fig = px.histogram(
+    df_plot, x='weeks', nbins=100,
+    title='作者別の合計連載週数', cumulative=True)
+show_fig(fig)
 
