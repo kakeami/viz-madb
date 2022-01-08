@@ -73,7 +73,7 @@ show_fig(fig)
 
 
 # ```{admonition} `nbins`オプション
-# `plotly.express.histogram()では`nbins`オプジョンでbin数を指定可能です．上記の例では，自動設定で作図するとbinが非常に細かくなってしまうため，便宜的に`nbins=100`をしています．
+# `plotly.express.histogram()`では`nbins`オプジョンでbin数を指定可能です．上記の例では，自動設定で作図するとbinが非常に細かくなってしまうため，便宜的に`nbins=100`を設定しています．
 # ```
 
 # 掲載週が短い作品が多すぎて見ずらいため，Y軸を対数変換してみます．
