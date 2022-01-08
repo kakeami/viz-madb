@@ -60,6 +60,17 @@ show_fig(fig)
 
 # ### 作品別の合計連載週数
 
+# In[24]:
+
+
+df_plot = df.value_counts('creator').reset_index(name='weeks')
+fig = ff.create_distplot(
+    df_plot['weeks'].values.reshape(1, -1), 
+    ['全雑誌'], show_hist=False)
+fig.update_layout(title_text='作者別の合計連載週数')
+show_fig(fig)
+
+
 # In[ ]:
 
 
