@@ -46,10 +46,20 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・作品別の合計連載週数
 
+# In[5]:
+
+
+df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
+fig = px.violin(df_plot, x='mcname', y='weeks', title='雑誌別・作品別の合計連載週数')
+show_fig(fig)
+
+
 # ### 雑誌別・作者別の合計連載週数
 
-# In[ ]:
+# In[6]:
 
 
-
+df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
+fig = px.violin(df_plot, x='mcname', y='weeks', title='雑誌別・作者別の合計連載週数')
+show_fig(fig)
 
