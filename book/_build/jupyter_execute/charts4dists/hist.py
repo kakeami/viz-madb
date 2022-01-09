@@ -57,13 +57,13 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の合計連載週数
 
-# In[28]:
+# In[46]:
 
 
 df_plot = df.value_counts('cname').reset_index(name='weeks')
 
 
-# In[29]:
+# In[47]:
 
 
 fig = px.histogram(
@@ -76,30 +76,30 @@ show_fig(fig)
 # `plotly.express.histogram()`では`nbins`オプジョンでbin数を指定可能です．上記の例では，自動設定で作図するとbinが非常に細かくなってしまうため，便宜的に`nbins=100`を設定しています．
 # :::
 
-# 掲載週が短い作品が多すぎて見ずらいため，Y軸を対数変換してみます．
-# 
-# 
+# [事前分析](https://kakeami.github.io/viz-madb/eda/eda.html#cname)の結果，`df`は1週限りの読み切り作品や企画作品を含むことがわかっています．
+# 2週以上のマンガ作品（**連載**作品）に限定して，もう一度分布を見てみましょう．
 
-# In[30]:
+# In[53]:
 
 
+df_plot = df_plot[df_plot['weeks']>=2].reset_index(drop=True)
 fig = px.histogram(
-    df_plot, x='weeks', nbins=100, log_y=True,
-    title='作品別の合計連載週数')
+    df_plot, x='weeks', nbins=100,
+    title='連載作品別の合計連載週数')
 show_fig(fig)
 
 
-# これでかなり見やすくなりました．
+# 少し緩やかな分布になりました．
 
 # ### 作者別の合計連載週数
 
-# In[31]:
+# In[54]:
 
 
 df_plot = df.value_counts('creator').reset_index(name='weeks')
 
 
-# In[32]:
+# In[58]:
 
 
 fig = px.histogram(
@@ -108,15 +108,8 @@ fig = px.histogram(
 show_fig(fig)
 
 
-# こちらに関しても，かなり0に寄ったヒストグラムとなってしまったため，Y軸を対数変換します．
-
-# In[33]:
+# In[ ]:
 
 
-fig = px.histogram(
-    df_plot, x='weeks', nbins=100, log_y=True,
-    title='作者別の合計連載週数')
-show_fig(fig)
 
 
-# 見やすくなりました．

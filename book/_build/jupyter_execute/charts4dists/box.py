@@ -11,7 +11,7 @@
 
 # ### 下準備
 
-# In[2]:
+# In[13]:
 
 
 import pandas as pd
@@ -21,7 +21,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[3]:
+# In[14]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -30,7 +30,7 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[4]:
+# In[15]:
 
 
 def show_fig(fig):
@@ -38,7 +38,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[16]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -46,18 +46,30 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・作品別の合計連載週数 
 
-# In[12]:
+# In[18]:
 
 
 df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
-fig = px.box(df_plot, x='mcname', y='weeks')
+fig = px.box(df_plot, x='mcname', y='weeks', title='雑誌別・作品別の合計連載週数')
+show_fig(fig)
+
+
+# [Histogram](https://kakeami.github.io/viz-madb/charts4dists/hist.html#id3)と同様に，2週以上掲載された**連載**作品に絞って作図してみます．
+
+# In[19]:
+
+
+df_plot = df_plot[df_plot['weeks']>=2].reset_index(drop=True)
+fig = px.box(df_plot, x='mcname', y='weeks', title='雑誌別・連載作品別の合計連載週数')
 show_fig(fig)
 
 
 # ### 作者別の合計連載週数
 
-# In[ ]:
+# In[20]:
 
 
-
+df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
+fig = px.box(df_plot, x='mcname', y='weeks', title='雑誌別・作者別の合計連載週数')
+show_fig(fig)
 
