@@ -22,7 +22,7 @@
 
 # ### 下準備
 
-# In[1]:
+# In[16]:
 
 
 import pandas as pd
@@ -32,7 +32,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[17]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -41,7 +41,7 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[18]:
 
 
 def show_fig(fig):
@@ -49,7 +49,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[4]:
+# In[19]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -57,13 +57,13 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の合計連載週数
 
-# In[11]:
+# In[20]:
 
 
 df_plot = df.value_counts('cname').reset_index(name='weeks')
 
 
-# In[12]:
+# In[21]:
 
 
 fig = px.histogram(
@@ -72,19 +72,39 @@ fig = px.histogram(
 show_fig(fig)
 
 
+# In[23]:
+
+
+fig = px.histogram(
+    df_plot, x='weeks', nbins=100,
+    title='作品別の合計連載週数', cumulative=True)
+fig.update_xaxes(range=[0, 200])
+show_fig(fig)
+
+
 # ### 作者別の合計連載週数
 
-# In[13]:
+# In[24]:
 
 
 df_plot = df.value_counts('creator').reset_index(name='weeks')
 
 
-# In[14]:
+# In[25]:
 
 
 fig = px.histogram(
     df_plot, x='weeks', nbins=100,
     title='作者別の合計連載週数', cumulative=True)
+show_fig(fig)
+
+
+# In[26]:
+
+
+fig = px.histogram(
+    df_plot, x='weeks', nbins=100,
+    title='作者別の合計連載週数', cumulative=True)
+fig.update_xaxes(range=[0, 200])
 show_fig(fig)
 

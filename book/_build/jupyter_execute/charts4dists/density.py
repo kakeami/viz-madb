@@ -65,7 +65,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の合計連載週数
 
-# In[29]:
+# In[30]:
 
 
 df_plot = df.value_counts('cname').reset_index(name='weeks')
@@ -76,9 +76,20 @@ fig.update_layout(title_text='作品別の合計連載週数')
 show_fig(fig)
 
 
+# In[31]:
+
+
+fig = ff.create_distplot(
+    df_plot['weeks'].values.reshape(1, -1), 
+    ['全雑誌'], show_hist=False)
+fig.update_layout(title_text='作品別の合計連載週数')
+fig.update_xaxes(range=[0, 200])
+show_fig(fig)
+
+
 # ### 作品別の合計連載週数
 
-# In[24]:
+# In[32]:
 
 
 df_plot = df.value_counts('creator').reset_index(name='weeks')
@@ -86,6 +97,17 @@ fig = ff.create_distplot(
     df_plot['weeks'].values.reshape(1, -1), 
     ['全雑誌'], show_hist=False)
 fig.update_layout(title_text='作者別の合計連載週数')
+show_fig(fig)
+
+
+# In[33]:
+
+
+fig = ff.create_distplot(
+    df_plot['weeks'].values.reshape(1, -1), 
+    ['全雑誌'], show_hist=False)
+fig.update_layout(title_text='作者別の合計連載週数')
+fig.update_xaxes(range=[0, 200])
 show_fig(fig)
 
 
