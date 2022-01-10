@@ -29,11 +29,10 @@
 
 # ### 下準備
 
-# In[25]:
+# In[34]:
 
 
 import pandas as pd
-import plotly.express as px
 import plotly.figure_factory as ff
 
 import warnings
