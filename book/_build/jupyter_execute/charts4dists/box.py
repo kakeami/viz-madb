@@ -11,7 +11,7 @@
 
 # ### 下準備
 
-# In[21]:
+# In[32]:
 
 
 import pandas as pd
@@ -21,7 +21,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[22]:
+# In[33]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -30,7 +30,7 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[23]:
+# In[34]:
 
 
 def show_fig(fig):
@@ -38,7 +38,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[24]:
+# In[35]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -46,17 +46,19 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・作品別の合計連載週数 
 
-# In[26]:
+# In[36]:
 
 
 df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
+# X軸の表示順を調整
+df_plot = df_plot.sort_values('mcname', ignore_index=True)
 fig = px.box(
     df_plot, x='mcname', y='weeks', 
     title='雑誌別・作品別の合計連載週数')
 show_fig(fig)
 
 
-# In[29]:
+# In[37]:
 
 
 fig = px.box(
@@ -68,17 +70,19 @@ show_fig(fig)
 
 # ### 作者別の合計連載週数
 
-# In[30]:
+# In[38]:
 
 
 df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
+# X軸の表示順を調整
+df_plot = df_plot.sort_values('mcname', ignore_index=True)
 fig = px.box(
     df_plot, x='mcname', y='weeks', 
     title='雑誌別・作者別の合計連載週数')
 show_fig(fig)
 
 
-# In[31]:
+# In[39]:
 
 
 fig = px.box(
