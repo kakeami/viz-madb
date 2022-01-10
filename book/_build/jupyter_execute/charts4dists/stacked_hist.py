@@ -46,10 +46,48 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・作品別の合計連載週数
 
+# In[6]:
+
+
+df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
+# X軸の表示順を調整
+df_plot = df_plot.sort_values('mcname', ignore_index=True)
+fig = px.histogram(
+    df_plot, x='weeks', color='mcname', nbins=100,
+    title='雑誌別・作品別の合計連載週数')
+show_fig(fig)
+
+
+# In[7]:
+
+
+fig = px.histogram(
+    df_plot, x='weeks', color='mcname', nbins=100,
+    title='雑誌別・作品別の合計連載週数')
+fig.update_xaxes(range=[0, 200])
+show_fig(fig)
+
+
 # ### 雑誌別・作品別の合計連載週数
 
-# In[ ]:
+# In[8]:
 
 
+df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
+# X軸の表示順を調整
+df_plot = df_plot.sort_values('mcname', ignore_index=True)
+fig = px.histogram(
+    df_plot, x='weeks', color='mcname', nbins=100,
+    title='雑誌別・作者別の合計連載週数')
+show_fig(fig)
 
+
+# In[9]:
+
+
+fig = px.histogram(
+    df_plot, x='weeks', color='mcname', nbins=100,
+    title='雑誌別・作者別の合計連載週数')
+fig.update_xaxes(range=[0, 200])
+show_fig(fig)
 
