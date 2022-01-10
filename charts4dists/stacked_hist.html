@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. Stacked histograms &#8212; 四大少年誌で学ぶデータ・ビジュアライゼーション</title>
+    <title>7. Stacked histograms &#8212; 四大少年誌で学ぶデータ・ビジュアライゼーション</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,8 +52,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Overlapping densities" href="overlap.html" />
-    <link rel="prev" title="7. Sina plots" href="sina.html" />
+    <link rel="next" title="8. Overlapping densities" href="overlap.html" />
+    <link rel="prev" title="6. Strip charts" href="strip.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -165,24 +165,19 @@
    6. Strip charts
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sina.html">
-   7. Sina plots
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Stacked histograms
+   7. Stacked histograms
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="overlap.html">
-   9. Overlapping densities
+   8. Overlapping densities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ridgeline.html">
-   10. Ridgeline plot
+   9. Ridgeline plot
   </a>
  </li>
 </ul>
@@ -392,32 +387,32 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   8.1. 概要
+   7.1. 概要
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plotly">
-   8.2. Plotlyによる作図方法
+   7.2. Plotlyによる作図方法
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#madb-lab">
-   8.3. MADB Labを用いた作図例
+   7.3. MADB Labを用いた作図例
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     8.3.1. 下準備
+     7.3.1. 下準備
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
-     8.3.2. 雑誌別・作品別の合計連載週数
+     7.3.2. 雑誌別・作品別の合計連載週数
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
-     8.3.3. 雑誌別・作品別の合計連載週数
+     7.3.3. 雑誌別・作品別の合計連載週数
     </a>
    </li>
   </ul>
@@ -434,17 +429,17 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="stacked-histograms">
-<h1><span class="section-number">8. </span>Stacked histograms<a class="headerlink" href="#stacked-histograms" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">7. </span>Stacked histograms<a class="headerlink" href="#stacked-histograms" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2><span class="section-number">8.1. </span>概要<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.1. </span>概要<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="plotly">
-<h2><span class="section-number">8.2. </span>Plotlyによる作図方法<a class="headerlink" href="#plotly" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.2. </span>Plotlyによる作図方法<a class="headerlink" href="#plotly" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="madb-lab">
-<h2><span class="section-number">8.3. </span>MADB Labを用いた作図例<a class="headerlink" href="#madb-lab" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.3. </span>MADB Labを用いた作図例<a class="headerlink" href="#madb-lab" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id2">
-<h3><span class="section-number">8.3.1. </span>下準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.3.1. </span>下準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -484,10 +479,10 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h3><span class="section-number">8.3.2. </span>雑誌別・作品別の合計連載週数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.3.2. </span>雑誌別・作品別の合計連載週数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id4">
-<h3><span class="section-number">8.3.3. </span>雑誌別・作品別の合計連載週数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.3.3. </span>雑誌別・作品別の合計連載週数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -517,17 +512,17 @@
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="sina.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="strip.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7. </span>Sina plots</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Strip charts</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="overlap.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Overlapping densities</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Overlapping densities</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
