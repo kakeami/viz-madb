@@ -144,17 +144,17 @@ show_fig(fig)
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[57]:
+# In[65]:
 
 
 col_count = 'creator'
 
 
-# In[58]:
+# In[66]:
 
 
 # 10年単位で区切ったyearsを追加
-df = add_years_to_df(df, 5)
+df = add_years_to_df(df, 10)
 # mcname, yearsで集計
 df_plot =     df.groupby(['mcname', 'years'])[col_count].    nunique().reset_index()
 # years単位で集計してdf_plotにカラムを追加
@@ -165,7 +165,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[59]:
+# In[67]:
 
 
 fig = px.bar(
@@ -174,7 +174,7 @@ fig = px.bar(
 show_fig(fig)
 
 
-# In[64]:
+# In[68]:
 
 
 fig = px.bar(
