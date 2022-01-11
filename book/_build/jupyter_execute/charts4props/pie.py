@@ -38,7 +38,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[4]:
+# In[15]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -46,10 +46,11 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別の合計作品数
 
-# In[13]:
+# In[16]:
 
 
 df_plot =     df.groupby('mcname')['cname'].nunique().reset_index()
+df_plot = df_plot.sort_values('mcname', ignore_index=True)
 fig = px.pie(
     df_plot, values='cname', names='mcname',
     title='雑誌別の合計作品数')
@@ -58,10 +59,11 @@ show_fig(fig)
 
 # ### 雑誌別の合計作者数
 
-# In[14]:
+# In[18]:
 
 
 df_plot =     df.groupby('mcname')['creator'].nunique().reset_index()
+df_plot = df_plot.sort_values('mcname', ignore_index=True)
 fig = px.pie(
     df_plot, values='creator', names='mcname',
     title='雑誌別の合計作者数')

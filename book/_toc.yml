@@ -27,7 +27,7 @@ parts:
     numbered: True
     chapters:
     - file: charts4props/pie
-    - file: charts4props/stacked_bars
+    - file: charts4props/bars
     - file: charts4props/stacked_den
     - file: charts4props/tree
     - file: charts4props/parallel
