@@ -57,13 +57,13 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・年代別の合計作品数
 
-# In[6]:
+# In[13]:
 
 
 col_count = 'cname'
 
 
-# In[7]:
+# In[16]:
 
 
 # 1年単位で区切ったyearsを追加
@@ -78,7 +78,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[8]:
+# In[17]:
 
 
 fig = px.area(
@@ -89,13 +89,13 @@ show_fig(fig)
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[10]:
+# In[18]:
 
 
 col_count = 'creator'
 
 
-# In[11]:
+# In[19]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -110,7 +110,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[12]:
+# In[20]:
 
 
 fig = px.area(
