@@ -29,6 +29,7 @@ parts:
     - file: charts4props/pie
     - file: charts4props/bars
     - file: charts4props/stacked_den
+    - file: charts4props/mosaic
     - file: charts4props/tree
     - file: charts4props/parallel
   - caption: 変数間の関係を見たい
