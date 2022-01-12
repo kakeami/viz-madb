@@ -35,10 +35,11 @@ RENDERER = 'plotly_mimetype+notebook'
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[4]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -49,7 +50,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[4]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -57,13 +58,13 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・年代別の合計作品数
 
-# In[13]:
+# In[6]:
 
 
 col_count = 'cname'
 
 
-# In[16]:
+# In[7]:
 
 
 # 1年単位で区切ったyearsを追加
@@ -78,7 +79,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[17]:
+# In[8]:
 
 
 fig = px.area(
@@ -89,13 +90,13 @@ show_fig(fig)
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[18]:
+# In[9]:
 
 
 col_count = 'creator'
 
 
-# In[19]:
+# In[10]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -110,11 +111,17 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[20]:
+# In[11]:
 
 
 fig = px.area(
     df_plot, x='years', y='ratio', color='mcname',
     title='雑誌別・年代別の合計作者数')
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 

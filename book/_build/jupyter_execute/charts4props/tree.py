@@ -35,6 +35,7 @@ RENDERER = 'plotly_mimetype+notebook'
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
@@ -63,7 +64,7 @@ df = pd.read_csv(PATH_DATA)
 col_count = 'cname'
 
 
-# In[10]:
+# In[7]:
 
 
 # 1年単位で区切ったyearsを追加
@@ -73,20 +74,19 @@ df_plot =     df.groupby(['mcname', 'years'])[col_count].    nunique().reset_ind
 df_plot =     df_plot.sort_values(['years', 'mcname'], ignore_index=True)
 
 
-# In[14]:
+# In[8]:
 
 
 fig = px.treemap(
     df_plot, path=[px.Constant('all'), 'mcname', 'years'],
     values=col_count)
 fig.update_traces(root_color='lightgrey')
-fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
 show_fig(fig)
 
 
 # ### 雑誌別・作品別の合計連載週数
 
-# In[22]:
+# In[10]:
 
 
 df_plot =     df.groupby('mcname')['cname'].value_counts().    reset_index(name='weeks')
@@ -96,19 +96,18 @@ fig = px.treemap(
     df_plot, path=[px.Constant('all'), 'mcname', 'cname'],
     values='weeks')
 fig.update_traces(root_color='lightgrey')
-fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
 show_fig(fig)
 
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[15]:
+# In[11]:
 
 
 col_count = 'creator'
 
 
-# In[16]:
+# In[12]:
 
 
 # 1年単位で区切ったyearsを追加
@@ -118,20 +117,19 @@ df_plot =     df.groupby(['mcname', 'years'])[col_count].    nunique().reset_ind
 df_plot =     df_plot.sort_values(['years', 'mcname'], ignore_index=True)
 
 
-# In[17]:
+# In[13]:
 
 
 fig = px.treemap(
     df_plot, path=[px.Constant('all'), 'mcname', 'years'],
     values=col_count)
 fig.update_traces(root_color='lightgrey')
-fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
 show_fig(fig)
 
 
 # ### 雑誌別・作者別の合計連載週数
 
-# In[23]:
+# In[14]:
 
 
 df_plot =     df.groupby('mcname')['creator'].value_counts().    reset_index(name='weeks')
@@ -141,6 +139,11 @@ fig = px.treemap(
     df_plot, path=[px.Constant('all'), 'mcname', 'creator'],
     values='weeks')
 fig.update_traces(root_color='lightgrey')
-fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 

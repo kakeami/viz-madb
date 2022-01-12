@@ -15,7 +15,7 @@
 
 # ### 下準備
 
-# In[10]:
+# In[1]:
 
 
 import pandas as pd
@@ -26,7 +26,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[4]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -35,7 +35,7 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[5]:
+# In[3]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -46,15 +46,16 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[6]:
+# In[4]:
 
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
-# In[7]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -62,13 +63,13 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・年代別の合計作品数
 
-# In[8]:
+# In[6]:
 
 
 col_count = 'cname'
 
 
-# In[9]:
+# In[7]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -83,7 +84,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[18]:
+# In[8]:
 
 
 fig = go.Figure()
@@ -105,13 +106,13 @@ show_fig(fig)
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[19]:
+# In[9]:
 
 
 col_count = 'creator'
 
 
-# In[20]:
+# In[10]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -126,7 +127,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[21]:
+# In[11]:
 
 
 fig = go.Figure()

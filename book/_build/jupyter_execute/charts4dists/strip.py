@@ -71,7 +71,7 @@ show_fig(fig)
 
 # ### 雑誌別・作者別の合計連載週数
 
-# In[ ]:
+# In[7]:
 
 
 df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
@@ -83,7 +83,7 @@ fig = px.strip(
 show_fig(fig)
 
 
-# In[ ]:
+# In[8]:
 
 
 fig = px.strip(

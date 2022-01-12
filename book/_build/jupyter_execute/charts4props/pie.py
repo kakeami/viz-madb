@@ -35,10 +35,11 @@ RENDERER = 'plotly_mimetype+notebook'
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
-# In[15]:
+# In[4]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -46,7 +47,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別の合計作品数
 
-# In[16]:
+# In[5]:
 
 
 df_plot =     df.groupby('mcname')['cname'].nunique().reset_index()
@@ -59,7 +60,7 @@ show_fig(fig)
 
 # ### 雑誌別の合計作者数
 
-# In[18]:
+# In[6]:
 
 
 df_plot =     df.groupby('mcname')['creator'].nunique().reset_index()
@@ -68,4 +69,16 @@ fig = px.pie(
     df_plot, values='creator', names='mcname',
     title='雑誌別の合計作者数')
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
