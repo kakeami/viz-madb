@@ -30,7 +30,7 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[79]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -41,7 +41,15 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[4]:
+# In[80]:
+
+
+def add_week_range_to_df(df, n_ranges=4):
+    """weeksをn_ranges単位で分割"""
+    weeks = sorted(df['weeks'].unique())
+
+
+# In[81]:
 
 
 def show_fig(fig):
@@ -49,36 +57,36 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[82]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 雑誌別・年代別の合計作品集数
+# ### 雑誌別・年代別の合計作品数
 
-# In[19]:
+# In[84]:
 
 
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df, 10)
 df_plot = df.groupby(['mcname', 'years', 'cname'])    ['epname'].count().reset_index(name='weeks')
-df_plot = df_plot.sort_values('weeks', ascending=True)
+df_plot['single'] = df_plot['weeks']==1
+df_plot['single_int'] = df_plot['single'].astype(int)
+df_plot = df_plot.sort_values(
+    ['mcname', 'years'], ascending=True)
 
 
-# In[20]:
+# In[89]:
 
 
 fig = px.parallel_categories(
-    df_plot, dimensions=['mcname', 'years'],
-    color='weeks')
+    df_plot, dimensions=['years', 'mcname', 'single'],
+    color='single_int', color_continuous_scale=['Green', 'Red'],
+    labels={'years': '年代', 'mcname': '雑誌名', 'single': '一週のみ？'},
+    title='雑誌名・年代別の合計作品数')
+fig.update_coloraxes(showscale=False)
 show_fig(fig)
-
-
-# In[13]:
-
-
-df_plot = df.groupby(['mcname', 'years', 'cname'])    ['epname'].count().reset_index(name='weeks')
 
 
 # In[ ]:
