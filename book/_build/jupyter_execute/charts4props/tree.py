@@ -86,10 +86,12 @@ show_fig(fig)
 
 # ### 雑誌別・作品別の合計連載週数
 
-# In[20]:
+# In[22]:
 
 
 df_plot =     df.groupby('mcname')['cname'].value_counts().    reset_index(name='weeks')
+# 描画用に10週以上の作品に絞る
+df_plot = df_plot[df_plot['weeks']>=10].reset_index(drop=True)
 fig = px.treemap(
     df_plot, path=[px.Constant('all'), 'mcname', 'cname'],
     values='weeks')
