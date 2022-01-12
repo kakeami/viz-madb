@@ -84,6 +84,20 @@ fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
 show_fig(fig)
 
 
+# ### 雑誌別・作品別の合計連載週数
+
+# In[20]:
+
+
+df_plot =     df.groupby('mcname')['cname'].value_counts().    reset_index(name='weeks')
+fig = px.treemap(
+    df_plot, path=[px.Constant('all'), 'mcname', 'cname'],
+    values='weeks')
+fig.update_traces(root_color='lightgrey')
+fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+show_fig(fig)
+
+
 # ### 雑誌別・年代別の合計作者数
 
 # In[15]:
