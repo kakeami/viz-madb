@@ -49,11 +49,12 @@ def add_week_range_to_df(df, n_ranges=4):
     weeks = sorted(df['weeks'].unique())
 
 
-# In[81]:
+# In[92]:
 
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
@@ -77,7 +78,7 @@ df_plot = df_plot.sort_values(
     ['mcname', 'years'], ascending=True)
 
 
-# In[89]:
+# In[93]:
 
 
 fig = px.parallel_categories(
