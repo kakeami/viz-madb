@@ -128,3 +128,19 @@ fig.update_traces(root_color='lightgrey')
 fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
 show_fig(fig)
 
+
+# ### 雑誌別・作者別の合計連載週数
+
+# In[23]:
+
+
+df_plot =     df.groupby('mcname')['creator'].value_counts().    reset_index(name='weeks')
+# 描画用に10週以上の作者に絞る
+df_plot = df_plot[df_plot['weeks']>=10].reset_index(drop=True)
+fig = px.treemap(
+    df_plot, path=[px.Constant('all'), 'mcname', 'creator'],
+    values='weeks')
+fig.update_traces(root_color='lightgrey')
+fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+show_fig(fig)
+
