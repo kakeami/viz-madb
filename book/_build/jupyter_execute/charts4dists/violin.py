@@ -3,20 +3,6 @@
 
 # # Violins
 
-# In[ ]:
-
-
-
-
-
-# 表示範囲変更すること
-
-# In[ ]:
-
-
-
-
-
 # ## 概要
 
 # ## Plotlyによる作図方法
@@ -25,7 +11,7 @@
 
 # ### 下準備
 
-# In[8]:
+# In[1]:
 
 
 import pandas as pd
@@ -35,7 +21,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[9]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -44,15 +30,16 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[10]:
+# In[3]:
 
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
-# In[19]:
+# In[4]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -60,7 +47,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・作品別の合計連載週数
 
-# In[22]:
+# In[5]:
 
 
 df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
@@ -72,7 +59,7 @@ fig = px.violin(
 show_fig(fig)
 
 
-# In[23]:
+# In[6]:
 
 
 fig = px.violin(
@@ -84,7 +71,7 @@ show_fig(fig)
 
 # ### 雑誌別・作者別の合計連載週数
 
-# In[24]:
+# In[7]:
 
 
 df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
@@ -96,7 +83,7 @@ fig = px.violin(
 show_fig(fig)
 
 
-# In[25]:
+# In[8]:
 
 
 fig = px.violin(
@@ -104,6 +91,24 @@ fig = px.violin(
     title='雑誌別・作者別の合計連載週数')
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:

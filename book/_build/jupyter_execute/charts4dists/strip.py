@@ -35,6 +35,7 @@ RENDERER = 'plotly_mimetype+notebook'
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
@@ -58,7 +59,7 @@ fig = px.strip(
 show_fig(fig)
 
 
-# In[7]:
+# In[6]:
 
 
 fig = px.strip(
@@ -70,7 +71,7 @@ show_fig(fig)
 
 # ### 雑誌別・作者別の合計連載週数
 
-# In[8]:
+# In[ ]:
 
 
 df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
@@ -82,7 +83,7 @@ fig = px.strip(
 show_fig(fig)
 
 
-# In[9]:
+# In[ ]:
 
 
 fig = px.strip(
@@ -90,6 +91,12 @@ fig = px.strip(
     title='雑誌別・作者別の合計連載週数')
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:

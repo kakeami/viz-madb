@@ -32,7 +32,7 @@
 
 # ### 下準備
 
-# In[12]:
+# In[1]:
 
 
 import itertools
@@ -43,7 +43,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[3]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -52,15 +52,16 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[4]:
+# In[3]:
 
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[4]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -71,7 +72,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[6]:
+# In[5]:
 
 
 def resample_df_by_cname_and_years(df):
@@ -95,7 +96,7 @@ def resample_df_by_cname_and_years(df):
     return df_new
 
 
-# In[7]:
+# In[6]:
 
 
 def resample_df_by_creator_and_years(df):
@@ -119,7 +120,7 @@ def resample_df_by_creator_and_years(df):
     return df_new
 
 
-# In[8]:
+# In[7]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -127,14 +128,14 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別・年代別の合計連載週（上位20作品）
 
-# In[13]:
+# In[8]:
 
 
 # dfにyearsを追加
 df = add_years_to_df(df)
 
 
-# In[14]:
+# In[9]:
 
 
 # プロット用に集計
@@ -146,7 +147,7 @@ df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
 df_plot = resample_df_by_cname_and_years(df_plot)
 
 
-# In[15]:
+# In[10]:
 
 
 # 合計連載週数で降順ソート
@@ -156,7 +157,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[16]:
+# In[11]:
 
 
 # 作図
@@ -173,14 +174,14 @@ show_fig(fig)
 
 # ### 作者別・年代別の合計連載週数（上位20名）
 
-# In[17]:
+# In[12]:
 
 
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df)
 
 
-# In[18]:
+# In[13]:
 
 
 # プロット用に集計
@@ -192,7 +193,7 @@ df_plot = df_plot[df_plot['creator'].isin(creators)].    reset_index(drop=True)
 df_plot = resample_df_by_creator_and_years(df_plot)
 
 
-# In[19]:
+# In[14]:
 
 
 # 合計連載週数で降順ソート
@@ -202,7 +203,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[20]:
+# In[15]:
 
 
 # 作図
@@ -211,10 +212,4 @@ fig = px.bar(
     color_discrete_sequence= px.colors.diverging.Portland,
     barmode='stack', title='作者別・年代別の合計連載週数')
 show_fig(fig)
-
-
-# In[ ]:
-
-
-
 

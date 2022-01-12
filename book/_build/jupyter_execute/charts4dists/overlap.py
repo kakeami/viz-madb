@@ -11,7 +11,7 @@
 
 # ### 下準備
 
-# In[5]:
+# In[1]:
 
 
 import pandas as pd
@@ -35,6 +35,7 @@ RENDERER = 'plotly_mimetype+notebook'
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
@@ -46,13 +47,13 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・作品別の合計連載週数
 
-# In[6]:
+# In[5]:
 
 
 df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
 
 
-# In[16]:
+# In[6]:
 
 
 df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
@@ -67,7 +68,7 @@ fig.update_layout(title_text='雑誌別・作品別の合計連載週数')
 show_fig(fig)
 
 
-# In[17]:
+# In[7]:
 
 
 fig = ff.create_distplot(
@@ -79,7 +80,7 @@ show_fig(fig)
 
 # ### 雑誌別・作者別の合計連載週数
 
-# In[18]:
+# In[8]:
 
 
 df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
@@ -94,7 +95,7 @@ fig.update_layout(title_text='雑誌別・作者別の合計連載週数')
 show_fig(fig)
 
 
-# In[19]:
+# In[9]:
 
 
 fig = ff.create_distplot(
@@ -102,4 +103,10 @@ fig = ff.create_distplot(
 fig.update_layout(title_text='雑誌別・作者別の合計連載週数')
 fig.update_xaxes(range=[0, 200])
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 

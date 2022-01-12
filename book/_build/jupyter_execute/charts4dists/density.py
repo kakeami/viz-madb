@@ -29,7 +29,7 @@
 
 # ### 下準備
 
-# In[34]:
+# In[1]:
 
 
 import pandas as pd
@@ -39,7 +39,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[26]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -48,15 +48,16 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[27]:
+# In[3]:
 
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
-# In[28]:
+# In[4]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -64,7 +65,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の合計連載週数
 
-# In[30]:
+# In[5]:
 
 
 df_plot = df.value_counts('cname').reset_index(name='weeks')
@@ -75,7 +76,7 @@ fig.update_layout(title_text='作品別の合計連載週数')
 show_fig(fig)
 
 
-# In[31]:
+# In[6]:
 
 
 fig = ff.create_distplot(
@@ -88,7 +89,7 @@ show_fig(fig)
 
 # ### 作品別の合計連載週数
 
-# In[32]:
+# In[7]:
 
 
 df_plot = df.value_counts('creator').reset_index(name='weeks')
@@ -99,7 +100,7 @@ fig.update_layout(title_text='作者別の合計連載週数')
 show_fig(fig)
 
 
-# In[33]:
+# In[8]:
 
 
 fig = ff.create_distplot(
@@ -108,6 +109,12 @@ fig = ff.create_distplot(
 fig.update_layout(title_text='作者別の合計連載週数')
 fig.update_xaxes(range=[0, 200])
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:

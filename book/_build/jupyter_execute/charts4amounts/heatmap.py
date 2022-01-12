@@ -49,10 +49,11 @@ RENDERER = 'plotly_mimetype+notebook'
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[4]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -63,7 +64,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[4]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -71,7 +72,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別・年代別の合計連載週数（上位20作品）
 
-# In[13]:
+# In[6]:
 
 
 # datePublishedを10年単位で区切るyears列を追加
@@ -80,7 +81,7 @@ df['datePublished'] = pd.to_datetime(df['datePublished'])
 df = add_years_to_df(df)
 
 
-# In[14]:
+# In[7]:
 
 
 # プロット用に集計
@@ -90,7 +91,7 @@ cnames = list(df.value_counts('cname').head(20).index)
 df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
 
 
-# In[15]:
+# In[8]:
 
 
 # 合計連載週数で降順ソート
@@ -100,7 +101,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[17]:
+# In[9]:
 
 
 fig = px.density_heatmap(
@@ -110,7 +111,7 @@ show_fig(fig)
 
 # ### 作者別・年代別の合計連載週数（上位20名）
 
-# In[18]:
+# In[10]:
 
 
 # datePublishedを10年単位で区切るyears列を追加
@@ -119,7 +120,7 @@ df['datePublished'] = pd.to_datetime(df['datePublished'])
 df = add_years_to_df(df)
 
 
-# In[19]:
+# In[11]:
 
 
 # プロット用に集計
@@ -129,7 +130,7 @@ creators = list(df.value_counts('creator').head(20).index)
 df_plot = df_plot[df_plot['creator'].isin(creators)].    reset_index(drop=True)
 
 
-# In[20]:
+# In[12]:
 
 
 # 合計連載週数で降順ソート
@@ -139,7 +140,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[21]:
+# In[13]:
 
 
 fig = px.density_heatmap(

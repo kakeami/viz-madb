@@ -49,7 +49,7 @@ def add_week_range_to_df(df, n_ranges=4):
     weeks = sorted(df['weeks'].unique())
 
 
-# In[92]:
+# In[97]:
 
 
 def show_fig(fig):
@@ -58,7 +58,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[82]:
+# In[98]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -66,7 +66,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・年代別の合計作品数
 
-# In[84]:
+# In[99]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -78,7 +78,7 @@ df_plot = df_plot.sort_values(
     ['mcname', 'years'], ascending=True)
 
 
-# In[93]:
+# In[100]:
 
 
 fig = px.parallel_categories(

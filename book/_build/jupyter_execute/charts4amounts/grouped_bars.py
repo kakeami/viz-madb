@@ -28,9 +28,10 @@
 
 # ### 下準備
 
-# In[4]:
+# In[11]:
 
 
+import itertools
 import pandas as pd
 import plotly.express as px
 
@@ -38,7 +39,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[5]:
+# In[12]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -47,15 +48,16 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[6]:
+# In[13]:
 
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
-# In[55]:
+# In[14]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -66,7 +68,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[64]:
+# In[15]:
 
 
 def resample_df_by_cname_and_years(df):
@@ -90,7 +92,7 @@ def resample_df_by_cname_and_years(df):
     return df_new
 
 
-# In[94]:
+# In[16]:
 
 
 def resample_df_by_creator_and_years(df):
@@ -113,7 +115,7 @@ def resample_df_by_creator_and_years(df):
     return df_new
 
 
-# In[95]:
+# In[17]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -121,7 +123,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別・年代別の合計連載週数（上位10作品）
 
-# In[96]:
+# In[18]:
 
 
 # datePublishedを10年単位で区切るyears列を追加
@@ -130,7 +132,7 @@ df['datePublished'] = pd.to_datetime(df['datePublished'])
 df = add_years_to_df(df)
 
 
-# In[97]:
+# In[19]:
 
 
 # プロット用に集計
@@ -142,7 +144,7 @@ df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
 df_plot = resample_df_by_cname_and_years(df_plot)
 
 
-# In[98]:
+# In[20]:
 
 
 # 合計連載週数で降順ソート
@@ -152,7 +154,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[99]:
+# In[21]:
 
 
 # 作図
@@ -169,7 +171,7 @@ show_fig(fig)
 
 # ### 作者別・年代別の合計連載週数（上位10名）
 
-# In[121]:
+# In[22]:
 
 
 # datePublishedを10年単位で区切るyears列を追加
@@ -178,7 +180,7 @@ df['datePublished'] = pd.to_datetime(df['datePublished'])
 df = add_years_to_df(df)
 
 
-# In[124]:
+# In[23]:
 
 
 # プロット用に集計
@@ -190,7 +192,7 @@ df_plot = df_plot[df_plot['creator'].isin(creators)].    reset_index(drop=True)
 df_plot = resample_df_by_creator_and_years(df_plot)
 
 
-# In[126]:
+# In[24]:
 
 
 # 合計連載週数で降順ソート
@@ -200,7 +202,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[127]:
+# In[25]:
 
 
 # 作図

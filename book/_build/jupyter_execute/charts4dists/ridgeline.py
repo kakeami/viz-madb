@@ -35,10 +35,11 @@ RENDERER = 'plotly_mimetype+notebook'
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     fig.show(renderer=RENDERER)
 
 
-# In[7]:
+# In[4]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -49,7 +50,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[26]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -57,7 +58,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 年代別・作品別の合計連載週数
 
-# In[27]:
+# In[6]:
 
 
 df = add_years_to_df(df, unit_years=10)
@@ -72,7 +73,7 @@ fig.update_traces(
 show_fig(fig)
 
 
-# In[29]:
+# In[ ]:
 
 
 fig = px.violin(
@@ -85,7 +86,7 @@ show_fig(fig)
 
 # ### 年代別・作者別の合計連載週数
 
-# In[30]:
+# In[ ]:
 
 
 df = add_years_to_df(df, unit_years=10)
@@ -100,7 +101,7 @@ fig.update_traces(
 show_fig(fig)
 
 
-# In[31]:
+# In[ ]:
 
 
 fig = px.violin(
@@ -109,6 +110,12 @@ fig.update_traces(
     side='positive', scalemode='count', width=4)
 fig.update_xaxes(range=[0, 200])
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
