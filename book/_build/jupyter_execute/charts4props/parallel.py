@@ -21,16 +21,25 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[7]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
 PATH_DATA = '../../data/preprocess/out/magazines.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
+# weekdayを曜日に変換
+WD2STR = {
+    0: 'Mon.',
+    1: 'Tue.',
+    2: 'Wed.',
+    3: 'Thu.',
+    4: 'Fri.',
+    5: 'Sat.',
+    6: 'Sun.',}
 
 
-# In[79]:
+# In[3]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -41,15 +50,32 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[80]:
+# In[17]:
 
 
-def add_week_range_to_df(df, n_ranges=4):
-    """weeksをn_ranges単位で分割"""
-    weeks = sorted(df['weeks'].unique())
+def add_weekday_to_df(df):
+    """曜日情報をdfに追加"""
+    df_new = df.copy()
+    df_new['weekday'] =         pd.to_datetime(df_new['datePublished']).dt.weekday
+    df_new['weekday_str'] = df_new['weekday'].apply(
+        lambda x: WD2STR[x])
+    return df_new
 
 
-# In[97]:
+# In[20]:
+
+
+def add_mcid_to_df(df):
+    """mcnameのindexをdfに追加"""
+    df_new = df.copy()
+    mcname2mcid = {
+        x: i for i, x in enumerate(df['mcname'].unique())}
+    df_new['mcid'] = df_new['mcname'].apply(
+        lambda x: mcname2mcid[x])
+    return df_new
+
+
+# In[5]:
 
 
 def show_fig(fig):
@@ -58,40 +84,36 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[98]:
+# In[6]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 雑誌別・年代別の合計作品数
+# ### 雑誌別・年代別・曜日別の雑誌巻号数
 
-# In[99]:
+# In[35]:
 
 
 # 10年単位で区切ったyearsを追加
-df = add_years_to_df(df, 10)
-df_plot = df.groupby(['mcname', 'years', 'cname'])    ['epname'].count().reset_index(name='weeks')
-df_plot['single'] = df_plot['weeks']==1
-df_plot['single_int'] = df_plot['single'].astype(int)
+df_plot = df[~df['miname'].duplicated()].reset_index(drop=True)
+df_plot = add_years_to_df(df_plot, 10)
+df_plot = add_weekday_to_df(df_plot)
+df_plot = add_mcid_to_df(df_plot)
 df_plot = df_plot.sort_values(
-    ['mcname', 'years'], ascending=True)
+    ['weekday', 'years', 'mcname'], ignore_index=True)
 
 
-# In[100]:
+# In[36]:
 
 
 fig = px.parallel_categories(
-    df_plot, dimensions=['years', 'mcname', 'single'],
-    color='single_int', color_continuous_scale=['Green', 'Red'],
-    labels={'years': '年代', 'mcname': '雑誌名', 'single': '一週のみ？'},
-    title='雑誌名・年代別の合計作品数')
+    df_plot, dimensions=['mcname', 'years', 'weekday_str'],
+    color='mcid', 
+    labels={
+        'years': '年代', 'mcname': '雑誌名', 
+        'weekday_str': '発売曜日'},
+    title='雑誌別・年代別・曜日別の雑誌巻号数')
 fig.update_coloraxes(showscale=False)
 show_fig(fig)
-
-
-# In[ ]:
-
-
-
 
