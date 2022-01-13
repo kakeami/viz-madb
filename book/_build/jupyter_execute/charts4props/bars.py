@@ -47,7 +47,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[4]:
+# In[5]:
 
 
 def show_fig(fig):
@@ -56,7 +56,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[6]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -64,13 +64,13 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別の合計作品数
 
-# In[6]:
+# In[7]:
 
 
 col_count = 'cname'
 
 
-# In[7]:
+# In[8]:
 
 
 df_plot =     df.groupby('mcname')[col_count].nunique().reset_index()
@@ -78,19 +78,21 @@ df_plot['ratio'] = df_plot[col_count] / df_plot[col_count].sum()
 df_plot['years'] = '全期間'
 fig = px.bar(
     df_plot, x='years', y='ratio', barmode='stack', 
-    color='mcname', title='雑誌別の合計作品数')
+    color='mcname', 
+    color_discrete_sequence= px.colors.diverging.Portland,
+    title='雑誌別の合計作品数')
 show_fig(fig)
 
 
 # ### 雑誌別・年代別の合計作品数
 
-# In[8]:
+# In[9]:
 
 
 col_count = 'cname'
 
 
-# In[9]:
+# In[10]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -103,15 +105,6 @@ df_tmp = df_plot.groupby('years')[col_count].sum().reset_index(
 df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 # years合計あたりの比率を計算
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
-
-
-# In[10]:
-
-
-fig = px.bar(
-    df_plot, x='years', y='ratio', color='mcname',
-    barmode='stack', title='雑誌別・年代別の合計作品数')
-show_fig(fig)
 
 
 # In[11]:
@@ -119,19 +112,30 @@ show_fig(fig)
 
 fig = px.bar(
     df_plot, x='years', y='ratio', color='mcname',
+    color_discrete_sequence= px.colors.diverging.Portland,
+    barmode='stack', title='雑誌別・年代別の合計作品数')
+show_fig(fig)
+
+
+# In[12]:
+
+
+fig = px.bar(
+    df_plot, x='years', y='ratio', color='mcname',
+    color_discrete_sequence= px.colors.diverging.Portland,
     barmode='group', title='雑誌別・年代別の合計作品数')
 show_fig(fig)
 
 
 # ### 雑誌別の合計作者数
 
-# In[12]:
+# In[13]:
 
 
 col_count = 'creator'
 
 
-# In[13]:
+# In[14]:
 
 
 df_plot =     df.groupby('mcname')[col_count].nunique().reset_index()
@@ -139,19 +143,20 @@ df_plot['ratio'] = df_plot[col_count] / df_plot[col_count].sum()
 df_plot['years'] = '全期間'
 fig = px.bar(
     df_plot, x='years', y='ratio', barmode='stack', 
+    color_discrete_sequence= px.colors.diverging.Portland,
     color='mcname', title='雑誌別の合計作者数')
 show_fig(fig)
 
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[14]:
+# In[15]:
 
 
 col_count = 'creator'
 
 
-# In[15]:
+# In[16]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -166,26 +171,22 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[16]:
-
-
-fig = px.bar(
-    df_plot, x='years', y='ratio', color='mcname',
-    barmode='stack', title='雑誌別・年代別の合計作者数')
-show_fig(fig)
-
-
 # In[17]:
 
 
 fig = px.bar(
     df_plot, x='years', y='ratio', color='mcname',
-    barmode='group', title='雑誌別・年代別の合計作者数')
+    color_discrete_sequence= px.colors.diverging.Portland,
+    barmode='stack', title='雑誌別・年代別の合計作者数')
 show_fig(fig)
 
 
-# In[ ]:
+# In[18]:
 
 
-
+fig = px.bar(
+    df_plot, x='years', y='ratio', color='mcname',
+    color_discrete_sequence= px.colors.diverging.Portland,
+    barmode='group', title='雑誌別・年代別の合計作者数')
+show_fig(fig)
 

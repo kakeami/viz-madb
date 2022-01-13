@@ -54,6 +54,7 @@ df_plot =     df.groupby('mcname')['cname'].nunique().reset_index()
 df_plot = df_plot.sort_values('mcname', ignore_index=True)
 fig = px.pie(
     df_plot, values='cname', names='mcname',
+    color_discrete_sequence= px.colors.diverging.Portland,
     title='雑誌別の合計作品数')
 show_fig(fig)
 
@@ -67,18 +68,7 @@ df_plot =     df.groupby('mcname')['creator'].nunique().reset_index()
 df_plot = df_plot.sort_values('mcname', ignore_index=True)
 fig = px.pie(
     df_plot, values='creator', names='mcname',
+    color_discrete_sequence= px.colors.diverging.Portland,
     title='雑誌別の合計作者数')
 show_fig(fig)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 

@@ -84,7 +84,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[8]:
+# In[13]:
 
 
 fig = go.Figure()
@@ -106,13 +106,13 @@ show_fig(fig)
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[9]:
+# In[14]:
 
 
 col_count = 'creator'
 
 
-# In[10]:
+# In[15]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -127,7 +127,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[11]:
+# In[16]:
 
 
 fig = go.Figure()
@@ -145,10 +145,4 @@ fig.update_xaxes(
     ticktext=df_plot['years'].unique(),)
 fig.update_layout(barmode='stack')
 show_fig(fig)    
-
-
-# In[ ]:
-
-
-
 

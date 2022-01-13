@@ -84,6 +84,7 @@ df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 fig = px.area(
     df_plot, x='years', y='ratio', color='mcname',
+    color_discrete_sequence= px.colors.diverging.Portland,
     title='雑誌別・年代別の合計作品数')
 show_fig(fig)
 
@@ -116,6 +117,7 @@ df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 fig = px.area(
     df_plot, x='years', y='ratio', color='mcname',
+    color_discrete_sequence= px.colors.diverging.Portland,
     title='雑誌別・年代別の合計作者数')
 show_fig(fig)
 
