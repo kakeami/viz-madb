@@ -7,7 +7,7 @@
 
 # ## 環境構築
 
-# In[147]:
+# In[1]:
 
 
 import pandas as pd
@@ -16,14 +16,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[67]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
 PATH_DATA = '../../data/preprocess/out/magazines.csv'
 
 
-# In[68]:
+# In[3]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -454,3 +454,96 @@ df_tmp.groupby('mcname')['editor'].value_counts().    reset_index(name='count')
 #     - `高校俊昌`さん（おそらく`高橋俊昌`さん？）
 
 # 数も少ないですし，確証が持てないため特に修正しないことにします．
+
+# ## 掲載位置の計算方法
+
+# 本サイトでは雑誌巻号におけるマンガ作品の掲載位置をビジュアライゼーションの対象とします．本章では，掲載位置をどのように計算するべきか検討します．使える情報は
+# 
+# - `pageStart`：マンガ作品の開始ページ
+# - `pageEnd`：マンガ作品の終了ページ
+# - `numberOfPages`：雑誌巻号の合計ページ数
+
+# ### 概要
+
+# まずは`describe()`で全体を概観します．
+
+# In[9]:
+
+
+cols = ['pageStart', 'pageEnd', 'numberOfPages']
+
+
+# In[10]:
+
+
+df[cols].describe()
+
+
+# 前述したように異常値が散見されます．
+
+# ### 欠測
+
+# 次に欠測数を見てみます．
+
+# In[13]:
+
+
+df[cols].isna().sum().reset_index(name='欠測数')
+
+
+# `numberOfPages`の欠測がかなり多いことがわかります．
+
+# ### 大小関係
+# 
+# 定義より，以下が成り立つはずです．
+# - `pageStart` <= `pageEnd`
+# - `pageStart` <= `numberOfPages`
+# - `pageEnd` <= `numberOfPages`
+
+# それぞれ，条件に違反する行数を調べます．
+
+# In[22]:
+
+
+df.shape[0] - (df['pageStart'] <= df['pageEnd']).sum()
+
+
+# In[23]:
+
+
+df.shape[0] - (df['pageStart'] <= df['numberOfPages']).sum()
+
+
+# In[24]:
+
+
+df.shape[0] - (df['pageEnd'] <= df['numberOfPages']).sum()
+
+
+# ナイーブに考えると，`pageStart`に関する違反が最も少ないように見えます．
+
+# ### 結論
+
+# - 欠測が最も少ない
+# - 他の変数との大小関係に違反するケースが最も少ない
+# 
+# 以上の理由から，掲載位置の計算には`pageStart`を用います．
+# ただし，`pageEnd`および`numberOfPages`より大きいケースに関しては事前に除外することにします．
+
+# In[28]:
+
+
+assert_1 = df['pageStart'] <= df['pageEnd']
+assert_2 = df['pageStart'] <= df['numberOfPages']
+df_new = df[assert_1 & assert_2].reset_index(drop=True)
+
+
+# In[30]:
+
+
+df_new['pageStart'].describe().reset_index()
+
+
+# 常識的な統計量になりました．
+
+# 掲載位置の計算にあたっては，マンガ作品の`pageStart`をその雑誌巻号の最大の`pageStart`で割ることで算出します．
