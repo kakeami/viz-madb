@@ -5,7 +5,7 @@
 
 # ここでは，本サイトで分析対象とするデータについて簡単に紹介し，基礎分析を実施します．なお，このデータは[MADB Labでv1.0として公開されているもの](https://github.com/mediaarts-db/dataset/tree/1.0)に[こちらの前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html)を実施したものです．
 
-# ## 環境構築
+# ## 下準備
 
 # In[1]:
 
@@ -467,13 +467,13 @@ df_tmp.groupby('mcname')['editor'].value_counts().    reset_index(name='count')
 
 # まずは`describe()`で全体を概観します．
 
-# In[9]:
+# In[4]:
 
 
 cols = ['pageStart', 'pageEnd', 'numberOfPages']
 
 
-# In[10]:
+# In[5]:
 
 
 df[cols].describe()
@@ -485,7 +485,7 @@ df[cols].describe()
 
 # 次に欠測数を見てみます．
 
-# In[13]:
+# In[6]:
 
 
 df[cols].isna().sum().reset_index(name='欠測数')
@@ -502,25 +502,25 @@ df[cols].isna().sum().reset_index(name='欠測数')
 
 # それぞれ，条件に違反する行数を調べます．
 
-# In[22]:
+# In[7]:
 
 
 df.shape[0] - (df['pageStart'] <= df['pageEnd']).sum()
 
 
-# In[23]:
+# In[8]:
 
 
 df.shape[0] - (df['pageStart'] <= df['numberOfPages']).sum()
 
 
-# In[24]:
+# In[9]:
 
 
 df.shape[0] - (df['pageEnd'] <= df['numberOfPages']).sum()
 
 
-# ナイーブに考えると，`pageStart`に関する違反が最も少ないように見えます．
+# 単純に考えると，`pageStart`に関する違反が最も少ないように見えます．
 
 # ### 結論
 
@@ -530,7 +530,7 @@ df.shape[0] - (df['pageEnd'] <= df['numberOfPages']).sum()
 # 以上の理由から，掲載位置の計算には`pageStart`を用います．
 # ただし，`pageEnd`および`numberOfPages`より大きいケースに関しては事前に除外することにします．
 
-# In[28]:
+# In[12]:
 
 
 assert_1 = df['pageStart'] <= df['pageEnd']
@@ -538,7 +538,7 @@ assert_2 = df['pageStart'] <= df['numberOfPages']
 df_new = df[assert_1 & assert_2].reset_index(drop=True)
 
 
-# In[30]:
+# In[13]:
 
 
 df_new['pageStart'].describe().reset_index()
@@ -546,4 +546,23 @@ df_new['pageStart'].describe().reset_index()
 
 # 常識的な統計量になりました．
 
-# 掲載位置の計算にあたっては，マンガ作品の`pageStart`をその雑誌巻号の最大の`pageStart`で割ることで算出します．
+# 掲載位置を算出するために，各雑誌巻号の最大の`pageStart`を保存します．
+
+# In[20]:
+
+
+df_ps = df_new.groupby(['miname'])['pageStart'].max().reset_index()
+
+
+# In[24]:
+
+
+df_ps['pageStart'].describe().reset_index()
+
+
+# In[29]:
+
+
+# 保存
+df_ps.to_csv('../../data/preprocess/out/max_start_pages.csv', index=False)
+

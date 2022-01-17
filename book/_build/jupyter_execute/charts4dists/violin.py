@@ -55,7 +55,8 @@ df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
 df_plot = df_plot.sort_values('mcname', ignore_index=True)
 fig = px.violin(
     df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作品別の合計連載週数')
+    title='雑誌別・作品別の合計連載週数',
+    points=False)
 show_fig(fig)
 
 
@@ -64,7 +65,8 @@ show_fig(fig)
 
 fig = px.violin(
     df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作品別の合計連載週数')
+    title='雑誌別・作品別の合計連載週数',
+    points=False)
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
@@ -79,7 +81,8 @@ df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
 df_plot = df_plot.sort_values('mcname', ignore_index=True)
 fig = px.violin(
     df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作者別の合計連載週数')
+    title='雑誌別・作者別の合計連載週数',
+    points=False)
 show_fig(fig)
 
 
@@ -88,31 +91,8 @@ show_fig(fig)
 
 fig = px.violin(
     df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作者別の合計連載週数')
+    title='雑誌別・作者別の合計連載週数',
+    points=False)
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 

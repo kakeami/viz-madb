@@ -11,7 +11,7 @@
 
 # ### 下準備
 
-# In[2]:
+# In[1]:
 
 
 import pandas as pd
@@ -21,7 +21,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[3]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -30,7 +30,7 @@ PATH_DATA = '../../data/preprocess/out/magazines.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[4]:
+# In[3]:
 
 
 def show_fig(fig):
@@ -39,13 +39,15 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[4]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
 # ### 前処理
+
+# 
 
 # In[16]:
 
@@ -67,6 +69,12 @@ show_fig(fig)
 
 
 # ### 雑誌別・作品別の平均掲載順位と連載週数の関係
+
+# In[ ]:
+
+
+df
+
 
 # In[10]:
 

@@ -392,7 +392,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   環境構築
+   下準備
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -576,7 +576,7 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   環境構築
+   下準備
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -751,7 +751,7 @@
 <h1>そもそもどんなデータを扱うの？<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>ここでは，本サイトで分析対象とするデータについて簡単に紹介し，基礎分析を実施します．なお，このデータは<a class="reference external" href="https://github.com/mediaarts-db/dataset/tree/1.0">MADB Labでv1.0として公開されているもの</a>に<a class="reference external" href="https://kakeami.github.io/viz-madb/appendix/preprocess.html">こちらの前処理</a>を実施したものです．</p>
 <div class="section" id="id2">
-<h2>環境構築<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>下準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -3947,7 +3947,7 @@
 </div>
 </div>
 </div>
-<p>ナイーブに考えると，<code class="docutils literal notranslate"><span class="pre">pageStart</span></code>に関する違反が最も少ないように見えます．</p>
+<p>単純に考えると，<code class="docutils literal notranslate"><span class="pre">pageStart</span></code>に関する違反が最も少ないように見えます．</p>
 </div>
 <div class="section" id="id9">
 <h3>結論<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
@@ -4041,7 +4041,96 @@
 </div></div></div>
 </div>
 <p>常識的な統計量になりました．</p>
-<p>掲載位置の計算にあたっては，マンガ作品の<code class="docutils literal notranslate"><span class="pre">pageStart</span></code>をその雑誌巻号の最大の<code class="docutils literal notranslate"><span class="pre">pageStart</span></code>で割ることで算出します．</p>
+<p>掲載位置を算出するために，各雑誌巻号の最大の<code class="docutils literal notranslate"><span class="pre">pageStart</span></code>を保存します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_ps</span> <span class="o">=</span> <span class="n">df_new</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;miname&#39;</span><span class="p">])[</span><span class="s1">&#39;pageStart&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_ps</span><span class="p">[</span><span class="s1">&#39;pageStart&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>pageStart</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>9202.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>379.487394</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>78.173027</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>29.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>307.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>398.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>442.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>565.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存</span>
+<span class="n">df_ps</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../../data/preprocess/out/max_start_pages.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
