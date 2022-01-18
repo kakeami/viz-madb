@@ -25,7 +25,7 @@ warnings.filterwarnings('ignore')
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
@@ -86,7 +86,7 @@ show_fig(fig)
 
 # ### 雑誌別・作品別の合計連載週数
 
-# In[10]:
+# In[9]:
 
 
 df_plot =     df.groupby('mcname')['cname'].value_counts().    reset_index(name='weeks')
@@ -101,13 +101,13 @@ show_fig(fig)
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[11]:
+# In[15]:
 
 
 col_count = 'creator'
 
 
-# In[12]:
+# In[16]:
 
 
 # 1年単位で区切ったyearsを追加
@@ -117,7 +117,7 @@ df_plot =     df.groupby(['mcname', 'years'])[col_count].    nunique().reset_ind
 df_plot =     df_plot.sort_values(['years', 'mcname'], ignore_index=True)
 
 
-# In[13]:
+# In[17]:
 
 
 fig = px.treemap(
@@ -129,7 +129,7 @@ show_fig(fig)
 
 # ### 雑誌別・作者別の合計連載週数
 
-# In[14]:
+# In[18]:
 
 
 df_plot =     df.groupby('mcname')['creator'].value_counts().    reset_index(name='weeks')
@@ -140,6 +140,12 @@ fig = px.treemap(
     values='weeks')
 fig.update_traces(root_color='lightgrey')
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:

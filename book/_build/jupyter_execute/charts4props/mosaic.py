@@ -32,7 +32,7 @@ warnings.filterwarnings('ignore')
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
@@ -86,7 +86,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[13]:
+# In[8]:
 
 
 fig = go.Figure()
@@ -108,13 +108,13 @@ show_fig(fig)
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[14]:
+# In[9]:
 
 
 col_count = 'creator'
 
 
-# In[15]:
+# In[10]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -129,7 +129,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[16]:
+# In[11]:
 
 
 fig = go.Figure()

@@ -23,11 +23,11 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[7]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 # weekdayを曜日に変換
@@ -52,7 +52,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[17]:
+# In[4]:
 
 
 def add_weekday_to_df(df):
@@ -64,7 +64,7 @@ def add_weekday_to_df(df):
     return df_new
 
 
-# In[20]:
+# In[5]:
 
 
 def add_mcid_to_df(df):
@@ -77,7 +77,7 @@ def add_mcid_to_df(df):
     return df_new
 
 
-# In[5]:
+# In[6]:
 
 
 def show_fig(fig):
@@ -86,7 +86,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[6]:
+# In[7]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -94,7 +94,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・年代別・曜日別の雑誌巻号数
 
-# In[35]:
+# In[8]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -106,7 +106,7 @@ df_plot = df_plot.sort_values(
     ['weekday', 'years', 'mcname'], ignore_index=True)
 
 
-# In[36]:
+# In[9]:
 
 
 fig = px.parallel_categories(
@@ -118,4 +118,10 @@ fig = px.parallel_categories(
     title='雑誌別・年代別・曜日別の雑誌巻号数')
 fig.update_coloraxes(showscale=False)
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
