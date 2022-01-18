@@ -8,8 +8,6 @@ parts:
     numbered: True
     chapters:
     - file: charts4amounts/bars
-    - file: charts4amounts/grouped_bars
-    - file: charts4amounts/stacked_bars
     - file: charts4amounts/heatmap
   - caption: 分布を見たい
     numbered: True

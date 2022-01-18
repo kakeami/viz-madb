@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Heatmap
+# # ヒートマップ
 
 # ## 概要
 # 
-# **Heatmap**（ヒートマップ）とは，例えば下図のように，2変数の組み合わせの量を色で表現する手法です．
+# **ヒートマップ**とは，例えば下図のように，2変数の組み合わせの量を色で表現する手法です．
 # 
 # ![heatmap](../figs/heatmap.png)
 
@@ -19,7 +19,7 @@
 #     df, x='col_x', y='col_y', z='col_z')
 # ```
 
-# 上記の例では，`df`の`col_x`を横軸，`col_y`を縦軸とし，`col_z`の量に応じて色を塗り分けたHeatmapのオブジェクト`fig`を作成します．
+# 上記の例では，`df`の`col_x`を横軸，`col_y`を縦軸とし，`col_z`の量に応じて色を塗り分けたヒートマップのオブジェクト`fig`を作成します．
 
 # ## MADB Labを用いた作図例
 
@@ -39,7 +39,7 @@ warnings.filterwarnings('ignore')
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
