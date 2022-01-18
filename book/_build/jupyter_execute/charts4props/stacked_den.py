@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 積み上げ密度プロット
+# # エリアプロット
 
 # ## 概要
 
