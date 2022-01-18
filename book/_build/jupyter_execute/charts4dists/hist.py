@@ -16,7 +16,20 @@
 # fig = px.histogram(df, x='col_x')
 # ```
 
-# 上記の例では，`df`の`col_x`列をX軸，その度数をY軸に取ったヒストグラムのオブジェクト`fig`を作成します．
+# 上記の例では，`df`の`col_x`列をX軸，その度数をY軸に取ったヒストグラムのオブジェクト`fig`を作成します．また，
+
+# ```python
+# fig = px.histogram(df, x='col_x', cumulative=True)
+# ```
+
+# `cumulative=True`オプションを指定することで，累積ヒストグラムを作図可能です．更に，
+
+# ```python
+# fig = px.histogram(df, x='col_x', color='col_stack', barmode='stack')
+# ```
+
+# `barmode='stack'`を指定することで，`col_stack`列に関する積み上げヒストグラムを作図可能です．
+# もちろん，`cumulative`との組み合わせて使うこともできます．
 
 # ## MADB Labを用いた作図例
 
@@ -75,6 +88,17 @@ fig.update_xaxes(range=[0, 50])
 show_fig(fig)
 
 
+# `cumulative=True`オプションを指定することで，累積分布を作図することもできます．
+
+# In[13]:
+
+
+fig = px.histogram(
+    df, x='pages', title='各話のページ数', cumulative=True)
+fig.update_xaxes(range=[0, 50])
+show_fig(fig)
+
+
 # ### 雑誌別の各話のページ数の分布
 
 # In[8]:
@@ -98,10 +122,4 @@ for mcname in sorted(df['mcname'].unique()):
         df_tmp, x='pages', title=f'{mcname}の各話のページ数',)
     fig.update_xaxes(range=[0, 50])
     show_fig(fig)
-
-
-# In[ ]:
-
-
-
 
