@@ -513,8 +513,19 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#episodepagestartposition">
+     1.5.6. 各episodeの掲載位置
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageStartPosition
+      </span>
+     </code>
+     をカラムに追加
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id8">
-     1.5.6. 保存
+     1.5.7. 保存
     </a>
    </li>
   </ul>
@@ -663,8 +674,19 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#episodepagestartposition">
+     1.5.6. 各episodeの掲載位置
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageStartPosition
+      </span>
+     </code>
+     をカラムに追加
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id8">
-     1.5.6. 保存
+     1.5.7. 保存
     </a>
    </li>
   </ul>
@@ -2117,7 +2139,7 @@ dtype: int64
 <h3><span class="section-number">1.5.4. </span>各<code class="docutils literal notranslate"><span class="pre">episode</span></code>のページ数<code class="docutils literal notranslate"><span class="pre">pages</span></code>をカラムに追加<a class="headerlink" href="#episodepages" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pages&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageEnd&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageStart&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pages&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageEnd&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageStart&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -2137,8 +2159,39 @@ dtype: int64
 </div>
 </div>
 </div>
+<div class="section" id="episodepagestartposition">
+<h3><span class="section-number">1.5.6. </span>各episodeの掲載位置<code class="docutils literal notranslate"><span class="pre">pageStartPosition</span></code>をカラムに追加<a class="headerlink" href="#episodepagestartposition" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageStartPosition&#39;</span><span class="p">]</span> <span class="o">=</span> \
+    <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageStart&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageEndMax&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageStartPosition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    179931.000000
+mean          0.514837
+std           0.283146
+min           0.002045
+25%           0.274840
+50%           0.520588
+75%           0.759626
+max           1.000000
+Name: pageStartPosition, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="id8">
-<h3><span class="section-number">1.5.6. </span>保存<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.5.7. </span>保存<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 全データ</span>

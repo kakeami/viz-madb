@@ -493,7 +493,7 @@ df_cs.to_csv(os.path.join(DIR_TMP, 'cs.csv'), index=False)
 
 # ### 結合
 
-# In[71]:
+# In[117]:
 
 
 def read_and_concat_csvs(pathes):
@@ -505,7 +505,7 @@ def read_and_concat_csvs(pathes):
     return df_all
 
 
-# In[72]:
+# In[118]:
 
 
 def sort_date(df, col_date):
@@ -516,7 +516,7 @@ def sort_date(df, col_date):
     return df_new
 
 
-# In[73]:
+# In[119]:
 
 
 # 各ファイルのパスを抽出
@@ -525,7 +525,7 @@ ps_eps = glob.glob(f'{DIR_TMP}/eps*.csv')
 ps_cs = glob.glob(f'{DIR_TMP}/cs*.csv')
 
 
-# In[74]:
+# In[120]:
 
 
 # データの読み出し
@@ -535,7 +535,7 @@ df_cs = read_and_concat_csvs(ps_cs)
 mcid2mcname = read_json(os.path.join(DIR_TMP, 'mcid2mcname.json'))
 
 
-# In[75]:
+# In[121]:
 
 
 # 結合
@@ -545,14 +545,14 @@ df_all['mcname'] = df_all['mcid'].apply(
     lambda x: mcid2mcname[x])
 
 
-# In[76]:
+# In[122]:
 
 
 # 必要な列のみ抽出
 df_all = df_all[COLS_OUT]
 
 
-# In[77]:
+# In[123]:
 
 
 # ソート
@@ -562,19 +562,19 @@ df_all = df_all.sort_values(['datePublished', 'pageStart'], ignore_index=True)
 
 # ### 各雑誌の`datePublished`を統一
 
-# In[78]:
+# In[124]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[79]:
+# In[125]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[80]:
+# In[126]:
 
 
 # 全雑誌のうちDBに存在する期間が最も短いものに合わせる
@@ -585,19 +585,19 @@ df_all = df_all[
     (df_all['datePublished']<=date_max)].reset_index(drop=True)
 
 
-# In[81]:
+# In[127]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[82]:
+# In[128]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[83]:
+# In[129]:
 
 
 df_all.value_counts('mcname')
@@ -605,7 +605,7 @@ df_all.value_counts('mcname')
 
 # ### 適切な`pageStart`/`pageEnd`を持つ行のみ抽出
 
-# In[84]:
+# In[130]:
 
 
 # pageStartがpageEndより小さい値であること
@@ -614,7 +614,7 @@ asst_ps_pe = df_all['pageStart'] <= df_all['pageEnd']
 asst_pe = df_all['pageEnd'] <= MAX_PAGES
 
 
-# In[85]:
+# In[131]:
 
 
 # 抽出後のデータ
@@ -625,7 +625,7 @@ df_drop = df_all[
     ~(asst_ps_pe&asst_pe)].reset_index(drop=True)
 
 
-# In[86]:
+# In[132]:
 
 
 # 検証
@@ -634,7 +634,7 @@ assert df_all.shape[0] == df_new.shape[0] + df_drop.shape[0]
 
 # 除外したデータの一覧．
 
-# In[56]:
+# In[133]:
 
 
 df_drop
@@ -642,15 +642,15 @@ df_drop
 
 # ### 各`episode`のページ数`pages`をカラムに追加
 
-# In[60]:
+# In[134]:
 
 
-df_new['pages'] = df_new['pageEnd'] - df_new['pageStart']
+df_new['pages'] = df_new['pageEnd'] - df_new['pageStart'] + 1
 
 
 # ### 各雑誌巻号の最終ページ`pageEndMax`をカラムに追加
 
-# In[64]:
+# In[135]:
 
 
 # 各雑誌巻号の最終ページ
@@ -660,9 +660,23 @@ df_new['pageEndMax'] = df_new['miname'].apply(
     lambda x: miname2page[x])
 
 
+# ### 各episodeの掲載位置`pageStartPosition`をカラムに追加
+
+# In[136]:
+
+
+df_new['pageStartPosition'] =     df_new['pageStart'] / df_new['pageEndMax']
+
+
+# In[137]:
+
+
+df_new['pageStartPosition'].describe()
+
+
 # ### 保存
 
-# In[70]:
+# In[138]:
 
 
 # 全データ

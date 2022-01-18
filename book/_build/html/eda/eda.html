@@ -551,6 +551,16 @@
      ）
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pagestartposition">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageStartPosition
+      </span>
+     </code>
+     （各話の相対的な掲載位置）
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -734,6 +744,16 @@
      ）
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pagestartposition">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageStartPosition
+      </span>
+     </code>
+     （各話の相対的な掲載位置）
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -794,7 +814,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(179931, 14)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(179931, 15)
 </pre></div>
 </div>
 </div>
@@ -810,7 +830,7 @@
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;mcname&#39;, &#39;miname&#39;, &#39;cname&#39;, &#39;epname&#39;, &#39;creator&#39;, &#39;pageStart&#39;,
        &#39;pageEnd&#39;, &#39;numberOfPages&#39;, &#39;datePublished&#39;, &#39;price&#39;, &#39;publisher&#39;,
-       &#39;editor&#39;, &#39;pages&#39;, &#39;pageEndMax&#39;],
+       &#39;editor&#39;, &#39;pages&#39;, &#39;pageEndMax&#39;, &#39;pageStartPosition&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
@@ -829,8 +849,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">price</span></code>: 雑誌の価格</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>: 雑誌の出版社</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">editor</span></code>: 雑誌の編集者（編集長）</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pages</span></code>: 各話のページ数（<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code> - <code class="docutils literal notranslate"><span class="pre">pageStart</span></code>）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pages</span></code>: 各話のページ数（<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code> - <code class="docutils literal notranslate"><span class="pre">pageStart</span></code> + 1）</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pageEndMax</span></code>: 雑誌に掲載されているマンガ作品のうち，<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>の最大値</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pageStartPosition</span></code>: 各話の<code class="docutils literal notranslate"><span class="pre">pageStart</span></code>の相対的な位置（<code class="docutils literal notranslate"><span class="pre">pageStart</span></code> / <code class="docutils literal notranslate"><span class="pre">pageEndMax</span></code>）</p></li>
 </ul>
 <p>冒頭数行を見て，データのイメージを掴んでみましょう．</p>
 <div class="cell docutils container">
@@ -872,6 +893,7 @@
       <th>editor</th>
       <th>pages</th>
       <th>pageEndMax</th>
+      <th>pageStartPosition</th>
     </tr>
   </thead>
   <tbody>
@@ -889,8 +911,9 @@
       <td>80.0</td>
       <td>集英社</td>
       <td>長野規</td>
-      <td>30.0</td>
+      <td>31.0</td>
       <td>275.0</td>
+      <td>0.025455</td>
     </tr>
     <tr>
       <th>1</th>
@@ -906,8 +929,9 @@
       <td>80.0</td>
       <td>秋田書店　∥　アキタショテン</td>
       <td>成田清美</td>
-      <td>28.0</td>
+      <td>29.0</td>
       <td>290.0</td>
+      <td>0.051724</td>
     </tr>
     <tr>
       <th>2</th>
@@ -923,8 +947,9 @@
       <td>80.0</td>
       <td>集英社</td>
       <td>長野規</td>
-      <td>14.0</td>
+      <td>15.0</td>
       <td>275.0</td>
+      <td>0.141818</td>
     </tr>
     <tr>
       <th>3</th>
@@ -940,8 +965,9 @@
       <td>80.0</td>
       <td>秋田書店　∥　アキタショテン</td>
       <td>成田清美</td>
-      <td>18.0</td>
+      <td>19.0</td>
       <td>290.0</td>
+      <td>0.165517</td>
     </tr>
     <tr>
       <th>4</th>
@@ -957,8 +983,9 @@
       <td>80.0</td>
       <td>集英社</td>
       <td>長野規</td>
-      <td>14.0</td>
+      <td>15.0</td>
       <td>275.0</td>
+      <td>0.203636</td>
     </tr>
   </tbody>
 </table>
@@ -996,6 +1023,7 @@
       <th>price</th>
       <th>pages</th>
       <th>pageEndMax</th>
+      <th>pageStartPosition</th>
     </tr>
   </thead>
   <tbody>
@@ -1007,6 +1035,7 @@
       <td>179893.000000</td>
       <td>179931.000000</td>
       <td>179931.000000</td>
+      <td>179931.000000</td>
     </tr>
     <tr>
       <th>mean</th>
@@ -1014,8 +1043,9 @@
       <td>228.371240</td>
       <td>417.376325</td>
       <td>203.871740</td>
-      <td>17.526135</td>
+      <td>18.526135</td>
       <td>408.249379</td>
+      <td>0.514837</td>
     </tr>
     <tr>
       <th>std</th>
@@ -1025,6 +1055,7 @@
       <td>41.955489</td>
       <td>7.712730</td>
       <td>69.804101</td>
+      <td>0.283146</td>
     </tr>
     <tr>
       <th>min</th>
@@ -1032,8 +1063,9 @@
       <td>1.000000</td>
       <td>36.000000</td>
       <td>80.000000</td>
-      <td>0.000000</td>
+      <td>1.000000</td>
       <td>200.000000</td>
+      <td>0.002045</td>
     </tr>
     <tr>
       <th>25%</th>
@@ -1041,8 +1073,9 @@
       <td>126.000000</td>
       <td>356.000000</td>
       <td>180.000000</td>
-      <td>16.000000</td>
+      <td>17.000000</td>
       <td>346.000000</td>
+      <td>0.274840</td>
     </tr>
     <tr>
       <th>50%</th>
@@ -1050,8 +1083,9 @@
       <td>222.000000</td>
       <td>437.000000</td>
       <td>210.000000</td>
-      <td>18.000000</td>
+      <td>19.000000</td>
       <td>433.000000</td>
+      <td>0.520588</td>
     </tr>
     <tr>
       <th>75%</th>
@@ -1059,8 +1093,9 @@
       <td>322.000000</td>
       <td>464.000000</td>
       <td>236.000000</td>
-      <td>19.000000</td>
+      <td>20.000000</td>
       <td>457.000000</td>
+      <td>0.759626</td>
     </tr>
     <tr>
       <th>max</th>
@@ -1068,8 +1103,9 @@
       <td>600.000000</td>
       <td>600.000000</td>
       <td>371.000000</td>
-      <td>486.000000</td>
+      <td>487.000000</td>
       <td>600.000000</td>
+      <td>1.000000</td>
     </tr>
   </tbody>
 </table>
@@ -1173,6 +1209,11 @@
     <tr>
       <th>13</th>
       <td>pageEndMax</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>pageStartPosition</td>
       <td>0</td>
     </tr>
   </tbody>
@@ -3416,7 +3457,7 @@
     <tr>
       <th>1</th>
       <td>mean</td>
-      <td>17.526135</td>
+      <td>18.526135</td>
     </tr>
     <tr>
       <th>2</th>
@@ -3426,27 +3467,27 @@
     <tr>
       <th>3</th>
       <td>min</td>
-      <td>0.000000</td>
+      <td>1.000000</td>
     </tr>
     <tr>
       <th>4</th>
       <td>25%</td>
-      <td>16.000000</td>
+      <td>17.000000</td>
     </tr>
     <tr>
       <th>5</th>
       <td>50%</td>
-      <td>18.000000</td>
+      <td>19.000000</td>
     </tr>
     <tr>
       <th>6</th>
       <td>75%</td>
-      <td>19.000000</td>
+      <td>20.000000</td>
     </tr>
     <tr>
       <th>7</th>
       <td>max</td>
-      <td>486.000000</td>
+      <td>487.000000</td>
     </tr>
   </tbody>
 </table>
@@ -3492,6 +3533,7 @@
       <th>editor</th>
       <th>pages</th>
       <th>pageEndMax</th>
+      <th>pageStartPosition</th>
     </tr>
   </thead>
   <tbody>
@@ -3509,8 +3551,9 @@
       <td>170.0</td>
       <td>集英社</td>
       <td>中野祐介</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>375.0</td>
+      <td>0.840000</td>
     </tr>
     <tr>
       <th>4908</th>
@@ -3526,8 +3569,9 @@
       <td>90.0</td>
       <td>小学館　∥　ショウガクカン</td>
       <td>井上敬三</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>283.0</td>
+      <td>0.713781</td>
     </tr>
     <tr>
       <th>12588</th>
@@ -3543,8 +3587,9 @@
       <td>130.0</td>
       <td>集英社　∥　シュウエイシャ</td>
       <td>中野祐介</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>262.0</td>
+      <td>0.931298</td>
     </tr>
     <tr>
       <th>109575</th>
@@ -3560,8 +3605,9 @@
       <td>210.0</td>
       <td>秋田書店　∥　アキタ ショテン</td>
       <td>樋口茂</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>436.0</td>
+      <td>0.986239</td>
     </tr>
     <tr>
       <th>118863</th>
@@ -3577,8 +3623,9 @@
       <td>219.0</td>
       <td>集英社　∥　シュウエイシャ</td>
       <td>茨木政彦</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>413.0</td>
+      <td>0.006053</td>
     </tr>
   </tbody>
 </table>
@@ -3625,6 +3672,7 @@
       <th>editor</th>
       <th>pages</th>
       <th>pageEndMax</th>
+      <th>pageStartPosition</th>
     </tr>
   </thead>
   <tbody>
@@ -3642,8 +3690,9 @@
       <td>255.0</td>
       <td>NaN</td>
       <td>瓶子吉久</td>
-      <td>486.0</td>
+      <td>487.0</td>
       <td>489.0</td>
+      <td>0.006135</td>
     </tr>
     <tr>
       <th>92463</th>
@@ -3659,8 +3708,9 @@
       <td>230.0</td>
       <td>小学館　∥　ショウガクカン</td>
       <td>奥山豊彦</td>
-      <td>454.0</td>
+      <td>455.0</td>
       <td>461.0</td>
+      <td>0.015184</td>
     </tr>
     <tr>
       <th>76857</th>
@@ -3676,8 +3726,9 @@
       <td>200.0</td>
       <td>講談社　∥　コウダンシャ</td>
       <td>五十嵐隆夫</td>
-      <td>391.0</td>
+      <td>392.0</td>
       <td>417.0</td>
+      <td>0.007194</td>
     </tr>
     <tr>
       <th>171023</th>
@@ -3693,8 +3744,9 @@
       <td>270.0</td>
       <td>NaN</td>
       <td>市原武法</td>
-      <td>317.0</td>
+      <td>318.0</td>
       <td>600.0</td>
+      <td>0.471667</td>
     </tr>
     <tr>
       <th>111687</th>
@@ -3710,8 +3762,9 @@
       <td>229.0</td>
       <td>講談社　∥　コウダンシャ,講談社</td>
       <td>野内雅宏</td>
-      <td>233.0</td>
+      <td>234.0</td>
       <td>495.0</td>
+      <td>0.078788</td>
     </tr>
   </tbody>
 </table>
@@ -3721,7 +3774,7 @@
 </div>
 <div class="section" id="pageendmax-pageend">
 <h3><code class="docutils literal notranslate"><span class="pre">pageEndMax</span></code>（雑誌巻号の最大の<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>）<a class="headerlink" href="#pageendmax-pageend" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">pageEndMax</span></code>（雑誌巻号の最大の<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>）えお<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．なお，<code class="docutils literal notranslate"><span class="pre">df</span></code>をそのまま<code class="docutils literal notranslate"><span class="pre">describe</span></code>してしまうと掲載作品数が多い雑誌巻号にバイアスのかかった統計量になってしまうため注意が必要です． そこで，ここでは<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>を<code class="docutils literal notranslate"><span class="pre">describe</span></code>します．</p>
+<p><code class="docutils literal notranslate"><span class="pre">pageEndMax</span></code>（雑誌巻号の最大の<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．なお，<code class="docutils literal notranslate"><span class="pre">df</span></code>をそのまま<code class="docutils literal notranslate"><span class="pre">describe</span></code>してしまうと掲載作品数が多い雑誌巻号にバイアスのかかった統計量になってしまうため注意が必要です． そこで，ここでは<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>を<code class="docutils literal notranslate"><span class="pre">describe</span></code>します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[</span>
@@ -3798,6 +3851,296 @@
 </table>
 </div></div></div>
 </div>
+</div>
+<div class="section" id="pagestartposition">
+<h3><code class="docutils literal notranslate"><span class="pre">pageStartPosition</span></code>（各話の相対的な掲載位置）<a class="headerlink" href="#pagestartposition" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pageStartPosition</span></code>（各話の相対的な掲載位置）について，<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pageStartPosition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>pageStartPosition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>count</td>
+      <td>179931.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean</td>
+      <td>0.514837</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>std</td>
+      <td>0.283146</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>min</td>
+      <td>0.002045</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25%</td>
+      <td>0.274840</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>50%</td>
+      <td>0.520588</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>75%</td>
+      <td>0.759626</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>max</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>概ね想定通りの結果が出ましたが，最大値が1なのが少し気になるので，深堀りしてみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pageStartPosition&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span>\
+    <span class="n">value_counts</span><span class="p">(</span><span class="s1">&#39;cname&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cname</th>
+      <th>counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ハレハレまんが時評</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>少チャンまんが時評</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>少チャン時評</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>J連作 1コマギャグ</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>爆裂1コマ漫画</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>マンギリ</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>でじこの1ページ劇場</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>まんが時評</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>風と真理子の物語</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>わらしべSEED</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>[目次]</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>ルポ魂</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>ウルトラ・ナンセンス劇場!</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>SHINING FORCENE。</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>[プレゼント当選者発表]</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>予告大作戦</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>プロ野球エピソード</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>少年サンデーまんがカレッジ</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>マガジンシアター</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>鹿兵のケラケラ日記</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>さくらの詩</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>スター★素顔拝見</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>[編集後記]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>[掲載に関するお知らせ]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>つくしんぼう</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>今週のミニミニ対話</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>俺はぼろぼろ</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>又鬼の命</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>[懸賞]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>MAJOR</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>ウルトラジャンプエッグのしずこちゃんとテラちゃん</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>月例フレッシュまんが賞</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>[インタビュー/対談/座談会]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>ささみさん@がんばらない</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>ふたりと5人</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ハレハレまんが時評</span></code>は週刊少年チャンピオンの巻末の目次ページに掲載されていた4コマ漫画のようです（恥ずかしながら，知りませんでした）．他のものに関しても同様でしょうか．</p>
 </div>
 </div>
 </div>

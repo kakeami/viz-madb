@@ -7,7 +7,7 @@
 
 # ## 下準備
 
-# In[34]:
+# In[107]:
 
 
 import pandas as pd
@@ -16,14 +16,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[35]:
+# In[108]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
 PATH_DATA = '../../data/preprocess/out/episodes.csv'
 
 
-# In[36]:
+# In[109]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -41,7 +41,7 @@ df = pd.read_csv(PATH_DATA)
 # の`1970-07-27`から`2017-07-06`までのすべての掲載作品のデータを格納した`DataFrame`です．
 # まずはサイズを見てみましょう．
 
-# In[37]:
+# In[110]:
 
 
 df.shape
@@ -50,7 +50,7 @@ df.shape
 # 各週の掲載作品を一行ずつ格納しているため，合計で約18万行程度の規模になります．
 # 以下に，各列の構成を示します．
 
-# In[38]:
+# In[111]:
 
 
 df.columns
@@ -68,12 +68,13 @@ df.columns
 # - `price`: 雑誌の価格
 # - `publisher`: 雑誌の出版社
 # - `editor`: 雑誌の編集者（編集長）
-# - `pages`: 各話のページ数（`pageEnd` - `pageStart`）
+# - `pages`: 各話のページ数（`pageEnd` - `pageStart` + 1）
 # - `pageEndMax`: 雑誌に掲載されているマンガ作品のうち，`pageEnd`の最大値
+# - `pageStartPosition`: 各話の`pageStart`の相対的な位置（`pageStart` / `pageEndMax`）
 
 # 冒頭数行を見て，データのイメージを掴んでみましょう．
 
-# In[40]:
+# In[112]:
 
 
 df.head()
@@ -81,13 +82,13 @@ df.head()
 
 # `pandas`の`describe()`コマンドでざっくり集計してみます．
 
-# In[41]:
+# In[113]:
 
 
 df.describe()
 
 
-# In[42]:
+# In[114]:
 
 
 df.isna().sum().reset_index()
@@ -103,7 +104,7 @@ df.isna().sum().reset_index()
 
 # ### `mcname`（雑誌名）
 
-# In[43]:
+# In[115]:
 
 
 df['mcname'].value_counts().reset_index()
@@ -115,7 +116,7 @@ df['mcname'].value_counts().reset_index()
 
 # ユニークな`miname`数を集計します．
 
-# In[44]:
+# In[116]:
 
 
 df['miname'].nunique()
@@ -123,7 +124,7 @@ df['miname'].nunique()
 
 # `mcname`（雑誌）ごとに集計した`miname`（雑誌巻号）は：
 
-# In[45]:
+# In[117]:
 
 
 df.groupby('mcname')['miname'].nunique().reset_index()
@@ -133,7 +134,7 @@ df.groupby('mcname')['miname'].nunique().reset_index()
 # 
 # 次は，`miname`（雑誌巻号）ごとに`mcname`（マンガ作品）数を集計してみます．
 
-# In[46]:
+# In[118]:
 
 
 df.groupby('miname')['cname'].nunique().sort_values().reset_index()
@@ -145,7 +146,7 @@ df.groupby('miname')['cname'].nunique().sort_values().reset_index()
 
 # ユニークな`cname`（マンガ作品）数を集計します．
 
-# In[47]:
+# In[119]:
 
 
 df['cname'].nunique()
@@ -153,7 +154,7 @@ df['cname'].nunique()
 
 # `mcname`（雑誌）ごとに`cname`（マンガ作品）数を集計します．
 
-# In[48]:
+# In[120]:
 
 
 df.groupby('mcname')['cname'].nunique().reset_index()
@@ -161,7 +162,7 @@ df.groupby('mcname')['cname'].nunique().reset_index()
 
 # ジャンプが圧倒的に多いですね…．試しに`cname`（マンガ作品）ごとに掲載数を集計してみます．
 
-# In[49]:
+# In[121]:
 
 
 df_tmp = df[['mcname', 'cname']].value_counts().reset_index()
@@ -178,7 +179,7 @@ df_tmp
 # 
 # 雑誌ごとに，マンガ作品の連載期間に関して基礎集計します．
 
-# In[50]:
+# In[122]:
 
 
 df_tmp.groupby('mcname')['counts'].describe()
@@ -190,7 +191,7 @@ df_tmp.groupby('mcname')['counts'].describe()
 
 # ユニークな`epname`（各話タイトル）数を集計します．
 
-# In[51]:
+# In[123]:
 
 
 df['epname'].nunique()
@@ -198,7 +199,7 @@ df['epname'].nunique()
 
 # 意外と重複しているようです．集計してみます．
 
-# In[52]:
+# In[124]:
 
 
 df['epname'].value_counts().reset_index()
@@ -206,7 +207,7 @@ df['epname'].value_counts().reset_index()
 
 # プロ野球編ってことは…．
 
-# In[53]:
+# In[125]:
 
 
 df[df['epname']=='プロ野球編']['cname'].value_counts().reset_index()
@@ -214,13 +215,13 @@ df[df['epname']=='プロ野球編']['cname'].value_counts().reset_index()
 
 # やっぱりドカベンですね！ドカベンってもしかして**〇〇編**の粒度でしかタイトルをつけないのでしょうか…？ドカベンの`epname`を集計してみます．
 
-# In[54]:
+# In[126]:
 
 
 df[df['cname']=='ドカベン']['epname'].value_counts().reset_index()
 
 
-# In[55]:
+# In[127]:
 
 
 df[df['cname']=='ドカベン']['epname'].isna().sum()
@@ -232,7 +233,7 @@ df[df['cname']=='ドカベン']['epname'].isna().sum()
 
 # `df`に存在する`creator`（作者）数を集計します．
 
-# In[56]:
+# In[128]:
 
 
 df['creator'].nunique()
@@ -240,7 +241,7 @@ df['creator'].nunique()
 
 # 合計作品数が多い`creator`を調べてみます．
 
-# In[57]:
+# In[129]:
 
 
 df['creator'].value_counts().reset_index().head(10)
@@ -251,7 +252,7 @@ df['creator'].value_counts().reset_index().head(10)
 # 
 # ちなみに，こち亀の`creator`を集計すると以下のようになります．
 
-# In[58]:
+# In[130]:
 
 
 df[df['cname']=='こちら葛飾区亀有公園前派出所']['creator'].value_counts().reset_index()
@@ -265,7 +266,7 @@ df[df['cname']=='こちら葛飾区亀有公園前派出所']['creator'].value_c
 
 # `pageStart`（開始ページ）について`describe()`で基礎集計すると，以下のようになります．
 
-# In[59]:
+# In[131]:
 
 
 df['pageStart'].describe().reset_index()
@@ -275,7 +276,7 @@ df['pageStart'].describe().reset_index()
 
 # `pageEnd`（終了ページ）について`describe()`で基礎集計すると，以下のようになります．
 
-# In[60]:
+# In[132]:
 
 
 df['pageEnd'].describe().reset_index()
@@ -287,7 +288,7 @@ df['pageEnd'].describe().reset_index()
 # なお，`df`をそのまま`describe`してしまうと掲載作品数が多い雑誌巻号にバイアスのかかった統計量になってしまうため注意が必要です．
 # そこで，ここでは`miname`で中間集計した`df_tmp`を`describe`します．
 
-# In[79]:
+# In[133]:
 
 
 df_tmp = df.groupby('miname')[
@@ -298,7 +299,7 @@ df_tmp['numberOfPages'].describe().reset_index()
 # 最小値が小さすぎる気がします．
 # 試しに`numberOfPages`でソートすると，
 
-# In[80]:
+# In[134]:
 
 
 df_tmp.sort_values('numberOfPages').head(10)
@@ -306,7 +307,7 @@ df_tmp.sort_values('numberOfPages').head(10)
 
 # 最初の二つに関しては入力ミスが疑われます．降順にソートしてみます．
 
-# In[81]:
+# In[135]:
 
 
 df_tmp.sort_values('numberOfPages', ascending=False).head(10)
@@ -316,7 +317,7 @@ df_tmp.sort_values('numberOfPages', ascending=False).head(10)
 # 
 # いずれにしても`numberOfPages`は欠測数が多いため積極的に分析に利用せず，後述する`pageEndMax`で代用します．
 
-# In[82]:
+# In[136]:
 
 
 df_tmp['numberOfPages'].isna().sum()
@@ -327,7 +328,7 @@ df_tmp['numberOfPages'].isna().sum()
 # `datePublished`（発行日）を`describe`で基礎集計します．
 # 前述したように`df`を直接`describe`するとバイアスが乗るので，`miname`で中間集計した`df_tmp`に対して分析を実施します．
 
-# In[83]:
+# In[137]:
 
 
 df_tmp = df.groupby('miname')[['datePublished']].    first().reset_index()
@@ -338,7 +339,7 @@ df_tmp['datePublished'].describe().reset_index()
 
 # 次に，年単位で集計してみます．
 
-# In[84]:
+# In[138]:
 
 
 df_tmp['yearPublished'] = df_tmp['datePublished'].dt.year
@@ -352,7 +353,7 @@ df_tmp.value_counts('yearPublished').reset_index().    sort_values('yearPublishe
 # `price`（雑誌価格）を`describe`で基礎集計します．
 # 前述したように`df`を直接`describe`するとバイアスが乗るので，`miname`で中間集計した`df_tmp`に対して分析を実施します．
 
-# In[85]:
+# In[139]:
 
 
 df_tmp = df.groupby('miname')[['price']].    first().reset_index()
@@ -365,7 +366,7 @@ df_tmp['price'].describe().reset_index()
 
 # `publisher`（出版社）に関して集計します． 前述したように`df`を直接集計するとバイアスが乗るので，minameで中間集計したdf_tmpに対して分析を実施します．
 
-# In[86]:
+# In[140]:
 
 
 df_tmp = df.groupby('miname')[['mcname', 'publisher']].    first().reset_index()
@@ -373,7 +374,7 @@ df_tmp = df.groupby('miname')[['mcname', 'publisher']].    first().reset_index()
 
 # 雑誌ごとに出版社名を集計します．
 
-# In[87]:
+# In[141]:
 
 
 df_tmp.groupby('mcname')['publisher'].    value_counts().reset_index(name='count')
@@ -385,13 +386,13 @@ df_tmp.groupby('mcname')['publisher'].    value_counts().reset_index(name='count
 
 # `editor`（編集者）に関して集計します． 前述したように`df`を直接集計するとバイアスが乗るので，`miname`で中間集計した`df_tmp`に対して分析を実施します．
 
-# In[88]:
+# In[142]:
 
 
 df_tmp = df.groupby('miname')[['mcname', 'editor']].    first().reset_index()
 
 
-# In[89]:
+# In[143]:
 
 
 df_tmp.groupby('mcname')['editor'].value_counts().    reset_index(name='count')
@@ -411,7 +412,7 @@ df_tmp.groupby('mcname')['editor'].value_counts().    reset_index(name='count')
 
 # `pages`（各話のページ数）を`describe`で基礎集計します．
 
-# In[75]:
+# In[144]:
 
 
 df['pages'].describe().reset_index()
@@ -419,7 +420,7 @@ df['pages'].describe().reset_index()
 
 # 四分位は納得感がありますが，最小・最大が想定外です．昇順で並び替えてみます．
 
-# In[76]:
+# In[145]:
 
 
 df.sort_values('pages').head()
@@ -428,7 +429,7 @@ df.sort_values('pages').head()
 # `週刊少年ジャンプ 2004年 表示号数20`について[メディア芸術データベースで調べた](https://mediaarts-db.bunka.go.jp/id/M543111/)ところ，`BLEACH`は通常連載に加えて綴込み付録で`-17. 逸れゆく星々の為の前奏曲`を掲載したようです．
 # `pageStart`および`pageEnd`が中途半端な小数になっているのはそのためでしょう．
 
-# In[77]:
+# In[147]:
 
 
 df.sort_values('pages', ascending=False).head()
@@ -438,9 +439,9 @@ df.sort_values('pages', ascending=False).head()
 
 # ### `pageEndMax`（雑誌巻号の最大の`pageEnd`）
 
-# `pageEndMax`（雑誌巻号の最大の`pageEnd`）えお`describe`で基礎集計します．なお，`df`をそのまま`describe`してしまうと掲載作品数が多い雑誌巻号にバイアスのかかった統計量になってしまうため注意が必要です． そこで，ここでは`miname`で中間集計した`df_tmp`を`describe`します．
+# `pageEndMax`（雑誌巻号の最大の`pageEnd`）を`describe`で基礎集計します．なお，`df`をそのまま`describe`してしまうと掲載作品数が多い雑誌巻号にバイアスのかかった統計量になってしまうため注意が必要です． そこで，ここでは`miname`で中間集計した`df_tmp`を`describe`します．
 
-# In[78]:
+# In[148]:
 
 
 df_tmp = df.groupby('miname')[
@@ -448,8 +449,22 @@ df_tmp = df.groupby('miname')[
 df_tmp['pageEndMax'].describe().reset_index()
 
 
-# In[ ]:
+# ### `pageStartPosition`（各話の相対的な掲載位置）
+
+# `pageStartPosition`（各話の相対的な掲載位置）について，`describe`で基礎集計します．
+
+# In[149]:
 
 
+df['pageStartPosition'].describe().reset_index()
 
 
+# 概ね想定通りの結果が出ましたが，最大値が1なのが少し気になるので，深堀りしてみます．
+
+# In[151]:
+
+
+df[df['pageStartPosition']==1].    value_counts('cname').reset_index(name='counts')
+
+
+# `ハレハレまんが時評`は週刊少年チャンピオンの巻末の目次ページに掲載されていた4コマ漫画のようです（恥ずかしながら，知りませんでした）．他のものに関しても同様でしょうか．
