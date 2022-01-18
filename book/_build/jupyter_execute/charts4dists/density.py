@@ -90,13 +90,13 @@ show_fig(fig)
 
 # ### 雑誌別・作品別の合計連載週数
 
-# In[16]:
+# In[23]:
 
 
 df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
 
 
-# In[17]:
+# In[24]:
 
 
 df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
@@ -107,20 +107,14 @@ hist_data = [
     for mc in mcnames]
 fig = ff.create_distplot(
     hist_data, mcnames, show_hist=False)
-fig.update_layout(title_text='雑誌別・作品別の合計連載週数')
-show_fig(fig)
-
-
-# In[18]:
-
-
 fig.update_xaxes(range=[0, 200])
+fig.update_layout(title_text='雑誌別・作品別の合計連載週数')
 show_fig(fig)
 
 
 # ### 作品別の合計連載週数
 
-# In[19]:
+# In[25]:
 
 
 df_plot = df.value_counts('creator').reset_index(name='weeks')
@@ -128,19 +122,13 @@ fig = ff.create_distplot(
     df_plot['weeks'].values.reshape(1, -1), 
     ['全雑誌'], show_hist=False)
 fig.update_layout(title_text='作者別の合計連載週数')
-show_fig(fig)
-
-
-# In[20]:
-
-
 fig.update_xaxes(range=[0, 200])
 show_fig(fig)
 
 
 # ### 雑誌別・作者別の合計連載週数
 
-# In[21]:
+# In[26]:
 
 
 df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
@@ -152,12 +140,6 @@ hist_data = [
 fig = ff.create_distplot(
     hist_data, mcnames, show_hist=False)
 fig.update_layout(title_text='雑誌別・作者別の合計連載週数')
-show_fig(fig)
-
-
-# In[22]:
-
-
 fig.update_xaxes(range=[0, 200])
 show_fig(fig)
 
