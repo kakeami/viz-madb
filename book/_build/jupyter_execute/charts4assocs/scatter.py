@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Scatter plot
+# # 散布図
 
 # ## 概要
 
