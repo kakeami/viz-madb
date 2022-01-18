@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Strip charts
+# # ストリップチャート
 
 # ## 概要
+
+# **ストリップチャート**とは，
 
 # ## Plotlyによる作図方法
 
@@ -25,7 +27,7 @@ warnings.filterwarnings('ignore')
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
@@ -59,19 +61,16 @@ fig = px.strip(
 show_fig(fig)
 
 
-# In[6]:
+# In[7]:
 
 
-fig = px.strip(
-    df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作品別の合計連載週数')
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
 
 # ### 雑誌別・作者別の合計連載週数
 
-# In[7]:
+# In[8]:
 
 
 df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
@@ -83,24 +82,9 @@ fig = px.strip(
 show_fig(fig)
 
 
-# In[8]:
+# In[9]:
 
 
-fig = px.strip(
-    df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作者別の合計連載週数')
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 

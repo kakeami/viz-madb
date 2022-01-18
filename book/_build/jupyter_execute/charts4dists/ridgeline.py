@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Ridgeline plot
+# # リッジラインプロット
+# 
+# **リッジラインプロット**とは
 
 # ## 概要
 
@@ -21,16 +23,16 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[6]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[7]:
 
 
 def show_fig(fig):
@@ -39,7 +41,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[4]:
+# In[8]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -50,7 +52,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[5]:
+# In[9]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -58,7 +60,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 年代別・作品別の合計連載週数
 
-# In[6]:
+# In[10]:
 
 
 df = add_years_to_df(df, unit_years=10)
@@ -67,26 +69,23 @@ df_plot =     df.value_counts(['years', 'cname']).reset_index(name='weeks')
 df_plot = df_plot.sort_values(
     'years', ascending=False, ignore_index=True)
 fig = px.violin(
-    df_plot, x='weeks', y='years', orientation='h')
+    df_plot, x='weeks', y='years', orientation='h', 
+    points=False)
 fig.update_traces(
     side='positive', scalemode='count', width=4)
 show_fig(fig)
 
 
-# In[ ]:
+# In[11]:
 
 
-fig = px.violin(
-    df_plot, x='weeks', y='years', orientation='h')
-fig.update_traces(
-    side='positive', scalemode='count', width=4)
 fig.update_xaxes(range=[0, 200])
 show_fig(fig)
 
 
 # ### 年代別・作者別の合計連載週数
 
-# In[ ]:
+# In[14]:
 
 
 df = add_years_to_df(df, unit_years=10)
@@ -95,31 +94,27 @@ df_plot =     df.value_counts(['years', 'creator']).reset_index(name='weeks')
 df_plot = df_plot.sort_values(
     'years', ascending=False, ignore_index=True)
 fig = px.violin(
-    df_plot, x='weeks', y='years', orientation='h')
-fig.update_traces(
-    side='positive', scalemode='count', width=4)
-show_fig(fig)
-
-
-# In[ ]:
-
-
-fig = px.violin(
-    df_plot, x='weeks', y='years', orientation='h')
+    df_plot, x='weeks', y='years', orientation='h',
+    points=False)
 fig.update_traces(
     side='positive', scalemode='count', width=4)
 fig.update_xaxes(range=[0, 200])
 show_fig(fig)
 
 
-# In[ ]:
+# ### 年代別の各話ページ数
+
+# In[18]:
 
 
-
-
-
-# In[ ]:
-
-
-
+# 年代順にソート
+df = df.sort_values(
+    'years', ascending=False, ignore_index=True)
+fig = px.violin(
+    df, x='pages', y='years', orientation='h',
+    points=False)
+fig.update_traces(
+    side='positive', scalemode='count', width=4)
+fig.update_xaxes(range=[0, 50])
+show_fig(fig)
 

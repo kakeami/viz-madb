@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Box plot
+# # 箱ひげ図
 
 # ## 概要
+
+# **箱ひげ図**とは，
 
 # ## Plotlyによる作図方法
 
@@ -11,7 +13,7 @@
 
 # ### 下準備
 
-# In[1]:
+# In[2]:
 
 
 import pandas as pd
@@ -21,16 +23,16 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[3]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[4]:
 
 
 def show_fig(fig):
@@ -39,7 +41,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[4]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -47,7 +49,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・作品別の合計連載週数 
 
-# In[5]:
+# In[6]:
 
 
 df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
@@ -59,19 +61,16 @@ fig = px.box(
 show_fig(fig)
 
 
-# In[6]:
+# In[8]:
 
 
-fig = px.box(
-    df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作品別の合計連載週数')
 fig.update_yaxes(range=[0, 100])
 show_fig(fig)
 
 
 # ### 作者別の合計連載週数
 
-# In[7]:
+# In[9]:
 
 
 df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
@@ -83,30 +82,9 @@ fig = px.box(
 show_fig(fig)
 
 
-# In[8]:
+# In[10]:
 
 
-fig = px.box(
-    df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作者別の合計連載週数')
 fig.update_yaxes(range=[0, 100])
 show_fig(fig)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
