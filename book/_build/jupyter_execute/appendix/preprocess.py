@@ -493,7 +493,7 @@ df_cs.to_csv(os.path.join(DIR_TMP, 'cs.csv'), index=False)
 
 # ### 結合
 
-# In[16]:
+# In[71]:
 
 
 def read_and_concat_csvs(pathes):
@@ -505,7 +505,7 @@ def read_and_concat_csvs(pathes):
     return df_all
 
 
-# In[17]:
+# In[72]:
 
 
 def sort_date(df, col_date):
@@ -516,7 +516,7 @@ def sort_date(df, col_date):
     return df_new
 
 
-# In[18]:
+# In[73]:
 
 
 # 各ファイルのパスを抽出
@@ -525,7 +525,7 @@ ps_eps = glob.glob(f'{DIR_TMP}/eps*.csv')
 ps_cs = glob.glob(f'{DIR_TMP}/cs*.csv')
 
 
-# In[19]:
+# In[74]:
 
 
 # データの読み出し
@@ -535,7 +535,7 @@ df_cs = read_and_concat_csvs(ps_cs)
 mcid2mcname = read_json(os.path.join(DIR_TMP, 'mcid2mcname.json'))
 
 
-# In[20]:
+# In[75]:
 
 
 # 結合
@@ -545,14 +545,14 @@ df_all['mcname'] = df_all['mcid'].apply(
     lambda x: mcid2mcname[x])
 
 
-# In[21]:
+# In[76]:
 
 
 # 必要な列のみ抽出
 df_all = df_all[COLS_OUT]
 
 
-# In[22]:
+# In[77]:
 
 
 # ソート
@@ -562,19 +562,19 @@ df_all = df_all.sort_values(['datePublished', 'pageStart'], ignore_index=True)
 
 # ### 各雑誌の`datePublished`を統一
 
-# In[23]:
+# In[78]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[24]:
+# In[79]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[25]:
+# In[80]:
 
 
 # 全雑誌のうちDBに存在する期間が最も短いものに合わせる
@@ -585,19 +585,19 @@ df_all = df_all[
     (df_all['datePublished']<=date_max)].reset_index(drop=True)
 
 
-# In[26]:
+# In[81]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[27]:
+# In[82]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[28]:
+# In[83]:
 
 
 df_all.value_counts('mcname')
@@ -605,7 +605,7 @@ df_all.value_counts('mcname')
 
 # ### 適切な`pageStart`/`pageEnd`を持つ行のみ抽出
 
-# In[50]:
+# In[84]:
 
 
 # pageStartがpageEndより小さい値であること
@@ -614,7 +614,7 @@ asst_ps_pe = df_all['pageStart'] <= df_all['pageEnd']
 asst_pe = df_all['pageEnd'] <= MAX_PAGES
 
 
-# In[52]:
+# In[85]:
 
 
 # 抽出後のデータ
@@ -625,7 +625,7 @@ df_drop = df_all[
     ~(asst_ps_pe&asst_pe)].reset_index(drop=True)
 
 
-# In[53]:
+# In[86]:
 
 
 # 検証
