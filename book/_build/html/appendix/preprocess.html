@@ -457,13 +457,64 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     1.5.2. 各雑誌の期間を揃える
+    <a class="reference internal nav-link" href="#datepublished">
+     1.5.2. 各雑誌の
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       datePublished
+      </span>
+     </code>
+     を統一
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     1.5.3. 保存
+    <a class="reference internal nav-link" href="#pagestart-pageend">
+     1.5.3. 適切な
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageStart
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageEnd
+      </span>
+     </code>
+     を持つ行のみ抽出
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#episodepages">
+     1.5.4. 各
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       episode
+      </span>
+     </code>
+     のページ数
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pages
+      </span>
+     </code>
+     をカラムに追加
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pageendmax">
+     1.5.5. 各雑誌巻号の最終ページ
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageEndMax
+      </span>
+     </code>
+     をカラムに追加
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     1.5.6. 保存
     </a>
    </li>
   </ul>
@@ -556,13 +607,64 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     1.5.2. 各雑誌の期間を揃える
+    <a class="reference internal nav-link" href="#datepublished">
+     1.5.2. 各雑誌の
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       datePublished
+      </span>
+     </code>
+     を統一
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     1.5.3. 保存
+    <a class="reference internal nav-link" href="#pagestart-pageend">
+     1.5.3. 適切な
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageStart
+      </span>
+     </code>
+     /
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageEnd
+      </span>
+     </code>
+     を持つ行のみ抽出
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#episodepages">
+     1.5.4. 各
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       episode
+      </span>
+     </code>
+     のページ数
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pages
+      </span>
+     </code>
+     をカラムに追加
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pageendmax">
+     1.5.5. 各雑誌巻号の最終ページ
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pageEndMax
+      </span>
+     </code>
+     をカラムに追加
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     1.5.6. 保存
     </a>
    </li>
   </ul>
@@ -714,6 +816,14 @@
     <span class="s1">&#39;creator&#39;</span><span class="p">,</span> <span class="s1">&#39;pageStart&#39;</span><span class="p">,</span> <span class="s1">&#39;pageEnd&#39;</span><span class="p">,</span> <span class="s1">&#39;numberOfPages&#39;</span><span class="p">,</span>
     <span class="s1">&#39;datePublished&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">,</span> <span class="s1">&#39;editor&#39;</span><span class="p">,</span>
 <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 許容するpageEnd，pageStartの最大値</span>
+<span class="n">MAX_PAGES</span> <span class="o">=</span> <span class="mi">1000</span>
 </pre></div>
 </div>
 </div>
@@ -1270,8 +1380,8 @@ metadata_cm-col_cm106_json.zip	 metadata_ma-item_ma401_json.zip
 </div>
 </div>
 </div>
-<div class="section" id="id8">
-<h3><span class="section-number">1.5.2. </span>各雑誌の期間を揃える<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="datepublished">
+<h3><span class="section-number">1.5.2. </span>各雑誌の<code class="docutils literal notranslate"><span class="pre">datePublished</span></code>を統一<a class="headerlink" href="#datepublished" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;mcname&#39;</span><span class="p">)[</span><span class="s1">&#39;datePublished&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
@@ -1327,8 +1437,8 @@ Name: datePublished, dtype: datetime64[ns]
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
 週刊少年サンデー     1970-08-02
-週刊少年ジャンプ     1970-08-03
-週刊少年チャンピオン   1970-08-03
+週刊少年ジャンプ     1970-07-27
+週刊少年チャンピオン   1970-07-27
 週刊少年マガジン     1970-08-02
 Name: datePublished, dtype: datetime64[ns]
 </pre></div>
@@ -1343,10 +1453,10 @@ Name: datePublished, dtype: datetime64[ns]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
-週刊少年サンデー     2017-07-05
-週刊少年ジャンプ     2017-07-03
+週刊少年サンデー     2017-07-12
+週刊少年ジャンプ     2017-07-10
 週刊少年チャンピオン   2017-07-06
-週刊少年マガジン     2017-07-05
+週刊少年マガジン     2017-07-12
 Name: datePublished, dtype: datetime64[ns]
 </pre></div>
 </div>
@@ -1360,21 +1470,681 @@ Name: datePublished, dtype: datetime64[ns]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mcname
-週刊少年サンデー      46153
-週刊少年チャンピオン    45410
-週刊少年マガジン      45293
-週刊少年ジャンプ      43010
+週刊少年サンデー      46179
+週刊少年チャンピオン    45426
+週刊少年マガジン      45318
+週刊少年ジャンプ      43045
 dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="id9">
-<h3><span class="section-number">1.5.3. </span>保存<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="pagestart-pageend">
+<h3><span class="section-number">1.5.3. </span>適切な<code class="docutils literal notranslate"><span class="pre">pageStart</span></code>/<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>を持つ行のみ抽出<a class="headerlink" href="#pagestart-pageend" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_all</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s1">&#39;magazines.csv&#39;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pageStartがpageEndより小さい値であること</span>
+<span class="n">asst_ps_pe</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;pageStart&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;pageEnd&#39;</span><span class="p">]</span>
+<span class="c1"># pageEndがMAX_PAGES内であること</span>
+<span class="n">asst_pe</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;pageEnd&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">MAX_PAGES</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 抽出後のデータ</span>
+<span class="n">df_new</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">asst_ps_pe</span><span class="o">&amp;</span><span class="n">asst_pe</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># 除外したデータ</span>
+<span class="n">df_drop</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span>
+    <span class="o">~</span><span class="p">(</span><span class="n">asst_ps_pe</span><span class="o">&amp;</span><span class="n">asst_pe</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 検証</span>
+<span class="k">assert</span> <span class="n">df_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">df_new</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_drop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>除外したデータの一覧．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_drop</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcname</th>
+      <th>miname</th>
+      <th>cname</th>
+      <th>epname</th>
+      <th>creator</th>
+      <th>pageStart</th>
+      <th>pageEnd</th>
+      <th>numberOfPages</th>
+      <th>datePublished</th>
+      <th>price</th>
+      <th>publisher</th>
+      <th>editor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1972年 表示号数30</td>
+      <td>くそ坊主ガン鉄</td>
+      <td>母よどこにの巻</td>
+      <td>手無功</td>
+      <td>220.0</td>
+      <td>219.0</td>
+      <td>308.0</td>
+      <td>1972-07-17</td>
+      <td>100.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>長野規</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1972年 表示号数39</td>
+      <td>あらし!三匹</td>
+      <td>水上スキーの巻</td>
+      <td>池沢さとし</td>
+      <td>290.0</td>
+      <td>289.0</td>
+      <td>316.0</td>
+      <td>1972-09-11</td>
+      <td>100.0</td>
+      <td>集英社</td>
+      <td>長野規</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1972年 表示号数40</td>
+      <td>燃えて走れ!</td>
+      <td>NaN</td>
+      <td>村上もとか</td>
+      <td>107.0</td>
+      <td>106.0</td>
+      <td>316.0</td>
+      <td>1972-09-18</td>
+      <td>100.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>長野規</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1973年 表示号数44</td>
+      <td>ダメおやじ</td>
+      <td>NaN</td>
+      <td>古谷三敏</td>
+      <td>189.0</td>
+      <td>150.0</td>
+      <td>334.0</td>
+      <td>1973-10-21</td>
+      <td>120.0</td>
+      <td>小学館　∥　ショウガクカン</td>
+      <td>井上敬三</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1975年 表示号数20</td>
+      <td>学ちゃんとメリー</td>
+      <td>NaN</td>
+      <td>大画としゆき</td>
+      <td>52.0</td>
+      <td>1.0</td>
+      <td>268.0</td>
+      <td>1975-05-19</td>
+      <td>130.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>中野祐介</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1979年 表示号数37</td>
+      <td>あばれ大海</td>
+      <td>にわかライダーの巻</td>
+      <td>六田登</td>
+      <td>265.0</td>
+      <td>232.0</td>
+      <td>380.0</td>
+      <td>1979-09-09</td>
+      <td>170.0</td>
+      <td>小学館</td>
+      <td>田中一喜</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1979年 表示号数44</td>
+      <td>ふたりのダービー</td>
+      <td>NaN</td>
+      <td>田中つかさ</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>344.0</td>
+      <td>1979-10-29</td>
+      <td>150.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>西村繁男</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1979年 表示号数45</td>
+      <td>ふたりのダービー</td>
+      <td>NaN</td>
+      <td>田中つかさ</td>
+      <td>67.0</td>
+      <td>NaN</td>
+      <td>336.0</td>
+      <td>1979-11-05</td>
+      <td>150.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>西村繁男</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1979年 表示号数46</td>
+      <td>ふたりのダービー</td>
+      <td>NaN</td>
+      <td>田中つかさ</td>
+      <td>165.0</td>
+      <td>NaN</td>
+      <td>336.0</td>
+      <td>1979-11-12</td>
+      <td>150.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>西村繁男</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1979年 表示号数48</td>
+      <td>ふたりのダービー</td>
+      <td>NaN</td>
+      <td>田中つかさ</td>
+      <td>235.0</td>
+      <td>0.0</td>
+      <td>382.0</td>
+      <td>1979-11-26</td>
+      <td>170.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>西村繁男</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1979年 表示号数49</td>
+      <td>ふたりのダービー</td>
+      <td>NaN</td>
+      <td>田中つかさ</td>
+      <td>143.0</td>
+      <td>NaN</td>
+      <td>336.0</td>
+      <td>1979-12-03</td>
+      <td>150.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>西村繁男</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1979年 表示号数51</td>
+      <td>ふたりのダービー</td>
+      <td>NaN</td>
+      <td>田中つかさ</td>
+      <td>223.0</td>
+      <td>NaN</td>
+      <td>336.0</td>
+      <td>1979-12-17</td>
+      <td>150.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>西村繁男</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1979年 表示号数52</td>
+      <td>ふたりのダービー</td>
+      <td>NaN</td>
+      <td>田中つかさ</td>
+      <td>187.0</td>
+      <td>NaN</td>
+      <td>384.0</td>
+      <td>1979-12-24</td>
+      <td>170.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>西村繁男</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1980年 表示号数3</td>
+      <td>いずみちゃんグラフィティー</td>
+      <td>NaN</td>
+      <td>金井たつお</td>
+      <td>60.0</td>
+      <td>0.0</td>
+      <td>416.0</td>
+      <td>1980-01-21</td>
+      <td>170.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>西村繁男</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1980年 表示号数3</td>
+      <td>ふたりのダービー</td>
+      <td>NaN</td>
+      <td>田中つかさ</td>
+      <td>319.0</td>
+      <td>0.0</td>
+      <td>416.0</td>
+      <td>1980-01-21</td>
+      <td>170.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>西村繁男</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1980年 表示号数9</td>
+      <td>ドロファイター</td>
+      <td>NaN</td>
+      <td>村上もとか</td>
+      <td>247.0</td>
+      <td>246.0</td>
+      <td>380.0</td>
+      <td>1980-02-24</td>
+      <td>170.0</td>
+      <td>小学館　∥　ショウガクカン</td>
+      <td>田中一喜</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1984年 表示号数5</td>
+      <td>ラブZ</td>
+      <td>D 愛せない　⑭</td>
+      <td>やまさき拓味</td>
+      <td>221.0</td>
+      <td>0.0</td>
+      <td>388.0</td>
+      <td>1984-01-18</td>
+      <td>190.0</td>
+      <td>小学館　∥　ショウガクカン</td>
+      <td>田中一喜</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン 1984年 表示号数11</td>
+      <td>コンポラ先生</td>
+      <td>オンボロバスが大変身!?の巻</td>
+      <td>もとはしまさひで</td>
+      <td>139.0</td>
+      <td>1578.0</td>
+      <td>348.0</td>
+      <td>1984-02-29</td>
+      <td>180.0</td>
+      <td>講談社　∥　コウダンシャ</td>
+      <td>三樹創作</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>週刊少年チャンピオン</td>
+      <td>週刊少年チャンピオン 1986年 表示号数22</td>
+      <td>たつみ!センセーション</td>
+      <td>NaN</td>
+      <td>ゆめおい</td>
+      <td>319.0</td>
+      <td>38.0</td>
+      <td>348.0</td>
+      <td>1986-05-09</td>
+      <td>180.0</td>
+      <td>秋田書店　∥　アキタショテン</td>
+      <td>壁村耐三</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>週刊少年チャンピオン</td>
+      <td>週刊少年チャンピオン 1987年 表示号数21</td>
+      <td>4P田中くん</td>
+      <td>第41話 実力発揮、春日高校</td>
+      <td>川三番地</td>
+      <td>49.0</td>
+      <td>48.0</td>
+      <td>364.0</td>
+      <td>1987-05-01</td>
+      <td>180.0</td>
+      <td>秋田書店　∥　アキタショテン</td>
+      <td>壁村耐三</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン 1988年 表示号数46</td>
+      <td>激烈バカ</td>
+      <td>第36話 前夜祭!!!　／　ガンバレ日本!!!　／　強引!なんちゃって野郎!!　／　鎌倉野郎...</td>
+      <td>斉藤富士夫</td>
+      <td>359.0</td>
+      <td>261.0</td>
+      <td>396.0</td>
+      <td>1988-10-26</td>
+      <td>180.0</td>
+      <td>講談社　∥　コウダンシャ</td>
+      <td>五十嵐隆夫</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>週刊少年チャンピオン</td>
+      <td>週刊少年チャンピオン 1993年 表示号数16</td>
+      <td>グラップラー刃牙</td>
+      <td>第73話 長老</td>
+      <td>板垣恵介</td>
+      <td>9999.0</td>
+      <td>30.0</td>
+      <td>412.0</td>
+      <td>1993-04-01</td>
+      <td>200.0</td>
+      <td>秋田書店　∥　アキタショテン</td>
+      <td>岡本三司</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>週刊少年チャンピオン</td>
+      <td>週刊少年チャンピオン 1993年 表示号数17</td>
+      <td>俺たち鶴高ラグビー部</td>
+      <td>タックル〔□14〕キャプテンシー!!</td>
+      <td>山本幸四郎</td>
+      <td>359.0</td>
+      <td>358.0</td>
+      <td>412.0</td>
+      <td>1993-04-08</td>
+      <td>200.0</td>
+      <td>秋田書店　∥　アキタショテン</td>
+      <td>岡本三司</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>週刊少年チャンピオン</td>
+      <td>週刊少年チャンピオン 1993年 表示号数27</td>
+      <td>女郎</td>
+      <td>〔○52〕時間目 タタリじゃあ～</td>
+      <td>笠原倫</td>
+      <td>63.0</td>
+      <td>0.0</td>
+      <td>412.0</td>
+      <td>1993-06-17</td>
+      <td>200.0</td>
+      <td>秋田書店　∥　アキタショテン</td>
+      <td>岡本三司</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1994年 表示号数24</td>
+      <td>FCレッドカード</td>
+      <td>GOAL39　／　美しさは罪　／　心うらはら　／　プライド　／　だまされた!　／　謎の指サイ...</td>
+      <td>しろうず秀明</td>
+      <td>248.0</td>
+      <td>247.0</td>
+      <td>420.0</td>
+      <td>1994-06-01</td>
+      <td>200.0</td>
+      <td>小学館　∥　ショウガクカン</td>
+      <td>平山隆</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 1994年 表示号数26</td>
+      <td>川添孝一のJリーグカルチョクラブ</td>
+      <td>Kick off23 前期優勝チームは、はたして…</td>
+      <td>NaN</td>
+      <td>156.0</td>
+      <td>155.0</td>
+      <td>408.0</td>
+      <td>1994-06-15</td>
+      <td>200.0</td>
+      <td>小学館　∥　ショウガクカン</td>
+      <td>平山隆</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1995年 表示号数1</td>
+      <td>ジョジョの奇妙な冒険</td>
+      <td>思い出したぞ!</td>
+      <td>荒木飛呂彦</td>
+      <td>2275.0</td>
+      <td>293.0</td>
+      <td>470.0</td>
+      <td>1995-01-01</td>
+      <td>200.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>堀江信彦</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン 1998年 表示号数16</td>
+      <td>はじめの一歩</td>
+      <td>Round386　弱点</td>
+      <td>森川ジョージ</td>
+      <td>171.0</td>
+      <td>NaN</td>
+      <td>468.0</td>
+      <td>1998-04-01</td>
+      <td>220.0</td>
+      <td>講談社　∥　コウダンシャ</td>
+      <td>野内雅宏</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1998年 表示号数25</td>
+      <td>封神演義</td>
+      <td>第90回 趙公明攻略Ⅵ-蝉玉・ストーカー被害-</td>
+      <td>藤崎竜</td>
+      <td>359.0</td>
+      <td>349.0</td>
+      <td>456.0</td>
+      <td>1998-06-01</td>
+      <td>220.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>鳥嶋和彦</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン 1998年 表示号数27</td>
+      <td>Dreams</td>
+      <td>第81話　特訓の成果</td>
+      <td>川三番地</td>
+      <td>233.0</td>
+      <td>232.0</td>
+      <td>470.0</td>
+      <td>1998-06-17</td>
+      <td>230.0</td>
+      <td>講談社　∥　コウダンシャ</td>
+      <td>野内雅宏</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1999年 表示号数2</td>
+      <td>ホイッスル!</td>
+      <td>俺の居場所!の巻</td>
+      <td>樋口大輔</td>
+      <td>343.0</td>
+      <td>341.0</td>
+      <td>452.0</td>
+      <td>1999-01-08</td>
+      <td>230.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>鳥島和彦</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 1999年 表示号数4</td>
+      <td>I''s</td>
+      <td>ウラ目ウラ目</td>
+      <td>桂正和</td>
+      <td>281.0</td>
+      <td>207.0</td>
+      <td>512.0</td>
+      <td>1999-01-15</td>
+      <td>230.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>鳥島和彦</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>週刊少年チャンピオン</td>
+      <td>週刊少年チャンピオン 1999年 表示号数48</td>
+      <td>O-HA-YO</td>
+      <td>にらめっこ　／　秋の高座　／　卵を割る娘　／　メロンの恋人たち　／　恋愛小説　／　石庭　／　...</td>
+      <td>川島よしお</td>
+      <td>198.0</td>
+      <td>101.0</td>
+      <td>444.0</td>
+      <td>1999-11-04</td>
+      <td>220.0</td>
+      <td>秋田書店　∥　アキタショテン</td>
+      <td>大塚公平</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>週刊少年ジャンプ</td>
+      <td>週刊少年ジャンプ 2000年 表示号数20</td>
+      <td>ジョジョの奇妙な冒険 Part6 ストーンオーシャン</td>
+      <td>捕獲計画</td>
+      <td>荒木飛呂彦</td>
+      <td>289.0</td>
+      <td>208.0</td>
+      <td>450.0</td>
+      <td>2000-05-01</td>
+      <td>220.0</td>
+      <td>集英社　∥　シュウエイシャ</td>
+      <td>鳥嶋和彦</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン 2011年 表示号数18</td>
+      <td>GTO</td>
+      <td>SHONAN 14DAYS LESSON.60 この手につかんだ未来地図</td>
+      <td>藤沢とおる</td>
+      <td>345.0</td>
+      <td>264.0</td>
+      <td>479.0</td>
+      <td>2011-04-13</td>
+      <td>248.0</td>
+      <td>講談社　∥　コウダンシャ</td>
+      <td>森田浩章</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>週刊少年マガジン</td>
+      <td>週刊少年マガジン 2015年 表示号数16</td>
+      <td>リアルアカウント</td>
+      <td>account 13 Real ＆ Virtual</td>
+      <td>渡辺静</td>
+      <td>374.0</td>
+      <td>298.0</td>
+      <td>236.0</td>
+      <td>2015-04-01</td>
+      <td>260.0</td>
+      <td>NaN</td>
+      <td>菅原喜一郎</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>週刊少年サンデー</td>
+      <td>週刊少年サンデー 2015年 表示号数35</td>
+      <td>戦争劇場</td>
+      <td>第48戦:手を出したら最後…</td>
+      <td>土星フジコ</td>
+      <td>601.0</td>
+      <td>308.0</td>
+      <td>506.0</td>
+      <td>2015-07-29</td>
+      <td>270.0</td>
+      <td>NaN</td>
+      <td>市原武法</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="episodepages">
+<h3><span class="section-number">1.5.4. </span>各<code class="docutils literal notranslate"><span class="pre">episode</span></code>のページ数<code class="docutils literal notranslate"><span class="pre">pages</span></code>をカラムに追加<a class="headerlink" href="#episodepages" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pages&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageEnd&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageStart&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pageendmax">
+<h3><span class="section-number">1.5.5. </span>各雑誌巻号の最終ページ<code class="docutils literal notranslate"><span class="pre">pageEndMax</span></code>をカラムに追加<a class="headerlink" href="#pageendmax" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 各雑誌巻号の最終ページ</span>
+<span class="n">miname2page</span> <span class="o">=</span> <span class="n">df_new</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;miname&#39;</span><span class="p">)[</span><span class="s1">&#39;pageEnd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;pageEndMax&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;miname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">miname2page</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">1.5.6. </span>保存<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 全データ</span>
+<span class="n">df_new</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s1">&#39;episodes.csv&#39;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># 除外したデータ</span>
+<span class="n">df_new</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">,</span> <span class="s1">&#39;droped_episodes.csv&#39;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

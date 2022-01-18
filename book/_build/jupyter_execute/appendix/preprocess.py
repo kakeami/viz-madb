@@ -7,20 +7,20 @@
 
 # ## 環境構築
 
-# In[3]:
+# In[1]:
 
 
 import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[4]:
+# In[2]:
 
 
 get_ipython().system('pip install ijson')
 
 
-# In[5]:
+# In[3]:
 
 
 import glob
@@ -34,7 +34,7 @@ from tqdm import tqdm_notebook as tqdm
 import zipfile
 
 
-# In[6]:
+# In[4]:
 
 
 DIR_IN = '../../madb/data/json-ld'
@@ -42,7 +42,7 @@ DIR_TMP = '../../data/preprocess/tmp'
 DIR_OUT = '../../data/preprocess/out'
 
 
-# In[7]:
+# In[5]:
 
 
 FNS_CM = [
@@ -52,7 +52,7 @@ FNS_CM = [
 ]
 
 
-# In[8]:
+# In[6]:
 
 
 # 分析対象とする雑誌名
@@ -64,7 +64,7 @@ MCNAMES = [
 ]
 
 
-# In[22]:
+# In[7]:
 
 
 COLS_CM105 = [
@@ -74,7 +74,7 @@ COLS_CM105 = [
 ]
 
 
-# In[9]:
+# In[8]:
 
 
 # cm102, genre=='雑誌巻号'
@@ -92,7 +92,7 @@ COLS_MIS = {
 }
 
 
-# In[10]:
+# In[9]:
 
 
 # cm102, genre=='マンガ作品'
@@ -107,7 +107,7 @@ COLS_EPS = {
 }
 
 
-# In[11]:
+# In[10]:
 
 
 # cm106
@@ -117,7 +117,7 @@ COLS_CS = {
 }
 
 
-# In[12]:
+# In[11]:
 
 
 # 最終的に出力するカラム
@@ -128,7 +128,14 @@ COLS_OUT = [
 ]
 
 
-# In[13]:
+# In[39]:
+
+
+# 許容するpageEnd，pageStartの最大値
+MAX_PAGES = 1000
+
+
+# In[12]:
 
 
 get_ipython().system('ls {DIR_IN}')
@@ -136,7 +143,7 @@ get_ipython().system('ls {DIR_IN}')
 
 # ## 関数
 
-# In[14]:
+# In[13]:
 
 
 def read_json(path):
@@ -154,7 +161,7 @@ def read_json(path):
     return dct
 
 
-# In[15]:
+# In[14]:
 
 
 def save_json(path, dct):
@@ -169,7 +176,7 @@ def save_json(path, dct):
         json.dump(dct, f, ensure_ascii=False, indent=4)
 
 
-# In[16]:
+# In[15]:
 
 
 def read_json_w_filters(path, items, filters):
@@ -486,7 +493,7 @@ df_cs.to_csv(os.path.join(DIR_TMP, 'cs.csv'), index=False)
 
 # ### 結合
 
-# In[43]:
+# In[16]:
 
 
 def read_and_concat_csvs(pathes):
@@ -498,7 +505,7 @@ def read_and_concat_csvs(pathes):
     return df_all
 
 
-# In[44]:
+# In[17]:
 
 
 def sort_date(df, col_date):
@@ -509,7 +516,7 @@ def sort_date(df, col_date):
     return df_new
 
 
-# In[45]:
+# In[18]:
 
 
 # 各ファイルのパスを抽出
@@ -518,7 +525,7 @@ ps_eps = glob.glob(f'{DIR_TMP}/eps*.csv')
 ps_cs = glob.glob(f'{DIR_TMP}/cs*.csv')
 
 
-# In[46]:
+# In[19]:
 
 
 # データの読み出し
@@ -528,7 +535,7 @@ df_cs = read_and_concat_csvs(ps_cs)
 mcid2mcname = read_json(os.path.join(DIR_TMP, 'mcid2mcname.json'))
 
 
-# In[47]:
+# In[20]:
 
 
 # 結合
@@ -538,14 +545,14 @@ df_all['mcname'] = df_all['mcid'].apply(
     lambda x: mcid2mcname[x])
 
 
-# In[48]:
+# In[21]:
 
 
 # 必要な列のみ抽出
 df_all = df_all[COLS_OUT]
 
 
-# In[49]:
+# In[22]:
 
 
 # ソート
@@ -553,21 +560,21 @@ df_all['datePublished'] = pd.to_datetime(df_all['datePublished'])
 df_all = df_all.sort_values(['datePublished', 'pageStart'], ignore_index=True)
 
 
-# ### 各雑誌の期間を揃える
+# ### 各雑誌の`datePublished`を統一
 
-# In[50]:
+# In[23]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[51]:
+# In[24]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[53]:
+# In[25]:
 
 
 # 全雑誌のうちDBに存在する期間が最も短いものに合わせる
@@ -578,28 +585,88 @@ df_all = df_all[
     (df_all['datePublished']<=date_max)].reset_index(drop=True)
 
 
-# In[54]:
+# In[26]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[55]:
+# In[27]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[56]:
+# In[28]:
 
 
 df_all.value_counts('mcname')
 
 
+# ### 適切な`pageStart`/`pageEnd`を持つ行のみ抽出
+
+# In[50]:
+
+
+# pageStartがpageEndより小さい値であること
+asst_ps_pe = df_all['pageStart'] <= df_all['pageEnd']
+# pageEndがMAX_PAGES内であること
+asst_pe = df_all['pageEnd'] <= MAX_PAGES
+
+
+# In[52]:
+
+
+# 抽出後のデータ
+df_new = df_all[
+    (asst_ps_pe&asst_pe)].reset_index(drop=True)
+# 除外したデータ
+df_drop = df_all[
+    ~(asst_ps_pe&asst_pe)].reset_index(drop=True)
+
+
+# In[53]:
+
+
+# 検証
+assert df_all.shape[0] == df_new.shape[0] + df_drop.shape[0]
+
+
+# 除外したデータの一覧．
+
+# In[56]:
+
+
+df_drop
+
+
+# ### 各`episode`のページ数`pages`をカラムに追加
+
+# In[60]:
+
+
+df_new['pages'] = df_new['pageEnd'] - df_new['pageStart']
+
+
+# ### 各雑誌巻号の最終ページ`pageEndMax`をカラムに追加
+
+# In[64]:
+
+
+# 各雑誌巻号の最終ページ
+miname2page = df_new.groupby('miname')['pageEnd'].max().to_dict()
+
+df_new['pageEndMax'] = df_new['miname'].apply(
+    lambda x: miname2page[x])
+
+
 # ### 保存
 
-# In[57]:
+# In[70]:
 
 
-df_all.to_csv(os.path.join(DIR_OUT, 'magazines.csv'), index=False)
+# 全データ
+df_new.to_csv(os.path.join(DIR_OUT, 'episodes.csv'), index=False)
+# 除外したデータ
+df_new.to_csv(os.path.join(DIR_OUT, 'droped_episodes.csv'), index=False)
 
