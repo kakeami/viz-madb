@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Density plot
+# # 密度プロット
 
 # ## 概要
 
-# **Density plot**とは
+# **密度プロット**とは
 
 # ## Plotlyによる作図方法
 
@@ -43,7 +43,7 @@ warnings.filterwarnings('ignore')
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
@@ -63,16 +63,21 @@ def show_fig(fig):
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 作品別の合計連載週数
+# ### 各話のページ数の分布
 
 # In[5]:
 
 
-df_plot = df.value_counts('cname').reset_index(name='weeks')
+df_plot = df.copy()
+
+
+# In[6]:
+
+
 fig = ff.create_distplot(
-    df_plot['weeks'].values.reshape(1, -1), 
+    df_plot['pages'].values.reshape(1, -1), 
     ['全雑誌'], show_hist=False)
-fig.update_layout(title_text='作品別の合計連載週数')
+fig.update_layout(title_text='各話のページ数')
 show_fig(fig)
 
 

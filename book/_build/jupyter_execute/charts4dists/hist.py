@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Histogram
+# # ヒストグラム
 
 # ## 概要
 
-# **Histogram**（ヒストグラム）とは，例えば下図のように，
+# **ヒストグラム**とは，例えば下図のように，
 
 # ## Plotlyによる作図方法
 
@@ -36,7 +36,7 @@ warnings.filterwarnings('ignore')
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
@@ -53,66 +53,81 @@ def show_fig(fig):
 # In[4]:
 
 
-df = pd.read_csv(PATH_DATA)
+def add_years_to_df(df, unit_years=10):
+    """unit_years単位で区切ったyears列を追加"""
+    df_new = df.copy()
+    df_new['years'] =         pd.to_datetime(df['datePublished']).dt.year         // unit_years * unit_years
+    df_new['years'] = df_new['years'].astype(str)
+    return df_new
 
-
-# ### 作品別の合計連載週数
 
 # In[5]:
 
 
-df_plot = df.value_counts('cname').reset_index(name='weeks')
+df = pd.read_csv(PATH_DATA)
 
+
+# ### 各話のページ数の分布
 
 # In[6]:
 
 
 fig = px.histogram(
-    df_plot, x='weeks', nbins=100,
-    title='作品別の合計連載週数')
+    df, x='pages', title='各話のページ数')
 show_fig(fig)
 
-
-# :::{admonition} `nbins`オプション
-# `plotly.express.histogram()`では`nbins`オプジョンでbin数を指定可能です．上記の例では，自動設定で作図するとbinが非常に細かくなってしまうため，便宜的に`nbins=100`を設定しています．
-# :::
 
 # これでは少し見づらいので，表示範囲を`fig.update_xaxis()`で変更します．
 
 # In[7]:
 
 
-fig = px.histogram(
-    df_plot, x='weeks', nbins=100,
-    title='作品別の合計連載週数')
-fig.update_xaxes(range=[0, 200])
+fig.update_xaxes(range=[0, 50])
 show_fig(fig)
 
 
-# ### 作者別の合計連載週数
+# ### 雑誌別の各話のページ数の分布
 
 # In[8]:
 
 
-df_plot = df.value_counts('creator').reset_index(name='weeks')
+df = df.sort_values('mcname', ignore_index=True)
+fig = px.histogram(
+    df, x='pages', color='mcname', barmode='stack',
+    color_discrete_sequence= px.colors.diverging.Portland,
+    title='雑誌別の各話のページ数')
+fig.update_xaxes(range=[0, 50])
+show_fig(fig)
 
 
 # In[9]:
 
 
-fig = px.histogram(
-    df_plot, x='weeks', nbins=100,
-    title='作者別の合計連載週数')
-show_fig(fig)
+for mcname in sorted(df['mcname'].unique()):
+    df_tmp = df[df['mcname']==mcname].reset_index(drop=True)
+    fig = px.histogram(
+        df_tmp, x='pages', title=f'{mcname}の各話のページ数',)
+    fig.update_xaxes(range=[0, 50])
+    show_fig(fig)
 
+
+# ### 年代別の各話のページ数の分布
 
 # In[10]:
 
 
+df = add_years_to_df(df)
+df = df.sort_values('years', ignore_index=True)
+
+
+# In[11]:
+
+
 fig = px.histogram(
-    df_plot, x='weeks', nbins=100,
-    title='作者別の合計連載週数')
-fig.update_xaxes(range=[0, 200])
+    df, x='pages', color='years', barmode='stack',
+    color_discrete_sequence= px.colors.diverging.Portland,
+    title='年代別の各話のページ数')
+fig.update_xaxes(range=[0, 50])
 show_fig(fig)
 
 
