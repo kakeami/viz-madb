@@ -50,17 +50,6 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[4]:
-
-
-def add_years_to_df(df, unit_years=10):
-    """unit_years単位で区切ったyears列を追加"""
-    df_new = df.copy()
-    df_new['years'] =         pd.to_datetime(df['datePublished']).dt.year         // unit_years * unit_years
-    df_new['years'] = df_new['years'].astype(str)
-    return df_new
-
-
 # In[5]:
 
 
@@ -109,26 +98,6 @@ for mcname in sorted(df['mcname'].unique()):
         df_tmp, x='pages', title=f'{mcname}の各話のページ数',)
     fig.update_xaxes(range=[0, 50])
     show_fig(fig)
-
-
-# ### 年代別の各話のページ数の分布
-
-# In[10]:
-
-
-df = add_years_to_df(df)
-df = df.sort_values('years', ignore_index=True)
-
-
-# In[11]:
-
-
-fig = px.histogram(
-    df, x='pages', color='years', barmode='stack',
-    color_discrete_sequence= px.colors.diverging.Portland,
-    title='年代別の各話のページ数')
-fig.update_xaxes(range=[0, 50])
-show_fig(fig)
 
 
 # In[ ]:

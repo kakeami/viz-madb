@@ -29,7 +29,7 @@
 
 # ### 下準備
 
-# In[1]:
+# In[5]:
 
 
 import pandas as pd
@@ -39,7 +39,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[6]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -48,7 +48,7 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[7]:
 
 
 def show_fig(fig):
@@ -57,44 +57,70 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[4]:
+# In[8]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 各話のページ数の分布
+# ### 作品別の合計連載週数
 
-# In[5]:
-
-
-df_plot = df.copy()
+# In[13]:
 
 
-# In[6]:
+df_plot = df.value_counts('cname').reset_index(name='weeks')
 
 
-fig = ff.create_distplot(
-    df_plot['pages'].values.reshape(1, -1), 
-    ['全雑誌'], show_hist=False)
-fig.update_layout(title_text='各話のページ数')
-show_fig(fig)
-
-
-# In[6]:
+# In[14]:
 
 
 fig = ff.create_distplot(
     df_plot['weeks'].values.reshape(1, -1), 
     ['全雑誌'], show_hist=False)
 fig.update_layout(title_text='作品別の合計連載週数')
+show_fig(fig)
+
+
+# In[15]:
+
+
+fig.update_xaxes(range=[0, 200])
+show_fig(fig)
+
+
+# ### 雑誌別・作品別の合計連載週数
+
+# In[16]:
+
+
+df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
+
+
+# In[17]:
+
+
+df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
+# distplot用に中間集計
+mcnames = df_plot.mcname.unique()
+hist_data = [
+    df_plot[df_plot['mcname']==mc]['weeks'].values.reshape(-1)
+    for mc in mcnames]
+fig = ff.create_distplot(
+    hist_data, mcnames, show_hist=False)
+fig.update_layout(title_text='雑誌別・作品別の合計連載週数')
+show_fig(fig)
+
+
+# In[18]:
+
+
 fig.update_xaxes(range=[0, 200])
 show_fig(fig)
 
 
 # ### 作品別の合計連載週数
 
-# In[7]:
+# In[19]:
 
 
 df_plot = df.value_counts('creator').reset_index(name='weeks')
@@ -105,21 +131,35 @@ fig.update_layout(title_text='作者別の合計連載週数')
 show_fig(fig)
 
 
-# In[8]:
+# In[20]:
 
 
-fig = ff.create_distplot(
-    df_plot['weeks'].values.reshape(1, -1), 
-    ['全雑誌'], show_hist=False)
-fig.update_layout(title_text='作者別の合計連載週数')
 fig.update_xaxes(range=[0, 200])
 show_fig(fig)
 
 
-# In[ ]:
+# ### 雑誌別・作者別の合計連載週数
+
+# In[21]:
 
 
+df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
+# distplot用に中間集計
+mcnames = df_plot.mcname.unique()
+hist_data = [
+    df_plot[df_plot['mcname']==mc]['weeks'].values.reshape(-1)
+    for mc in mcnames]
+fig = ff.create_distplot(
+    hist_data, mcnames, show_hist=False)
+fig.update_layout(title_text='雑誌別・作者別の合計連載週数')
+show_fig(fig)
 
+
+# In[22]:
+
+
+fig.update_xaxes(range=[0, 200])
+show_fig(fig)
 
 
 # In[ ]:

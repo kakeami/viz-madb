@@ -18,7 +18,6 @@ parts:
     - file: charts4dists/box
     - file: charts4dists/violin
     - file: charts4dists/strip
-    - file: charts4dists/overlap
     - file: charts4dists/ridgeline
   - caption: 比率を見たい
     numbered: True
