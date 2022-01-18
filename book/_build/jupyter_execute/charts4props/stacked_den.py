@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Stacked densities
+# # 積み上げ密度プロット
 
 # ## 概要
 
@@ -25,7 +25,7 @@ warnings.filterwarnings('ignore')
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
@@ -120,10 +120,4 @@ fig = px.area(
     color_discrete_sequence= px.colors.diverging.Portland,
     title='雑誌別・年代別の合計作者数')
 show_fig(fig)
-
-
-# In[ ]:
-
-
-
 

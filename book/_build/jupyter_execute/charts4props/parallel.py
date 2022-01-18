@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Parallel sets
+# # パラレルセットグラフ
 
 # ## 概要
+
+# **パラレルセットグラフ**とは
 
 # ## Plotlyによる作図方法
 

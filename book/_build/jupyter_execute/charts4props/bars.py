@@ -1,17 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Bars
+# # 棒グラフ
 
 # ## 概要
 
 # ## Plotlyによる作図方法
-
-# ### Bars
-
-# ### Stacked bars
-
-# ### Grouped bars
 
 # ## MADB Labを用いた作図例
 
@@ -31,7 +25,7 @@ warnings.filterwarnings('ignore')
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
@@ -47,7 +41,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[5]:
+# In[4]:
 
 
 def show_fig(fig):
@@ -56,7 +50,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[6]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -64,13 +58,13 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別の合計作品数
 
-# In[7]:
+# In[6]:
 
 
 col_count = 'cname'
 
 
-# In[8]:
+# In[7]:
 
 
 df_plot =     df.groupby('mcname')[col_count].nunique().reset_index()
@@ -86,13 +80,13 @@ show_fig(fig)
 
 # ### 雑誌別・年代別の合計作品数
 
-# In[9]:
+# In[8]:
 
 
 col_count = 'cname'
 
 
-# In[10]:
+# In[9]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -107,7 +101,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[11]:
+# In[10]:
 
 
 fig = px.bar(
@@ -117,7 +111,7 @@ fig = px.bar(
 show_fig(fig)
 
 
-# In[12]:
+# In[11]:
 
 
 fig = px.bar(
@@ -129,13 +123,13 @@ show_fig(fig)
 
 # ### 雑誌別の合計作者数
 
-# In[13]:
+# In[12]:
 
 
 col_count = 'creator'
 
 
-# In[14]:
+# In[13]:
 
 
 df_plot =     df.groupby('mcname')[col_count].nunique().reset_index()
@@ -150,13 +144,13 @@ show_fig(fig)
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[15]:
+# In[14]:
 
 
 col_count = 'creator'
 
 
-# In[16]:
+# In[15]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -171,7 +165,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[17]:
+# In[16]:
 
 
 fig = px.bar(
@@ -181,7 +175,7 @@ fig = px.bar(
 show_fig(fig)
 
 
-# In[18]:
+# In[17]:
 
 
 fig = px.bar(

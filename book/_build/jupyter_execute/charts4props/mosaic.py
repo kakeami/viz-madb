@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Mosaic plot
+# # モザイクプロット
 
 # ## 概要
+
+# **モザイクプロット**とは，
 
 # ## Plotlyによる作図方法
 

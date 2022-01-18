@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Pie chart
+# # 円グラフ
 
 # ## 概要
+
+# **円グラフ**とは，
 
 # ## Plotlyによる作図方法
 
@@ -25,7 +27,7 @@ warnings.filterwarnings('ignore')
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
-PATH_DATA = '../../data/preprocess/out/magazines.csv'
+PATH_DATA = '../../data/preprocess/out/episodes.csv'
 # Jupyter Book用のPlotlyのrenderer
 RENDERER = 'plotly_mimetype+notebook'
 
