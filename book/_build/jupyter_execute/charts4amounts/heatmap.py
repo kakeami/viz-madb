@@ -25,9 +25,10 @@
 
 # ### 下準備
 
-# In[1]:
+# In[21]:
 
 
+import itertools
 import pandas as pd
 import plotly.express as px
 
@@ -59,8 +60,32 @@ def show_fig(fig):
 def add_years_to_df(df, unit_years=10):
     """unit_years単位で区切ったyears列を追加"""
     df_new = df.copy()
-    df_new['years'] =         df['datePublished'].dt.year // unit_years * unit_years
+    df_new['years'] =         pd.to_datetime(df['datePublished'])        .dt.year // unit_years * unit_years
     df_new['years'] = df_new['years'].astype(str)
+    return df_new
+
+
+# In[18]:
+
+
+def resample_df_by_cname_and_years(df):
+    """cnameとyearsのすべての組み合わせが存在するように0埋め
+    この処理を実施しないと作図時にX軸方向の順序が変わってしまう"""
+    df_new = df.copy()
+    yearss = df['years'].unique()
+    cnames = df['cname'].unique()
+    for cname, years in itertools.product(cnames, yearss):
+        df_tmp = df_new[
+            (df_new['cname'] == cname)&\
+            (df_new['years'] == years)]
+        if df_tmp.shape[0] == 0:
+            s = pd.Series(
+                {'cname': cname,
+                 'years': years,
+                 'weeks': 0,},
+                index=df_tmp.columns)
+            df_new = df_new.append(
+                s, ignore_index=True)
     return df_new
 
 
@@ -72,26 +97,26 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別・年代別の合計連載週数（上位20作品）
 
-# In[6]:
+# In[31]:
 
 
-# datePublishedを10年単位で区切るyears列を追加
-df['datePublished'] = pd.to_datetime(df['datePublished'])
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df)
 
 
-# In[7]:
+# In[32]:
 
 
 # プロット用に集計
-df_plot = df.groupby('cname')['years'].value_counts().    reset_index(name='weeks')
+df_plot =     df.groupby('cname')['years'].value_counts().    reset_index(name='weeks')
 # 連載週刊上位10作品を抽出
 cnames = list(df.value_counts('cname').head(20).index)
 df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
+# 作図用に空白期間を0埋め
+df_plot =     resample_df_by_cname_and_years(df_plot)
 
 
-# In[8]:
+# In[33]:
 
 
 # 合計連載週数で降順ソート
@@ -101,36 +126,73 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[9]:
+# In[34]:
 
 
 fig = px.density_heatmap(
-    df_plot, x='cname', y='years', z='weeks')
+    df_plot, x='years', y='cname', z='weeks')
+show_fig(fig)
+
+
+# In[35]:
+
+
+# 1年単位で区切ったyearsを追加
+df = add_years_to_df(df, 1)
+
+
+# In[36]:
+
+
+# プロット用に集計
+df_plot =     df.groupby('cname')['years'].value_counts().    reset_index(name='weeks')
+# 連載週刊上位10作品を抽出
+cnames = list(df.value_counts('cname').head(20).index)
+df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
+# 作図用に空白期間を0埋め
+df_plot =     resample_df_by_cname_and_years(df_plot)
+
+
+# In[37]:
+
+
+# 合計連載週数で降順ソート
+df_plot['order'] = df_plot['cname'].apply(
+    lambda x: cnames.index(x))
+df_plot = df_plot.sort_values(
+    ['order', 'years'], ignore_index=True)
+
+
+# In[38]:
+
+
+fig = px.density_heatmap(
+    df_plot, x='years', y='cname', z='weeks')
 show_fig(fig)
 
 
 # ### 作者別・年代別の合計連載週数（上位20名）
 
-# In[10]:
+# In[40]:
 
 
-# datePublishedを10年単位で区切るyears列を追加
-df['datePublished'] = pd.to_datetime(df['datePublished'])
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df)
 
 
-# In[11]:
+# In[42]:
 
 
 # プロット用に集計
-df_plot = df.groupby('creator')['years'].value_counts().    reset_index(name='weeks')
+df_plot =     df.groupby('creator')['years'].value_counts().    reset_index(name='weeks')
 # 連載週刊上位10作品を抽出
-creators = list(df.value_counts('creator').head(20).index)
-df_plot = df_plot[df_plot['creator'].isin(creators)].    reset_index(drop=True)
+cnames = list(df.value_counts('creator').head(20).index)
+df_plot = df_plot[df_plot['creator'].isin(cnames)].    reset_index(drop=True)
+# 作図用に空白期間を0埋め
+df_plot =     resample_df_by_creator_and_years(df_plot)
 
 
-# In[12]:
+# In[16]:
 
 
 # 合計連載週数で降順ソート
@@ -140,10 +202,16 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[13]:
+# In[17]:
 
 
 fig = px.density_heatmap(
     df_plot, x='creator', y='years', z='weeks')
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
