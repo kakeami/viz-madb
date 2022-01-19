@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Bubble chart &#8212; 四大少年誌で学ぶデータ・ビジュアライゼーション</title>
+    <title>バブルチャート &#8212; 四大少年誌で学ぶデータ・ビジュアライゼーション</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,8 +52,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Slopegraph" href="slope.html" />
-    <link rel="prev" title="1. 散布図" href="scatter.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -198,55 +196,50 @@
   変数間の関係を見たい
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="scatter.html">
-   1. 散布図
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   2. Bubble chart
+   1. 散布図・バブルチャート
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="slope.html">
-   3. Slopegraph
+   2. Slopegraph
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="countours.html">
-   4. Density contours
+   3. Density contours
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="2d.html">
-   5. 2D bins
+   4. 2D bins
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="hex.html">
-   6. Hex bins
+   5. Hex bins
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="correlo.html">
-   7. Correlogram
+   6. Correlogram
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="line.html">
-   8. Line graph
+   7. Line graph
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="smooth.html">
-   9. Smooth line graph
+   8. Smooth line graph
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="connected.html">
-   10. Connected line graph
+   9. Connected line graph
   </a>
  </li>
 </ul>
@@ -366,23 +359,23 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   2.1. 概要
+  <a class="reference internal nav-link" href="#id2">
+   概要
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plotly">
-   2.2. Plotlyによる作図方法
+   Plotlyによる作図方法
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#madb-lab">
-   2.3. MADB Labを用いた作図例
+   MADB Labを用いた作図例
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     2.3.1. 下準備
+    <a class="reference internal nav-link" href="#id3">
+     下準備
     </a>
    </li>
   </ul>
@@ -397,7 +390,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Bubble chart</h1>
+                <h1>バブルチャート</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -408,23 +401,23 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   2.1. 概要
+  <a class="reference internal nav-link" href="#id2">
+   概要
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plotly">
-   2.2. Plotlyによる作図方法
+   Plotlyによる作図方法
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#madb-lab">
-   2.3. MADB Labを用いた作図例
+   MADB Labを用いた作図例
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     2.3.1. 下準備
+    <a class="reference internal nav-link" href="#id3">
+     下準備
     </a>
    </li>
   </ul>
@@ -438,18 +431,64 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bubble-chart">
-<h1><span class="section-number">2. </span>Bubble chart<a class="headerlink" href="#bubble-chart" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2><span class="section-number">2.1. </span>概要<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>バブルチャート<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="plotly">
-<h2><span class="section-number">2.2. </span>Plotlyによる作図方法<a class="headerlink" href="#plotly" title="Permalink to this headline">¶</a></h2>
+<h2>Plotlyによる作図方法<a class="headerlink" href="#plotly" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="madb-lab">
-<h2><span class="section-number">2.3. </span>MADB Labを用いた作図例<a class="headerlink" href="#madb-lab" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3><span class="section-number">2.3.1. </span>下準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h2>MADB Labを用いた作図例<a class="headerlink" href="#madb-lab" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>下準備<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 前処理の結果，以下に分析対象ファイルが格納されていることを想定</span>
+<span class="n">PATH_DATA</span> <span class="o">=</span> <span class="s1">&#39;../../data/preprocess/out/episodes.csv&#39;</span>
+<span class="c1"># Jupyter Book用のPlotlyのrenderer</span>
+<span class="n">RENDERER</span> <span class="o">=</span> <span class="s1">&#39;plotly_mimetype+notebook&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 連載週数の最小値</span>
+<span class="n">MIN_WEEKS</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Jupyter Bookでも表示可能なようRendererを指定&quot;&quot;&quot;</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">25</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="n">RENDERER</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PATH_DATA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -478,21 +517,7 @@
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="scatter.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>散布図</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="slope.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Slopegraph</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

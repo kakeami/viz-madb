@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 散布図
+# # 散布図・バブルチャート
 
 # ## 概要
 
@@ -54,7 +54,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の平均掲載位置と連載週数
 
-# In[44]:
+# In[53]:
 
 
 df_plot =     df.groupby('cname')['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -62,18 +62,18 @@ df_plot.columns = ['cname', 'weeks', 'position']
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[45]:
+# In[55]:
 
 
 fig = px.scatter(
-    df_plot, x='position', y='weeks', opacity=0.7,
+    df_plot, x='position', y='weeks', opacity=0.7, 
     hover_data=['cname'], title='作品別の平均掲載位置と連載週数')
 show_fig(fig)
 
 
 # ### 雑誌別・作品別の平均掲載位置と連載週数
 
-# In[46]:
+# In[56]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -81,18 +81,34 @@ df_plot.columns = ['mcname', 'cname', 'weeks', 'position']
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[47]:
+# In[57]:
 
 
 fig = px.scatter(
     df_plot, x='position', y='weeks', color='mcname', 
     opacity=0.7,
-    hover_data=['cname'], title='作品別の平均掲載位置と連載週数')
+    hover_data=['cname'], title='雑誌別・作品別の平均掲載位置と連載週数')
 show_fig(fig)
 
 
-# In[ ]:
+# ### 雑誌別・作品別の平均掲載位置と連載週数と平均ページ数
+
+# In[58]:
 
 
+df_plot =     df.groupby(['mcname', 'cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
+df_plot.columns = [
+    'mcname', 'cname', 'weeks', 'pages',
+    '_weeks', 'position']
+df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
+
+# In[59]:
+
+
+fig = px.scatter(
+    df_plot, x='position', y='weeks', color='mcname',
+    size='pages', opacity=0.7,
+    hover_data=['cname'], title='雑誌別・作品別の平均掲載位置と連載週数')
+show_fig(fig)
 
