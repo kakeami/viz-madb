@@ -89,6 +89,30 @@ def resample_df_by_cname_and_years(df):
     return df_new
 
 
+# In[43]:
+
+
+def resample_df_by_creator_and_years(df):
+    """creatorとyearsのすべての組み合わせが存在するように0埋め
+    この処理を実施しないと作図時にX軸方向の順序が変わってしまう"""
+    df_new = df.copy()
+    yearss = df['years'].unique()
+    creators = df['creator'].unique()
+    for creator, years in itertools.product(creators, yearss):
+        df_tmp = df_new[
+            (df_new['creator'] == creator)&\
+            (df_new['years'] == years)]
+        if df_tmp.shape[0] == 0:
+            s = pd.Series(
+                {'creator': creator,
+                 'years': years,
+                 'weeks': 0,},
+                index=df_tmp.columns)
+            df_new = df_new.append(
+                s, ignore_index=True)
+    return df_new
+
+
 # In[5]:
 
 
@@ -173,14 +197,14 @@ show_fig(fig)
 
 # ### 作者別・年代別の合計連載週数（上位20名）
 
-# In[40]:
+# In[44]:
 
 
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df)
 
 
-# In[42]:
+# In[45]:
 
 
 # プロット用に集計
@@ -192,7 +216,7 @@ df_plot = df_plot[df_plot['creator'].isin(cnames)].    reset_index(drop=True)
 df_plot =     resample_df_by_creator_and_years(df_plot)
 
 
-# In[16]:
+# In[46]:
 
 
 # 合計連載週数で降順ソート
@@ -202,11 +226,48 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[17]:
+# In[47]:
 
 
 fig = px.density_heatmap(
-    df_plot, x='creator', y='years', z='weeks')
+    df_plot, x='years', y='creator', z='weeks')
+show_fig(fig)
+
+
+# In[48]:
+
+
+# 10年単位で区切ったyearsを追加
+df = add_years_to_df(df, 1)
+
+
+# In[49]:
+
+
+# プロット用に集計
+df_plot =     df.groupby('creator')['years'].value_counts().    reset_index(name='weeks')
+# 連載週刊上位10作品を抽出
+cnames = list(df.value_counts('creator').head(20).index)
+df_plot = df_plot[df_plot['creator'].isin(cnames)].    reset_index(drop=True)
+# 作図用に空白期間を0埋め
+df_plot =     resample_df_by_creator_and_years(df_plot)
+
+
+# In[50]:
+
+
+# 合計連載週数で降順ソート
+df_plot['order'] = df_plot['creator'].apply(
+    lambda x: creators.index(x))
+df_plot = df_plot.sort_values(
+    ['order', 'years'], ignore_index=True)
+
+
+# In[51]:
+
+
+fig = px.density_heatmap(
+    df_plot, x='years', y='creator', z='weeks')
 show_fig(fig)
 
 
