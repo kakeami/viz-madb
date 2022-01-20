@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Density contours
+# # 等高線図
 
 # ## 概要
 
@@ -11,7 +11,7 @@
 
 # ### 下準備
 
-# In[1]:
+# In[2]:
 
 
 import pandas as pd
@@ -21,7 +21,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[3]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -30,14 +30,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[4]:
 
 
 # 連載週数の最小値
 MIN_WEEKS = 5
 
 
-# In[4]:
+# In[5]:
 
 
 def show_fig(fig):
@@ -46,7 +46,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[6]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -54,7 +54,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の平均掲載位置と連載週数
 
-# In[6]:
+# In[7]:
 
 
 df_plot =     df.groupby('cname')['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -62,41 +62,38 @@ df_plot.columns = ['cname', 'weeks', 'position']
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[13]:
+# In[8]:
 
 
 fig = px.density_contour(
     df_plot, x='position', y='weeks',)
-show_fig(fig)
-
-
-# In[14]:
-
-
-fig.update_yaxes(range=[0, 200])
-show_fig(fig)
-
-
-# In[15]:
-
-
+# 色を塗りつぶし，等高線にラベルを追加
 fig.update_traces(
     contours_coloring="fill", 
     contours_showlabels = True)
 show_fig(fig)
 
 
+# In[9]:
+
+
+fig.update_yaxes(range=[0, 200])
+show_fig(fig)
+
+
 # ### 雑誌別・作品別の平均掲載位置と連載週数
 
-# In[16]:
+# In[12]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])['pageStartPosition'].    agg(['count', 'mean']).reset_index()
-df_plot.columns = ['mcname', 'cname', 'weeks', 'position']
+df_plot.columns =     ['mcname', 'cname', 'weeks', 'position']
+df_plot = df_plot.sort_values(
+    'mcname', ignore_index=True)
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[18]:
+# In[13]:
 
 
 fig = px.density_contour(
@@ -106,8 +103,18 @@ fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
 
-# In[ ]:
+# In[16]:
 
 
-
+for mcname in df_plot['mcname'].unique():
+    df_tmp =         df_plot[df_plot['mcname']==mcname].        reset_index(drop=True)
+    fig = px.density_contour(
+        df_tmp, x='position', y='weeks',
+        title=f'{mcname}の平均掲載位置と連載週数')
+    # 色を塗りつぶし，等高線にラベルを追加
+    fig.update_traces(
+        contours_coloring="fill", 
+        contours_showlabels = True)
+    fig.update_yaxes(range=[0, 200])
+    show_fig(fig)
 
