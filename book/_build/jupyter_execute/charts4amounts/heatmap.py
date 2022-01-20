@@ -121,51 +121,14 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別・年代別の合計連載週数（上位20作品）
 
-# In[31]:
-
-
-# 10年単位で区切ったyearsを追加
-df = add_years_to_df(df)
-
-
-# In[32]:
-
-
-# プロット用に集計
-df_plot =     df.groupby('cname')['years'].value_counts().    reset_index(name='weeks')
-# 連載週刊上位10作品を抽出
-cnames = list(df.value_counts('cname').head(20).index)
-df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
-# 作図用に空白期間を0埋め
-df_plot =     resample_df_by_cname_and_years(df_plot)
-
-
-# In[33]:
-
-
-# 合計連載週数で降順ソート
-df_plot['order'] = df_plot['cname'].apply(
-    lambda x: cnames.index(x))
-df_plot = df_plot.sort_values(
-    ['order', 'years'], ignore_index=True)
-
-
-# In[34]:
-
-
-fig = px.density_heatmap(
-    df_plot, x='years', y='cname', z='weeks')
-show_fig(fig)
-
-
-# In[35]:
+# In[52]:
 
 
 # 1年単位で区切ったyearsを追加
 df = add_years_to_df(df, 1)
 
 
-# In[36]:
+# In[53]:
 
 
 # プロット用に集計
@@ -177,7 +140,7 @@ df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
 df_plot =     resample_df_by_cname_and_years(df_plot)
 
 
-# In[37]:
+# In[54]:
 
 
 # 合計連載週数で降順ソート
@@ -187,7 +150,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[38]:
+# In[55]:
 
 
 fig = px.density_heatmap(
@@ -197,51 +160,14 @@ show_fig(fig)
 
 # ### 作者別・年代別の合計連載週数（上位20名）
 
-# In[44]:
-
-
-# 10年単位で区切ったyearsを追加
-df = add_years_to_df(df)
-
-
-# In[45]:
-
-
-# プロット用に集計
-df_plot =     df.groupby('creator')['years'].value_counts().    reset_index(name='weeks')
-# 連載週刊上位10作品を抽出
-cnames = list(df.value_counts('creator').head(20).index)
-df_plot = df_plot[df_plot['creator'].isin(cnames)].    reset_index(drop=True)
-# 作図用に空白期間を0埋め
-df_plot =     resample_df_by_creator_and_years(df_plot)
-
-
-# In[46]:
-
-
-# 合計連載週数で降順ソート
-df_plot['order'] = df_plot['creator'].apply(
-    lambda x: creators.index(x))
-df_plot = df_plot.sort_values(
-    ['order', 'years'], ignore_index=True)
-
-
-# In[47]:
-
-
-fig = px.density_heatmap(
-    df_plot, x='years', y='creator', z='weeks')
-show_fig(fig)
-
-
-# In[48]:
+# In[56]:
 
 
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df, 1)
 
 
-# In[49]:
+# In[57]:
 
 
 # プロット用に集計
@@ -253,7 +179,7 @@ df_plot = df_plot[df_plot['creator'].isin(cnames)].    reset_index(drop=True)
 df_plot =     resample_df_by_creator_and_years(df_plot)
 
 
-# In[50]:
+# In[58]:
 
 
 # 合計連載週数で降順ソート
@@ -263,7 +189,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[51]:
+# In[59]:
 
 
 fig = px.density_heatmap(
@@ -271,8 +197,4 @@ fig = px.density_heatmap(
 show_fig(fig)
 
 
-# In[ ]:
-
-
-
-
+# 水島新司先生の1970年代の働きぶりは異常ですね…
