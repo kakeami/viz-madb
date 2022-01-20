@@ -30,4 +30,4 @@ sphinx:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
 
 google_analytics:
-  mytrackingcode: G-MF93WW5H91
+  mytrackingcode: UA-195969608-1
