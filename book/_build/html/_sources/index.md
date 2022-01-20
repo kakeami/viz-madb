@@ -82,12 +82,14 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 ^^^
 
 ---
-**変数間の関係を見たい**
+**変数間の関係を見たい**[^assoc]
 ^^^
 
 :::
 
-[^dist]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．[Sina plot](https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1366914?journalCode=ucgs20)：Plotlyで簡易に作図する方法が見当たらず，かつViolin plotとStrip plotで雰囲気がつかめると判断したため．[Quantile-quantile plot](https://clauswilke.com/dataviz/ecdf-qq.html#qq-plots)：理論的な確率密度分布と標本分布の一致性を見る目的で用いられることが多く，解釈に高度な数理統計学の知識が必要であり，本書のスコープを超えるため
+[^dist]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Sina plot](https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1366914?journalCode=ucgs20)**：Plotlyで簡易に作図する方法が見当たらず，かつバイオリンプロットとストリップチャートで雰囲気をつかめると判断したため．[Quantile-quantile plot](https://clauswilke.com/dataviz/ecdf-qq.html#qq-plots)：理論的な確率密度分布と標本分布の一致性を見る目的で用いられることが多く，解釈に高度な数理統計学の知識が必要であり，本書のスコープを超えるため
+
+[^assoc]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[六角形による二次元ヒストグラム](https://clauswilke.com/dataviz/overlapping-points.html#d-histograms)**：Plotlyで簡易に作図する方法が見当たらず，かつ二次元ヒストグラムで雰囲気をつかめると判断したため．
 
 ## 謝辞
 

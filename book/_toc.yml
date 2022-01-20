@@ -34,7 +34,6 @@ parts:
     - file: charts4assocs/slope
     - file: charts4assocs/countours
     - file: charts4assocs/2d
-    - file: charts4assocs/hex
     - file: charts4assocs/correlo
     - file: charts4assocs/line
     - file: charts4assocs/smooth

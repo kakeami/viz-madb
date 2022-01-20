@@ -83,7 +83,7 @@ show_fig(fig)
 
 # ### 雑誌別・作品別の平均掲載位置と連載週数
 
-# In[12]:
+# In[17]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -93,7 +93,7 @@ df_plot = df_plot.sort_values(
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[13]:
+# In[18]:
 
 
 fig = px.density_contour(
@@ -103,18 +103,21 @@ fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
 
-# In[16]:
+# In[22]:
 
 
-for mcname in df_plot['mcname'].unique():
-    df_tmp =         df_plot[df_plot['mcname']==mcname].        reset_index(drop=True)
-    fig = px.density_contour(
-        df_tmp, x='position', y='weeks',
-        title=f'{mcname}の平均掲載位置と連載週数')
-    # 色を塗りつぶし，等高線にラベルを追加
-    fig.update_traces(
-        contours_coloring="fill", 
-        contours_showlabels = True)
-    fig.update_yaxes(range=[0, 200])
-    show_fig(fig)
+fig = px.density_contour(
+    df_plot, x='position', y='weeks',
+    facet_col='mcname',
+    facet_col_wrap=2)
+fig.for_each_annotation(
+    lambda a: a.update(text=a.text.split("=")[-1]))
+# 色を塗りつぶし，等高線にラベルを追加
+fig.update_traces(
+    contours_coloring="fill", 
+    contours_showlabels = True)
+fig.update_yaxes(range=[0, 200])
+# カラーバーの表示が壊れるので非表示
+fig.update_traces(showscale=False)
+show_fig(fig)
 
