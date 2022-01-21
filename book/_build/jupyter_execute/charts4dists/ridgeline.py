@@ -23,7 +23,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[6]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -32,7 +32,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[7]:
+# In[3]:
+
+
+# 平均掲載位置を算出する際の最小連載数
+MIN_WEEKS = 5
+
+
+# In[4]:
 
 
 def show_fig(fig):
@@ -41,7 +48,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[8]:
+# In[5]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -52,69 +59,56 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[9]:
+# In[6]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 年代別・作品別の合計連載週数
+# ### 長期連載作品の話数毎の掲載位置の分布
+
+# In[9]:
+
+
+df_tmp =     df.groupby('cname')['pageStartPosition']    .agg(['count', 'mean']).reset_index()
+df_tmp =     df_tmp.sort_values('count', ascending=False, ignore_index=True)    .head(10)
+cname2position = df_tmp.groupby('cname')['mean'].first().to_dict()
+
 
 # In[10]:
 
 
-df = add_years_to_df(df, unit_years=10)
-df_plot =     df.value_counts(['years', 'cname']).reset_index(name='weeks')
-# 年代順にソート
-df_plot = df_plot.sort_values(
-    'years', ascending=False, ignore_index=True)
-fig = px.violin(
-    df_plot, x='weeks', y='years', orientation='h', 
-    points=False)
-fig.update_traces(
-    side='positive', scalemode='count', width=4)
-show_fig(fig)
+df_plot = df[df['cname'].isin(list(cname2position.keys()))]    .reset_index(drop=True)
+df_plot['position'] = df_plot['cname'].apply(
+    lambda x: cname2position[x])
+df_plot = df_plot.sort_values('position', ignore_index=True)
 
-
-# In[11]:
-
-
-fig.update_xaxes(range=[0, 200])
-show_fig(fig)
-
-
-# ### 年代別・作者別の合計連載週数
 
 # In[14]:
 
 
-df = add_years_to_df(df, unit_years=10)
-df_plot =     df.value_counts(['years', 'creator']).reset_index(name='weeks')
-# 年代順にソート
-df_plot = df_plot.sort_values(
-    'years', ascending=False, ignore_index=True)
-fig = px.violin(
-    df_plot, x='weeks', y='years', orientation='h',
-    points=False)
-fig.update_traces(
-    side='positive', scalemode='count', width=4)
-fig.update_xaxes(range=[0, 200])
-show_fig(fig)
+# 話数の区切り
+UNIT_EP = 100
 
 
-# ### 年代別の各話ページ数
-
-# In[18]:
+# In[16]:
 
 
-# 年代順にソート
-df = df.sort_values(
-    'years', ascending=False, ignore_index=True)
-fig = px.violin(
-    df, x='pages', y='years', orientation='h',
-    points=False)
-fig.update_traces(
-    side='positive', scalemode='count', width=4)
-fig.update_xaxes(range=[0, 50])
-show_fig(fig)
+cnames = df_plot['cname'].unique()
+for cname in cnames:
+    df_c = df_plot[df_plot['cname']==cname].reset_index(drop=True)
+    df_c['eprange'] = (df_c.index + 1) // UNIT_EP * UNIT_EP
+    df_c = df_c.sort_values('eprange', ascending=False, ignore_index=False)
+    df_c['eprange'] = df_c['eprange'].apply(
+        lambda x: f'{x}話以降')
+    fig = px.violin(
+        df_c, y='eprange', x='pageStartPosition',
+        title=f'{cname}の掲載位置', orientation='h',
+        points=False)
+    fig.update_traces(
+        side='positive', scalemode='count', width=4)
+    fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False)
+    fig.update_xaxes(title='掲載位置')
+    fig.update_yaxes(title='話数')
+    show_fig(fig)
 
