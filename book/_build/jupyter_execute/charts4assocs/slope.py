@@ -54,7 +54,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の平均掲載位置と連載週数
 
-# In[18]:
+# In[6]:
 
 
 df_plot =     df.groupby('cname')['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -63,17 +63,18 @@ df_plot = df_plot[['cname', 'position', 'weeks']]
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[19]:
+# In[8]:
 
 
 fig = px.parallel_coordinates(
-    df_plot, color='position',)
+    df_plot, color='position',
+    labels={'position': '掲載位置', 'weeks': '掲載週数'})
 show_fig(fig)
 
 
 # ### 作品別の平均掲載位置と連載週数と平均ページ数
 
-# In[22]:
+# In[10]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
@@ -85,10 +86,13 @@ df_plot = df_plot[[
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[23]:
+# In[12]:
 
 
 fig = px.parallel_coordinates(
-    df_plot, color='position',)
+    df_plot, color='position',
+    labels={
+        'position': '掲載位置', 'weeks': '掲載週数',
+        'pages': 'ページ数'})
 show_fig(fig)
 
