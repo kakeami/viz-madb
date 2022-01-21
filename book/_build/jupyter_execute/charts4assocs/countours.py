@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 等高線図
+# # 等高線プロット
 
 # ## 概要
 
@@ -43,6 +43,10 @@ MIN_WEEKS = 5
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
     fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+    fig.update_layout(legend={
+        'yanchor': 'top',
+        'xanchor': 'left',
+        'x': 0.01, 'y': 0.99})
     fig.show(renderer=RENDERER)
 
 
@@ -83,7 +87,7 @@ show_fig(fig)
 
 # ### 雑誌別・作品別の平均掲載位置と連載週数
 
-# In[17]:
+# In[10]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -93,7 +97,7 @@ df_plot = df_plot.sort_values(
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[18]:
+# In[11]:
 
 
 fig = px.density_contour(
@@ -103,7 +107,7 @@ fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
 
-# In[22]:
+# In[12]:
 
 
 fig = px.density_contour(
@@ -120,4 +124,16 @@ fig.update_yaxes(range=[0, 200])
 # カラーバーの表示が壊れるので非表示
 fig.update_traces(showscale=False)
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
