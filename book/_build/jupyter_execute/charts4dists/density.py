@@ -29,17 +29,18 @@
 
 # ### 下準備
 
-# In[5]:
+# In[54]:
 
 
 import pandas as pd
 import plotly.figure_factory as ff
+import plotly.express as px
 
 import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[6]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -48,104 +49,112 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[7]:
+# In[6]:
+
+
+# 平均掲載位置を算出する際の最小連載数
+MIN_WEEKS = 5
+
+
+# In[46]:
 
 
 def show_fig(fig):
     """Jupyter Bookでも表示可能なようRendererを指定"""
     fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+    fig.update_layout(legend={
+        'yanchor': 'top',
+        'xanchor': 'right',
+        'x': 0.99, 'y': 0.99})
     fig.show(renderer=RENDERER)
 
 
-# In[8]:
+# In[47]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 作品別の合計連載週数
+# ### 掲載位置の分布
 
-# In[13]:
-
-
-df_plot = df.value_counts('cname').reset_index(name='weeks')
+# In[48]:
 
 
-# In[14]:
+df_plot =     df.groupby(['mcname', 'cname', 'creator'])['pageStartPosition']    .agg(['count', 'mean']).reset_index()
+df_plot = df_plot[df_plot['count'] >= MIN_WEEKS]    .reset_index(drop=True)
+
+
+# In[49]:
 
 
 fig = ff.create_distplot(
-    df_plot['weeks'].values.reshape(1, -1), 
-    ['全雑誌'], show_hist=False)
-fig.update_layout(title_text='作品別の合計連載週数')
+    [df_plot['mean'].values], ['全作品'],
+    show_hist=False)
 show_fig(fig)
 
 
-# In[15]:
+# ヒストグラムで図示するよりも滑らかに分布を図示できていることがわかります．
+
+# ### 長期連載作品の掲載位置の分布
+
+# 合計連載週数が多い5作品に対して，同様に分布を図示してみましょう．
+
+# In[62]:
 
 
-fig.update_xaxes(range=[0, 200])
-show_fig(fig)
+df_tmp =     df_plot.sort_values(['count'], ascending=False, ignore_index=True)    .head(10)
+df_tmp
 
 
-# ### 雑誌別・作品別の合計連載週数
-
-# In[23]:
+# In[63]:
 
 
-df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
+cnames = df_tmp.sort_values('mean')['cname'].values
+data = [
+    df[df['cname']==cname].reset_index(drop=True)\
+    ['pageStartPosition'] for cname in cnames]
 
 
-# In[24]:
+# In[66]:
 
 
-df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
-# distplot用に中間集計
-mcnames = df_plot.mcname.unique()
-hist_data = [
-    df_plot[df_plot['mcname']==mc]['weeks'].values.reshape(-1)
-    for mc in mcnames]
 fig = ff.create_distplot(
-    hist_data, mcnames, show_hist=False)
-fig.update_xaxes(range=[0, 200])
-fig.update_layout(title_text='雑誌別・作品別の合計連載週数')
+    data, cnames, show_hist=False,
+    colors= px.colors.sequential.Plasma_r)
+fig.update_layout(hovermode='x unified', height=600)
 show_fig(fig)
 
 
-# ### 作品別の合計連載週数
+# ヒストグラムと異なり，複数の凡例を同時に表示できるため，比較が楽です．
 
-# In[25]:
+# ### 長期連載作品の話数毎の掲載位置の分布
 
-
-df_plot = df.value_counts('creator').reset_index(name='weeks')
-fig = ff.create_distplot(
-    df_plot['weeks'].values.reshape(1, -1), 
-    ['全雑誌'], show_hist=False)
-fig.update_layout(title_text='作者別の合計連載週数')
-fig.update_xaxes(range=[0, 200])
-show_fig(fig)
+# In[67]:
 
 
-# ### 雑誌別・作者別の合計連載週数
-
-# In[26]:
-
-
-df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
-# distplot用に中間集計
-mcnames = df_plot.mcname.unique()
-hist_data = [
-    df_plot[df_plot['mcname']==mc]['weeks'].values.reshape(-1)
-    for mc in mcnames]
-fig = ff.create_distplot(
-    hist_data, mcnames, show_hist=False)
-fig.update_layout(title_text='雑誌別・作者別の合計連載週数')
-fig.update_xaxes(range=[0, 200])
-show_fig(fig)
+# 話数の区切り
+UNIT_EP = 200
 
 
-# In[ ]:
+# In[75]:
 
 
+cnames = df_tmp.sort_values('mean')['cname'].values
+for cname in cnames:
+    df_c = df[df['cname']==cname].reset_index(drop=True)
+    df_c['eprange'] = (df_c.index + 1) // UNIT_EP * UNIT_EP
+    eps = sorted(df_c['eprange'].unique())
+    data = [
+        df_c[df_c['eprange']==e]['pageStartPosition']
+        for e in eps]
+    labels = [f'{e}話以降' for e in eps]
+    fig = ff.create_distplot(
+        data, labels, show_hist=False,
+        colors= px.colors.sequential.Plasma_r)
+    fig.update_layout(
+        hovermode='x unified', height=500,
+        title_text=f'{cname}の掲載位置')
+    show_fig(fig)
 
 
+# 積み上げヒストグラムを用いた場合より，話数による掲載位置の推移がわかりやすくなりました．
