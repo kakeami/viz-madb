@@ -60,7 +60,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ## エピソードの掲載日と掲載位置
 
-# In[60]:
+# In[98]:
 
 
 mcnames = sorted(df['mcname'].unique())
@@ -71,14 +71,16 @@ for mcname in mcnames:
             'weeks', ascending=False, ignore_index=True)
     cnames = df_cname['cname'][:N_CNAMES].values
     df_plot = df_tmp[df_tmp['cname'].isin(cnames)].        reset_index(drop=True)
+    df_plot = df_plot.rename(columns={
+        'cname': '作品名',
+        'datePublished': '掲載日',
+        'pageStartPosition': '掲載位置',
+        'epname': '話名'})
     fig = px.line(
-        df_plot, x='datePublished', y='pageStartPosition',
-        color='cname', title=f'{mcname}の長期連載作品',
-        hover_data=['epname'], height=500)
-    fig.update_xaxes(title='掲載日')
-    fig.update_yaxes(title='掲載位置（0：先頭，1：末尾）')
+        df_plot, x='掲載日', y='掲載位置',
+        color='作品名', title=f'{mcname}の長期連載作品',
+        hover_data=['話名'], height=500)
     fig.update_layout(hovermode='x unified')
-    fig.update_traces(mode='markers+lines')
     show_fig(fig)
 
 
@@ -100,7 +102,7 @@ def add_epid_to_df(df):
     return df_out
 
 
-# In[92]:
+# In[99]:
 
 
 mcnames = sorted(df['mcname'].unique())
@@ -113,13 +115,15 @@ for mcname in mcnames:
     df_plot = df_tmp[df_tmp['cname'].isin(cnames)].        reset_index(drop=True)
     df_plot = add_epid_to_df(df_plot)
     df_plot = df_plot.rename(columns={
+        'cname': '作品名',
+        'epname': '話名',
         'epid': '話数',
         'pageStartPosition': '掲載位置',})
     fig = px.line(
         df_plot, x='話数', y='掲載位置',
-        facet_col='cname', facet_col_wrap=2,
+        facet_col='作品名', facet_col_wrap=2,
         title=f'{mcname}の長期連載作品',
-        hover_data=['epname'], height=500)
+        hover_data=['話名'], height=500)
     fig.update_layout(
         hovermode='x unified')
     show_fig(fig)
