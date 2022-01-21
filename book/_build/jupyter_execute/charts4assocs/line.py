@@ -9,11 +9,12 @@
 
 # ## MADB Labを用いた作図例
 
-# In[2]:
+# In[85]:
 
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -57,7 +58,7 @@ def show_fig(fig):
 df = pd.read_csv(PATH_DATA)
 
 
-# ## 各話の掲載日と掲載位置
+# ## エピソードの掲載日と掲載位置
 
 # In[60]:
 
@@ -79,4 +80,50 @@ for mcname in mcnames:
     fig.update_layout(hovermode='x unified')
     fig.update_traces(mode='markers+lines')
     show_fig(fig)
+
+
+# ### エピソードの話数と掲載位置
+
+# In[75]:
+
+
+def add_epid_to_df(df):
+    """dfのcnameごとに1から順番に話数を追加"""
+    cnames = df['cname'].unique()
+    df_out = pd.DataFrame()
+    
+    for cname in cnames:
+        df_tmp = df[df['cname']==cname].reset_index(drop=True)
+        df_tmp['epid'] = df_tmp.index + 1
+        df_out = pd.concat([df_out, df_tmp], ignore_index=True)
+        
+    return df_out
+
+
+# In[91]:
+
+
+mcnames = sorted(df['mcname'].unique())
+for mcname in mcnames:
+    df_tmp = df[df['mcname']==mcname].reset_index(drop=True)
+    df_cname =         df_tmp.value_counts('cname').reset_index(name='weeks')
+    df_cname =         df_cname.sort_values(
+            'weeks', ascending=False, ignore_index=True)
+    cnames = df_cname['cname'][:N_CNAMES].values
+    df_plot = df_tmp[df_tmp['cname'].isin(cnames)].        reset_index(drop=True)
+    df_plot = add_epid_to_df(df_plot)
+    fig = px.line(
+        df_plot, x='epid', y='pageStartPosition',
+        facet_col='cname', facet_col_wrap=2,
+        title=f'{mcname}の長期連載作品',
+        hover_data=['epname'], height=500)
+    fig.update_layout(
+        hovermode='x unified')
+    show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
