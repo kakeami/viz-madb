@@ -13,7 +13,7 @@
 
 # ### 下準備
 
-# In[2]:
+# In[1]:
 
 
 import pandas as pd
@@ -23,7 +23,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[3]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -32,7 +32,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[4]:
+# In[5]:
+
+
+# 平均掲載位置を算出する際の最小連載数
+MIN_WEEKS = 5
+
+
+# In[6]:
 
 
 def show_fig(fig):
@@ -41,52 +48,67 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[7]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 雑誌別・作品別の合計連載週数
+# ### 長期連載作品の掲載位置の分布
 
-# In[13]:
+# In[29]:
 
 
-df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
-# X軸の表示順を調整
-df_plot = df_plot.sort_values('mcname', ignore_index=True)
+df_tmp =     df.groupby('cname')['pageStartPosition']    .agg(['count', 'mean']).reset_index()
+df_tmp =     df_tmp.sort_values('count', ascending=False, ignore_index=True)    .head(10)
+cname2position = df_tmp.groupby('cname')['mean'].first().to_dict()
+
+
+# In[30]:
+
+
+df_plot = df[df['cname'].isin(list(cname2position.keys()))]    .reset_index(drop=True)
+df_plot['position'] = df_plot['cname'].apply(
+    lambda x: cname2position[x])
+df_plot = df_plot.sort_values('position', ignore_index=True)
+
+
+# In[34]:
+
+
 fig = px.violin(
-    df_plot, x='mcname', y='weeks',
-    title='雑誌別・作品別の合計連載週数',
-    points=False)
+    df_plot, x='cname', y='pageStartPosition', points=False)
+fig.update_traces(scalemode='count', meanline_visible=True)
+fig.update_layout(violinmode='overlay', violingap=0)
+fig.update_xaxes(title='作品名')
+fig.update_yaxes(title='掲載位置')
 show_fig(fig)
 
 
-# In[14]:
+# ### 長期連載作品の話数毎の掲載位置の分布
+
+# In[35]:
 
 
-fig.update_yaxes(range=[0, 200])
-show_fig(fig)
+# 話数の区切り
+UNIT_EP = 200
 
 
-# ### 雑誌別・作者別の合計連載週数
-
-# In[10]:
+# In[37]:
 
 
-df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
-# X軸の表示順を調整
-df_plot = df_plot.sort_values('mcname', ignore_index=True)
-fig = px.violin(
-    df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作者別の合計連載週数',
-    points=False)
-show_fig(fig)
-
-
-# In[11]:
-
-
-fig.update_yaxes(range=[0, 200])
-show_fig(fig)
+cnames = df_plot['cname'].unique()
+for cname in cnames:
+    df_c = df_plot[df_plot['cname']==cname].reset_index(drop=True)
+    df_c['eprange'] = (df_c.index + 1) // UNIT_EP * UNIT_EP
+    df_c['eprange'] = df_c['eprange'].apply(
+        lambda x: f'{x}話以降')
+    fig = px.violin(
+        df_c, x='eprange', y='pageStartPosition', points=False,
+        title=f'{cname}の掲載位置')
+    fig.update_traces(scalemode='count', meanline_visible=True)
+    fig.update_layout(violinmode='overlay', violingap=0)
+    fig.update_xaxes(title='作品名')
+    fig.update_yaxes(title='掲載位置')
+    show_fig(fig)
 

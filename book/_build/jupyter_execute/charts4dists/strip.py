@@ -32,7 +32,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[4]:
+
+
+# 平均掲載位置を算出する際の最小連載数
+MIN_WEEKS = 5
+
+
+# In[5]:
 
 
 def show_fig(fig):
@@ -41,50 +48,62 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[4]:
+# In[6]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 雑誌別・作品別の合計連載週数
-
-# In[5]:
-
-
-df_plot =     df.value_counts(['mcname', 'cname']).reset_index(name='weeks')
-# X軸の表示順を調整
-df_plot = df_plot.sort_values('mcname', ignore_index=True)
-fig = px.strip(
-    df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作品別の合計連載週数')
-show_fig(fig)
-
+# ### 長期連載作品の掲載位置の分布
 
 # In[7]:
 
 
-fig.update_yaxes(range=[0, 200])
-show_fig(fig)
+df_tmp =     df.groupby('cname')['pageStartPosition']    .agg(['count', 'mean']).reset_index()
+df_tmp =     df_tmp.sort_values('count', ascending=False, ignore_index=True)    .head(10)
+cname2position = df_tmp.groupby('cname')['mean'].first().to_dict()
 
-
-# ### 雑誌別・作者別の合計連載週数
 
 # In[8]:
 
 
-df_plot =     df.value_counts(['mcname', 'creator']).reset_index(name='weeks')
-# X軸の表示順を調整
-df_plot = df_plot.sort_values('mcname', ignore_index=True)
-fig = px.strip(
-    df_plot, x='mcname', y='weeks', 
-    title='雑誌別・作者別の合計連載週数')
-show_fig(fig)
+df_plot = df[df['cname'].isin(list(cname2position.keys()))]    .reset_index(drop=True)
+df_plot['position'] = df_plot['cname'].apply(
+    lambda x: cname2position[x])
+df_plot = df_plot.sort_values('position', ignore_index=True)
 
 
 # In[9]:
 
 
-fig.update_yaxes(range=[0, 200])
+fig = px.strip(df_plot, x='cname', y='pageStartPosition')
+fig.update_xaxes(title='作品名')
+fig.update_yaxes(title='掲載位置')
 show_fig(fig)
+
+
+# ### 長期連載作品の話数毎の掲載位置の分布
+
+# In[10]:
+
+
+# 話数の区切り
+UNIT_EP = 200
+
+
+# In[12]:
+
+
+cnames = df_plot['cname'].unique()
+for cname in cnames:
+    df_c = df_plot[df_plot['cname']==cname].reset_index(drop=True)
+    df_c['eprange'] = (df_c.index + 1) // UNIT_EP * UNIT_EP
+    df_c['eprange'] = df_c['eprange'].apply(
+        lambda x: f'{x}話以降')
+    fig = px.strip(
+        df_c, x='eprange', y='pageStartPosition',
+        title=f'{cname}の掲載位置')
+    fig.update_xaxes(title='話数')
+    fig.update_yaxes(title='掲載位置')
+    show_fig(fig)
 
