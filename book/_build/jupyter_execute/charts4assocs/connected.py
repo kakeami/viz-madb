@@ -98,14 +98,18 @@ df_plot =     df.groupby(['mcname', 'years'])['cname', 'creator']    .nunique().
 df_plot =     df_plot[~df_plot['years'].isin(YEARS_TO_DROP)]    .reset_index(drop=True)
 
 
-# In[87]:
+# In[88]:
 
 
 fig = px.line(
     df_plot, x='cname', y='creator', text='years',
     facet_col='mcname', facet_col_wrap=2)
 fig.update_traces(textposition='bottom right')
-fig.update_xaxes(title='作品数')
-fig.update_yaxes(title='作家数')
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
