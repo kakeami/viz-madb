@@ -128,9 +128,3 @@ for mcname in mcnames:
         hovermode='x unified')
     show_fig(fig)
 
-
-# In[ ]:
-
-
-
-
