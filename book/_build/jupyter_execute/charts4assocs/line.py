@@ -100,7 +100,7 @@ def add_epid_to_df(df):
     return df_out
 
 
-# In[91]:
+# In[92]:
 
 
 mcnames = sorted(df['mcname'].unique())
@@ -112,8 +112,11 @@ for mcname in mcnames:
     cnames = df_cname['cname'][:N_CNAMES].values
     df_plot = df_tmp[df_tmp['cname'].isin(cnames)].        reset_index(drop=True)
     df_plot = add_epid_to_df(df_plot)
+    df_plot = df_plot.rename(columns={
+        'epid': '話数',
+        'pageStartPosition': '掲載位置',})
     fig = px.line(
-        df_plot, x='epid', y='pageStartPosition',
+        df_plot, x='話数', y='掲載位置',
         facet_col='cname', facet_col_wrap=2,
         title=f'{mcname}の長期連載作品',
         hover_data=['epname'], height=500)
