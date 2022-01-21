@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 折れ線グラフ
+# # 折れ線グラフ（1変数）
 
 # ## 概要
 
@@ -9,12 +9,13 @@
 
 # ## MADB Labを用いた作図例
 
-# In[85]:
+# ### 下準備
+
+# In[1]:
 
 
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -58,7 +59,7 @@ def show_fig(fig):
 df = pd.read_csv(PATH_DATA)
 
 
-# ## エピソードの掲載日と掲載位置
+# ### エピソードの掲載日と掲載位置
 
 # In[98]:
 
