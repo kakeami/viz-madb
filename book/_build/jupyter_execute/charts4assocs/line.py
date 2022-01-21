@@ -57,9 +57,9 @@ def show_fig(fig):
 df = pd.read_csv(PATH_DATA)
 
 
-# ## 作品別の掲載位置
+# ## 各話の掲載日と掲載位置
 
-# In[58]:
+# In[60]:
 
 
 mcnames = sorted(df['mcname'].unique())
@@ -74,19 +74,9 @@ for mcname in mcnames:
         df_plot, x='datePublished', y='pageStartPosition',
         color='cname', title=f'{mcname}の長期連載作品',
         hover_data=['epname'], height=500)
+    fig.update_xaxes(title='掲載日')
+    fig.update_yaxes(title='掲載位置（0：先頭，1：末尾）')
     fig.update_layout(hovermode='x unified')
     fig.update_traces(mode='markers+lines')
     show_fig(fig)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
