@@ -35,7 +35,7 @@
 
 # ### 下準備
 
-# In[1]:
+# In[2]:
 
 
 import pandas as pd
@@ -45,7 +45,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[3]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -54,7 +54,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[35]:
+
+
+# 平均掲載位置を算出する際の最小連載数
+MIN_WEEKS = 5
+
+
+# In[36]:
 
 
 def show_fig(fig):
@@ -63,63 +70,114 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[37]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 各話のページ数の分布
+# ### 掲載位置の分布
 
-# In[6]:
+# `MIN_WEEKS`以上連載したマンガ作品の平均掲載位置の分布を見てみます．
+
+# In[50]:
 
 
-fig = px.histogram(
-    df, x='pages', title='各話のページ数')
+df_plot =     df.groupby(['mcname', 'cname', 'creator'])['pageStartPosition']    .agg(['count', 'mean']).reset_index()
+df_plot = df_plot[df_plot['count'] >= MIN_WEEKS]    .reset_index(drop=True)
+
+
+# In[51]:
+
+
+fig = px.histogram(df_plot, x='mean')
+fig.update_xaxes(title='平均掲載位置')
+fig.update_yaxes(title='作品数')
 show_fig(fig)
 
 
-# これでは少し見づらいので，表示範囲を`fig.update_xaxis()`で変更します．
+# 0.6 - 0.7付近にピークのある分布であることがわかります．
 
-# In[7]:
+# In[52]:
 
 
-fig.update_xaxes(range=[0, 50])
+fig = px.histogram(df_plot, x='mean', cumulative=True)
+fig.update_xaxes(title='平均掲載位置')
+fig.update_yaxes(title='累積作品数')
 show_fig(fig)
 
 
-# `cumulative=True`オプションを指定することで，累積分布を作図することもできます．
+# 累積ヒストグラムで見ると，平均掲載位置を低いことがどの程度珍しいかわかります．平均掲載位置が0.5以下の作品（つまり，平均的に雑誌の前半に掲載されることが多い作品）は半分以下です．
 
-# In[13]:
+# 具体的にはどのような作品の平均掲載位置が低いのでしょうか？
 
-
-fig = px.histogram(
-    df, x='pages', title='各話のページ数', cumulative=True)
-fig.update_xaxes(range=[0, 50])
-show_fig(fig)
+# In[53]:
 
 
-# ### 雑誌別の各話のページ数の分布
-
-# In[8]:
+df_plot.sort_values('mean').reset_index(drop=True).head(10)
 
 
-df = df.sort_values('mcname', ignore_index=True)
-fig = px.histogram(
-    df, x='pages', color='mcname', barmode='stack',
-    color_discrete_sequence= px.colors.diverging.Portland,
-    title='雑誌別の各話のページ数')
-fig.update_xaxes(range=[0, 50])
-show_fig(fig)
+# 各雑誌を代表するような先生方の作品であることがわかります．ちなみに`ピクル`は板垣先生のバキシリーズのスピンオフです．
+
+# ### 長期連載作品の掲載位置の分布
+
+# 長期連載した人気作品ほど掲載位置が上位なのでしょうか？
+# 
+# これを検証するため，[合計連載週数が多い10作品](https://kakeami.github.io/viz-madb/charts4amounts/bars.html#id4)に対して，それぞれ掲載位置の分布を図示します．
+
+# In[79]:
 
 
-# In[9]:
+df_tmp =     df_plot.sort_values(['count'], ascending=False, ignore_index=True)    .head(10)
+df_tmp
 
 
-for mcname in sorted(df['mcname'].unique()):
-    df_tmp = df[df['mcname']==mcname].reset_index(drop=True)
+# In[107]:
+
+
+cnames = df_tmp.sort_values('mean')['cname'].values
+for cname in cnames:
+    df_c = df[df['cname']==cname].reset_index(drop=True)
+    pos = df_c['pageStartPosition'].mean()
+    n = df_c.shape[0]
     fig = px.histogram(
-        df_tmp, x='pages', title=f'{mcname}の各話のページ数',)
-    fig.update_xaxes(range=[0, 50])
+        df_c, x='pageStartPosition', nbins=20,
+        title=f'{cname}の掲載位置（全{n}話，平均{pos:.3f}）')
+    fig.update_xaxes(title='掲載位置')
+    fig.update_yaxes(title='話数')
     show_fig(fig)
 
+
+# 作品によって掲載位置の分布に特徴があることがわかります．巻頭カラー常連の作品もあれば，根強いファンがついて雑誌後半が定位置となった作品もあるようです．
+
+# ### 長期連載作品の話数毎の掲載位置の分布
+
+# では，上記の作品が話数別にどの程度掲載位置が変動したか，定性的に見てみましょう．
+
+# In[105]:
+
+
+# 話数の区切り
+UNIT_EP = 200
+
+
+# In[108]:
+
+
+cnames = df_tmp.sort_values('mean')['cname'].values
+for cname in cnames:
+    df_c = df[df['cname']==cname].reset_index(drop=True)
+    df_c['eprange'] = (df_c.index + 1) // UNIT_EP * UNIT_EP
+    pos = df_c['pageStartPosition'].mean()
+    n = df_c.shape[0]
+    fig = px.histogram(
+        df_c, x='pageStartPosition', color='eprange',
+        barmode='stack', nbins=20,
+        color_discrete_sequence= px.colors.sequential.Plasma_r,
+        title=f'{cname}の掲載位置（全{n}話，平均{pos:.3f}）')
+    fig.update_xaxes(title='掲載位置')
+    fig.update_yaxes(title='話数')
+    show_fig(fig)
+
+
+# 定性的にではありますが，`BLEACH`，`銀魂`，`こちら葛飾区亀有公園前派出所`，`ジョジョの奇妙な冒険`に関しては話数が進むほど平均掲載位置が増加（雑誌後方に移動）していることがわかります．
