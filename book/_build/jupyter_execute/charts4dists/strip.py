@@ -73,12 +73,13 @@ df_plot['position'] = df_plot['cname'].apply(
 df_plot = df_plot.sort_values('position', ignore_index=True)
 
 
-# In[8]:
+# In[12]:
 
 
 fig = px.strip(
     df_plot, x='cname', y='pageStartPosition',
-    title='長期連載作品の掲載位置')
+    title='長期連載作品の掲載位置', height=500)
+fig.update_traces(marker={'line_width':1, 'opacity':0.7})
 fig.update_xaxes(title='作品名')
 fig.update_yaxes(title='掲載位置')
 show_fig(fig)
@@ -86,14 +87,14 @@ show_fig(fig)
 
 # ### 長期連載作品の話数毎の掲載位置の分布
 
-# In[10]:
+# In[14]:
 
 
 # 話数の区切り
 UNIT_EP = 200
 
 
-# In[12]:
+# In[15]:
 
 
 cnames = df_plot['cname'].unique()
@@ -105,7 +106,14 @@ for cname in cnames:
     fig = px.strip(
         df_c, x='eprange', y='pageStartPosition',
         title=f'{cname}の掲載位置')
+    fig.update_traces(marker={'line_width':1, 'opacity':0.7})
     fig.update_xaxes(title='話数')
     fig.update_yaxes(title='掲載位置')
     show_fig(fig)
+
+
+# In[ ]:
+
+
+
 

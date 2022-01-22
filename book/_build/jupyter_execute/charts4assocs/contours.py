@@ -11,7 +11,7 @@
 
 # ### 下準備
 
-# In[2]:
+# In[1]:
 
 
 import pandas as pd
@@ -21,7 +21,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[3]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -30,14 +30,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[4]:
+# In[3]:
 
 
 # 連載週数の最小値
 MIN_WEEKS = 5
 
 
-# In[5]:
+# In[4]:
 
 
 def show_fig(fig):
@@ -50,15 +50,15 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[6]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 作品別の平均掲載位置と連載週数
+# ### 作品別の平均掲載位置と掲載週数
 
-# In[7]:
+# In[6]:
 
 
 df_plot =     df.groupby('cname')['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -70,7 +70,10 @@ df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
 fig = px.density_contour(
-    df_plot, x='position', y='weeks',)
+    df_plot, x='position', y='weeks',
+    title='作品別の平均掲載位置と掲載週数')
+fig.update_xaxes(title='平均掲載位置')
+fig.update_yaxes(title='掲載週数')
 # 色を塗りつぶし，等高線にラベルを追加
 fig.update_traces(
     contours_coloring="fill", 
@@ -101,8 +104,10 @@ df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
 fig = px.density_contour(
-    df_plot, x='position', y='weeks',
-    color='mcname')
+    df_plot, x='position', y='weeks', color='mcname',
+    title='雑誌別・作品別の平均掲載位置と掲載週数')
+fig.update_xaxes(title='平均掲載位置')
+fig.update_yaxes(title='掲載週数')
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
@@ -112,8 +117,8 @@ show_fig(fig)
 
 fig = px.density_contour(
     df_plot, x='position', y='weeks',
-    facet_col='mcname',
-    facet_col_wrap=2)
+    facet_col='mcname', facet_col_wrap=2,
+    title='雑誌別・作品別の平均掲載位置と掲載週数')
 fig.for_each_annotation(
     lambda a: a.update(text=a.text.split("=")[-1]))
 # 色を塗りつぶし，等高線にラベルを追加

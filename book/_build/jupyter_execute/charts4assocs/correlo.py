@@ -15,7 +15,7 @@
 
 # ### 下準備
 
-# In[24]:
+# In[1]:
 
 
 import pandas as pd
@@ -26,7 +26,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[17]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -35,14 +35,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[18]:
+# In[3]:
 
 
 # 連載週数の最小値
 MIN_WEEKS = 5
 
 
-# In[19]:
+# In[4]:
 
 
 def show_fig(fig):
@@ -51,48 +51,52 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[20]:
+# In[11]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 作品別の平均掲載位置と連載週数
+# ### 作品別の平均掲載位置と掲載週数
 
-# In[35]:
+# In[13]:
 
 
 df_plot =     df.groupby(['cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
 df_plot.columns = [
-    'cname', 'weeks', 'pages',
-    '_weeks', 'position']
-df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].    reset_index(drop=True)
+    '作品名', '掲載週数', '平均ページ数',
+    '_weeks', '平均掲載位置']
+df_plot =     df_plot[df_plot['掲載週数'] >= MIN_WEEKS].    reset_index(drop=True)
 df_plot = df_plot.drop(columns=['_weeks'])
 df_corr = df_plot.corr()
 df_corr = df_corr.iloc[::-1]
 
 
-# In[36]:
+# In[14]:
 
 
 df_corr
 
 
-# In[37]:
+# In[21]:
 
 
 fig = go.Figure(go.Heatmap(
     x=df_corr.index.values,
     y=df_corr.columns.values,
-    z=df_corr.values))
+    z=df_corr.values,))
+fig.update_layout(
+    title='各変数の相関')
 show_fig(fig)
 
 
-# In[38]:
+# In[22]:
 
 
 fig = px.scatter_matrix(
-    df_plot[['position', 'pages', 'weeks']],
-    opacity=0.5)
+    df_plot[['平均掲載位置', '平均ページ数', '掲載週数']],
+    opacity=0.7, height=500)
+fig.update_traces(marker={'line_width':1})
+fig.update_layout(title='各変数の散布図行列')
 show_fig(fig)
 

@@ -30,14 +30,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[5]:
+# In[3]:
 
 
 # 連載週数の最小値
 MIN_WEEKS = 5
 
 
-# In[6]:
+# In[4]:
 
 
 def show_fig(fig):
@@ -51,7 +51,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[7]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -59,7 +59,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 長期連載作品の掲載位置の推移
 
-# In[8]:
+# In[6]:
 
 
 df_tmp =     df.groupby('cname')['pageStartPosition']    .agg(['count', 'mean']).reset_index()
@@ -67,7 +67,7 @@ df_tmp =     df_tmp.sort_values('count', ascending=False, ignore_index=True)    
 cname2position = df_tmp.groupby('cname')['mean'].first().to_dict()
 
 
-# In[10]:
+# In[7]:
 
 
 df_plot = df[df['cname'].isin(list(cname2position.keys()))]    .reset_index(drop=True)
@@ -77,7 +77,7 @@ df_plot['datePublished'] = pd.to_datetime(df_plot['datePublished'])
 df_plot =     df_plot.sort_values(['position', 'datePublished'], ignore_index=True)
 
 
-# In[19]:
+# In[10]:
 
 
 cnames = df_plot['cname'].unique()
@@ -91,5 +91,12 @@ for cname in cnames:
         marker=dict(line_width=1, size=10))
     fig.update_xaxes(title='発売日')
     fig.update_yaxes(title='掲載位置')
+    fig.update_layout(hovermode='x unified')
     show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
