@@ -11,7 +11,7 @@
 
 # ### 下準備
 
-# In[15]:
+# In[1]:
 
 
 import pandas as pd
@@ -21,7 +21,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[16]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -30,14 +30,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[17]:
+# In[3]:
 
 
 # 連載週数の最小値
 MIN_WEEKS = 5
 
 
-# In[18]:
+# In[4]:
 
 
 def show_fig(fig):
@@ -46,7 +46,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[19]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -54,7 +54,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の平均掲載位置と連載週数
 
-# In[20]:
+# In[6]:
 
 
 df_plot =     df.groupby('cname')['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -62,24 +62,27 @@ df_plot.columns = ['cname', 'weeks', 'position']
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[23]:
+# In[7]:
 
 
 fig = px.density_heatmap(
-    df_plot, x='position', y='weeks')
+    df_plot, x='position', y='weeks',
+    title='作品別の平均掲載位置と掲載週数')
+fig.update_xaxes(title='平均掲載位置')
+fig.update_yaxes(title='掲載週数')
 show_fig(fig)
 
 
-# In[24]:
+# In[8]:
 
 
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
 
-# ### 雑誌別・作品別の平均掲載位置と連載週数
+# ### 雑誌別・作品別の平均掲載位置と掲載週数
 
-# In[10]:
+# In[9]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -89,13 +92,13 @@ df_plot = df_plot.sort_values(
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[13]:
+# In[10]:
 
 
 fig = px.density_heatmap(
     df_plot, x='position', y='weeks',
-    facet_col='mcname',
-    facet_col_wrap=2)
+    facet_col='mcname', facet_col_wrap=2,
+    title='雑誌別・作品別の平均掲載位置と掲載週数')
 fig.for_each_annotation(
     lambda a: a.update(text=a.text.split("=")[-1]))
 fig.update_yaxes(range=[0, 200])

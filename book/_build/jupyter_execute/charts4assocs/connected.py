@@ -30,14 +30,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[9]:
+# In[3]:
 
 
 UNIT_YEARS = 5
 YEARS_TO_DROP = ['1970', '2015']
 
 
-# In[3]:
+# In[4]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -48,7 +48,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[4]:
+# In[5]:
 
 
 def show_fig(fig):
@@ -62,7 +62,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[6]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -70,7 +70,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品数と作家数の推移
 
-# In[17]:
+# In[7]:
 
 
 df = add_years_to_df(df, UNIT_YEARS)
@@ -79,20 +79,23 @@ df_plot =     df.groupby('years')['cname', 'creator'].nunique().reset_index()
 df_plot =     df_plot[~df_plot['years'].isin(YEARS_TO_DROP)]    .reset_index(drop=True)
 
 
-# In[18]:
+# In[8]:
 
 
 fig = px.line(
-    df_plot, x='cname', y='creator', text='years',)
+    df_plot, x='cname', y='creator', text='years',
+    title='作品数と作家数の推移')
 fig.update_traces(
     marker={'size': 15, 'line_width':1, 'opacity':0.8},
     textposition='bottom right')
+fig.update_xaxes(title='作家数')
+fig.update_yaxes(title='作品数')
 show_fig(fig)
 
 
 # ### 雑誌別の作品数と作家数の推移
 
-# In[19]:
+# In[9]:
 
 
 df = add_years_to_df(df, 5)
@@ -101,17 +104,23 @@ df_plot =     df.groupby(['mcname', 'years'])['cname', 'creator']    .nunique().
 df_plot =     df_plot[~df_plot['years'].isin(YEARS_TO_DROP)]    .reset_index(drop=True)
 
 
-# In[23]:
+# In[10]:
 
 
 fig = px.line(
     df_plot, x='cname', y='creator', text='years',
     facet_col='mcname', facet_col_wrap=2,
-    height=600)
+    height=600, title='雑誌別の作品数と作家数の推移')
 fig.update_traces(
     marker={'size': 15, 'line_width':1, 'opacity':0.8},
     textposition='bottom right')
 fig.for_each_annotation(
     lambda a: a.update(text=a.text.split("=")[-1]))
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
