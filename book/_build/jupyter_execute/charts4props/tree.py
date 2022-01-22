@@ -79,12 +79,12 @@ df_plot =     df_plot.sort_values(['years', 'mcname'], ignore_index=True)
 
 fig = px.treemap(
     df_plot, path=[px.Constant('all'), 'mcname', 'years'],
-    values=col_count)
+    values=col_count, title='雑誌別・年代別の合計作品数')
 fig.update_traces(root_color='lightgrey')
 show_fig(fig)
 
 
-# ### 雑誌別・作品別の合計連載週数
+# ### 雑誌別・作品別の合計掲載週数
 
 # In[9]:
 
@@ -94,20 +94,20 @@ df_plot =     df.groupby('mcname')['cname'].value_counts().    reset_index(name=
 df_plot = df_plot[df_plot['weeks']>=10].reset_index(drop=True)
 fig = px.treemap(
     df_plot, path=[px.Constant('all'), 'mcname', 'cname'],
-    values='weeks')
+    values='weeks', title='雑誌別・作品別の合計掲載週数')
 fig.update_traces(root_color='lightgrey')
 show_fig(fig)
 
 
-# ### 雑誌別・年代別の合計作者数
+# ### 雑誌別・年代別の合計作家数
 
-# In[15]:
+# In[10]:
 
 
 col_count = 'creator'
 
 
-# In[16]:
+# In[11]:
 
 
 # 1年単位で区切ったyearsを追加
@@ -117,19 +117,19 @@ df_plot =     df.groupby(['mcname', 'years'])[col_count].    nunique().reset_ind
 df_plot =     df_plot.sort_values(['years', 'mcname'], ignore_index=True)
 
 
-# In[17]:
+# In[12]:
 
 
 fig = px.treemap(
     df_plot, path=[px.Constant('all'), 'mcname', 'years'],
-    values=col_count)
+    values=col_count, title='雑誌別・年代別の合計作家数')
 fig.update_traces(root_color='lightgrey')
 show_fig(fig)
 
 
-# ### 雑誌別・作者別の合計連載週数
+# ### 雑誌別・作家別の合計掲載週数
 
-# In[18]:
+# In[13]:
 
 
 df_plot =     df.groupby('mcname')['creator'].value_counts().    reset_index(name='weeks')
@@ -137,19 +137,7 @@ df_plot =     df.groupby('mcname')['creator'].value_counts().    reset_index(nam
 df_plot = df_plot[df_plot['weeks']>=10].reset_index(drop=True)
 fig = px.treemap(
     df_plot, path=[px.Constant('all'), 'mcname', 'creator'],
-    values='weeks')
+    values='weeks', title='雑誌別・作家別の合計掲載週数')
 fig.update_traces(root_color='lightgrey')
 show_fig(fig)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 

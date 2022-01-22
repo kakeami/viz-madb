@@ -102,6 +102,8 @@ for mcname in df_plot['mcname'].unique():
 fig.update_xaxes(
     tickvals=widths.cumsum() - widths/2,
     ticktext=df_plot['years'].unique(),)
+fig.update_xaxes(title='期間')
+fig.update_yaxes(title='比率')
 fig.update_layout(barmode='stack')
 show_fig(fig)    
 
@@ -146,5 +148,7 @@ fig.update_xaxes(
     tickvals=widths.cumsum() - widths/2,
     ticktext=df_plot['years'].unique(),)
 fig.update_layout(barmode='stack')
+fig.update_xaxes(title='期間')
+fig.update_yaxes(title='比率')
 show_fig(fig)    
 

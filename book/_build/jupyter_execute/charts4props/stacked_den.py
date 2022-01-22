@@ -86,6 +86,8 @@ fig = px.area(
     df_plot, x='years', y='ratio', color='mcname',
     color_discrete_sequence= px.colors.diverging.Portland,
     title='雑誌別・年代別の合計作品数')
+fig.update_xaxes(title='期間')
+fig.update_yaxes(title='比率')
 show_fig(fig)
 
 
@@ -119,5 +121,13 @@ fig = px.area(
     df_plot, x='years', y='ratio', color='mcname',
     color_discrete_sequence= px.colors.diverging.Portland,
     title='雑誌別・年代別の合計作者数')
+fig.update_xaxes(title='期間')
+fig.update_yaxes(title='比率')
 show_fig(fig)
+
+
+# In[ ]:
+
+
+
 
