@@ -35,7 +35,7 @@
 
 # ### 下準備
 
-# In[2]:
+# In[1]:
 
 
 import pandas as pd
@@ -45,7 +45,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[3]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -54,14 +54,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[35]:
+# In[3]:
 
 
 # 平均掲載位置を算出する際の最小連載数
 MIN_WEEKS = 5
 
 
-# In[36]:
+# In[4]:
 
 
 def show_fig(fig):
@@ -70,7 +70,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[37]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -80,17 +80,18 @@ df = pd.read_csv(PATH_DATA)
 
 # `MIN_WEEKS`以上連載したマンガ作品の平均掲載位置の分布を見てみます．
 
-# In[50]:
+# In[6]:
 
 
 df_plot =     df.groupby(['mcname', 'cname', 'creator'])['pageStartPosition']    .agg(['count', 'mean']).reset_index()
 df_plot = df_plot[df_plot['count'] >= MIN_WEEKS]    .reset_index(drop=True)
 
 
-# In[51]:
+# In[7]:
 
 
-fig = px.histogram(df_plot, x='mean')
+fig = px.histogram(
+    df_plot, x='mean', title='作品ごとの掲載位置')
 fig.update_xaxes(title='平均掲載位置')
 fig.update_yaxes(title='作品数')
 show_fig(fig)
@@ -98,10 +99,12 @@ show_fig(fig)
 
 # 0.6 - 0.7付近にピークのある分布であることがわかります．
 
-# In[52]:
+# In[9]:
 
 
-fig = px.histogram(df_plot, x='mean', cumulative=True)
+fig = px.histogram(
+    df_plot, x='mean', cumulative=True,
+    title='作品ごとの掲載位置')
 fig.update_xaxes(title='平均掲載位置')
 fig.update_yaxes(title='累積作品数')
 show_fig(fig)

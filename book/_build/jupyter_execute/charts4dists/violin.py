@@ -73,11 +73,12 @@ df_plot['position'] = df_plot['cname'].apply(
 df_plot = df_plot.sort_values('position', ignore_index=True)
 
 
-# In[10]:
+# In[8]:
 
 
 fig = px.violin(
-    df_plot, x='cname', y='pageStartPosition', points=False)
+    df_plot, x='cname', y='pageStartPosition', points=False,
+    title='長期連載作品の掲載位置')
 fig.update_traces(scalemode='count', meanline_visible=True, width=1)
 fig.update_layout(violinmode='overlay', violingap=0)
 fig.update_xaxes(title='作品名')

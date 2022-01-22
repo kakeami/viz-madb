@@ -216,12 +216,6 @@ df_plot = df[df['creator'].isin(creators)].reset_index(drop=True)
 df_plot =     df_plot.groupby(['creator', 'cname'])['years'].value_counts()    .reset_index(name='weeks')
 
 
-# In[38]:
-
-
-df_plot.groupby('creator')['cname'].nunique().reset_index()
-
-
 # In[54]:
 
 

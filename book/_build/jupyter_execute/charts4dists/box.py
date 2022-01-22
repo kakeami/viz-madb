@@ -32,14 +32,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[5]:
+# In[3]:
 
 
 # 平均掲載位置を算出する際の最小連載数
 MIN_WEEKS = 5
 
 
-# In[3]:
+# In[4]:
 
 
 def show_fig(fig):
@@ -48,7 +48,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[29]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -56,7 +56,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 長期連載作品の掲載位置の分布
 
-# In[36]:
+# In[6]:
 
 
 df_tmp =     df.groupby('cname')['pageStartPosition']    .agg(['count', 'mean']).reset_index()
@@ -64,7 +64,7 @@ df_tmp =     df_tmp.sort_values('count', ascending=False, ignore_index=True)    
 cname2position = df_tmp.groupby('cname')['mean'].first().to_dict()
 
 
-# In[37]:
+# In[7]:
 
 
 df_plot = df[df['cname'].isin(list(cname2position.keys()))]    .reset_index(drop=True)
@@ -73,10 +73,12 @@ df_plot['position'] = df_plot['cname'].apply(
 df_plot = df_plot.sort_values('position', ignore_index=True)
 
 
-# In[38]:
+# In[9]:
 
 
-fig = px.box(df_plot, x='cname', y='pageStartPosition')
+fig = px.box(
+    df_plot, x='cname', y='pageStartPosition',
+    title='長期連載作品の掲載位置')
 fig.update_xaxes(title='作品名')
 fig.update_yaxes(title='掲載位置')
 show_fig(fig)
@@ -86,7 +88,7 @@ show_fig(fig)
 
 # ### 長期連載作品の話数毎の掲載位置の分布
 
-# In[44]:
+# In[10]:
 
 
 # 話数の区切り

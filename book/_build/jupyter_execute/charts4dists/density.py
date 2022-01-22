@@ -14,8 +14,7 @@
 # ```python
 # import plotly.figure_factory as ff
 # fig = ff.create_distplot(
-#     df['x_col'].values.reshape(1, -1), 
-#     ['label'], show_hist=False)
+#     [df['x_col']], ['label'], show_hist=False)
 # ```
 
 # 上記の例では，`df`の`col_x`列をX軸，その確率密度をY軸にとったDensity plotのオブジェクト`fig`を作成します．
@@ -29,7 +28,7 @@
 
 # ### 下準備
 
-# In[54]:
+# In[1]:
 
 
 import pandas as pd
@@ -49,14 +48,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[6]:
+# In[3]:
 
 
 # 平均掲載位置を算出する際の最小連載数
 MIN_WEEKS = 5
 
 
-# In[46]:
+# In[4]:
 
 
 def show_fig(fig):
@@ -69,44 +68,34 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[47]:
+# In[5]:
 
 
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 掲載位置の分布
-
-# In[48]:
-
-
-df_plot =     df.groupby(['mcname', 'cname', 'creator'])['pageStartPosition']    .agg(['count', 'mean']).reset_index()
-df_plot = df_plot[df_plot['count'] >= MIN_WEEKS]    .reset_index(drop=True)
-
-
-# In[49]:
-
-
-fig = ff.create_distplot(
-    [df_plot['mean'].values], ['全作品'],
-    show_hist=False)
-show_fig(fig)
-
-
-# ヒストグラムで図示するよりも滑らかに分布を図示できていることがわかります．
-
 # ### 長期連載作品の掲載位置の分布
 
-# 合計連載週数が多い5作品に対して，同様に分布を図示してみましょう．
+# 合計連載週数が多い10作品に対して，同様に分布を図示してみましょう．
 
-# In[62]:
-
-
-df_tmp =     df_plot.sort_values(['count'], ascending=False, ignore_index=True)    .head(10)
-df_tmp
+# In[8]:
 
 
-# In[63]:
+df_tmp =     df.groupby('cname')['pageStartPosition']    .agg(['count', 'mean']).reset_index()
+df_tmp =     df_tmp.sort_values('count', ascending=False, ignore_index=True)    .head(10)
+cname2position = df_tmp.groupby('cname')['mean'].first().to_dict()
+
+
+# In[9]:
+
+
+df_plot = df[df['cname'].isin(list(cname2position.keys()))]    .reset_index(drop=True)
+df_plot['position'] = df_plot['cname'].apply(
+    lambda x: cname2position[x])
+df_plot = df_plot.sort_values('position', ignore_index=True)
+
+
+# In[13]:
 
 
 cnames = df_tmp.sort_values('mean')['cname'].values
@@ -115,13 +104,17 @@ data = [
     ['pageStartPosition'] for cname in cnames]
 
 
-# In[66]:
+# In[15]:
 
 
 fig = ff.create_distplot(
     data, cnames, show_hist=False,
     colors= px.colors.sequential.Plasma_r)
-fig.update_layout(hovermode='x unified', height=600)
+fig.update_xaxes(title='掲載位置')
+fig.update_yaxes(title='確率密度')
+fig.update_layout(
+    hovermode='x unified', height=600,
+    title_text='長期連載作品の掲載位置')
 show_fig(fig)
 
 
@@ -129,14 +122,14 @@ show_fig(fig)
 
 # ### 長期連載作品の話数毎の掲載位置の分布
 
-# In[67]:
+# In[16]:
 
 
 # 話数の区切り
 UNIT_EP = 200
 
 
-# In[75]:
+# In[17]:
 
 
 cnames = df_tmp.sort_values('mean')['cname'].values
@@ -151,6 +144,8 @@ for cname in cnames:
     fig = ff.create_distplot(
         data, labels, show_hist=False,
         colors= px.colors.sequential.Plasma_r)
+    fig.update_xaxes(title='掲載位置')
+    fig.update_yaxes(title='確率密度')
     fig.update_layout(
         hovermode='x unified', height=500,
         title_text=f'{cname}の掲載位置')
