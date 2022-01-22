@@ -5,6 +5,10 @@
 
 # ## 概要
 
+# **等高線プロット**は，2変数の分布の様子を見るために利用される手法です．
+
+# ![contours](../figs/charts/counture.png)
+
 # ## Plotlyによる作図方法
 
 # ## MADB Labを用いた作図例

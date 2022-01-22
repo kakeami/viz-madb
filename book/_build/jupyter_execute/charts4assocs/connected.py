@@ -5,6 +5,12 @@
 
 # ## 概要
 
+# 連続的に変化する変数が複数ある場合でも**折れ線グラフ**を利用することは可能です．
+# 縦軸・横軸に変数の値を取り，サンプル付近に時点情報を付加することで，2変数の連続的な変化を表現します．
+# 例えば，以下のようなものです．
+
+# ![connected](../figs/charts/connected.png)
+
 # ## Plotlyによる作図方法
 
 # ## MADB Labを用いた作図例
@@ -118,6 +124,8 @@ fig.for_each_annotation(
     lambda a: a.update(text=a.text.split("=")[-1]))
 show_fig(fig)
 
+
+# ## 練習問題
 
 # In[ ]:
 

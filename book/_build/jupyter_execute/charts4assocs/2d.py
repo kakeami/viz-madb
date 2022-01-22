@@ -4,8 +4,24 @@
 # # 2次元ヒストグラム
 
 # ## 概要
+# 
+# **2次元ヒストグラム**とは，2種類の量的変数の分布を見るために用いられる手法です．
+# 集計したい変数の階級を横軸・縦軸にとり，その階級に含まれるデータの数を色で示します．
+# 例えば以下のようなものです．
+# 
+# ![2d](../figs/charts/2d.png)
 
 # ## Plotlyによる作図方法
+
+# Plotlyでは，`plotly.express.density_heatmap()`を用いて作図できます．
+
+# ```python
+# import plotly.express as px
+# fig = px.density_heatmap(
+#     df, x='col_x', y='col_y')
+# ```
+
+# 上記の例では，`df`の`col_x`および`col_y`について，階級ごとにデータの下図を集計した二次元ヒストグラムのオブジェクト`fig`を作成します．
 
 # ## MADB Labを用いた作図例
 
@@ -103,4 +119,12 @@ fig.for_each_annotation(
     lambda a: a.update(text=a.text.split("=")[-1]))
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
+
+
+# ## 練習問題
+
+# In[ ]:
+
+
+
 
