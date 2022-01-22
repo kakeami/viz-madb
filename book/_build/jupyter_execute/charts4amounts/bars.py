@@ -14,7 +14,7 @@
 # 
 # です．例えば以下のようなものです．
 # 
-# ![bars](../figs/bars.png)
+# ![bars](../figs/charts/bars.png)
 
 # ## Plotlyによる作図方法
 
@@ -49,7 +49,7 @@
 
 # ### 下準備
 
-# In[14]:
+# In[1]:
 
 
 import itertools
@@ -60,7 +60,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[3]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -69,7 +69,7 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[4]:
+# In[3]:
 
 
 def show_fig(fig):
@@ -78,7 +78,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[7]:
+# In[4]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -89,7 +89,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[8]:
+# In[5]:
 
 
 def resample_df_by_cname_and_years(df):
@@ -113,7 +113,7 @@ def resample_df_by_cname_and_years(df):
     return df_new
 
 
-# In[9]:
+# In[6]:
 
 
 def resample_df_by_creator_and_years(df):
@@ -137,7 +137,7 @@ def resample_df_by_creator_and_years(df):
     return df_new
 
 
-# In[10]:
+# In[7]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -145,24 +145,26 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の合計連載週数（上位20作品）
 
-# In[11]:
+# In[8]:
 
 
 df_plot = df.value_counts('cname').reset_index(name='weeks').head(20)
 fig = px.bar(df_plot, x='cname', y='weeks', title='作品別の合計連載週数')
+fig.update_xaxes(title='作品名')
+fig.update_yaxes(title='合計連載週数')
 show_fig(fig)
 
 
 # ### 作品別・年代別の合計連載週（上位20作品）
 
-# In[12]:
+# In[9]:
 
 
 # dfにyearsを追加
 df = add_years_to_df(df)
 
 
-# In[15]:
+# In[10]:
 
 
 # プロット用に集計
@@ -174,7 +176,7 @@ df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
 df_plot = resample_df_by_cname_and_years(df_plot)
 
 
-# In[16]:
+# In[11]:
 
 
 # 合計連載週数で降順ソート
@@ -184,7 +186,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[17]:
+# In[12]:
 
 
 # 作図
@@ -192,6 +194,8 @@ fig = px.bar(
     df_plot, x='cname', y='weeks', color='years',
     color_discrete_sequence= px.colors.diverging.Portland,
     barmode='group', title='作品別・年代別の合計連載週数')
+fig.update_xaxes(title='作品名')
+fig.update_yaxes(title='合計連載週数')
 show_fig(fig)
 
 
@@ -199,7 +203,7 @@ show_fig(fig)
 # おそらく`px.bar()`の仕様ですが，`barmode='group'`あるいは`barmode='stack'`を選択した際に`color`で指定した列に欠測があると，X軸の順序が変わってしまうことを確認しました．これを回避するため，`resample_df_by_cname_and_years(df_plot)`で欠測を補完しています．以降も同様です．
 # ```
 
-# In[18]:
+# In[13]:
 
 
 # 作図
@@ -207,29 +211,33 @@ fig = px.bar(
     df_plot, x='cname', y='weeks', color='years',
     color_discrete_sequence= px.colors.diverging.Portland,
     barmode='stack', title='作品別・年代別の合計連載週数')
+fig.update_xaxes(title='作品名')
+fig.update_yaxes(title='合計連載週数')
 show_fig(fig)
 
 
-# ### 作者別の合計連載週数（上位20名）
+# ### 作家別の合計連載週数（上位20名）
 
-# In[19]:
+# In[14]:
 
 
 df_plot = df.value_counts('creator').reset_index(name='weeks').head(20)
 fig = px.bar(df_plot, x='creator', y='weeks', title='作者別の合計連載週数')
+fig.update_xaxes(title='作家名')
+fig.update_yaxes(title='合計連載週数')
 show_fig(fig)
 
 
-# ### 作者別・年代別の合計連載週数（上位20名）
+# ### 作家別・年代別の合計連載週数（上位20名）
 
-# In[20]:
+# In[18]:
 
 
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df)
 
 
-# In[21]:
+# In[19]:
 
 
 # プロット用に集計
@@ -241,7 +249,7 @@ df_plot = df_plot[df_plot['creator'].isin(creators)].    reset_index(drop=True)
 df_plot = resample_df_by_creator_and_years(df_plot)
 
 
-# In[22]:
+# In[20]:
 
 
 # 合計連載週数で降順ソート
@@ -251,24 +259,28 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[23]:
+# In[21]:
 
 
 # 作図
 fig = px.bar(
     df_plot, x='creator', y='weeks', color='years',
     color_discrete_sequence= px.colors.diverging.Portland,
-    barmode='group', title='作者別・年代別の合計連載週数')
+    barmode='group', title='作家別・年代別の合計連載週数')
+fig.update_xaxes(title='作家名')
+fig.update_yaxes(title='合計連載週数')
 show_fig(fig)
 
 
-# In[24]:
+# In[22]:
 
 
 # 作図
 fig = px.bar(
     df_plot, x='creator', y='weeks', color='years',
     color_discrete_sequence= px.colors.diverging.Portland,
-    barmode='stack', title='作者別・年代別の合計連載週数')
+    barmode='stack', title='作家別・年代別の合計連載週数')
+fig.update_xaxes(title='作家名')
+fig.update_yaxes(title='合計連載週数')
 show_fig(fig)
 
