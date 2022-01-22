@@ -143,24 +143,36 @@ def resample_df_by_creator_and_years(df):
 df = pd.read_csv(PATH_DATA)
 
 
-# ### 作品別の合計連載週数（上位20作品）
+# ### 作品別の掲載週数（上位20作品）
+
+# まずは，作品ごとの掲載週数を見てみましょう．
 
 # In[8]:
 
 
 df_plot = df.value_counts('cname').reset_index(name='weeks').head(20)
-fig = px.bar(df_plot, x='cname', y='weeks', title='作品別の合計連載週数')
+fig = px.bar(df_plot, x='cname', y='weeks', 
+             title='作品別の掲載週数')
 fig.update_xaxes(title='作品名')
-fig.update_yaxes(title='合計連載週数')
+fig.update_yaxes(title='掲載週数')
 show_fig(fig)
 
 
-# ### 作品別・年代別の合計連載週（上位20作品）
+# 各雑誌・各世代を代表するような作品が並びます．`こちら葛飾区亀有公園前派出所`は流石ですね…．
+
+# ### 作品別・年代別の掲載週数（上位20作品）
+
+# では，上記の作品は**いつ頃**掲載されたものなのでしょうか？ここでは：
+# 
+# - 集合棒グラフ（グループ化された棒グラフ）
+# - 積上げ棒グラフ
+# 
+# を使って，作品別・年代別の合計掲載週を可視化します．
 
 # In[9]:
 
 
-# dfにyearsを追加
+# dfに10年区切りの年代情報を追加
 df = add_years_to_df(df)
 
 
@@ -186,58 +198,98 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[12]:
+# In[15]:
 
 
 # 作図
 fig = px.bar(
     df_plot, x='cname', y='weeks', color='years',
     color_discrete_sequence= px.colors.diverging.Portland,
-    barmode='group', title='作品別・年代別の合計連載週数')
+    barmode='group', 
+    title='作品別・年代別の合計掲載週数（集合棒グラフ）')
 fig.update_xaxes(title='作品名')
 fig.update_yaxes(title='合計連載週数')
 show_fig(fig)
 
+
+# 冒頭の棒グラフを年代ごとに分割し，作品ごとに横に並べました．このようなグラフを**集合棒グラフ**と呼びます．
+# 
+# 作品の掲載年に特徴が顕れており，非常に面白いですね…．`こちら葛飾区亀有公園前派出所`がいかに長期間，コンスタントに掲載されていたかわかります．
+
+# このグラフを観察すると，集合棒グラフには次のような長所があることがわかります：
+# 
+# - 各作品・各年代の**絶対値**を比較しやすい
+#     - 例：1970年代は`ダメおやじ`，1980年代は`こちら葛飾区亀有公園前派出所`が代表的
+# - 各作品がどの年代に掲載されたか定性的にわかりやすい
+#     - 例：`ダメおやじ`等は1970-1980年代，`MAJOR`は1990-2010年代に掲載された
+
+# 一方で，次のような短所も明らかになりました：
+# 
+# - 年代の数に比例して凡例の数が増えてしまうため，全体的に棒が細くなり，視認性が悪くなる
+# - 年代をまたがった**合計掲載週数**の比較がしづらい
 
 # ```{admonition} group対象に欠測があるとX軸の順序が自動調整されてしまう
 # おそらく`px.bar()`の仕様ですが，`barmode='group'`あるいは`barmode='stack'`を選択した際に`color`で指定した列に欠測があると，X軸の順序が変わってしまうことを確認しました．これを回避するため，`resample_df_by_cname_and_years(df_plot)`で欠測を補完しています．以降も同様です．
 # ```
 
-# In[13]:
+# In[14]:
 
 
 # 作図
 fig = px.bar(
     df_plot, x='cname', y='weeks', color='years',
     color_discrete_sequence= px.colors.diverging.Portland,
-    barmode='stack', title='作品別・年代別の合計連載週数')
+    barmode='stack', 
+    title='作品別・年代別の合計連載週数（積上げ棒グラフ）')
 fig.update_xaxes(title='作品名')
 fig.update_yaxes(title='合計連載週数')
 show_fig(fig)
 
 
-# ### 作家別の合計連載週数（上位20名）
+# こちらは同じ情報を**積上げ棒グラフ**で可視化したものです．
+# 積上げ棒グラフは，年代ごとの掲載数を横に並べるのではなく，縦に積上げていることにご注意ください．
 
-# In[14]:
+# 積上げ棒グラフの長所は：
+# 
+# - 各作品の年代ごとの**比率**を比較しやすい
+# - 各作品の**合計掲載週**を比較しやすい
+# 
+# です．
+
+# 積上げ棒グラフの短所は：
+# 
+# - 各作品・各年代の**絶対値**を比較しづらい
+# 
+# です．
+# 
+# 積上げ棒グラフの特徴は集合棒グラフと表裏一体です．
+
+# ### 作家別の掲載週数（上位20名）
+
+# 同様に，作家別に掲載週数を可視化してみましょう．
+
+# In[20]:
 
 
 df_plot = df.value_counts('creator').reset_index(name='weeks').head(20)
-fig = px.bar(df_plot, x='creator', y='weeks', title='作者別の合計連載週数')
+fig = px.bar(df_plot, x='creator', y='weeks', title='作者別の掲載週数')
 fig.update_xaxes(title='作家名')
-fig.update_yaxes(title='合計連載週数')
+fig.update_yaxes(title='掲載週数')
 show_fig(fig)
 
 
-# ### 作家別・年代別の合計連載週数（上位20名）
+# `こちら葛飾区亀有公園前派出所`の`秋本治`先生が1位と予想しておりましたが，`水島新司`先生が圧倒的でした．
 
-# In[18]:
+# ### 作家別・年代別の掲載週数（上位20名）
+
+# In[21]:
 
 
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df)
 
 
-# In[19]:
+# In[22]:
 
 
 # プロット用に集計
@@ -249,7 +301,7 @@ df_plot = df_plot[df_plot['creator'].isin(creators)].    reset_index(drop=True)
 df_plot = resample_df_by_creator_and_years(df_plot)
 
 
-# In[20]:
+# In[23]:
 
 
 # 合計連載週数で降順ソート
@@ -259,28 +311,33 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[21]:
+# In[24]:
 
 
 # 作図
 fig = px.bar(
     df_plot, x='creator', y='weeks', color='years',
     color_discrete_sequence= px.colors.diverging.Portland,
-    barmode='group', title='作家別・年代別の合計連載週数')
+    barmode='group', title='作家別・年代別の掲載週数')
 fig.update_xaxes(title='作家名')
-fig.update_yaxes(title='合計連載週数')
+fig.update_yaxes(title='掲載週数')
 show_fig(fig)
 
 
-# In[22]:
+# In[25]:
 
 
 # 作図
 fig = px.bar(
     df_plot, x='creator', y='weeks', color='years',
     color_discrete_sequence= px.colors.diverging.Portland,
-    barmode='stack', title='作家別・年代別の合計連載週数')
+    barmode='stack', title='作家別・年代別の掲載週数')
 fig.update_xaxes(title='作家名')
-fig.update_yaxes(title='合計連載週数')
+fig.update_yaxes(title='掲載週数')
 show_fig(fig)
 
+
+# ## 練習問題
+# 
+# 1. 掲載週（`datePublished`）数ではなく，作品（`cname`）数が多い作家を可視化してみましょう．掲載週数と比較して言えることはありますか？
+# 2. 年代別・作品数別に積上げ棒グラフを作成して，作家毎の特徴を考察してみましょう
