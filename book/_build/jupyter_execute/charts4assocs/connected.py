@@ -10,9 +10,17 @@
 
 # ![connected](../figs/charts/connected.png)
 
-# 例えば上図は，四大少年誌の5年ごとの作家数（X軸）と作品数（Y軸）の推移を表した折れ線グラフです．
+# 例えば上図は，四大少年誌の5年ごとの作家数（横軸）と作品数（縦軸）の推移を表した折れ線グラフです．
 
 # ## Plotlyによる作図方法
+
+# Plotlyでは，`plotly.express.line()`で折れ線グラフを作図できます．
+
+# ```python
+# import plotly.express as px
+# fig = px.line(
+#     df, x='col_x', y='col_y', text='col_text')
+# ```
 
 # ## MADB Labを用いた作図例
 

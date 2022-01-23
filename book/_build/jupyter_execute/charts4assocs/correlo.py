@@ -4,6 +4,7 @@
 # # コレログラム
 
 # ## 概要
+# 
 
 # ::: {note}
 # 時系列解析において，自己相関を見るために時点をずらした系列との相関係数を示したものもコレログラムと呼びますが，ここで紹介するのは変数同士の相関係数を示したものです．
@@ -99,4 +100,12 @@ fig = px.scatter_matrix(
 fig.update_traces(marker={'line_width':1})
 fig.update_layout(title='各変数の散布図行列')
 show_fig(fig)
+
+
+# ## 練習問題
+
+# In[ ]:
+
+
+
 
