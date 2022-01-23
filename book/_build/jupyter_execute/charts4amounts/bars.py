@@ -12,9 +12,11 @@
 # 
 # （「[総務省統計局，なるほど統計学園，棒グラフ](http://www.stat.go.jp/naruhodo/4_graph/shokyu/bou-graph.html)」より抜粋）
 # 
-# です．例えば以下のようなものです．
-# 
+# です．
+
 # ![bars](../figs/charts/bars.png)
+
+# 例えば上図は，作品ごとの合計掲載週数を表した棒グラフです．
 
 # ## Plotlyによる作図方法
 
