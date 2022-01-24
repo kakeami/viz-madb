@@ -38,7 +38,8 @@ parts:
     - file: charts4assocs/line
     - file: charts4assocs/connected
   - caption: Appendix
-    numbered: True
+    numbered: False
     chapters:
     - file: appendix/preprocess
       title: MADBの前処理
+    - file: appendix/setup
