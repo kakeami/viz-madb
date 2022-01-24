@@ -27,7 +27,7 @@
 データ・ビジュアライゼーションの学習において重要なのは，**分析対象のデータに興味を持てるかどうか**だと思います．
 本サイトでは約47年の四大少年誌のマンガ作品データを採用しているため，（少なくとも私は）飽きることなく学習を継続可能です！
 
-（いい感じのgifを貼る）
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tSBXADm7pv8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop" allowfullscreen></iframe>
 
 ---
 👁️**Plotlyによるインタラクティブなビジュアライゼーション**👁️
