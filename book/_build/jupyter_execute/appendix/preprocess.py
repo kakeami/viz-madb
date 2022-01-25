@@ -7,20 +7,20 @@
 
 # ## 環境構築
 
-# In[1]:
+# In[7]:
 
 
 import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[8]:
 
 
 get_ipython().system('pip install ijson')
 
 
-# In[3]:
+# In[9]:
 
 
 import glob
@@ -34,7 +34,7 @@ from tqdm import tqdm_notebook as tqdm
 import zipfile
 
 
-# In[4]:
+# In[10]:
 
 
 DIR_IN = '../../madb/data/json-ld'
@@ -42,7 +42,7 @@ DIR_TMP = '../../data/preprocess/tmp'
 DIR_OUT = '../../data/preprocess/out'
 
 
-# In[5]:
+# In[11]:
 
 
 FNS_CM = [
@@ -52,7 +52,7 @@ FNS_CM = [
 ]
 
 
-# In[6]:
+# In[12]:
 
 
 # 分析対象とする雑誌名
@@ -64,7 +64,7 @@ MCNAMES = [
 ]
 
 
-# In[7]:
+# In[13]:
 
 
 COLS_CM105 = [
@@ -74,7 +74,7 @@ COLS_CM105 = [
 ]
 
 
-# In[8]:
+# In[14]:
 
 
 # cm102, genre=='雑誌巻号'
@@ -92,7 +92,7 @@ COLS_MIS = {
 }
 
 
-# In[9]:
+# In[15]:
 
 
 # cm102, genre=='マンガ作品'
@@ -107,7 +107,7 @@ COLS_EPS = {
 }
 
 
-# In[10]:
+# In[16]:
 
 
 # cm106
@@ -117,7 +117,7 @@ COLS_CS = {
 }
 
 
-# In[11]:
+# In[17]:
 
 
 # 最終的に出力するカラム
@@ -128,22 +128,16 @@ COLS_OUT = [
 ]
 
 
-# In[39]:
+# In[18]:
 
 
 # 許容するpageEnd，pageStartの最大値
 MAX_PAGES = 1000
 
 
-# In[12]:
-
-
-get_ipython().system('ls {DIR_IN}')
-
-
 # ## 関数
 
-# In[13]:
+# In[20]:
 
 
 def read_json(path):
@@ -161,7 +155,7 @@ def read_json(path):
     return dct
 
 
-# In[14]:
+# In[21]:
 
 
 def save_json(path, dct):
@@ -176,7 +170,7 @@ def save_json(path, dct):
         json.dump(dct, f, ensure_ascii=False, indent=4)
 
 
-# In[15]:
+# In[22]:
 
 
 def read_json_w_filters(path, items, filters):
@@ -493,7 +487,7 @@ df_cs.to_csv(os.path.join(DIR_TMP, 'cs.csv'), index=False)
 
 # ### 結合
 
-# In[117]:
+# In[23]:
 
 
 def read_and_concat_csvs(pathes):
@@ -505,7 +499,7 @@ def read_and_concat_csvs(pathes):
     return df_all
 
 
-# In[118]:
+# In[24]:
 
 
 def sort_date(df, col_date):
@@ -516,7 +510,7 @@ def sort_date(df, col_date):
     return df_new
 
 
-# In[119]:
+# In[25]:
 
 
 # 各ファイルのパスを抽出
@@ -525,7 +519,7 @@ ps_eps = glob.glob(f'{DIR_TMP}/eps*.csv')
 ps_cs = glob.glob(f'{DIR_TMP}/cs*.csv')
 
 
-# In[120]:
+# In[26]:
 
 
 # データの読み出し
@@ -535,7 +529,7 @@ df_cs = read_and_concat_csvs(ps_cs)
 mcid2mcname = read_json(os.path.join(DIR_TMP, 'mcid2mcname.json'))
 
 
-# In[121]:
+# In[27]:
 
 
 # 結合
@@ -545,14 +539,14 @@ df_all['mcname'] = df_all['mcid'].apply(
     lambda x: mcid2mcname[x])
 
 
-# In[122]:
+# In[28]:
 
 
 # 必要な列のみ抽出
 df_all = df_all[COLS_OUT]
 
 
-# In[123]:
+# In[29]:
 
 
 # ソート
@@ -562,19 +556,19 @@ df_all = df_all.sort_values(['datePublished', 'pageStart'], ignore_index=True)
 
 # ### 各雑誌の`datePublished`を統一
 
-# In[124]:
+# In[30]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[125]:
+# In[31]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[126]:
+# In[32]:
 
 
 # 全雑誌のうちDBに存在する期間が最も短いものに合わせる
@@ -585,19 +579,19 @@ df_all = df_all[
     (df_all['datePublished']<=date_max)].reset_index(drop=True)
 
 
-# In[127]:
+# In[33]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[128]:
+# In[34]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[129]:
+# In[35]:
 
 
 df_all.value_counts('mcname')
@@ -605,7 +599,7 @@ df_all.value_counts('mcname')
 
 # ### 適切な`pageStart`/`pageEnd`を持つ行のみ抽出
 
-# In[130]:
+# In[36]:
 
 
 # pageStartがpageEndより小さい値であること
@@ -614,7 +608,7 @@ asst_ps_pe = df_all['pageStart'] <= df_all['pageEnd']
 asst_pe = df_all['pageEnd'] <= MAX_PAGES
 
 
-# In[131]:
+# In[37]:
 
 
 # 抽出後のデータ
@@ -625,7 +619,7 @@ df_drop = df_all[
     ~(asst_ps_pe&asst_pe)].reset_index(drop=True)
 
 
-# In[132]:
+# In[38]:
 
 
 # 検証
@@ -634,7 +628,7 @@ assert df_all.shape[0] == df_new.shape[0] + df_drop.shape[0]
 
 # 除外したデータの一覧．
 
-# In[133]:
+# In[39]:
 
 
 df_drop
@@ -642,7 +636,7 @@ df_drop
 
 # ### 各`episode`のページ数`pages`をカラムに追加
 
-# In[134]:
+# In[40]:
 
 
 df_new['pages'] = df_new['pageEnd'] - df_new['pageStart'] + 1
@@ -650,7 +644,7 @@ df_new['pages'] = df_new['pageEnd'] - df_new['pageStart'] + 1
 
 # ### 各雑誌巻号の最終ページ`pageEndMax`をカラムに追加
 
-# In[135]:
+# In[41]:
 
 
 # 各雑誌巻号の最終ページ
@@ -662,13 +656,13 @@ df_new['pageEndMax'] = df_new['miname'].apply(
 
 # ### 各episodeの掲載位置`pageStartPosition`をカラムに追加
 
-# In[136]:
+# In[42]:
 
 
 df_new['pageStartPosition'] =     df_new['pageStart'] / df_new['pageEndMax']
 
 
-# In[137]:
+# In[43]:
 
 
 df_new['pageStartPosition'].describe()
@@ -676,11 +670,15 @@ df_new['pageStartPosition'].describe()
 
 # ### 保存
 
-# In[138]:
+# In[44]:
 
 
 # 全データ
-df_new.to_csv(os.path.join(DIR_OUT, 'episodes.csv'), index=False)
+df_new.to_csv(
+    os.path.join(DIR_OUT, 'episodes.csv'), index=False,
+    encoding='utf_8_sig')
+df_new.to_csv(
+    os.path.join(DIR_OUT, 'episodes.txt'), encoding='utf_8_sig')
 # 除外したデータ
 df_new.to_csv(os.path.join(DIR_OUT, 'droped_episodes.csv'), index=False)
 

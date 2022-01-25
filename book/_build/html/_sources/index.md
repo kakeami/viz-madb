@@ -7,14 +7,14 @@
 [![made-with-plotly](https://img.shields.io/badge/Made%20with-Plotly-1f425f.svg)](https://plotly.com/python/)
 ```
 
-**データ・ビジュアライゼーション**とは，数値や文章などのデータに基づいた情報を，人間が理解しやすい形に視覚化する技術を指します．
+**データビジュアライゼーション**とは，数値や文章などのデータに基づいた情報を，人間が理解しやすい形に視覚化する技術を指します．
 
 このサイトは，[文化庁の**メディア芸術データベース・ラボ**（**MADB Lab**）](https://mediag.bunka.go.jp/madb_lab/)で公開されている**四大少年誌**（
-[週刊少年ジャンプ](https://www.shonenjump.com/j/)，
 [週刊少年サンデー](https://websunday.net/)，
-[週刊少年マガジン](https://shonenmagazine.com/)，
-[週刊少年チャンピオン](https://www.akitashoten.co.jp/w-champion)
-）のデータを用いて，データ・ビジュアライゼーションの学習を手助けすることを目指しています．
+[週刊少年ジャンプ](https://www.shonenjump.com/j/)，
+[週刊少年チャンピオン](https://www.akitashoten.co.jp/w-champion)，
+[週刊少年マガジン](https://shonenmagazine.com/)
+）のデータを用いて，データビジュアライゼーションの学習を手助けすることを目指しています．
 
 :::{panels}
 :container: +full-width
@@ -24,10 +24,9 @@
 ---
 📚**約47年分の四大少年誌の掲載作品データを採用**📚
 ^^^
-データ・ビジュアライゼーションの学習において重要なのは，**分析対象のデータに興味を持てるかどうか**だと思います．
-本サイトでは約47年の四大少年誌のマンガ作品データを採用しているため，（少なくとも私は）飽きることなく学習を継続可能です！
+データビジュアライゼーションの学習において重要なのは，**分析対象のデータに興味を持てるかどうか**だと思います．
+本サイトでは約47年の四大少年誌のマンガ作品データを採用しているため，モチベーションを保ちつつ学習を進めることが可能です．
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tSBXADm7pv8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop" allowfullscreen></iframe>
 
 ---
 👁️**Plotlyによるインタラクティブなビジュアライゼーション**👁️
@@ -36,7 +35,6 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 興味の赴くまま，グリグリグラフを動かしてみましょう．
 新たな分析のヒントが得られるかもしれません．
 
-（いい感じのgifを貼る）
 
 ---
 👩‍🎓**Jupyter形式でPythonのソースコードを公開**🧑‍🎓
@@ -73,9 +71,26 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 **量を見たい**
 ^^^
 
+質的変数の量を見たいときは
+[棒グラフ]()
+や
+[ヒートマップ]()
+を使うと良いでしょう．
+
 ---
 **分布を見たい**[^dist]
 ^^^
+
+量的変数の分布を見たいときは，
+[ヒストグラム]()，
+[密度プロット]()，
+[箱ひげ図]()，
+[バイオリンプロット]()，
+[ストリップチャート]()，
+そして
+[リッジラインプロット]()
+を使うと良いでしょう．
+
 
 ---
 **比率を見たい**
@@ -99,10 +114,10 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 - [Jupyter](https://jupyter.org/)
 - [Jupyter Book](https://jupyterbook.org/)
 - [文部科学省文化庁，メディア芸術データベース・ラボ](https://mediag.bunka.go.jp/madb_lab/)
-- [週刊少年ジャンプ](https://www.shonenjump.com/j/)
 - [週刊少年サンデー](https://websunday.net/)
-- [週刊少年マガジン](https://shonenmagazine.com/)
+- [週刊少年ジャンプ](https://www.shonenjump.com/j/)
 - [週刊少年チャンピオン](https://www.akitashoten.co.jp/w-champion)
+- [週刊少年マガジン](https://shonenmagazine.com/)
 
 ## 参考文献
 

@@ -7,7 +7,7 @@
 
 # ## 下準備
 
-# In[107]:
+# In[1]:
 
 
 import pandas as pd
@@ -16,14 +16,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[108]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
 PATH_DATA = '../../data/preprocess/out/episodes.csv'
 
 
-# In[109]:
+# In[3]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -33,15 +33,15 @@ df = pd.read_csv(PATH_DATA)
 
 # `df`は
 # 
-# - 週刊少年ジャンプ
 # - 週刊少年サンデー
-# - 週刊少年マガジン
+# - 週刊少年ジャンプ
 # - 週刊少年チャンピオン
+# - 週刊少年マガジン
 # 
 # の`1970-07-27`から`2017-07-06`までのすべての掲載作品のデータを格納した`DataFrame`です．
 # まずはサイズを見てみましょう．
 
-# In[110]:
+# In[4]:
 
 
 df.shape
@@ -50,7 +50,7 @@ df.shape
 # 各週の掲載作品を一行ずつ格納しているため，合計で約18万行程度の規模になります．
 # 以下に，各列の構成を示します．
 
-# In[111]:
+# In[5]:
 
 
 df.columns
