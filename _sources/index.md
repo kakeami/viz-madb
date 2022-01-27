@@ -79,17 +79,20 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 質的変数の量を見る最も一般的な方法は
 [棒グラフ](https://kakeami.github.io/viz-madb/charts4amounts/bars.html)
-や
-[ヒートマップ]()
-を使うと良いでしょう．
+を作図することです．
+複数の質的変数の量を見たい場合は，集合棒グラフや積上げ棒グラフも効果的です．
+各変数を横軸と縦軸にとり，
+[ヒートマップ](https://kakeami.github.io/viz-madb/charts4amounts/heatmap.html)
+で俯瞰することも可能です．
 
 ---
 **分布を見たい**[^dist]
 ^^^
 
-量的変数の分布を見たいときは，
-[ヒストグラム]()，
-[密度プロット]()，
+量的変数の分布を見たいとき，
+[ヒストグラム](https://kakeami.github.io/viz-madb/charts4dists/hist.html)
+や
+[密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)，
 [箱ひげ図]()，
 [バイオリンプロット]()，
 [ストリップチャート]()，
