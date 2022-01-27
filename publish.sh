@@ -1,7 +1,7 @@
 #!/bin/sh
 
 jb build --all book/
-cp book/figs/plotly.mp4 book/_build/html/
+cp book/figs/*.mp4 book/_build/html/
 ghp-import -n -p -f book/_build/html/
 git add . -A
 git commit -m "$1"
