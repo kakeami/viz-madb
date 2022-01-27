@@ -100,7 +100,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 そして
 [ストリップチャート](https://kakeami.github.io/viz-madb/charts4dists/strip.html)
 がおすすめです．
-[リッジラインプロット]()
+[リッジラインプロット](https://kakeami.github.io/viz-madb/charts4dists/ridgeline.html)
 はバイオリンプロットと似ていますが，主に時間的に変動する大量の分布の変化を見る際に適しています．
 
 ---
