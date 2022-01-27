@@ -89,17 +89,19 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 **分布を見たい**[^dist]
 ^^^
 
-量的変数の分布を見たいとき，
+量的変数の分布を見る際に直感的にわかりやすいのは，
 [ヒストグラム](https://kakeami.github.io/viz-madb/charts4dists/hist.html)
 や
-[密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)，
-[箱ひげ図]()，
-[バイオリンプロット]()，
-[ストリップチャート]()，
+[密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)
+ですが，パラメータ設定に注意が必要です．
+複数の質的変数の分布を比較する際は，
+[箱ひげ図](https://kakeami.github.io/viz-madb/charts4dists/box.html)，
+[バイオリンプロット](https://kakeami.github.io/viz-madb/charts4dists/violin.html)，
 そして
+[ストリップチャート](https://kakeami.github.io/viz-madb/charts4dists/strip.html)
+がおすすめです．
 [リッジラインプロット]()
-を使うと良いでしょう．
-
+はバイオリンプロットと似ていますが，主に時間的に変動する大量の分布の変化を見る際に適しています．
 
 ---
 **比率を見たい**
