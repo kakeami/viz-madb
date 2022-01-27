@@ -38,7 +38,7 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 新たな分析のヒントが得られるかもしれません．
 
 <div style="text-align: center;">
-<video autoplay loop muted playsinline width="100%" src="figs/plotly.mp4"></video>
+<video autoplay loop muted playsinline width="100%" src="plotly.mp4"></video>
 </div>
 
 ---
