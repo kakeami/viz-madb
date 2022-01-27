@@ -35,6 +35,9 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 興味の赴くまま，グリグリグラフを動かしてみましょう．
 新たな分析のヒントが得られるかもしれません．
 
+<div style="text-align: center;">
+<video autoplay loop muted playsinline width="100%" src="figs/plotly.gif"></video>
+</div>
 
 ---
 👩‍🎓**Jupyter形式でPythonのソースコードを公開**🧑‍🎓
