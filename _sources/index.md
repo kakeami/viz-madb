@@ -27,6 +27,8 @@
 データビジュアライゼーションの学習において重要なのは，**分析対象のデータに興味を持てるかどうか**だと思います．
 本サイトでは約47年の四大少年誌のマンガ作品データを採用しているため，モチベーションを保ちつつ学習を進めることが可能です．
 
+![bars](figs/charts/stacked_bars.png)
+
 
 ---
 👁️**Plotlyによるインタラクティブなビジュアライゼーション**👁️
@@ -36,7 +38,7 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 新たな分析のヒントが得られるかもしれません．
 
 <div style="text-align: center;">
-<video autoplay loop muted playsinline width="100%" src="figs/plotly.gif"></video>
+<video autoplay loop muted playsinline width="100%" src="figs/plotly.mp4"></video>
 </div>
 
 ---
