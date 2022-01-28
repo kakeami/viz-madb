@@ -194,6 +194,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 ## 参考文献
 
 - [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
+- [Kiri Kuroda, いつか役に立つかもしれない資料](https://datareporting.kirikuroda.com/)
 - [小久保 奈都弥，データ分析者のためのPythonデータビジュアライゼーション入門 コードと連動してわかる可視化手法](https://www.shoeisha.co.jp/book/detail/9784798163970)
-- [総務省統計局，なるほど統計学園](https://www.stat.go.jp/naruhodo/)
+- [コトバンク](https://kotobank.jp/)
 - [岡崎 直観，機械学習帳](https://chokkan.github.io/mlnote/index.html)
