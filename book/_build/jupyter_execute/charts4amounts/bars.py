@@ -14,13 +14,13 @@
 
 # ### 集合棒グラフ
 
-# **集合棒グラフ**とは，下図のように変数の値に応じてグループ化し，横に並べた棒グラフです．
+# **集合棒グラフ（Grouped Bar Chart）**とは，下図のように変数の値に応じてグループ化し，横に並べた棒グラフです．
 # 
 # ![](../figs/charts/grouped_bars.png)
 
 # ### 積上げ棒グラフ
 
-# **積上げ棒グラフ**とは，下図のように変数の値に応じてグループ化し，縦に積み上げた棒グラフです．
+# **積上げ棒グラフ（Stacked Bar Chart）**とは，下図のように変数の値に応じてグループ化し，縦に積み上げた棒グラフです．
 # 
 # ![](../figs/charts/stacked_bars.png)
 
@@ -57,7 +57,7 @@
 
 # ### 下準備
 
-# In[1]:
+# In[ ]:
 
 
 import itertools
@@ -68,7 +68,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[ ]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -77,7 +77,7 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[ ]:
 
 
 def show_fig(fig):
@@ -86,7 +86,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[4]:
+# In[ ]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -97,7 +97,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[5]:
+# In[ ]:
 
 
 def resample_df_by_cname_and_years(df):
@@ -121,7 +121,7 @@ def resample_df_by_cname_and_years(df):
     return df_new
 
 
-# In[6]:
+# In[ ]:
 
 
 def resample_df_by_creator_and_years(df):
@@ -145,7 +145,7 @@ def resample_df_by_creator_and_years(df):
     return df_new
 
 
-# In[7]:
+# In[ ]:
 
 
 df = pd.read_csv(PATH_DATA)

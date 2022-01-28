@@ -5,13 +5,9 @@
 
 # ## 概要
 
-# **リッジラインプロット**（リッジプロット）とは，
-# 
-# > リッジプロット（ridge plot）はある変数の分布をグループごとに出力する図です。大陸ごとの人間開発指数の分布を示したり、時系列データなら分布の変化を示す時にも使えます。
-# 
-# （[私たちのR: ベストプラクティスの探究](https://www.jaysong.net/RBook/visualization4.html#visual4-ridge)より抜粋）
-# 
-# です．バイオリンプロットと似ています（Plotlyでは`plotly.express.violin()`を応用して作図します）が，特に時系列的に変化する分布の推移を表現する際に強力です．
+# **リッジラインプロット（Ridgeline Plot）**とは，量的変数に対して，分布を滑らかな**曲線**で表現したグラフです．
+# [密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)（あるいは[バイオリンプロット](https://kakeami.github.io/viz-madb/charts4dists/violin.html)を90度回転したもの）を縦に並べ，文字通り山脈の稜線のような見た目をしています．
+# 特に動的に変化する分布の推移を表現する際に強力です．
 
 # ![](../figs/charts/ridgeline.png)
 

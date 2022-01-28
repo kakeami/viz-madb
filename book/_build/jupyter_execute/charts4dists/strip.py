@@ -5,13 +5,8 @@
 
 # ## 概要
 
-# **ストリッププロット**とは，
-# 
-# > 箱ひげ図／バイオリンプロットは、ストリッププロット（strip plot）とも相性が良い。ストリッププロットとは、1つ1つのデータをそのままドットとして表現したグラフである。
-# 
-# （[いつか役に立つかもしれない資料](https://datareporting.kirikuroda.com/distribution.html#section-4.5)より抜粋）
-# 
-# です．箱ひげ図やバイオリンプロットと同様に，複数の分布を比較する際に便利です．
+# **ストリッププロット（Strip Plot）**とは，量的変数に対して，一つ一つのデータをドットで表現したグラフです．
+# [箱ひげ図](https://kakeami.github.io/viz-madb/charts4dists/box.html)や[バイオリンプロット](https://kakeami.github.io/viz-madb/charts4dists/violin.html)と同様に，複数の分布を比較する際に便利です．
 # 全てのデータの情報を維持できることが強みですが，その裏返しで，データ数が多すぎる場合に見づらくなってしまうという弱みがあります．
 
 # ![](../figs/charts/strip.png)

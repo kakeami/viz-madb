@@ -5,13 +5,34 @@
 
 # ## 概要
 
+# 質的変数の比率を見る際にも**棒グラフ**は有用です．
+# [積上げ棒グラフ](https://kakeami.github.io/viz-madb/charts4amounts/bars.html#id4)を縦横反転したものを見かけることが多いです．
+
+# ![](../figs/charts/bars_prop.png)
+
+# 例えば上図は，雑誌別の合計作品数のシェアを表す棒グラフです．
+# 円グラフと同様，個別の雑誌の全体に占める割合はなんとなくわかりますが，雑誌同士の比較は（数値を見なければ）難しいことがわかります．
+
 # ## Plotlyによる作図方法
+
+# [「量を見たい」の棒グラフ](https://kakeami.github.io/viz-madb/charts4amounts/bars.html)と基本的に同じです．
+
+# ```python
+# import plotly.express as px
+# fig = px.bar(
+#     df, x='col_x', y='col_y', orientation='h', text='col_text',
+#     color='col_group', barmode='stack')
+# ```
+
+# 上記の例では，`df`の`col_x`列を横軸に，`col_y`列を縦軸に取った棒グラフオブジェクト`fig`を作成します．
+# `orientation='h'`で縦横を反転していることにご注意ください．
+# また，ひと目で各要素の比率は分かりづらいので，`col_text`列で割合を表示すると親切です．
 
 # ## MADB Labを用いた作図例
 
 # ### 下準備
 
-# In[1]:
+# In[2]:
 
 
 import pandas as pd
@@ -21,7 +42,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[3]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -30,7 +51,7 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[4]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -41,7 +62,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[4]:
+# In[5]:
 
 
 def show_fig(fig):
@@ -50,7 +71,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[6]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -58,37 +79,41 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別の合計作品数
 
-# In[6]:
+# In[7]:
 
 
 col_count = 'cname'
 
 
-# In[9]:
+# In[26]:
 
 
 df_plot =     df.groupby('mcname')[col_count].nunique().reset_index()
 df_plot['ratio'] = df_plot[col_count] / df_plot[col_count].sum()
 df_plot['years'] = '全期間'
+df_plot['text'] = df_plot['ratio'].apply(
+    lambda x: f'{x:.2}')
 fig = px.bar(
-    df_plot, x='years', y='ratio', barmode='stack', 
-    color='mcname', 
+    df_plot, x='ratio', y='years', barmode='stack', 
+    color='mcname', orientation='h', text='text',
     color_discrete_sequence= px.colors.diverging.Portland,
     title='雑誌別の合計作品数')
-fig.update_xaxes(title='期間')
-fig.update_yaxes(title='比率')
+fig.update_xaxes(title='比率')
+fig.update_yaxes(title='期間')
 show_fig(fig)
 
 
+# おおよそ各雑誌が1/4程度ずつシェアを持っていることはわかりますが，（数値を見なければ）各雑誌の大小関係は一目ではわかりません．
+
 # ### 雑誌別・年代別の合計作品数
 
-# In[10]:
+# In[27]:
 
 
 col_count = 'cname'
 
 
-# In[11]:
+# In[28]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -101,13 +126,15 @@ df_tmp = df_plot.groupby('years')[col_count].sum().reset_index(
 df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 # years合計あたりの比率を計算
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
+df_plot['text'] = df_plot['ratio'].apply(
+    lambda x: f'{x:.2}')
 
 
-# In[12]:
+# In[29]:
 
 
 fig = px.bar(
-    df_plot, x='years', y='ratio', color='mcname',
+    df_plot, y='years', x='ratio', color='mcname', text='text',
     color_discrete_sequence= px.colors.diverging.Portland,
     barmode='stack', title='雑誌別・年代別の合計作品数')
 fig.update_xaxes(title='期間')
@@ -115,50 +142,46 @@ fig.update_yaxes(title='比率')
 show_fig(fig)
 
 
-# In[13]:
-
-
-fig = px.bar(
-    df_plot, x='years', y='ratio', color='mcname',
-    color_discrete_sequence= px.colors.diverging.Portland,
-    barmode='group', title='雑誌別・年代別の合計作品数')
-fig.update_xaxes(title='期間')
-fig.update_yaxes(title='比率')
-show_fig(fig)
-
+# 年代ごとに雑誌のシェアの変遷が定性的にはわかります．
+# また，左端の`週刊少年サンデー`および右端の`週刊少年マガジン`に関しては，シェアの推移もわかります．
+# しかし，`週刊少年ジャンプ`および`週刊少年チャンピオン`に関しては，シェアが増えたのか減ったのか，（数値を見なければ）わかりません．
 
 # ### 雑誌別の合計作者数
 
-# In[12]:
+# 同様に作家数に関しても集計します．
+
+# In[30]:
 
 
 col_count = 'creator'
 
 
-# In[14]:
+# In[31]:
 
 
 df_plot =     df.groupby('mcname')[col_count].nunique().reset_index()
 df_plot['ratio'] = df_plot[col_count] / df_plot[col_count].sum()
 df_plot['years'] = '全期間'
+df_plot['text'] = df_plot['ratio'].apply(
+    lambda x: f'{x:.2}')
 fig = px.bar(
-    df_plot, x='years', y='ratio', barmode='stack', 
+    df_plot, x='ratio', y='years', barmode='stack', text='text',
     color_discrete_sequence= px.colors.diverging.Portland,
     color='mcname', title='雑誌別の合計作者数')
-fig.update_xaxes(title='期間')
-fig.update_yaxes(title='比率')
+fig.update_xaxes(title='比率')
+fig.update_yaxes(title='期間')
 show_fig(fig)
 
 
 # ### 雑誌別・年代別の合計作者数
 
-# In[15]:
+# In[32]:
 
 
 col_count = 'creator'
 
 
-# In[16]:
+# In[34]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -171,34 +194,19 @@ df_tmp = df_plot.groupby('years')[col_count].sum().reset_index(
 df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 # years合計あたりの比率を計算
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
+df_plot['text'] = df_plot['ratio'].apply(
+    lambda x: f'{x:.2}')
 
 
-# In[17]:
+# In[35]:
 
 
 fig = px.bar(
-    df_plot, x='years', y='ratio', color='mcname',
+    df_plot, y='years', x='ratio', color='mcname',
+    text='text', orientation='h',
     color_discrete_sequence= px.colors.diverging.Portland,
     barmode='stack', title='雑誌別・年代別の合計作者数')
-fig.update_xaxes(title='期間')
-fig.update_yaxes(title='比率')
+fig.update_xaxes(title='比率')
+fig.update_yaxes(title='期間')
 show_fig(fig)
-
-
-# In[18]:
-
-
-fig = px.bar(
-    df_plot, x='years', y='ratio', color='mcname',
-    color_discrete_sequence= px.colors.diverging.Portland,
-    barmode='group', title='雑誌別・年代別の合計作者数')
-fig.update_xaxes(title='期間')
-fig.update_yaxes(title='比率')
-show_fig(fig)
-
-
-# In[ ]:
-
-
-
 

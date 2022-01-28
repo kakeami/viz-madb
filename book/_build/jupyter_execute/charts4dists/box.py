@@ -8,6 +8,7 @@
 # **箱ひげ図（Box Plot）**とは，主に量的変数に対して，分布の形状を**箱**とそこから伸びる**直線**で表現したグラフです．
 # 箱は**四分位数**を表し，直線の長さは**最大値・最小値**を表します．
 # 分布の細かい情報が削ぎ落とされてしまいますが，複数の分布を比較する際は非常に便利です．
+# 後述する[バイオリンプロット](https://kakeami.github.io/viz-madb/charts4dists/violin.html)や[ストリッププロット](https://kakeami.github.io/viz-madb/charts4dists/strip.html)と組合せて描画されることもあります．
 
 # ![](../figs/charts/box.png)
 
