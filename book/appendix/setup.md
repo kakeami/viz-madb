@@ -15,6 +15,8 @@
 - docker-compose version 1.29.2, build 5becea4c
 - git version 2.29.2
 
+です．
+
 ## 手順
 
 ### GitHubからソースコードのクローン
@@ -26,7 +28,7 @@
 git clone --recursive https://github.com/kakeami/viz-madb.git
 ```
 
-とシェルでコマンドを打てば，`viz-madb`ディレクトリが作成され，ソースコードがクローンされます．
+とシェルでコマンドを打てば，`viz-madb`ディレクトリが作成され，必要なデータが全てダウンロードされます．
 
 `--recursive`オプションを付けることで，MADB Labのデータを格納する`madb`ディレクトリも含めてクローンしています．
 今後の分析では`madb`ディレクトリがあることが前提となりますので，必ず`--recursive`オプションをつけるようご注意ください．
@@ -45,16 +47,16 @@ sudo docker-compose up -d
 
 `madb`を入力してログインしましょう．
 
-![]
+![passwd](../figs/setup/passwd.png)
 
 下図のようにビルドを求められる場合は，`Build`をクリックしてください．
 
-![]
+![](../figs/setup/build.png)
 
 左のエクスプローラーから，`work` > `book`の順に選択し，解析用ディレクトリに移動してください．
 ノートブック（`*.ipynb`）と本サイトの対応関係をいかに示します．
 
-```
+```sh
 .
 ├── appendix
 │   ├── preprocess.ipynb # 前処理用
@@ -96,7 +98,7 @@ sudo docker-compose up -d
 
 `appendix` > `preprocess.ipynb`に移動し，前処理を実行しましょう．
 
-![preprocess]()
+![preprocess](figs/setup/preprocess.png)
 
 上から順番に`Shift`+`Enter`を押していけば問題なく実行できるはずです．
 
@@ -107,6 +109,8 @@ viz-madb/data/preprocess/out
 ├── droped_episodes.csv
 └── episodes.csv
 ```
+
+![output](figs/setup/output.png)
 
 ### Jupyter Labのパスワードの変更
 
