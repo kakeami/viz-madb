@@ -116,7 +116,9 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 [ストリップチャート](https://kakeami.github.io/viz-madb/charts4dists/strip.html)
 がおすすめです．
 [リッジラインプロット](https://kakeami.github.io/viz-madb/charts4dists/ridgeline.html)
-はバイオリンプロットと似ていますが，主に時間的に変動する大量の分布の変化を見る際に適しています．
+はバイオリンプロットと似ていますが，主に分布の時間的な変遷[^tb]を見る際に適しています．
+
+[^tb]: [TensorBoard](https://www.tensorflow.org/tensorboard)でパラメータの学習過程を表現する際に使われていたり
 
 ---
 **比率を見たい**
