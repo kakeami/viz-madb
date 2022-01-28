@@ -5,19 +5,39 @@
 
 # ## 概要
 
-# **モザイクプロット**とは，
+# **モザイクプロット（Mosaic Plot）**とは，複数の質的変数に対して，その比率を**四角形の面積**で表したグラフです．
+# その見た目から**マリメッコプロット（Marimekko Plot）**とも呼ばれます．
+# 分割方法を工夫することで三変数以上にも対応可能ですが，私がよく見るのは二変数に対する描画です．
+# 
+# 二変数に対するモザイクプロットは，[積上げ棒グラフ](https://kakeami.github.io/viz-madb/charts4props/bars.html)の棒の太さを，分母の大きさで調整したものと捉えることができます．
+# これにより，二変数を跨いだ（他の棒中の要素との）比較が可能になりますが，目視で面積を測るのは難しい場合があるので，数値を付記すると親切です．
+
+# ![](../figs/charts/mosaic.png)
+
+# 例えば上記は，雑誌別・年代別の作品数の比率を表したモザイクプロットです．
+# 年代ごとの合計作品数に応じて，縦方向の棒の太さが変わっていることがわかります．
 
 # ## Plotlyによる作図方法
 
-# https://plotly.com/python/bar-charts/
+# Plotlyで直接モザイクプロットを描画する方法はありません．[こちら](https://plotly.com/python/bar-charts/)を参考に，棒グラフを応用して作図します．
 
-# 上記を参考に作図可能
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
 
 # ## MADB Labを用いた作図例
 
 # ### 下準備
 
-# In[1]:
+# In[2]:
 
 
 import pandas as pd
@@ -28,7 +48,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[3]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -37,7 +57,7 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[4]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -48,7 +68,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[4]:
+# In[5]:
 
 
 def show_fig(fig):
@@ -57,7 +77,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[5]:
+# In[6]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -65,13 +85,13 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・年代別の合計作品数
 
-# In[6]:
+# In[7]:
 
 
 col_count = 'cname'
 
 
-# In[7]:
+# In[12]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -86,7 +106,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[8]:
+# In[15]:
 
 
 fig = go.Figure()
@@ -96,7 +116,7 @@ for mcname in df_plot['mcname'].unique():
     fig.add_trace(go.Bar(
         name=mcname,
         x=df_tmp['years_total'].cumsum() - widths,
-        y=df_tmp['ratio'],
+        y=df_tmp['ratio'], text=df_tmp[col_count],
         width=widths,
         offset=0,))
 fig.update_xaxes(
@@ -104,19 +124,19 @@ fig.update_xaxes(
     ticktext=df_plot['years'].unique(),)
 fig.update_xaxes(title='期間')
 fig.update_yaxes(title='比率')
-fig.update_layout(barmode='stack')
+fig.update_layout(barmode='stack', title_text='雑誌別・年代別の合計作品数')
 show_fig(fig)    
 
 
-# ### 雑誌別・年代別の合計作者数
+# ### 雑誌別・年代別の合計作家数
 
-# In[9]:
+# In[20]:
 
 
 col_count = 'creator'
 
 
-# In[10]:
+# In[21]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -131,7 +151,7 @@ df_plot = pd.merge(df_plot, df_tmp, how='left', on='years')
 df_plot['ratio'] = df_plot[col_count] / df_plot['years_total']
 
 
-# In[11]:
+# In[23]:
 
 
 fig = go.Figure()
@@ -141,14 +161,15 @@ for mcname in df_plot['mcname'].unique():
     fig.add_trace(go.Bar(
         name=mcname,
         x=df_tmp['years_total'].cumsum() - widths,
-        y=df_tmp['ratio'],
+        y=df_tmp['ratio'], text=df_tmp[col_count],
         width=widths,
         offset=0,))
 fig.update_xaxes(
     tickvals=widths.cumsum() - widths/2,
     ticktext=df_plot['years'].unique(),)
-fig.update_layout(barmode='stack')
 fig.update_xaxes(title='期間')
 fig.update_yaxes(title='比率')
+fig.update_layout(
+    barmode='stack', title_text='雑誌別・年代別の合計作家数')
 show_fig(fig)    
 
