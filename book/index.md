@@ -43,12 +43,12 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 </div>
 
 ---
-👩‍🎓**Jupyter形式でPythonのソースコードを公開**🧑‍🎓
+👩‍🎓**Docker + Jupyter Labで簡単に分析環境を構築可能**🧑‍🎓
 ^^^
 
 本サイトはJupyter Labで作成したソースコードをJupyter Bookでビルドして構築しています．
 [GitHub](https://github.com/kakeami/viz-madb)からソースコードをダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でビジュアライゼーションしましょう．
-環境構築に関する詳細は[README.md](https://github.com/kakeami/viz-madb)をご参照ください．
+詳細は[Appendix - 環境構築](https://kakeami.github.io/viz-madb/appendix/setup.html)をご参照ください．
 
 ![jupyter](figs/jupyter.png)
 
