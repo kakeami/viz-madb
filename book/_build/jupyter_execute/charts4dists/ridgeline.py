@@ -2,12 +2,39 @@
 # coding: utf-8
 
 # # リッジラインプロット
-# 
-# **リッジラインプロット**とは
 
 # ## 概要
 
+# **リッジラインプロット**（リッジプロット）とは，
+# 
+# > リッジプロット（ridge plot）はある変数の分布をグループごとに出力する図です。大陸ごとの人間開発指数の分布を示したり、時系列データなら分布の変化を示す時にも使えます。
+# 
+# （[私たちのR: ベストプラクティスの探究](https://www.jaysong.net/RBook/visualization4.html#visual4-ridge)より抜粋）
+# 
+# です．バイオリンプロットと似ています（Plotlyでは`plotly.express.violin()`を応用して作図します）が，特に時系列的に変化する分布の推移を表現する際に強力です．
+
+# ![](../figs/charts/ridgeline.png)
+
+# 例えば上図は，マンガ作品「はじめの一歩」の100話ごとの掲載一部の分布の推移を表現したリッジラインプロットです．
+# 500話付近から掲載位置が安定し始めていることがわかります．
+
 # ## Plotlyによる作図方法
+
+# Plotlyでは直接リッジラインプロットを描画する関数がないため，バイオリンプロットを応用して作図します．
+
+# ```python
+# import plotly.express as px
+# fig = px.violin(
+#     df, x='col_x', y='col_y', orientation='h',
+#     points=False)
+# fig.update_traces(side='positive')
+# ```
+
+# 基本的には[バイオリンプロットの作図方法](https://kakeami.github.io/viz-madb/charts4dists/violin.html#plotly)を踏襲しますが，以下が異なります：
+# 
+# - `x`と`y`の関係が逆：縦横反転するため，分布を見たい列を`x`で指定することにご注意ください．
+# - `orientation='h'`：これで縦横反転します．
+# - `side='positive'`：これで縦軸の上側のみ描画します．
 
 # ## MADB Labを用いた作図例
 

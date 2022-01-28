@@ -6,8 +6,27 @@
 # ## 概要
 
 # **バイオリンプロット**とは，
+# 
+# > 箱ひげ図に似たものとして、バイオリンプロット（violin plot）がある。バイオリンプロットとは、密度プロットを90°回転させ、アジの干物のように開いたグラフである。
+# 
+# （[いつか役に立つかもしれない資料](https://datareporting.kirikuroda.com/distribution.html#section-4.4)より抜粋）
+# 
+# です．箱ひげ図ほど分布形状の情報を落とさずに，複数の分布を横並びで比較することができます．箱ひげ図と組合せて図示されることも多いです．
+
+# ![](../figs/charts/violin.png)
+
+# 例えば上図は，作品ごとの掲載位置の分布を表現したバイオリンプロットです．
 
 # ## Plotlyによる作図方法
+
+# Plotlyでは，`plotly.express.violin()`でヒストグラムを作成可能です．
+
+# ```python
+# import plotly.express as px
+# fig = px.violin(df, x='col_x', y='col_y')
+# ```
+
+# 上記の例では，`df`の`col_x`を横軸，`col_y`を縦軸に取ったバイオリンプロットのオブジェクト`fig`を作成します．
 
 # ## MADB Labを用いた作図例
 

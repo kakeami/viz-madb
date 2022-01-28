@@ -113,7 +113,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 [箱ひげ図](https://kakeami.github.io/viz-madb/charts4dists/box.html)，
 [バイオリンプロット](https://kakeami.github.io/viz-madb/charts4dists/violin.html)，
 そして
-[ストリップチャート](https://kakeami.github.io/viz-madb/charts4dists/strip.html)
+[ストリッププロット](https://kakeami.github.io/viz-madb/charts4dists/strip.html)
 がおすすめです．
 [リッジラインプロット](https://kakeami.github.io/viz-madb/charts4dists/ridgeline.html)
 はバイオリンプロットと似ていますが，主に分布の時間的な変遷[^tb]を見る際に適しています．
@@ -172,7 +172,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 :::
 
-[^dist]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Sina plot](https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1366914?journalCode=ucgs20)**：Plotlyで簡易に作図する方法が見当たらず，かつバイオリンプロットとストリップチャートで雰囲気をつかめると判断したため．**[Quantile-quantile plot](https://clauswilke.com/dataviz/ecdf-qq.html#qq-plots)**：理論的な確率密度分布と標本分布の一致性を見る目的で用いられることが多く，解釈に高度な数理統計学の知識が必要であり，本書のスコープを超えるため
+[^dist]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Sina plot](https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1366914?journalCode=ucgs20)**：Plotlyで簡易に作図する方法が見当たらず，かつバイオリンプロットとストリッププロットで雰囲気をつかめると判断したため．**[Quantile-quantile plot](https://clauswilke.com/dataviz/ecdf-qq.html#qq-plots)**：理論的な確率密度分布と標本分布の一致性を見る目的で用いられることが多く，解釈に高度な数理統計学の知識が必要であり，本書のスコープを超えるため
 
 [^assoc]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Hexagonal binning](https://clauswilke.com/dataviz/overlapping-points.html#d-histograms)**：Plotlyで簡易に作図する方法が見当たらず，かつ二次元ヒストグラムで雰囲気をつかめると判断したため．
 
@@ -195,6 +195,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 - [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
 - [Kiri Kuroda, いつか役に立つかもしれない資料](https://datareporting.kirikuroda.com/)
+- [宋財泫 (Jaehyun Song)・矢内勇生 (Yuki Yanai), 私たちのR: ベストプラクティスの探究](https://www.jaysong.net/RBook/)
 - [小久保 奈都弥，データ分析者のためのPythonデータビジュアライゼーション入門 コードと連動してわかる可視化手法](https://www.shoeisha.co.jp/book/detail/9784798163970)
 - [コトバンク](https://kotobank.jp/)
 - [岡崎 直観，機械学習帳](https://chokkan.github.io/mlnote/index.html)
