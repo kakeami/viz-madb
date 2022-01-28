@@ -41,5 +41,4 @@ parts:
     numbered: False
     chapters:
     - file: appendix/preprocess
-      title: MADBの前処理
     - file: appendix/setup

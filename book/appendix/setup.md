@@ -98,7 +98,7 @@ sudo docker-compose up -d
 
 `appendix` > `preprocess.ipynb`に移動し，前処理を実行しましょう．
 
-![preprocess](figs/setup/preprocess.png)
+![preprocess](../figs/setup/preprocess.png)
 
 上から順番に`Shift`+`Enter`を押していけば問題なく実行できるはずです．
 
@@ -110,7 +110,7 @@ viz-madb/data/preprocess/out
 └── episodes.csv
 ```
 
-![output](figs/setup/output.png)
+![output](../figs/setup/output.png)
 
 ### Jupyter Labのパスワードの変更
 
