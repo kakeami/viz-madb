@@ -205,5 +205,4 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 - [Kiri Kuroda, いつか役に立つかもしれない資料](https://datareporting.kirikuroda.com/)
 - [宋財泫 (Jaehyun Song)・矢内勇生 (Yuki Yanai), 私たちのR: ベストプラクティスの探究](https://www.jaysong.net/RBook/)
 - [小久保 奈都弥，データ分析者のためのPythonデータビジュアライゼーション入門 コードと連動してわかる可視化手法](https://www.shoeisha.co.jp/book/detail/9784798163970)
-- [コトバンク](https://kotobank.jp/)
 - [岡崎 直観，機械学習帳](https://chokkan.github.io/mlnote/index.html)
