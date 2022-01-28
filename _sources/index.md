@@ -66,8 +66,21 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 ## こんなとき何を描く？
 
-本サイトで紹介するビジュアライゼーション手法を，
-[Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)を参考に分類しました．
+[Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)を参考にビジュアライゼーション手法を分類[^drop]しました．
+
+[^drop]: [5 Directory of visualizations](https://clauswilke.com/dataviz/directory-of-visualizations.html)の
+[5.1 Amounts](https://clauswilke.com/dataviz/directory-of-visualizations.html#amounts)
+が「量を見たい」に，
+[5.2 Distributions](https://clauswilke.com/dataviz/directory-of-visualizations.html#distributions)
+が「分布を見たい」に，
+[5.3 Proportions](https://clauswilke.com/dataviz/directory-of-visualizations.html#proportions)
+が「比率を見たい」に，そして
+[5.4 x–y relationships](https://clauswilke.com/dataviz/directory-of-visualizations.html#xy-relationships)
+が「変数間の関係を見たい」に対応しています．
+[5.5 Geospatial data](https://clauswilke.com/dataviz/directory-of-visualizations.html#directory-geospatial-data)
+に関してはMADB Labの漫画雑誌データ上に十分な量の地理データが存在しなかったため，
+[5.6 Uncertainty](https://clauswilke.com/dataviz/directory-of-visualizations.html#directory-uncertainty)
+に関しては高度な数理統計の知識が必要になるためスコープ外としました．
 
 :::{panels}
 :container: +full-width
@@ -161,7 +174,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 [^assoc]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Hexagonal binning](https://clauswilke.com/dataviz/overlapping-points.html#d-histograms)**：Plotlyで簡易に作図する方法が見当たらず，かつ二次元ヒストグラムで雰囲気をつかめると判断したため．
 
-[^slope]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)ではペアとなる二変数の関係性を示す手法として[Slopegraph](https://clauswilke.com/dataviz/visualizing-associations.html#associations-paired-data)が，ここでは三変数以上に対応可能であるという観点で紹介しました．
+[^slope]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)ではペアとなる二変数の関係性を示す手法として[Slopegraph](https://clauswilke.com/dataviz/visualizing-associations.html#associations-paired-data)が紹介されていますが，ここでは三変数以上に対応可能であるという観点で紹介しました．
 
 ## 謝辞
 
