@@ -7,20 +7,20 @@
 
 # ## 環境構築
 
-# In[7]:
+# In[2]:
 
 
 import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[8]:
+# In[3]:
 
 
 get_ipython().system('pip install ijson')
 
 
-# In[9]:
+# In[4]:
 
 
 import glob
@@ -34,7 +34,7 @@ from tqdm import tqdm_notebook as tqdm
 import zipfile
 
 
-# In[10]:
+# In[5]:
 
 
 DIR_IN = '../../madb/data/json-ld'
@@ -42,7 +42,7 @@ DIR_TMP = '../../data/preprocess/tmp'
 DIR_OUT = '../../data/preprocess/out'
 
 
-# In[11]:
+# In[6]:
 
 
 FNS_CM = [
@@ -52,7 +52,7 @@ FNS_CM = [
 ]
 
 
-# In[12]:
+# In[7]:
 
 
 # 分析対象とする雑誌名
@@ -64,7 +64,7 @@ MCNAMES = [
 ]
 
 
-# In[13]:
+# In[8]:
 
 
 COLS_CM105 = [
@@ -74,7 +74,7 @@ COLS_CM105 = [
 ]
 
 
-# In[14]:
+# In[9]:
 
 
 # cm102, genre=='雑誌巻号'
@@ -92,7 +92,7 @@ COLS_MIS = {
 }
 
 
-# In[15]:
+# In[10]:
 
 
 # cm102, genre=='マンガ作品'
@@ -107,7 +107,7 @@ COLS_EPS = {
 }
 
 
-# In[16]:
+# In[11]:
 
 
 # cm106
@@ -117,7 +117,7 @@ COLS_CS = {
 }
 
 
-# In[17]:
+# In[12]:
 
 
 # 最終的に出力するカラム
@@ -128,7 +128,7 @@ COLS_OUT = [
 ]
 
 
-# In[18]:
+# In[13]:
 
 
 # 許容するpageEnd，pageStartの最大値
@@ -137,7 +137,7 @@ MAX_PAGES = 1000
 
 # ## 関数
 
-# In[20]:
+# In[14]:
 
 
 def read_json(path):
@@ -155,7 +155,7 @@ def read_json(path):
     return dct
 
 
-# In[21]:
+# In[15]:
 
 
 def save_json(path, dct):
@@ -170,7 +170,7 @@ def save_json(path, dct):
         json.dump(dct, f, ensure_ascii=False, indent=4)
 
 
-# In[22]:
+# In[16]:
 
 
 def read_json_w_filters(path, items, filters):
@@ -193,6 +193,26 @@ def read_json_w_filters(path, items, filters):
                 # breakしなかった場合はoutに追加
                 out.append(item)
     return out
+
+
+# In[17]:
+
+
+def try_mkdirs(path) -> None:
+    """mkdirsにtry"""
+    try:
+        os.makedirs(path)
+    except FileExistsError as e:
+        pass
+
+
+# ### 出力フォルダの生成
+
+# In[18]:
+
+
+try_mkdirs(DIR_TMP)
+try_mkdirs(DIR_OUT)
 
 
 # ## 解凍
