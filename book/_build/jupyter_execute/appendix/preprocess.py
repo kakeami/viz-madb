@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # MADBの前処理
+# # 前処理
 
 # `madb`から必要なデータを抽出し，縦持ちのcsvに変換します．
 
@@ -677,8 +677,6 @@ df_new['pageStartPosition'].describe()
 df_new.to_csv(
     os.path.join(DIR_OUT, 'episodes.csv'), index=False,
     encoding='utf_8_sig')
-df_new.to_csv(
-    os.path.join(DIR_OUT, 'episodes.txt'), encoding='utf_8_sig')
 # 除外したデータ
 df_new.to_csv(os.path.join(DIR_OUT, 'droped_episodes.csv'), index=False)
 
