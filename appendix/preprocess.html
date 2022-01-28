@@ -374,19 +374,26 @@
   <a class="reference internal nav-link" href="#id3">
    関数
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     出力フォルダの生成
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
+  <a class="reference internal nav-link" href="#id5">
    解凍
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
+  <a class="reference internal nav-link" href="#id6">
    前処理
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id7">
      対象
     </a>
    </li>
@@ -420,12 +427,12 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id7">
+  <a class="reference internal nav-link" href="#id8">
    加工
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+    <a class="reference internal nav-link" href="#id9">
      結合
     </a>
    </li>
@@ -497,7 +504,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
+    <a class="reference internal nav-link" href="#id10">
      保存
     </a>
    </li>
@@ -532,19 +539,26 @@
   <a class="reference internal nav-link" href="#id3">
    関数
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     出力フォルダの生成
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
+  <a class="reference internal nav-link" href="#id5">
    解凍
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
+  <a class="reference internal nav-link" href="#id6">
    前処理
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id7">
      対象
     </a>
    </li>
@@ -578,12 +592,12 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id7">
+  <a class="reference internal nav-link" href="#id8">
    加工
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+    <a class="reference internal nav-link" href="#id9">
      結合
     </a>
    </li>
@@ -655,7 +669,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
+    <a class="reference internal nav-link" href="#id10">
      保存
     </a>
    </li>
@@ -690,7 +704,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ijson in /opt/conda/lib/python3.9/site-packages (3.1.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ijson
+  Downloading ijson-3.1.4-cp39-cp39-manylinux2010_x86_64.whl (131 kB)
+     |████████████████████████████████| 131 kB 7.4 kB/s            
+?25hInstalling collected packages: ijson
+Successfully installed ijson-3.1.4
 </pre></div>
 </div>
 </div>
@@ -884,9 +902,32 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">try_mkdirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;mkdirsにtry&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileExistsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="id4">
-<h2>解凍<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h3>出力フォルダの生成<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">try_mkdirs</span><span class="p">(</span><span class="n">DIR_TMP</span><span class="p">)</span>
+<span class="n">try_mkdirs</span><span class="p">(</span><span class="n">DIR_OUT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>解凍<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>マンガ系のデータ（<code class="docutils literal notranslate"><span class="pre">*cm*</span></code>）のみ<code class="docutils literal notranslate"><span class="pre">DIR_TMP</span></code>に解凍する．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -911,10 +952,10 @@
 </script></div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>前処理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id6">
-<h3>対象<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h2>前処理<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3>対象<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps_cm</span> <span class="o">=</span> <span class="p">{</span><span class="n">cm</span><span class="p">:</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DIR_TMP</span><span class="si">}</span><span class="s1">/*</span><span class="si">{</span><span class="n">cm</span><span class="si">}</span><span class="s1">*/*&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">cm</span> <span class="ow">in</span> <span class="n">FNS_CM</span><span class="p">}</span>
@@ -1273,10 +1314,10 @@
 </div>
 </div>
 </div>
-<div class="section" id="id7">
-<h2>加工<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id8">
-<h3>結合<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h2>加工<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3>結合<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_and_concat_csvs</span><span class="p">(</span><span class="n">pathes</span><span class="p">):</span>
@@ -2140,8 +2181,8 @@ Name: pageStartPosition, dtype: float64
 </div>
 </div>
 </div>
-<div class="section" id="id9">
-<h3>保存<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>保存<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 全データ</span>

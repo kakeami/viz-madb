@@ -349,44 +349,32 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   事前準備
+   前提
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#docker">
-     Docker
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#docker-compose">
-     Docker Compose
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#git">
-     Git
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jupyter-lab">
-   Jupyter Lab
+  <a class="reference internal nav-link" href="#id3">
+   手順
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     パスワードの変更
+    <a class="reference internal nav-link" href="#github">
+     GitHubからソースコードのクローン
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyter-lab">
+     Jupyter Labの起動
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
-     立ち上げ
+     前処理の実行
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id5">
-     編集
+     Jupyter Labのパスワードの変更
     </a>
    </li>
   </ul>
@@ -413,44 +401,32 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   事前準備
+   前提
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#docker">
-     Docker
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#docker-compose">
-     Docker Compose
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#git">
-     Git
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jupyter-lab">
-   Jupyter Lab
+  <a class="reference internal nav-link" href="#id3">
+   手順
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     パスワードの変更
+    <a class="reference internal nav-link" href="#github">
+     GitHubからソースコードのクローン
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyter-lab">
+     Jupyter Labの起動
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
-     立ち上げ
+     前処理の実行
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id5">
-     編集
+     Jupyter Labのパスワードの変更
     </a>
    </li>
   </ul>
@@ -467,27 +443,127 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>環境構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>事前準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="docker">
-<h3>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
+<h2>前提<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>事前に下記がインストールされていることが前提です．</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.docker.com/">Docker</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.jp/compose/toc.html">Docker Compose</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/">Git</a></p></li>
+</ul>
+<p>ちなみに私の環境は：</p>
+<ul class="simple">
+<li><p>macOS Catalina Version 10.15.7</p></li>
+<li><p>Docker version 20.10.7, build f0df350</p></li>
+<li><p>docker-compose version 1.29.2, build 5becea4c</p></li>
+<li><p>git version 2.29.2</p></li>
+</ul>
 </div>
-<div class="section" id="docker-compose">
-<h3>Docker Compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h2>手順<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="github">
+<h3>GitHubからソースコードのクローン<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/kakeami/viz-madb">本サイトのGitHubリポジトリ</a>からソースコード及びMADBのデータをダウンロードしてください．
+例えば，</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone --recursive https://github.com/kakeami/viz-madb.git
+</pre></div>
 </div>
-<div class="section" id="git">
-<h3>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
-</div>
+<p>とシェルでコマンドを打てば，<code class="docutils literal notranslate"><span class="pre">viz-madb</span></code>ディレクトリが作成され，ソースコードがクローンされます．</p>
+<p><code class="docutils literal notranslate"><span class="pre">--recursive</span></code>オプションを付けることで，MADB Labのデータを格納する<code class="docutils literal notranslate"><span class="pre">madb</span></code>ディレクトリも含めてクローンしています．
+今後の分析では<code class="docutils literal notranslate"><span class="pre">madb</span></code>ディレクトリがあることが前提となりますので，必ず<code class="docutils literal notranslate"><span class="pre">--recursive</span></code>オプションをつけるようご注意ください．</p>
+<p>データサイズが大きいため，しばらく時間がかかります．</p>
 </div>
 <div class="section" id="jupyter-lab">
-<h2>Jupyter Lab<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3>パスワードの変更<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>Jupyter Labの起動<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">viz-madb</span></code>ディレクトリに移動し，下記のコマンドでコンテナを立ち上げてください．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+</div>
+<p>ブラウザから<code class="docutils literal notranslate"><span class="pre">localhost:9998</span></code>にアクセスすると，下図のようにパスワード入力画面が表示されます．</p>
+<p><code class="docutils literal notranslate"><span class="pre">madb</span></code>を入力してログインしましょう．</p>
+<p>![]</p>
+<p>下図のようにビルドを求められる場合は，<code class="docutils literal notranslate"><span class="pre">Build</span></code>をクリックしてください．</p>
+<p>![]</p>
+<p>左のエクスプローラーから，<code class="docutils literal notranslate"><span class="pre">work</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">book</span></code>の順に選択し，解析用ディレクトリに移動してください．
+ノートブック（<code class="docutils literal notranslate"><span class="pre">*.ipynb</span></code>）と本サイトの対応関係をいかに示します．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── appendix
+│   ├── preprocess.ipynb # 前処理用
+│   └── setup.md
+├── charts4amounts
+│   ├── bars.ipynb # 棒グラフ
+│   └── heatmap.ipynb # ヒートマップ
+├── charts4assocs
+│   ├── 2d.ipynb # 二次元ヒストグラム
+│   ├── connected.ipynb # 折れ線グラフ（二変数）
+│   ├── contours.ipynb # 等高線プロット
+│   ├── correlo.ipynb # コレログラム
+│   ├── line.ipynb # 折れ線グラフ
+│   ├── scatter.ipynb # 散布図・バブルチャート
+│   └── slope.ipynb # 並行座標プロット
+├── charts4dists
+│   ├── box.ipynb # 箱ひげ図
+│   ├── density.ipynb # 密度プロット
+│   ├── hist.ipynb # ヒストグラム
+│   ├── ridgeline.ipynb # リッジラインプロット
+│   ├── strip.ipynb # ストリップチャート
+│   └── violin.ipynb # バイオリンプロット
+├── charts4props
+│   ├── bars.ipynb # 棒グラフ
+│   ├── mosaic.ipynb # モザイクプロット
+│   ├── parallel.ipynb # パラレルセットグラフ
+│   ├── pie.ipynb # 円グラフ
+│   ├── stacked_den.ipynb # 積上げ密度プロット
+│   └── tree.ipynb # ツリーマップ
+├── eda
+│   └── eda.ipynb # そもそもどんなデータを扱うの？
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>なお，本ページは<code class="docutils literal notranslate"><span class="pre">setup.md</span></code>と対応しています．</p>
+</div>
 </div>
 <div class="section" id="id4">
-<h3>立ち上げ<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>前処理の実行<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">appendix</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">preprocess.ipynb</span></code>に移動し，前処理を実行しましょう．</p>
+<p><img alt="preprocess" src="../_images/appendix" /></p>
+<p>上から順番に<code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">Enter</span></code>を押していけば問題なく実行できるはずです．</p>
+<p>最終的に<code class="docutils literal notranslate"><span class="pre">viz-madb/data/preprocess/out</span></code>に下記の二つの<code class="docutils literal notranslate"><span class="pre">.csv</span></code>ファイルが出力されていたら成功です．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>viz-madb/data/preprocess/out
+├── droped_episodes.csv
+└── episodes.csv
+</pre></div>
+</div>
 </div>
 <div class="section" id="id5">
-<h3>編集<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>Jupyter Labのパスワードの変更<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>周知のパスワードを使い回すのは危険なので，必ず変更しましょう．</p>
+<p><code class="docutils literal notranslate"><span class="pre">viz-madb</span></code>ディレクトリ直下にある<code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>の最終行がパスワードに対応します．</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="w"></span>
+<span class="nt">services</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">jupyterlab</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span><span class="w"></span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;./:/home/jovyan/work&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span><span class="w"></span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9998:8888&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">NB_UID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w"></span>
+<span class="w">      </span><span class="nt">NB_GID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w"></span>
+<span class="w">      </span><span class="nt">GRANT_SUDO</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;yes&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">start.sh jupyter lab --NotebookApp.password=&quot;sha1:82d29c037295:4e7d81a84b2750b65c72483df428016aa6984b5d&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>最後の<code class="docutils literal notranslate"><span class="pre">&quot;sha1:82d...&quot;</span></code>を適宜変更しましょう．
+例えば<code class="docutils literal notranslate"><span class="pre">YOUR_PASS</span></code>としたい場合は，pythonで</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">notebook.auth</span> <span class="kn">import</span> <span class="n">passwd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">passwd</span><span class="p">(</span><span class="s1">&#39;YOUR_PASS&#39;</span><span class="p">,</span> <span class="s1">&#39;sha1&#39;</span><span class="p">)</span>
+<span class="go">&#39;sha1:f0a65743e8bb:bf98a478a320c4fd1d8431679921f51a79a29850&#39;</span>
+</pre></div>
+</div>
+<p>とすればトークンを生成できます（このままコピペしないでください！）</p>
 </div>
 </div>
 </div>
