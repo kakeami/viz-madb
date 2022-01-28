@@ -31,9 +31,9 @@ parts:
     numbered: True
     chapters:
     - file: charts4assocs/scatter
-    - file: charts4assocs/slope
-    - file: charts4assocs/contours
     - file: charts4assocs/2d
+    - file: charts4assocs/contours
+    - file: charts4assocs/slope
     - file: charts4assocs/correlo
     - file: charts4assocs/line
     - file: charts4assocs/connected
