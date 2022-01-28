@@ -124,7 +124,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 **比率を見たい**
 ^^^
 
-質的変数同士の比率を見る際は，
+質的変数の比率を可視化する際は，
 [円グラフ](https://kakeami.github.io/viz-madb/charts4props/pie.html)
 や
 [棒グラフ](https://kakeami.github.io/viz-madb/charts4props/bars.html)
