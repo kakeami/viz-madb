@@ -25,7 +25,7 @@
 📚**約47年分の四大少年誌の掲載作品データを採用**📚
 ^^^
 データビジュアライゼーション（に限らずデータ分析全般）の学習において重要なのは，**分析対象のデータに興味を持てるかどうか**です．
-本サイトでは約47年の四大少年誌のマンガ作品データを採用しているため，モチベーションを保ちつつ学習を進めることが可能です．
+本書では約47年の四大少年誌のマンガ作品データを採用しているため，モチベーションを保ちつつ学習を進めることが可能です．
 
 <div style="text-align: center;">
 <video autoplay loop muted playsinline width="100%" src="demo.mp4"></video>
@@ -46,7 +46,7 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 👩‍🎓**Docker + Jupyter Labで簡単に分析環境を構築可能**🧑‍🎓
 ^^^
 
-本サイトはJupyter Labで作成したソースコードをJupyter Bookでビルドして構築しています．
+本書はJupyter Labで作成したソースコードをJupyter Bookでビルドして構築しています．
 [GitHub](https://github.com/kakeami/viz-madb)からソースコードをダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でビジュアライゼーションしましょう．
 詳細は[Appendix - 環境構築](https://kakeami.github.io/viz-madb/appendix/setup.html)をご参照ください．
 
@@ -57,12 +57,14 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 ^^^
 
 MADB Labは，文化庁が提供する，メディア芸術作品に関するデータをより広く活用するためのウェブサイトです．
-本サイトでは，[v1.0として公開されているデータ](https://github.com/mediaarts-db/dataset/tree/1.0)を[前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html)して利用しています．
+本書では，[v1.0として公開されているデータ](https://github.com/mediaarts-db/dataset/tree/1.0)を[前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html)して利用しています．
 データセットの詳細は[公式リポジトリ](https://github.com/mediaarts-db/dataset)をご参照ください．
 
 ![madb](figs/madb.png)
 
 :::
+
+## 本書の前提知識
 
 ## こんなとき何を描く？
 

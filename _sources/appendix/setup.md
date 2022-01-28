@@ -21,7 +21,7 @@
 
 ### GitHubからソースコードのクローン
 
-[本サイトのGitHubリポジトリ](https://github.com/kakeami/viz-madb)からソースコード及びMADBのデータをダウンロードしてください．
+[本書のGitHubリポジトリ](https://github.com/kakeami/viz-madb)からソースコード及びMADBのデータをダウンロードしてください．
 例えば，
 
 ```sh
@@ -54,7 +54,7 @@ sudo docker-compose up -d
 ![](../figs/setup/build.png)
 
 左のエクスプローラーから，`work` > `book`の順に選択し，解析用ディレクトリに移動してください．
-ノートブック（`*.ipynb`）と本サイトの対応関係をいかに示します．
+ノートブック（`*.ipynb`）と本書の対応関係をいかに示します．
 
 ```sh
 .
