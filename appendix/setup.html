@@ -457,6 +457,7 @@
 <li><p>docker-compose version 1.29.2, build 5becea4c</p></li>
 <li><p>git version 2.29.2</p></li>
 </ul>
+<p>です．</p>
 </div>
 <div class="section" id="id3">
 <h2>手順<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -467,7 +468,7 @@
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone --recursive https://github.com/kakeami/viz-madb.git
 </pre></div>
 </div>
-<p>とシェルでコマンドを打てば，<code class="docutils literal notranslate"><span class="pre">viz-madb</span></code>ディレクトリが作成され，ソースコードがクローンされます．</p>
+<p>とシェルでコマンドを打てば，<code class="docutils literal notranslate"><span class="pre">viz-madb</span></code>ディレクトリが作成され，必要なデータが全てダウンロードされます．</p>
 <p><code class="docutils literal notranslate"><span class="pre">--recursive</span></code>オプションを付けることで，MADB Labのデータを格納する<code class="docutils literal notranslate"><span class="pre">madb</span></code>ディレクトリも含めてクローンしています．
 今後の分析では<code class="docutils literal notranslate"><span class="pre">madb</span></code>ディレクトリがあることが前提となりますので，必ず<code class="docutils literal notranslate"><span class="pre">--recursive</span></code>オプションをつけるようご注意ください．</p>
 <p>データサイズが大きいため，しばらく時間がかかります．</p>
@@ -480,42 +481,42 @@
 </div>
 <p>ブラウザから<code class="docutils literal notranslate"><span class="pre">localhost:9998</span></code>にアクセスすると，下図のようにパスワード入力画面が表示されます．</p>
 <p><code class="docutils literal notranslate"><span class="pre">madb</span></code>を入力してログインしましょう．</p>
-<p>![]</p>
+<p><img alt="passwd" src="appendix/figs/setup/passwd.png" /></p>
 <p>下図のようにビルドを求められる場合は，<code class="docutils literal notranslate"><span class="pre">Build</span></code>をクリックしてください．</p>
-<p>![]</p>
+<p><img alt="" src="appendix/figs/setup/build.png" /></p>
 <p>左のエクスプローラーから，<code class="docutils literal notranslate"><span class="pre">work</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">book</span></code>の順に選択し，解析用ディレクトリに移動してください．
 ノートブック（<code class="docutils literal notranslate"><span class="pre">*.ipynb</span></code>）と本サイトの対応関係をいかに示します．</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>.
 ├── appendix
-│   ├── preprocess.ipynb # 前処理用
+│   ├── preprocess.ipynb <span class="c1"># 前処理用</span>
 │   └── setup.md
 ├── charts4amounts
-│   ├── bars.ipynb # 棒グラフ
-│   └── heatmap.ipynb # ヒートマップ
+│   ├── bars.ipynb <span class="c1"># 棒グラフ</span>
+│   └── heatmap.ipynb <span class="c1"># ヒートマップ</span>
 ├── charts4assocs
-│   ├── 2d.ipynb # 二次元ヒストグラム
-│   ├── connected.ipynb # 折れ線グラフ（二変数）
-│   ├── contours.ipynb # 等高線プロット
-│   ├── correlo.ipynb # コレログラム
-│   ├── line.ipynb # 折れ線グラフ
-│   ├── scatter.ipynb # 散布図・バブルチャート
-│   └── slope.ipynb # 並行座標プロット
+│   ├── 2d.ipynb <span class="c1"># 二次元ヒストグラム</span>
+│   ├── connected.ipynb <span class="c1"># 折れ線グラフ（二変数）</span>
+│   ├── contours.ipynb <span class="c1"># 等高線プロット</span>
+│   ├── correlo.ipynb <span class="c1"># コレログラム</span>
+│   ├── line.ipynb <span class="c1"># 折れ線グラフ</span>
+│   ├── scatter.ipynb <span class="c1"># 散布図・バブルチャート</span>
+│   └── slope.ipynb <span class="c1"># 並行座標プロット</span>
 ├── charts4dists
-│   ├── box.ipynb # 箱ひげ図
-│   ├── density.ipynb # 密度プロット
-│   ├── hist.ipynb # ヒストグラム
-│   ├── ridgeline.ipynb # リッジラインプロット
-│   ├── strip.ipynb # ストリップチャート
-│   └── violin.ipynb # バイオリンプロット
+│   ├── box.ipynb <span class="c1"># 箱ひげ図</span>
+│   ├── density.ipynb <span class="c1"># 密度プロット</span>
+│   ├── hist.ipynb <span class="c1"># ヒストグラム</span>
+│   ├── ridgeline.ipynb <span class="c1"># リッジラインプロット</span>
+│   ├── strip.ipynb <span class="c1"># ストリップチャート</span>
+│   └── violin.ipynb <span class="c1"># バイオリンプロット</span>
 ├── charts4props
-│   ├── bars.ipynb # 棒グラフ
-│   ├── mosaic.ipynb # モザイクプロット
-│   ├── parallel.ipynb # パラレルセットグラフ
-│   ├── pie.ipynb # 円グラフ
-│   ├── stacked_den.ipynb # 積上げ密度プロット
-│   └── tree.ipynb # ツリーマップ
+│   ├── bars.ipynb <span class="c1"># 棒グラフ</span>
+│   ├── mosaic.ipynb <span class="c1"># モザイクプロット</span>
+│   ├── parallel.ipynb <span class="c1"># パラレルセットグラフ</span>
+│   ├── pie.ipynb <span class="c1"># 円グラフ</span>
+│   ├── stacked_den.ipynb <span class="c1"># 積上げ密度プロット</span>
+│   └── tree.ipynb <span class="c1"># ツリーマップ</span>
 ├── eda
-│   └── eda.ipynb # そもそもどんなデータを扱うの？
+│   └── eda.ipynb <span class="c1"># そもそもどんなデータを扱うの？</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -526,7 +527,7 @@
 <div class="section" id="id4">
 <h3>前処理の実行<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">appendix</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">preprocess.ipynb</span></code>に移動し，前処理を実行しましょう．</p>
-<p><img alt="preprocess" src="../_images/appendix" /></p>
+<p><img alt="preprocess" src="appendix/figs/setup/preprocess.png" /></p>
 <p>上から順番に<code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">Enter</span></code>を押していけば問題なく実行できるはずです．</p>
 <p>最終的に<code class="docutils literal notranslate"><span class="pre">viz-madb/data/preprocess/out</span></code>に下記の二つの<code class="docutils literal notranslate"><span class="pre">.csv</span></code>ファイルが出力されていたら成功です．</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>viz-madb/data/preprocess/out
@@ -534,6 +535,7 @@
 └── episodes.csv
 </pre></div>
 </div>
+<p><img alt="output" src="appendix/figs/setup/output.png" /></p>
 </div>
 <div class="section" id="id5">
 <h3>Jupyter Labのパスワードの変更<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
