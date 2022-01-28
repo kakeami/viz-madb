@@ -3,7 +3,7 @@
 
 # # そもそもどんなデータを扱うの？
 
-# ここでは，本サイトで分析対象とするデータについて簡単に紹介し，基礎分析を実施します．なお，このデータは[MADB Labでv1.0として公開されているもの](https://github.com/mediaarts-db/dataset/tree/1.0)に[こちらの前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html)を実施したものです．
+# ここでは，本書で分析対象とするデータについて簡単に紹介し，基礎分析を実施します．なお，このデータは[MADB Labでv1.0として公開されているもの](https://github.com/mediaarts-db/dataset/tree/1.0)に[こちらの前処理](https://kakeami.github.io/viz-madb/appendix/preprocess.html)を実施したものです．
 
 # ## 下準備
 
