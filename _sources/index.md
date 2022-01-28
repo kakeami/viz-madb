@@ -81,9 +81,9 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 [棒グラフ](https://kakeami.github.io/viz-madb/charts4amounts/bars.html)
 を作図することです．
 複数の質的変数の量を見たい場合は，集合棒グラフや積上げ棒グラフも効果的です．
-各変数を横軸と縦軸にとり，
+全体像を俯瞰したい場合は，
 [ヒートマップ](https://kakeami.github.io/viz-madb/charts4amounts/heatmap.html)
-で俯瞰することも可能です．
+を採用しても良いでしょう．
 
 ---
 **分布を見たい**[^dist]
@@ -130,13 +130,36 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 **変数間の関係を見たい**[^assoc]
 ^^^
 
-
+二つの量的変数の関係を表現する典型的な方法は
+[散布図](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html)
+を描くことです．
+ただし，データ量が多すぎる場合は凡例が重複してわかりづらいので，
+[二次元ヒストグラム](https://kakeami.github.io/viz-madb/charts4assocs/2d.html)
+や
+[等高線プロット](https://kakeami.github.io/viz-madb/charts4assocs/contours.html)
+を検討しましょう．
+量的変数が三つ以上ある場合は，
+[バブルチャート](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html)
+や
+[並行座標プロット](https://kakeami.github.io/viz-madb/charts4assocs/slope.html)
+[^slope]でその関係性を表現できます．
+変数同士の相関係数を表現したい場合は
+[コレログラム](https://kakeami.github.io/viz-madb/charts4assocs/correlo.html)
+を使いましょう．
+ある変数の時系列的な変化を表現する際は
+[折れ線グラフ](https://kakeami.github.io/viz-madb/charts4assocs/line.html)
+を用いることが多いです．
+なお一般的な折れ線グラフは一変数の推移しか表現できませんが，
+[工夫](https://kakeami.github.io/viz-madb/charts4assocs/connected.html)
+すれば二変数の推移を表現することも可能です．
 
 :::
 
 [^dist]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Sina plot](https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1366914?journalCode=ucgs20)**：Plotlyで簡易に作図する方法が見当たらず，かつバイオリンプロットとストリップチャートで雰囲気をつかめると判断したため．**[Quantile-quantile plot](https://clauswilke.com/dataviz/ecdf-qq.html#qq-plots)**：理論的な確率密度分布と標本分布の一致性を見る目的で用いられることが多く，解釈に高度な数理統計学の知識が必要であり，本書のスコープを超えるため
 
 [^assoc]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Hexagonal binning](https://clauswilke.com/dataviz/overlapping-points.html#d-histograms)**：Plotlyで簡易に作図する方法が見当たらず，かつ二次元ヒストグラムで雰囲気をつかめると判断したため．
+
+[^slope]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)ではペアとなる二変数の関係性を示す手法として[Slopegraph](https://clauswilke.com/dataviz/visualizing-associations.html#associations-paired-data)が，ここでは三変数以上に対応可能であるという観点で紹介しました．
 
 ## 謝辞
 
@@ -156,3 +179,4 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 - [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
 - [小久保 奈都弥，データ分析者のためのPythonデータビジュアライゼーション入門 コードと連動してわかる可視化手法](https://www.shoeisha.co.jp/book/detail/9784798163970)
 - [総務省統計局，なるほど統計学園](https://www.stat.go.jp/naruhodo/)
+- [岡崎 直観，機械学習帳](https://chokkan.github.io/mlnote/index.html)

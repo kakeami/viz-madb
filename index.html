@@ -214,8 +214,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="charts4assocs/slope.html">
-   16. 並行座標プロット
+  <a class="reference internal" href="charts4assocs/2d.html">
+   16. 2次元ヒストグラム
   </a>
  </li>
  <li class="toctree-l1">
@@ -224,8 +224,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="charts4assocs/2d.html">
-   18. 2次元ヒストグラム
+  <a class="reference internal" href="charts4assocs/slope.html">
+   18. 並行座標プロット
   </a>
  </li>
  <li class="toctree-l1">
@@ -353,12 +353,12 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
+  <a class="reference internal nav-link" href="#id6">
    謝辞
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
+  <a class="reference internal nav-link" href="#id7">
    参考文献
   </a>
  </li>
@@ -388,12 +388,12 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
+  <a class="reference internal nav-link" href="#id6">
    謝辞
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
+  <a class="reference internal nav-link" href="#id7">
    参考文献
   </a>
  </li>
@@ -494,9 +494,9 @@
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4amounts/bars.html">棒グラフ</a>
 を作図することです．
 複数の質的変数の量を見たい場合は，集合棒グラフや積上げ棒グラフも効果的です．
-各変数を横軸と縦軸にとり，
+全体像を俯瞰したい場合は，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4amounts/heatmap.html">ヒートマップ</a>
-で俯瞰することも可能です．</p>
+を採用しても良いでしょう．</p>
 </div>
 </div>
 </div>
@@ -555,14 +555,36 @@
 <p class="card-text"><strong>変数間の関係を見たい</strong><a class="footnote-reference brackets" href="#assoc" id="id4">2</a></p>
 </div>
 <div class="card-body docutils">
+<p class="card-text">二つの量的変数の関係を表現する典型的な方法は
+<a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/scatter.html">散布図</a>
+を描くことです．
+ただし，データ量が多すぎる場合は凡例が重複してわかりづらいので，
+<a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/2d.html">二次元ヒストグラム</a>
+や
+<a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/contours.html">等高線プロット</a>
+を検討しましょう．
+量的変数が三つ以上ある場合は，
+<a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/scatter.html">バブルチャート</a>
+や
+<a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/slope.html">並行座標プロット</a>
+<a class="footnote-reference brackets" href="#slope" id="id5">3</a>でその関係性を表現できます．
+変数同士の相関係数を表現したい場合は
+<a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/correlo.html">コレログラム</a>
+を使いましょう．
+ある変数の時系列的な変化を表現する際は
+<a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/line.html">折れ線グラフ</a>
+を用いることが多いです．
+なお一般的な折れ線グラフは一変数の推移しか表現できませんが，
+<a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/connected.html">工夫</a>
+すれば二変数の推移を表現することも可能です．</p>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>謝辞<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>謝辞<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.python.org/">Python</a></p></li>
 <li><p><a class="reference external" href="https://pandas.pydata.org/">Pandas</a></p></li>
@@ -576,8 +598,8 @@
 <li><p><a class="reference external" href="https://shonenmagazine.com/">週刊少年マガジン</a></p></li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h2>参考文献<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2>参考文献<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a></p></li>
 <li><p><a class="reference external" href="https://www.shoeisha.co.jp/book/detail/9784798163970">小久保 奈都弥，データ分析者のためのPythonデータビジュアライゼーション入門 コードと連動してわかる可視化手法</a></p></li>
@@ -590,6 +612,9 @@
 </dd>
 <dt class="label" id="assoc"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
 <dd><p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>で分布を見る手法として紹介されているもののうち，次のものは割愛しました．<strong><a class="reference external" href="https://clauswilke.com/dataviz/overlapping-points.html#d-histograms">Hexagonal binning</a></strong>：Plotlyで簡易に作図する方法が見当たらず，かつ二次元ヒストグラムで雰囲気をつかめると判断したため．</p>
+</dd>
+<dt class="label" id="slope"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
+<dd><p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>ではペアとなる二変数の関係性を示す手法として<a class="reference external" href="https://clauswilke.com/dataviz/visualizing-associations.html#associations-paired-data">Slopegraph</a>が，ここでは三変数以上に対応可能であるという観点で紹介しました．</p>
 </dd>
 </dl>
 </div>
