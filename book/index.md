@@ -107,9 +107,30 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 **比率を見たい**
 ^^^
 
+質的変数同士の比率を見る際は，
+[円グラフ](https://kakeami.github.io/viz-madb/charts4props/pie.html)
+や
+[棒グラフ](https://kakeami.github.io/viz-madb/charts4props/bars.html)
+が用いられます．
+前者は割合を直感的に表現する際に適しており，後者は絶対値を比較する際に適しています．
+連続的に変化する比率を表現する際は
+[積上げ密度プロット](https://kakeami.github.io/viz-madb/charts4props/stacked_den.html)
+が効果的です．
+複数の質的変数の比率を表現する際は
+[モザイクプロット](https://kakeami.github.io/viz-madb/charts4props/mosaic.html)，
+[ツリーマップ](https://kakeami.github.io/viz-madb/charts4props/tree.html)，
+そして
+[パラレルセットグラフ](https://kakeami.github.io/viz-madb/charts4props/parallel.html)
+を検討しましょう．
+特に，モザイクプロットは二つの質的変数の組合せの比率を表現したいときに，
+ツリーマップは階層構造を持つ質的変数の比率を表現したいときに，
+そしてパラレルセットグラフは三つ以上の質的変数の比率を表現したいときに力を発揮します．
+
 ---
 **変数間の関係を見たい**[^assoc]
 ^^^
+
+
 
 :::
 
