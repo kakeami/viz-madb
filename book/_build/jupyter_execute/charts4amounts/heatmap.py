@@ -11,7 +11,7 @@
 # 
 # （[デジタル大辞泉](https://kotobank.jp/dictionary/daijisen/3997/)より抜粋）
 # 
-# です．
+# です．（具体的な数値をアノテーションしない限り）定量的な比較は難しいですが，全体像を俯瞰したい場合は非常に便利です．
 # 
 # 
 # ![heatmap](../figs/charts/heatmap.png)

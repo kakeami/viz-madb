@@ -11,7 +11,7 @@
 # 
 # （「[精選版 日本国語大辞典](https://kotobank.jp/dictionary/nikkokuseisen/)」より抜粋）
 # 
-# です．
+# です．質的変数の量を見る最も一般的な方法の一つです．
 
 # ![bars](../figs/charts/bars.png)
 

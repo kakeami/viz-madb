@@ -5,20 +5,29 @@
 
 # ## 概要
 
-# **密度プロット**とは
+# **密度プロット**とは，
+# 
+# > ヒストグラムと似たようなグラフに、密度プロット（density plot）がある。密度プロットとは、ヒストグラムのようにローデータ（raw data）をそのままプロットするのではなく、カーネル密度推定（kernel-density estimation）というテクニックで密度分布を推定した上で可視化する手法である。グラフが手書きの時代だった頃からヒストグラムがあるのに対し、密度プロットは計算機の発達によって開発された比較的新しいグラフである。
+# 
+# （[いつか役に立つかもしれない資料](https://datareporting.kirikuroda.com/distribution.html#section-4.2)より抜粋）
+# 
+# です．
+
+# ![](../figs/charts/density.png)
+
+# 例えば上図は，作品ごとの掲載位置の分布（の推定値）を表現した密度プロットです．ヒストグラムと異なり，複数の分布を重ねて表示できることがわかります．
 
 # ## Plotlyによる作図方法
 
-# Plotlyでは，`plotly.figure_factory.create_distplot()`でDensity plotを作成可能です．
+# Plotlyでは，`plotly.figure_factory.create_distplot()`で密度プロットを作成可能です．
 
 # ```python
 # import plotly.figure_factory as ff
 # fig = ff.create_distplot(
-#     [df['x_col']], ['label'], show_hist=False)
+#     [hist_data, labels, show_hist=False)
 # ```
 
-# 上記の例では，`df`の`col_x`列をX軸，その確率密度をY軸にとったDensity plotのオブジェクト`fig`を作成します．
-# ただし，`label`のように凡例名を指定する必要があることにご注意ください．
+# ただし，`hist_data`は描画したい変数ごとの変数のリスト，`labels`は凡例名のリストを表します．`hist_data`の要素数と，`labels`の要素数は一致している必要があるのでご注意ください．
 
 # :::{admonition} `show_hist=False`
 # `plotly.figure_factory.create_distplot()`はデフォルト設定でヒストグラムとDensity plotの両方を作図します．Density plotのみ表示したい場合は，`show_hist=False`を指定しましょう．
