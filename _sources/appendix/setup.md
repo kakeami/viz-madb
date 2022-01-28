@@ -47,11 +47,11 @@ sudo docker-compose up -d
 
 `madb`を入力してログインしましょう．
 
-![passwd](figs/setup/passwd.png)
+![passwd](../figs/setup/passwd.png)
 
 下図のようにビルドを求められる場合は，`Build`をクリックしてください．
 
-![](figs/setup/build.png)
+![](../figs/setup/build.png)
 
 左のエクスプローラーから，`work` > `book`の順に選択し，解析用ディレクトリに移動してください．
 ノートブック（`*.ipynb`）と本サイトの対応関係をいかに示します．
@@ -98,7 +98,7 @@ sudo docker-compose up -d
 
 `appendix` > `preprocess.ipynb`に移動し，前処理を実行しましょう．
 
-![preprocess](figs/setup/preprocess.png)
+![preprocess](../figs/setup/preprocess.png)
 
 上から順番に`Shift`+`Enter`を押していけば問題なく実行できるはずです．
 
@@ -110,7 +110,7 @@ viz-madb/data/preprocess/out
 └── episodes.csv
 ```
 
-![output](figs/setup/output.png)
+![output](../figs/setup/output.png)
 
 ### Jupyter Labのパスワードの変更
 
