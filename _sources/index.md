@@ -104,6 +104,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 [5.6 Uncertainty](https://clauswilke.com/dataviz/directory-of-visualizations.html#directory-uncertainty)
 に関しては高度な数理統計の知識が必要になるためスコープ外としました．
 
+
 :::{panels}
 :container: +full-width
 :column: col-lg-6 px-2 py-2
@@ -193,6 +194,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 すれば二変数の推移を表現することも可能です．
 
 :::
+
 
 [^dist]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Sina plot](https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1366914?journalCode=ucgs20)**：Plotlyで簡易に作図する方法が見当たらず，かつバイオリンプロットとストリッププロットで雰囲気をつかめると判断したため．**[Quantile-quantile plot](https://clauswilke.com/dataviz/ecdf-qq.html#qq-plots)**：理論的な確率密度分布と標本分布の一致性を見る目的で用いられることが多く，解釈に高度な数理統計学の知識が必要であり，本書のスコープを超えるため
 
