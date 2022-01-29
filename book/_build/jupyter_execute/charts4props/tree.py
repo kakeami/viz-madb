@@ -5,7 +5,25 @@
 
 # ## 概要
 
+# **ツリーマップ（Tree Map）**とは，階層構造（ツリー構造）を持つ質的変数に対して，その比率を四角形の面積で表現するグラフです．
+
+# ![](../figs/charts/tree.png)
+
+# 例えば上図は，雑誌別・作品別の掲載週数の割合を表現したツリーマップです．
+
 # ## Plotlyによる作図方法
+
+# Plotlyでは，`plotly.express.treemap()`でツリーマップを作成可能です．
+
+# ```python
+# import plotly.express as px
+# fig = px.treemap(df, path=['col_0', 'col_1',], values='col_values')
+# ```
+
+# 上記の例では，`df`の`col_0`，`col_1`列の順に細分化したツリーマップを作成します．
+# このとき，各要素の面積は`col_values`列を基準に決定されます．
+# 
+# もちろん，`path`に三つ以上の列を指定すれば，三階層以上のツリーマップも作成可能です．
 
 # ## MADB Labを用いた作図例
 
