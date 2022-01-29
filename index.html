@@ -429,90 +429,69 @@
 <a class="reference external" href="https://www.akitashoten.co.jp/w-champion">週刊少年チャンピオン</a>，
 <a class="reference external" href="https://shonenmagazine.com/">週刊少年マガジン</a>
 ）のデータを用いて，データビジュアライゼーションの学習を手助けすることを目指しています．</p>
-<div class="sphinx-bs container pb-4 full-width docutils">
-<div class="row docutils">
-<div class="d-flex col-lg-6 px-2 py-2 docutils">
-<div class="card w-100 docutils">
-<div class="card-header docutils">
-<p class="card-text">📚<strong>約47年分の四大少年誌の掲載作品データを採用</strong>📚</p>
-</div>
-<div class="card-body docutils">
-<p class="card-text">データビジュアライゼーション（に限らずデータ分析全般）の学習において重要なのは，<strong>分析対象のデータに興味を持てるかどうか</strong>です．
+<p>:::{panels}
+:container: +full-width
+:column: col-lg-6 px-2 py-2
+:card:</p>
+<hr class="docutils" />
+<p>📚<strong>約47年分の四大少年誌の掲載作品データを採用</strong>📚
+^^^
+データビジュアライゼーション（に限らずデータ分析全般）の学習において重要なのは，<strong>分析対象のデータに興味を持てるかどうか</strong>です．
 本書では約47年の四大少年誌のマンガ作品データを採用しているため，モチベーションを保ちつつ学習を進めることが可能です．</p>
 <div style="text-align: center;">
 <video autoplay loop muted playsinline width="100%" src="demo.mp4"></video>
 </div>
-</div>
-</div>
-</div>
-<div class="d-flex col-lg-6 px-2 py-2 docutils">
-<div class="card w-100 docutils">
-<div class="card-header docutils">
-<p class="card-text">👁️<strong>Plotlyによるインタラクティブなビジュアライゼーション</strong>👁️</p>
-</div>
-<div class="card-body docutils">
-<p class="card-text">Plotlyで自由にズームイン・ズームアウトが可能なグラフを出力しています．
+<hr class="docutils" />
+<p>👁️<strong>Plotlyによるインタラクティブなビジュアライゼーション</strong>👁️
+^^^
+Plotlyで自由にズームイン・ズームアウトが可能なグラフを出力しています．
 興味の赴くまま，グリグリグラフを動かしてみましょう．
 新たな分析のヒントが得られるかもしれません．</p>
 <div style="text-align: center;">
 <video autoplay loop muted playsinline width="100%" src="plotly.mp4"></video>
 </div>
-</div>
-</div>
-</div>
-<div class="d-flex col-lg-6 px-2 py-2 docutils">
-<div class="card w-100 docutils">
-<div class="card-header docutils">
-<p class="card-text">👩‍🎓<strong>Docker + Jupyter Labで簡単に分析環境を構築可能</strong>🧑‍🎓</p>
-</div>
-<div class="card-body docutils">
-<p class="card-text">本書はJupyter Labで作成したソースコードをJupyter Bookでビルドして構築しています．
+<hr class="docutils" />
+<p>👩‍🎓<strong>Docker + Jupyter Labで簡単に分析環境を構築可能</strong>🧑‍🎓
+^^^</p>
+<p>本書はJupyter Labで作成したソースコードをJupyter Bookでビルドして構築しています．
 <a class="reference external" href="https://github.com/kakeami/viz-madb">GitHub</a>からソースコードをダウンロードすることで，手元で環境を再現可能ですので，どんどん新しい切り口でビジュアライゼーションしましょう．
 詳細は<a class="reference external" href="https://kakeami.github.io/viz-madb/appendix/setup.html">Appendix - 環境構築</a>をご参照ください．</p>
-<p class="card-text"><img alt="jupyter" src="_images/jupyter.png" /></p>
-</div>
-</div>
-</div>
-<div class="d-flex col-lg-6 px-2 py-2 docutils">
-<div class="card w-100 docutils">
-<div class="card-header docutils">
-<p class="card-text">🇯🇵<strong>メディア芸術データベース・ラボ（MADB Lab）を利用</strong>🇯🇵</p>
-</div>
-<div class="card-body docutils">
-<p class="card-text">MADB Labは，文化庁が提供する，メディア芸術作品に関するデータをより広く活用するためのウェブサイトです．
+<p><img alt="jupyter" src="_images/jupyter.png" /></p>
+<hr class="docutils" />
+<p>🇯🇵<strong>メディア芸術データベース・ラボ（MADB Lab）を利用</strong>🇯🇵
+^^^</p>
+<p>MADB Labは，文化庁が提供する，メディア芸術作品に関するデータをより広く活用するためのウェブサイトです．
 本書では，<a class="reference external" href="https://github.com/mediaarts-db/dataset/tree/1.0">v1.0として公開されているデータ</a>を<a class="reference external" href="https://kakeami.github.io/viz-madb/appendix/preprocess.html">前処理</a>して利用しています．
 データセットの詳細は<a class="reference external" href="https://github.com/mediaarts-db/dataset">公式リポジトリ</a>をご参照ください．</p>
-<p class="card-text"><img alt="madb" src="_images/madb.png" /></p>
-</div>
-</div>
-</div>
-</div>
-</div>
+<p><img alt="madb" src="_images/madb.png" /></p>
+<p>:::</p>
 <div class="section" id="id2">
 <h2>本書で用いる用語<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>量的変数
-:   数値で測ることができる変数です．例えば，ページ数，掲載位置，連載作品数，掲載週数，など．</p>
-<p>質的変数
-:   数値で測ることができず，分類や種類を区別するために用いられる変数です．例えば，雑誌名，作品名，作家名，曜日，など.</p>
-<p>雑誌
-:   （後で書く）</p>
-<p>雑誌巻号
-:   （後で書く）</p>
-<p>マンガ作品，作品
-:   （後で書く）</p>
+<dl class="simple myst">
+<dt>量的変数</dt><dd><p>数値で測ることができる変数です．例えば，ページ数，掲載位置，連載作品数，掲載週数，など．</p>
+</dd>
+<dt>質的変数</dt><dd><p>数値で測ることができず，分類や種類を区別するために用いられる変数です．例えば，雑誌名，作品名，作家名，曜日，など.</p>
+</dd>
+<dt>雑誌</dt><dd><p>（後で書く）</p>
+</dd>
+<dt>雑誌巻号</dt><dd><p>（後で書く）</p>
+</dd>
+<dt>マンガ作品，作品</dt><dd><p>（後で書く）</p>
+</dd>
+<dt>各話，エピソード</dt><dd><p>（後で書く）</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="id3">
 <h2>こんなとき何を描く？<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>を参考にビジュアライゼーション手法を分類<a class="footnote-reference brackets" href="#drop" id="id4">1</a>しました．</p>
-<div class="sphinx-bs container pb-4 full-width docutils">
-<div class="row docutils">
-<div class="d-flex col-lg-6 px-2 py-2 docutils">
-<div class="card w-100 shadow docutils">
-<div class="card-header docutils">
-<p class="card-text"><strong>量を見たい</strong></p>
-</div>
-<div class="card-body docutils">
-<p class="card-text">質的変数の量を見る最も一般的な方法は
+<p>:::{panels}
+:container: +full-width
+:column: col-lg-6 px-2 py-2</p>
+<hr class="docutils" />
+<p><strong>量を見たい</strong>
+^^^</p>
+<p>質的変数の量を見る最も一般的な方法は
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4amounts/bars.html">棒グラフ</a>
 を作図することです．
 複数の質的変数を扱う場合は，集合棒グラフや積上げ棒グラフも効果的です．
@@ -521,16 +500,10 @@
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4amounts/heatmap.html">ヒートマップ</a>
 を選択肢に入れましょう．
 ただし，ヒートマップは質的変数の組合せの量を<strong>色</strong>で表現するため，数値を付記しなければ絶対値の比較が難しいことにご注意ください．</p>
-</div>
-</div>
-</div>
-<div class="d-flex col-lg-6 px-2 py-2 docutils">
-<div class="card w-100 shadow docutils">
-<div class="card-header docutils">
-<p class="card-text"><strong>分布を見たい</strong><a class="footnote-reference brackets" href="#dist" id="id5">2</a></p>
-</div>
-<div class="card-body docutils">
-<p class="card-text">量的変数の分布を見る際に直感的にわかりやすいのは，
+<hr class="docutils" />
+<p><strong>分布を見たい</strong><a class="footnote-reference brackets" href="#dist" id="id5">2</a>
+^^^</p>
+<p>量的変数の分布を見る際に直感的にわかりやすいのは，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4dists/hist.html">ヒストグラム</a>
 や
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4dists/density.html">密度プロット</a>
@@ -543,16 +516,10 @@
 がおすすめです．
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4dists/ridgeline.html">リッジラインプロット</a>
 はバイオリンプロットと似ていますが，主に分布の時間的な変遷<a class="footnote-reference brackets" href="#tb" id="id6">3</a>を見る際に適しています．</p>
-</div>
-</div>
-</div>
-<div class="d-flex col-lg-6 px-2 py-2 docutils">
-<div class="card w-100 shadow docutils">
-<div class="card-header docutils">
-<p class="card-text"><strong>比率を見たい</strong></p>
-</div>
-<div class="card-body docutils">
-<p class="card-text">質的変数の比率を可視化する際は，
+<hr class="docutils" />
+<p><strong>比率を見たい</strong>
+^^^</p>
+<p>質的変数の比率を可視化する際は，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4props/pie.html">円グラフ</a>
 や
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4props/bars.html">棒グラフ</a>
@@ -570,16 +537,10 @@
 特に，モザイクプロットは二つの質的変数の組合せの比率を表現したいときに，
 ツリーマップは階層構造を持つ質的変数の比率を表現したいときに，
 そしてパラレルセットグラフは三つ以上の質的変数の比率を表現したいときに力を発揮します．</p>
-</div>
-</div>
-</div>
-<div class="d-flex col-lg-6 px-2 py-2 docutils">
-<div class="card w-100 shadow docutils">
-<div class="card-header docutils">
-<p class="card-text"><strong>変数間の関係を見たい</strong><a class="footnote-reference brackets" href="#assoc" id="id7">4</a></p>
-</div>
-<div class="card-body docutils">
-<p class="card-text">二つの量的変数の関係を表現する典型的な方法は
+<hr class="docutils" />
+<p><strong>変数間の関係を見たい</strong><a class="footnote-reference brackets" href="#assoc" id="id7">4</a>
+^^^</p>
+<p>二つの量的変数の関係を表現する典型的な方法は
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/scatter.html">散布図</a>
 を描くことです．
 ただし，データ量が多すぎる場合は凡例が重複してわかりづらいので，
@@ -601,11 +562,7 @@
 なお一般的な折れ線グラフは一変数の推移しか表現できませんが，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/connected.html">工夫</a>
 すれば二変数の推移を表現することも可能です．</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+<p>:::</p>
 </div>
 <div class="section" id="id9">
 <h2>謝辞<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
