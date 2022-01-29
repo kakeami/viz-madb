@@ -74,16 +74,20 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
  数値で測ることができず，分類や種類を区別するために用いられる変数です．例えば，雑誌名，作品名，作家名，曜日，など.
 
 雑誌
- （後で書く）
+ `週刊少年ジャンプ`のように，マンガ雑誌を指します．
+ データ中では`mcname`という変数名で管理されています．
 
 雑誌巻号
- （後で書く）
+ `週刊少年ジャンプ 1970年 表示号数31`のように，マンガ雑誌の号数を表します．
+ データ中では`miname`という変数名で管理されています．
 
 作品
- （後で書く）
+ `男一匹ガキ大将`のように，マンガ雑誌に掲載されているマンガ作品を表します．
+ データ中では`cname`という変数名で管理されています．
 
 各話
- （後で書く）
+ `土佐の源蔵の巻`のように，マンガ作品を構成するエピソードを指します．通常，雑誌巻号に一話ずつ掲載されます．
+ データ中では`epname`という変数名で管理されています．
 ```
 
 ## こんなとき何を描く？
@@ -116,23 +120,23 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 {term}`質的変数`の量を見る最も一般的な方法は
 [棒グラフ](https://kakeami.github.io/viz-madb/charts4amounts/bars.html)
 を作図することです．
-複数の質的変数を扱う場合は，集合棒グラフや積上げ棒グラフも効果的です．
+複数の{term}`質的変数`を扱う場合は，集合棒グラフや積上げ棒グラフも効果的です．
 前者は特に絶対値を比較したい場合，後者は特に割合を比較したい場合に便利です．
 全体像を俯瞰したい場合は，
 [ヒートマップ](https://kakeami.github.io/viz-madb/charts4amounts/heatmap.html)
 を選択肢に入れましょう．
-ただし，ヒートマップは質的変数の組合せの量を**色**で表現するため，数値を付記しなければ絶対値の比較が難しいことにご注意ください．
+ただし，ヒートマップは{term}`質的変数`の組合せの量を**色**で表現するため，数値を付記しなければ絶対値の比較が難しいことにご注意ください．
 
 ---
 **分布を見たい**[^dist]
 ^^^
 
-量的変数の分布を見る際に直感的にわかりやすいのは，
+{term}`量的変数`の分布を見る際に直感的にわかりやすいのは，
 [ヒストグラム](https://kakeami.github.io/viz-madb/charts4dists/hist.html)
 や
 [密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)
 ですが，パラメータ設定に注意が必要です．
-複数の質的変数の分布を比較する際は，
+複数の{term}`質的変数`の分布を比較する際は，
 [箱ひげ図](https://kakeami.github.io/viz-madb/charts4dists/box.html)，
 [バイオリンプロット](https://kakeami.github.io/viz-madb/charts4dists/violin.html)，
 そして
@@ -147,7 +151,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 **比率を見たい**
 ^^^
 
-質的変数の比率を可視化する際は，
+{term}`質的変数`の比率を可視化する際は，
 [円グラフ](https://kakeami.github.io/viz-madb/charts4props/pie.html)
 や
 [棒グラフ](https://kakeami.github.io/viz-madb/charts4props/bars.html)
@@ -156,21 +160,21 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 連続的に変化する比率を表現する際は
 [積上げ密度プロット](https://kakeami.github.io/viz-madb/charts4props/stacked_den.html)
 が効果的です．
-複数の質的変数の比率を表現する際は
+複数の{term}`質的変数`の比率を表現する際は
 [モザイクプロット](https://kakeami.github.io/viz-madb/charts4props/mosaic.html)，
 [ツリーマップ](https://kakeami.github.io/viz-madb/charts4props/tree.html)，
 そして
 [パラレルセットグラフ](https://kakeami.github.io/viz-madb/charts4props/parallel.html)
 を検討しましょう．
-特に，モザイクプロットは二つの質的変数の組合せの比率を表現したいときに，
-ツリーマップは階層構造を持つ質的変数の比率を表現したいときに，
-そしてパラレルセットグラフは三つ以上の質的変数の比率を表現したいときに力を発揮します．
+特に，モザイクプロットは二つの{term}`質的変数`の組合せの比率を表現したいときに，
+ツリーマップは階層構造を持つ{term}`質的変数`の比率を表現したいときに，
+そしてパラレルセットグラフは三つ以上の{term}`質的変数`の比率を表現したいときに力を発揮します．
 
 ---
 **変数間の関係を見たい**[^assoc]
 ^^^
 
-二つの量的変数の関係を表現する典型的な方法は
+二つの{term}`量的変数`の関係を表現する典型的な方法は
 [散布図](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html)
 を描くことです．
 ただし，データ量が多すぎる場合は凡例が重複してわかりづらいので，
@@ -178,7 +182,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 や
 [等高線プロット](https://kakeami.github.io/viz-madb/charts4assocs/contours.html)
 を検討しましょう．
-量的変数が三つ以上ある場合は，
+{term}`量的変数`が三つ以上ある場合は，
 [バブルチャート](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html)
 や
 [並行座標プロット](https://kakeami.github.io/viz-madb/charts4assocs/slope.html)
