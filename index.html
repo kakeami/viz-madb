@@ -495,13 +495,17 @@
 </dd>
 <dt id="term-1">質的変数<a class="headerlink" href="#term-1" title="Permalink to this term">¶</a></dt><dd><p>数値で測ることができず，分類や種類を区別するために用いられる変数です．例えば，雑誌名，作品名，作家名，曜日，など.</p>
 </dd>
-<dt id="term-2">雑誌<a class="headerlink" href="#term-2" title="Permalink to this term">¶</a></dt><dd><p>（後で書く）</p>
+<dt id="term-2">雑誌<a class="headerlink" href="#term-2" title="Permalink to this term">¶</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">週刊少年ジャンプ</span></code>のように，マンガ雑誌を指します．
+データ中では<code class="docutils literal notranslate"><span class="pre">mcname</span></code>という変数名で管理されています．</p>
 </dd>
-<dt id="term-3">雑誌巻号<a class="headerlink" href="#term-3" title="Permalink to this term">¶</a></dt><dd><p>（後で書く）</p>
+<dt id="term-3">雑誌巻号<a class="headerlink" href="#term-3" title="Permalink to this term">¶</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">週刊少年ジャンプ</span> <span class="pre">1970年</span> <span class="pre">表示号数31</span></code>のように，マンガ雑誌の号数を表します．
+データ中では<code class="docutils literal notranslate"><span class="pre">miname</span></code>という変数名で管理されています．</p>
 </dd>
-<dt id="term-4">作品<a class="headerlink" href="#term-4" title="Permalink to this term">¶</a></dt><dd><p>（後で書く）</p>
+<dt id="term-4">作品<a class="headerlink" href="#term-4" title="Permalink to this term">¶</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">男一匹ガキ大将</span></code>のように，マンガ雑誌に掲載されているマンガ作品を表します．
+データ中では<code class="docutils literal notranslate"><span class="pre">cname</span></code>という変数名で管理されています．</p>
 </dd>
-<dt id="term-5">各話<a class="headerlink" href="#term-5" title="Permalink to this term">¶</a></dt><dd><p>（後で書く）</p>
+<dt id="term-5">各話<a class="headerlink" href="#term-5" title="Permalink to this term">¶</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">土佐の源蔵の巻</span></code>のように，マンガ作品を構成するエピソードを指します．通常，雑誌巻号に一話ずつ掲載されます．
+データ中では<code class="docutils literal notranslate"><span class="pre">epname</span></code>という変数名で管理されています．</p>
 </dd>
 </dl>
 </div>
@@ -519,12 +523,12 @@
 <p class="card-text"><a class="reference internal" href="#term-1"><span class="xref std std-term">質的変数</span></a>の量を見る最も一般的な方法は
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4amounts/bars.html">棒グラフ</a>
 を作図することです．
-複数の質的変数を扱う場合は，集合棒グラフや積上げ棒グラフも効果的です．
+複数の<a class="reference internal" href="#term-1"><span class="xref std std-term">質的変数</span></a>を扱う場合は，集合棒グラフや積上げ棒グラフも効果的です．
 前者は特に絶対値を比較したい場合，後者は特に割合を比較したい場合に便利です．
 全体像を俯瞰したい場合は，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4amounts/heatmap.html">ヒートマップ</a>
 を選択肢に入れましょう．
-ただし，ヒートマップは質的変数の組合せの量を<strong>色</strong>で表現するため，数値を付記しなければ絶対値の比較が難しいことにご注意ください．</p>
+ただし，ヒートマップは<a class="reference internal" href="#term-1"><span class="xref std std-term">質的変数</span></a>の組合せの量を<strong>色</strong>で表現するため，数値を付記しなければ絶対値の比較が難しいことにご注意ください．</p>
 </div>
 </div>
 </div>
@@ -534,12 +538,12 @@
 <p class="card-text"><strong>分布を見たい</strong><a class="footnote-reference brackets" href="#dist" id="id5">2</a></p>
 </div>
 <div class="card-body docutils">
-<p class="card-text">量的変数の分布を見る際に直感的にわかりやすいのは，
+<p class="card-text"><a class="reference internal" href="#term-0"><span class="xref std std-term">量的変数</span></a>の分布を見る際に直感的にわかりやすいのは，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4dists/hist.html">ヒストグラム</a>
 や
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4dists/density.html">密度プロット</a>
 ですが，パラメータ設定に注意が必要です．
-複数の質的変数の分布を比較する際は，
+複数の<a class="reference internal" href="#term-1"><span class="xref std std-term">質的変数</span></a>の分布を比較する際は，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4dists/box.html">箱ひげ図</a>，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4dists/violin.html">バイオリンプロット</a>，
 そして
@@ -556,7 +560,7 @@
 <p class="card-text"><strong>比率を見たい</strong></p>
 </div>
 <div class="card-body docutils">
-<p class="card-text">質的変数の比率を可視化する際は，
+<p class="card-text"><a class="reference internal" href="#term-1"><span class="xref std std-term">質的変数</span></a>の比率を可視化する際は，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4props/pie.html">円グラフ</a>
 や
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4props/bars.html">棒グラフ</a>
@@ -565,15 +569,15 @@
 連続的に変化する比率を表現する際は
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4props/stacked_den.html">積上げ密度プロット</a>
 が効果的です．
-複数の質的変数の比率を表現する際は
+複数の<a class="reference internal" href="#term-1"><span class="xref std std-term">質的変数</span></a>の比率を表現する際は
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4props/mosaic.html">モザイクプロット</a>，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4props/tree.html">ツリーマップ</a>，
 そして
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4props/parallel.html">パラレルセットグラフ</a>
 を検討しましょう．
-特に，モザイクプロットは二つの質的変数の組合せの比率を表現したいときに，
-ツリーマップは階層構造を持つ質的変数の比率を表現したいときに，
-そしてパラレルセットグラフは三つ以上の質的変数の比率を表現したいときに力を発揮します．</p>
+特に，モザイクプロットは二つの<a class="reference internal" href="#term-1"><span class="xref std std-term">質的変数</span></a>の組合せの比率を表現したいときに，
+ツリーマップは階層構造を持つ<a class="reference internal" href="#term-1"><span class="xref std std-term">質的変数</span></a>の比率を表現したいときに，
+そしてパラレルセットグラフは三つ以上の<a class="reference internal" href="#term-1"><span class="xref std std-term">質的変数</span></a>の比率を表現したいときに力を発揮します．</p>
 </div>
 </div>
 </div>
@@ -583,7 +587,7 @@
 <p class="card-text"><strong>変数間の関係を見たい</strong><a class="footnote-reference brackets" href="#assoc" id="id7">4</a></p>
 </div>
 <div class="card-body docutils">
-<p class="card-text">二つの量的変数の関係を表現する典型的な方法は
+<p class="card-text">二つの<a class="reference internal" href="#term-0"><span class="xref std std-term">量的変数</span></a>の関係を表現する典型的な方法は
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/scatter.html">散布図</a>
 を描くことです．
 ただし，データ量が多すぎる場合は凡例が重複してわかりづらいので，
@@ -591,7 +595,7 @@
 や
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/contours.html">等高線プロット</a>
 を検討しましょう．
-量的変数が三つ以上ある場合は，
+<a class="reference internal" href="#term-0"><span class="xref std std-term">量的変数</span></a>が三つ以上ある場合は，
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/scatter.html">バブルチャート</a>
 や
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/slope.html">並行座標プロット</a>
