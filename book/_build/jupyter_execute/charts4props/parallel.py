@@ -32,7 +32,7 @@
 
 # ### 下準備
 
-# In[1]:
+# In[3]:
 
 
 import pandas as pd
@@ -42,7 +42,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[4]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -60,7 +60,7 @@ WD2STR = {
     6: 'Sun.',}
 
 
-# In[3]:
+# In[5]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -71,7 +71,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[4]:
+# In[6]:
 
 
 def add_weekday_to_df(df):
@@ -83,7 +83,7 @@ def add_weekday_to_df(df):
     return df_new
 
 
-# In[5]:
+# In[7]:
 
 
 def add_mcid_to_df(df):
@@ -96,7 +96,7 @@ def add_mcid_to_df(df):
     return df_new
 
 
-# In[6]:
+# In[8]:
 
 
 def show_fig(fig):
@@ -105,7 +105,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[7]:
+# In[9]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -113,7 +113,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 雑誌別・年代別・曜日別の雑誌巻号数
 
-# In[8]:
+# In[10]:
 
 
 # 10年単位で区切ったyearsを追加
@@ -125,7 +125,7 @@ df_plot = df_plot.sort_values(
     ['weekday', 'years', 'mcname'], ignore_index=True)
 
 
-# In[9]:
+# In[11]:
 
 
 fig = px.parallel_categories(
@@ -139,8 +139,39 @@ fig.update_coloraxes(showscale=False)
 show_fig(fig)
 
 
-# In[ ]:
+# 当たり前ですが，各雑誌の巻号数は年代ごとにほぼ同一であることがわかります．
+# 一方で発売日は非常に興味深いです．
+# - `週刊少年サンデー`と`週刊少年マガジン`：1970年代は日曜に，1980年代以降は水曜に発売されているように見える
+# - `週刊少年チャンピオン`：1970年代は月曜に，1980年代は金曜に，そして1990年代以降は木曜に発売されているように見える
+# - `週刊少年ジャンプ`：1970年代から現在に至るまで，基本的に月曜に発売されているように見える
+# 
+# :::{note}
+# 上記は`datePublished`に基づく分析結果ですが，Wikipediaにはそのような表記はありません．
+# もしかしたら私が`datePublished`の解釈を誤っている可能性がありますので，ご注意ください．
+# :::
+
+# In[16]:
 
 
+# 試しに5年区切りでプロットしてみる
+df_plot = df[~df['miname'].duplicated()].reset_index(drop=True)
+df_plot = add_years_to_df(df_plot, 5)
+df_plot = add_weekday_to_df(df_plot)
+df_plot = add_mcid_to_df(df_plot)
+df_plot = df_plot.sort_values(
+    ['weekday', 'years', 'mcname'], ignore_index=True)
 
+
+# In[17]:
+
+
+fig = px.parallel_categories(
+    df_plot, dimensions=['mcname', 'years', 'weekday_str'],
+    color='mcid', 
+    labels={
+        'years': '年代', 'mcname': '雑誌名', 
+        'weekday_str': '発売曜日'},
+    title='雑誌別・年代別・曜日別の雑誌巻号数')
+fig.update_coloraxes(showscale=False)
+show_fig(fig)
 
