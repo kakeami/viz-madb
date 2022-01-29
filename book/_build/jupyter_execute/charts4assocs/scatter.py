@@ -5,6 +5,14 @@
 
 # ## 概要
 
+# **散布図（Scatter）** とは，主に二つの量的変数に対して，一つ一つのデータを **ドット** で表すグラフです．
+
+# ![](../figs/charts/scatter.png)
+
+# **バブルチャート（Bubble Chart)** とは
+
+# ![](../figs/charts/bubble.png)
+
 # ## Plotlyによる作図方法
 
 # ## MADB Labを用いた作図例
