@@ -5,7 +5,7 @@
 
 # ## 概要
 
-# **ストリッププロット（Strip Plot）**とは，量的変数に対して，一つ一つのデータをドットで表現したグラフです．
+# **ストリッププロット（Strip Plot）** とは，量的変数に対して，一つ一つのデータを **ドット** で表現したグラフです．
 # [箱ひげ図](https://kakeami.github.io/viz-madb/charts4dists/box.html)や[バイオリンプロット](https://kakeami.github.io/viz-madb/charts4dists/violin.html)と同様に，複数の分布を比較する際に便利です．
 # 全てのデータの情報を維持できることが強みですが，その裏返しで，データ数が多すぎる場合に見づらくなってしまうという弱みがあります．
 

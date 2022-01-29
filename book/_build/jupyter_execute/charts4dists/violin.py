@@ -5,7 +5,7 @@
 
 # ## 概要
 
-# **バイオリンプロット（Violin Plot）**とは，主に量的変数に対して，分布を滑らかな曲線で表現するグラフです．
+# **バイオリンプロット（Violin Plot）** とは，主に量的変数に対して，分布を滑らかな **曲線** で表現するグラフです．
 # [密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)を90%回転させたものを，複数の変数に対して描画します（縦横が反転することもあります）．
 # [箱ひげ図](https://kakeami.github.io/viz-madb/charts4dists/box.html)ほど分布形状の情報を落とさずに，複数の分布を容易に比較できるという利点があります．
 # [箱ひげ図](https://kakeami.github.io/viz-madb/charts4dists/box.html)や[ストリッププロット](https://kakeami.github.io/viz-madb/charts4dists/strip.html)と組合せて描画されることもあります．

@@ -5,7 +5,7 @@
 
 # ## 概要
 
-# **リッジラインプロット（Ridgeline Plot）**とは，量的変数に対して，分布を滑らかな**曲線**で表現したグラフです．
+# **リッジラインプロット（Ridgeline Plot）** とは，量的変数に対して，分布を滑らかな **曲線** で表現したグラフです．
 # [密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)（あるいは[バイオリンプロット](https://kakeami.github.io/viz-madb/charts4dists/violin.html)を90度回転したもの）を縦に並べ，文字通り山脈の稜線のような見た目をしています．
 # 特に動的に変化する分布の推移を表現する際に強力です．
 
