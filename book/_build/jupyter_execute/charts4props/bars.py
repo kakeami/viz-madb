@@ -5,8 +5,8 @@
 
 # ## 概要
 
-# 質的変数の比率を見る際にも棒グラフは有用です．
-# 縦横反転した[積上げ棒グラフ](https://kakeami.github.io/viz-madb/charts4amounts/bars.html#id4)がよく用いられます．
+# 質的変数の比率を見る際にも **棒グラフ** は有用です．
+# この用途でよく用いられるのは，縦横反転した[積上げ棒グラフ](https://kakeami.github.io/viz-madb/charts4amounts/bars.html#id4)です．
 
 # ![](../figs/charts/bars_prop.png)
 
