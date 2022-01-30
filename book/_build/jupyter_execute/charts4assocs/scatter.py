@@ -31,6 +31,11 @@
 # 
 # を表したバブルチャートです．
 # 平均掲載位置や連載週数の比較は容易ですが，個別の作品の平均ページ数を比較するのは非常に難しいことがわかります．
+# この課題は，散布図行列を採用することで回避できます．
+
+# **散布図行列（Scatter Matrix)** とは，複数の量的変数に対して， 全ての組合せの散布図を行列上に配置するグラフです．
+# 対角成分を[ヒストグラム](https://kakeami.github.io/viz-madb/charts4dists/hist.html)や[密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)にする[実装](https://seaborn.pydata.org/examples/scatterplot_matrix.html)もあります．
+# 一つ一つの図が小さくなってしまうという短所はありますが，
 
 # ## Plotlyによる作図方法
 
