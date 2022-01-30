@@ -204,7 +204,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 [^assoc]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Hexagonal binning](https://clauswilke.com/dataviz/overlapping-points.html#d-histograms)**：Plotlyで簡易に作図する方法が見当たらず，かつ二次元ヒストグラムで雰囲気をつかめると判断したため．
 
-[^slope]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)ではペアとなる二変数の関係性を示す手法として[Slopegraph](https://clauswilke.com/dataviz/visualizing-associations.html#associations-paired-data)が紹介されていますが，ここでは三変数以上に対応可能であるという観点で紹介しました．
+[^slope]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)ではペアとなる二変数の関係性を示す手法として[Slopegraph](https://clauswilke.com/dataviz/visualizing-associations.html#associations-paired-data)が紹介されていますが，適切な例を見つけられなかったため割愛しました．代わりに（目的は全く異なりますが）似たような手段でデータを描画する並行座標プロットを追加しました．
 
 ## 謝辞
 
@@ -224,5 +224,6 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 - [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
 - [Kiri Kuroda, いつか役に立つかもしれない資料](https://datareporting.kirikuroda.com/)
 - [宋財泫 (Jaehyun Song)・矢内勇生 (Yuki Yanai), 私たちのR: ベストプラクティスの探究](https://www.jaysong.net/RBook/)
+- [visualizing.jp](https://visualizing.jp/)
 - [小久保 奈都弥，データ分析者のためのPythonデータビジュアライゼーション入門 コードと連動してわかる可視化手法](https://www.shoeisha.co.jp/book/detail/9784798163970)
 - [岡崎 直観，機械学習帳](https://chokkan.github.io/mlnote/index.html)
