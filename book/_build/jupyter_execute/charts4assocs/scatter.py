@@ -59,6 +59,16 @@
 
 # バブルチャートのオブジェクト`fig`を作成できます．
 
+# 散布図行列を作図する場合は，`plotly.express.scatter_matrix()`を利用します．
+
+# ```python
+# fig = px.scatter_matrix(
+#     df, dimensions=['col_0', 'col_1', 'col_2'])
+# ```
+
+# 上記の例では，`df`の`col_0`・`col_1`・`col_2`列を対象とした散布図行列のオブジェクト`fig`を作成します．
+# もちろん，`dimensions`で指定することで，三つ以上の変数を対象とすることも可能です．
+
 # ## MADB Labを用いた作図例
 
 # ### 下準備
