@@ -131,4 +131,10 @@ show_fig(fig)
 
 
 # 冒頭で説明したように，隣り合う変数同士の関係は **なんとなく** わかりますが，それ以外の変数同士の関係はよくわかりません．
-# 個人的には，この用途であれば[バブルチャート](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html#id6)か[散布図行列]((https://kakeami.github.io/viz-madb/charts4assocs/scatter.html#id7)を用います．
+# 個人的には，この用途であれば[バブルチャート](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html#id6)か[散布図行列](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html#id7)を用います．
+
+# In[ ]:
+
+
+
+
