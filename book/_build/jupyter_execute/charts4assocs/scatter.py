@@ -82,16 +82,17 @@ RENDERER = 'plotly_mimetype+notebook'
 MIN_WEEKS = 5
 
 
-# In[4]:
+# In[20]:
 
 
-def show_fig(fig):
+def show_fig(fig, adjust_legend=True):
     """Jupyter Bookでも表示可能なようRendererを指定"""
     fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
-    fig.update_layout(legend={
-        'yanchor': 'top',
-        'xanchor': 'left',
-        'x': 0.01, 'y': 0.99})
+    if adjust_legend:
+        fig.update_layout(legend={
+            'yanchor': 'top',
+            'xanchor': 'left',
+            'x': 0.01, 'y': 0.99})
     fig.show(renderer=RENDERER)
 
 
@@ -103,7 +104,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の平均掲載位置と連載週数
 
-# In[21]:
+# In[6]:
 
 
 df_plot =     df.groupby('cname')['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -111,7 +112,7 @@ df_plot.columns = ['cname', 'weeks', 'position']
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[22]:
+# In[7]:
 
 
 fig = px.scatter(
@@ -126,7 +127,7 @@ show_fig(fig)
 
 # ### 雑誌別・作品別の平均掲載位置と連載週数
 
-# In[23]:
+# In[8]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])['pageStartPosition'].    agg(['count', 'mean']).reset_index()
@@ -134,7 +135,7 @@ df_plot.columns = ['mcname', 'cname', 'weeks', 'position']
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[24]:
+# In[9]:
 
 
 fig = px.scatter(
@@ -150,9 +151,9 @@ fig.update_yaxes(title='連載週数')
 show_fig(fig)
 
 
-# ### 雑誌別・作品別の平均掲載位置と連載週数と平均ページ数
+# ### 雑誌別・作品別の平均掲載位置と連載週数と平均ページ数（バブルチャート）
 
-# In[25]:
+# In[12]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
@@ -162,14 +163,15 @@ df_plot.columns = [
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[26]:
+# In[14]:
 
 
 fig = px.scatter(
     df_plot, x='position', y='weeks', color='mcname',
     size='pages', opacity=0.7,
     color_discrete_sequence= px.colors.diverging.Portland,
-    hover_data=['cname'], title='雑誌別・作品別の平均掲載位置と連載週数')
+    hover_data=['cname'], 
+    title='雑誌別・作品別の平均掲載位置と連載週数（バブルチャート）')
 fig.update_traces(
     marker={'line_width':1})
 fig.update_xaxes(title='平均掲載位置')
@@ -177,3 +179,39 @@ fig.update_yaxes(title='連載週数')
 
 show_fig(fig)
 
+
+# ### 雑誌別・作品別の平均掲載位置と連載週数と平均ページ数（散布図行列）
+
+# In[22]:
+
+
+df_plot =     df.groupby(['mcname', 'cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
+df_plot.columns = [
+    'mcname', 'cname', 'weeks', 'pages',
+    '_weeks', 'position']
+df_plot = df_plot[[
+    'mcname', 'position', 'pages', 'weeks']]
+df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
+
+
+# In[23]:
+
+
+fig = px.scatter_matrix(
+    df_plot, dimensions=['position', 'pages', 'weeks'], 
+    color='mcname', opacity=0.6, height=500,
+    color_discrete_sequence= px.colors.diverging.Portland,
+    labels={
+        'position': '掲載位置', 'weeks': '掲載週数',
+        'pages': 'ページ数'})
+fig.update_traces(marker={'line_width':1})
+show_fig(fig, adjust_legend=False)
+
+
+# バブルチャートではおぼろげにしかわからなかった
+# 
+# - 平均ページ数の分布
+# - 平均ページ数と他の変数との関係
+# 
+# がよくわかるようになりました．
+# 一つ一つの散布図が小さくなってしまうという欠点がありますが，個人的には，バブルチャートより散布図行列を使うことが多いです．

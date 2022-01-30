@@ -5,7 +5,7 @@
 
 # ## 概要
 
-# **並行座標プロット（Parallel Coordinates）** は，複数の量的変数を，平行に並べた **直線上の位置** で表現するグラフです．
+# **並行座標プロット（Parallel Coordinates Plot）** は，複数の量的変数を，平行に並べた **直線上の位置** で表現するグラフです．
 # [パラレルセットグラフ](https://kakeami.github.io/viz-madb/charts4props/parallel.html)と似ていますが，並行座標プロットは **量的変数** を対象としている点が異なります．
 # パラレルセットグラフと同様，隣り合う変数同士の関係を眺めることはできますが，それ以外の変数同士の関係を読み取るのは困難です．
 
@@ -25,18 +25,19 @@
 
 # ```python
 # import plotly.express as px
-# fig = px.parallel_coordinates(df)
+# fig = px.parallel_coordinates(
+#     df, dimensions=['col_0', 'col_1', 'col_2'])
 # ```
 
-# 上記の例では，`df`の **全ての量的変数** 列を対象として，並行座標プロットのオブジェクト`fig`を作成します．
-# 並行座標の順番は，`df`の列順と一致します．
+# 上記の例では，`df`の `col_0`・`col_1`・`col_2`列を対象として，並行座標プロットのオブジェクト`fig`を作成します．
+# この例では三変数ですが，`dimensions`ではそれ以上の変数も指定可能です．
 # [パラレルセットグラフ](https://kakeami.github.io/viz-madb/charts4props/parallel.html)と同様に，最も重要な変数に対して`color`で色付けすると解釈性が上がって親切です．
 
 # ## MADB Labを用いた作図例
 
 # ### 下準備
 
-# In[2]:
+# In[19]:
 
 
 import pandas as pd
@@ -46,7 +47,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[3]:
+# In[20]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -55,14 +56,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[4]:
+# In[21]:
 
 
 # 連載週数の最小値
 MIN_WEEKS = 5
 
 
-# In[5]:
+# In[22]:
 
 
 def show_fig(fig):
@@ -71,7 +72,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[6]:
+# In[23]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -90,11 +91,12 @@ df_plot = df_plot[['cname', 'position', 'weeks']]
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[8]:
+# In[24]:
 
 
 fig = px.parallel_coordinates(
-    df_plot, color='position',
+    df_plot, dimensions=['position', 'weeks'],
+    color='position',
     labels={'position': '掲載位置', 'weeks': '掲載週数'})
 show_fig(fig)
 
@@ -106,23 +108,22 @@ show_fig(fig)
 
 # 並行座標プロットが本領を発揮するのは，散布図で手が出ない三変数以上を対象としたときです．
 
-# In[10]:
+# In[25]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
 df_plot.columns = [
     'mcname', 'cname', 'weeks', 'pages',
     '_weeks', 'position']
-df_plot = df_plot[[
-    'mcname', 'cname', 'position', 'pages', 'weeks']]
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[12]:
+# In[26]:
 
 
 fig = px.parallel_coordinates(
-    df_plot, color='position',
+    df_plot, dimensions=['position', 'pages', 'weeks'],
+    color='position',
     labels={
         'position': '掲載位置', 'weeks': '掲載週数',
         'pages': 'ページ数'})
@@ -130,32 +131,4 @@ show_fig(fig)
 
 
 # 冒頭で説明したように，隣り合う変数同士の関係は **なんとなく** わかりますが，それ以外の変数同士の関係はよくわかりません．
-# 個人的には，この用途であれば[バブルチャート](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html#id6)か，以下で紹介する **散布図行列（Scatter Matrix）** を用います．
-
-# ### 作品別の平均掲載位置と連載週数と平均ページ数（散布図行列）
-
-# In[13]:
-
-
-df_plot =     df.groupby(['mcname', 'cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
-df_plot.columns = [
-    'mcname', 'cname', 'weeks', 'pages',
-    '_weeks', 'position']
-df_plot = df_plot[[
-    'position', 'pages', 'weeks']]
-df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
-
-
-# In[18]:
-
-
-fig = px.scatter_matrix(
-    df_plot, opacity=0.8, height=500,
-    labels={
-        'position': '掲載位置', 'weeks': '掲載週数',
-        'pages': 'ページ数'})
-fig.update_traces(marker={'line_width':1})
-show_fig(fig)
-
-
-# 散布図行列は，全ての量的変数の組み合わせに対して散布図を作成し，行列形式で並べる手法です（対角部分をヒストグラムにする流儀もあります）．
+# 個人的には，この用途であれば[バブルチャート](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html#id6)か[散布図行列]((https://kakeami.github.io/viz-madb/charts4assocs/scatter.html#id7)を用います．
