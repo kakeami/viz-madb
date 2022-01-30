@@ -12,9 +12,9 @@
 
 # 例えば上図は，作品の
 # 
-# - 横軸：平均掲載位置
-# - 縦軸：掲載週数
-# - 色：雑誌
+# - 平均掲載位置（横方向の位置）
+# - 掲載週数（縦方向の位置）
+# - 雑誌（ドットの色）
 # 
 # を表した散布図です．
 
@@ -24,10 +24,10 @@
 # ![](../figs/charts/bubble.png)
 
 # 例えば上図は，作品の
-# - 横軸：平均掲載位置
-# - 縦軸：連載週数
-# - 色：雑誌
-# - 大きさ：平均ページ数
+# - 平均掲載位置（横方向の位置）
+# - 連載週数（縦方向の位置）
+# - 雑誌（ドットの色）
+# - 平均ページ数（ドットの大きさ）
 # 
 # を表したバブルチャートです．
 # 平均掲載位置や連載週数の比較は容易ですが，個別の作品の平均ページ数を比較するのは非常に難しいことがわかります．
@@ -35,7 +35,9 @@
 
 # **散布図行列（Scatter Matrix)** とは，複数の量的変数に対して， 全ての組合せの散布図を行列上に配置するグラフです．
 # 対角成分を[ヒストグラム](https://kakeami.github.io/viz-madb/charts4dists/hist.html)や[密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)にする[実装](https://seaborn.pydata.org/examples/scatterplot_matrix.html)もあります．
-# 一つ一つの図が小さくなってしまうという短所はありますが，
+# 一つ一つの図が小さくなってしまいますが，三つ以上の量的変数の関係を把握する際に便利です．
+
+# ![](../figs/charts/scatter_matrix.png)
 
 # ## Plotlyによる作図方法
 
@@ -187,7 +189,7 @@ show_fig(fig)
 
 # ### 雑誌別・作品別の平均掲載位置と連載週数と平均ページ数（散布図行列）
 
-# In[22]:
+# In[24]:
 
 
 df_plot =     df.groupby(['mcname', 'cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
@@ -199,7 +201,7 @@ df_plot = df_plot[[
 df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
-# In[23]:
+# In[25]:
 
 
 fig = px.scatter_matrix(
@@ -208,7 +210,8 @@ fig = px.scatter_matrix(
     color_discrete_sequence= px.colors.diverging.Portland,
     labels={
         'position': '掲載位置', 'weeks': '掲載週数',
-        'pages': 'ページ数'})
+        'pages': 'ページ数'},
+    title='雑誌別・作品別の平均掲載位置と連載週数（散布図行列）')
 fig.update_traces(marker={'line_width':1})
 show_fig(fig, adjust_legend=False)
 
