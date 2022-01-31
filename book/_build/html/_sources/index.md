@@ -9,7 +9,7 @@
 
 **データビジュアライゼーション**とは，数値や文章などのデータに基づいた情報を，人間が理解しやすい形に視覚化する技術を指します．
 
-このサイトは，[文化庁の**メディア芸術データベース・ラボ（MADB Lab**）](https://mediag.bunka.go.jp/madb_lab/)で公開されている四大少年誌（
+このサイトは，[文化庁の**メディア芸術データベース・ラボ（MADB Lab）**](https://mediag.bunka.go.jp/madb_lab/)で公開されている四大少年誌（
 [週刊少年サンデー](https://websunday.net/)，
 [週刊少年ジャンプ](https://www.shonenjump.com/j/)，
 [週刊少年チャンピオン](https://www.akitashoten.co.jp/w-champion)，
