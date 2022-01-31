@@ -704,11 +704,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ijson
-  Downloading ijson-3.1.4-cp39-cp39-manylinux2010_x86_64.whl (131 kB)
-     |████████████████████████████████| 131 kB 5.2 MB/s            
-?25hInstalling collected packages: ijson
-Successfully installed ijson-3.1.4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ijson in /opt/conda/lib/python3.9/site-packages (3.1.4)
 </pre></div>
 </div>
 </div>
@@ -822,7 +818,7 @@ Successfully installed ijson-3.1.4
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 最終的に出力するカラム</span>
 <span class="n">COLS_OUT</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;miname&#39;</span><span class="p">,</span> <span class="s1">&#39;cname&#39;</span><span class="p">,</span> <span class="s1">&#39;epname&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mcname&#39;</span><span class="p">,</span> <span class="s1">&#39;miid&#39;</span><span class="p">,</span> <span class="s1">&#39;miname&#39;</span><span class="p">,</span> <span class="s1">&#39;cid&#39;</span><span class="p">,</span> <span class="s1">&#39;cname&#39;</span><span class="p">,</span> <span class="s1">&#39;epname&#39;</span><span class="p">,</span>
     <span class="s1">&#39;creator&#39;</span><span class="p">,</span> <span class="s1">&#39;pageStart&#39;</span><span class="p">,</span> <span class="s1">&#39;pageEnd&#39;</span><span class="p">,</span> <span class="s1">&#39;numberOfPages&#39;</span><span class="p">,</span>
     <span class="s1">&#39;datePublished&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">,</span> <span class="s1">&#39;editor&#39;</span><span class="p">,</span>
 <span class="p">]</span>
@@ -948,7 +944,7 @@ Successfully installed ijson-3.1.4
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "965e9544d260427aaa094dd9a6aa8597", "version_major": 2, "version_minor": 0}
+{"model_id": "20eed2f28bb647f68a72b14f7ac849f8", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 </div>
@@ -1261,7 +1257,7 @@ Successfully installed ijson-3.1.4
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "70415c25fb9d41a5bf822c4bf2bee367", "version_major": 2, "version_minor": 0}
+{"model_id": "27dbc6f44ad24e3d96858565beddb490", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 </div>
@@ -1552,7 +1548,9 @@ dtype: int64
     <tr style="text-align: right;">
       <th></th>
       <th>mcname</th>
+      <th>miid</th>
       <th>miname</th>
+      <th>cid</th>
       <th>cname</th>
       <th>epname</th>
       <th>creator</th>
@@ -1569,7 +1567,9 @@ dtype: int64
     <tr>
       <th>0</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544705</td>
       <td>週刊少年ジャンプ 1972年 表示号数30</td>
+      <td>C88437</td>
       <td>くそ坊主ガン鉄</td>
       <td>母よどこにの巻</td>
       <td>手無功</td>
@@ -1584,7 +1584,9 @@ dtype: int64
     <tr>
       <th>1</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544697</td>
       <td>週刊少年ジャンプ 1972年 表示号数39</td>
+      <td>C88021</td>
       <td>あらし!三匹</td>
       <td>水上スキーの巻</td>
       <td>池沢さとし</td>
@@ -1599,7 +1601,9 @@ dtype: int64
     <tr>
       <th>2</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544696</td>
       <td>週刊少年ジャンプ 1972年 表示号数40</td>
+      <td>C89703</td>
       <td>燃えて走れ!</td>
       <td>NaN</td>
       <td>村上もとか</td>
@@ -1614,7 +1618,9 @@ dtype: int64
     <tr>
       <th>3</th>
       <td>週刊少年サンデー</td>
+      <td>M579126</td>
       <td>週刊少年サンデー 1973年 表示号数44</td>
+      <td>C92856</td>
       <td>ダメおやじ</td>
       <td>NaN</td>
       <td>古谷三敏</td>
@@ -1629,7 +1635,9 @@ dtype: int64
     <tr>
       <th>4</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544561</td>
       <td>週刊少年ジャンプ 1975年 表示号数20</td>
+      <td>C88276</td>
       <td>学ちゃんとメリー</td>
       <td>NaN</td>
       <td>大画としゆき</td>
@@ -1644,7 +1652,9 @@ dtype: int64
     <tr>
       <th>5</th>
       <td>週刊少年サンデー</td>
+      <td>M578825</td>
       <td>週刊少年サンデー 1979年 表示号数37</td>
+      <td>C92118</td>
       <td>あばれ大海</td>
       <td>にわかライダーの巻</td>
       <td>六田登</td>
@@ -1659,7 +1669,9 @@ dtype: int64
     <tr>
       <th>6</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544336</td>
       <td>週刊少年ジャンプ 1979年 表示号数44</td>
+      <td>C89510</td>
       <td>ふたりのダービー</td>
       <td>NaN</td>
       <td>田中つかさ</td>
@@ -1674,7 +1686,9 @@ dtype: int64
     <tr>
       <th>7</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544335</td>
       <td>週刊少年ジャンプ 1979年 表示号数45</td>
+      <td>C89510</td>
       <td>ふたりのダービー</td>
       <td>NaN</td>
       <td>田中つかさ</td>
@@ -1689,7 +1703,9 @@ dtype: int64
     <tr>
       <th>8</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544334</td>
       <td>週刊少年ジャンプ 1979年 表示号数46</td>
+      <td>C89510</td>
       <td>ふたりのダービー</td>
       <td>NaN</td>
       <td>田中つかさ</td>
@@ -1704,7 +1720,9 @@ dtype: int64
     <tr>
       <th>9</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544331</td>
       <td>週刊少年ジャンプ 1979年 表示号数48</td>
+      <td>C89510</td>
       <td>ふたりのダービー</td>
       <td>NaN</td>
       <td>田中つかさ</td>
@@ -1719,7 +1737,9 @@ dtype: int64
     <tr>
       <th>10</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544330</td>
       <td>週刊少年ジャンプ 1979年 表示号数49</td>
+      <td>C89510</td>
       <td>ふたりのダービー</td>
       <td>NaN</td>
       <td>田中つかさ</td>
@@ -1734,7 +1754,9 @@ dtype: int64
     <tr>
       <th>11</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544328</td>
       <td>週刊少年ジャンプ 1979年 表示号数51</td>
+      <td>C89510</td>
       <td>ふたりのダービー</td>
       <td>NaN</td>
       <td>田中つかさ</td>
@@ -1749,7 +1771,9 @@ dtype: int64
     <tr>
       <th>12</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544327</td>
       <td>週刊少年ジャンプ 1979年 表示号数52</td>
+      <td>C89510</td>
       <td>ふたりのダービー</td>
       <td>NaN</td>
       <td>田中つかさ</td>
@@ -1764,7 +1788,9 @@ dtype: int64
     <tr>
       <th>13</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544324</td>
       <td>週刊少年ジャンプ 1980年 表示号数3</td>
+      <td>C88057</td>
       <td>いずみちゃんグラフィティー</td>
       <td>NaN</td>
       <td>金井たつお</td>
@@ -1779,7 +1805,9 @@ dtype: int64
     <tr>
       <th>14</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544324</td>
       <td>週刊少年ジャンプ 1980年 表示号数3</td>
+      <td>C89510</td>
       <td>ふたりのダービー</td>
       <td>NaN</td>
       <td>田中つかさ</td>
@@ -1794,7 +1822,9 @@ dtype: int64
     <tr>
       <th>15</th>
       <td>週刊少年サンデー</td>
+      <td>M578803</td>
       <td>週刊少年サンデー 1980年 表示号数9</td>
+      <td>C93296</td>
       <td>ドロファイター</td>
       <td>NaN</td>
       <td>村上もとか</td>
@@ -1809,7 +1839,9 @@ dtype: int64
     <tr>
       <th>16</th>
       <td>週刊少年サンデー</td>
+      <td>M578597</td>
       <td>週刊少年サンデー 1984年 表示号数5</td>
+      <td>C93515</td>
       <td>ラブZ</td>
       <td>D 愛せない　⑭</td>
       <td>やまさき拓味</td>
@@ -1824,7 +1856,9 @@ dtype: int64
     <tr>
       <th>17</th>
       <td>週刊少年マガジン</td>
+      <td>M536783</td>
       <td>週刊少年マガジン 1984年 表示号数11</td>
+      <td>C90685</td>
       <td>コンポラ先生</td>
       <td>オンボロバスが大変身!?の巻</td>
       <td>もとはしまさひで</td>
@@ -1839,7 +1873,9 @@ dtype: int64
     <tr>
       <th>18</th>
       <td>週刊少年チャンピオン</td>
+      <td>M557460</td>
       <td>週刊少年チャンピオン 1986年 表示号数22</td>
+      <td>C94728</td>
       <td>たつみ!センセーション</td>
       <td>NaN</td>
       <td>ゆめおい</td>
@@ -1854,7 +1890,9 @@ dtype: int64
     <tr>
       <th>19</th>
       <td>週刊少年チャンピオン</td>
+      <td>M557411</td>
       <td>週刊少年チャンピオン 1987年 表示号数21</td>
+      <td>C94102</td>
       <td>4P田中くん</td>
       <td>第41話 実力発揮、春日高校</td>
       <td>川三番地</td>
@@ -1869,7 +1907,9 @@ dtype: int64
     <tr>
       <th>20</th>
       <td>週刊少年マガジン</td>
+      <td>M536541</td>
       <td>週刊少年マガジン 1988年 表示号数46</td>
+      <td>C90588</td>
       <td>激烈バカ</td>
       <td>第36話 前夜祭!!!　／　ガンバレ日本!!!　／　強引!なんちゃって野郎!!　／　鎌倉野郎...</td>
       <td>斉藤富士夫</td>
@@ -1884,7 +1924,9 @@ dtype: int64
     <tr>
       <th>21</th>
       <td>週刊少年チャンピオン</td>
+      <td>M557113</td>
       <td>週刊少年チャンピオン 1993年 表示号数16</td>
+      <td>C94561</td>
       <td>グラップラー刃牙</td>
       <td>第73話 長老</td>
       <td>板垣恵介</td>
@@ -1899,7 +1941,9 @@ dtype: int64
     <tr>
       <th>22</th>
       <td>週刊少年チャンピオン</td>
+      <td>M557112</td>
       <td>週刊少年チャンピオン 1993年 表示号数17</td>
+      <td>C93997</td>
       <td>俺たち鶴高ラグビー部</td>
       <td>タックル〔□14〕キャプテンシー!!</td>
       <td>山本幸四郎</td>
@@ -1914,7 +1958,9 @@ dtype: int64
     <tr>
       <th>23</th>
       <td>週刊少年チャンピオン</td>
+      <td>M557103</td>
       <td>週刊少年チャンピオン 1993年 表示号数27</td>
+      <td>C95825</td>
       <td>女郎</td>
       <td>〔○52〕時間目 タタリじゃあ～</td>
       <td>笠原倫</td>
@@ -1929,7 +1975,9 @@ dtype: int64
     <tr>
       <th>24</th>
       <td>週刊少年サンデー</td>
+      <td>M578069</td>
       <td>週刊少年サンデー 1994年 表示号数24</td>
+      <td>C92071</td>
       <td>FCレッドカード</td>
       <td>GOAL39　／　美しさは罪　／　心うらはら　／　プライド　／　だまされた!　／　謎の指サイ...</td>
       <td>しろうず秀明</td>
@@ -1944,7 +1992,9 @@ dtype: int64
     <tr>
       <th>25</th>
       <td>週刊少年サンデー</td>
+      <td>M578067</td>
       <td>週刊少年サンデー 1994年 表示号数26</td>
+      <td>C92627</td>
       <td>川添孝一のJリーグカルチョクラブ</td>
       <td>Kick off23 前期優勝チームは、はたして…</td>
       <td>NaN</td>
@@ -1959,7 +2009,9 @@ dtype: int64
     <tr>
       <th>26</th>
       <td>週刊少年ジャンプ</td>
+      <td>M543567</td>
       <td>週刊少年ジャンプ 1995年 表示号数1</td>
+      <td>C88491</td>
       <td>ジョジョの奇妙な冒険</td>
       <td>思い出したぞ!</td>
       <td>荒木飛呂彦</td>
@@ -1974,7 +2026,9 @@ dtype: int64
     <tr>
       <th>27</th>
       <td>週刊少年マガジン</td>
+      <td>M536070</td>
       <td>週刊少年マガジン 1998年 表示号数16</td>
+      <td>C91434</td>
       <td>はじめの一歩</td>
       <td>Round386　弱点</td>
       <td>森川ジョージ</td>
@@ -1989,7 +2043,9 @@ dtype: int64
     <tr>
       <th>28</th>
       <td>週刊少年ジャンプ</td>
+      <td>M543400</td>
       <td>週刊少年ジャンプ 1998年 表示号数25</td>
+      <td>C89166</td>
       <td>封神演義</td>
       <td>第90回 趙公明攻略Ⅵ-蝉玉・ストーカー被害-</td>
       <td>藤崎竜</td>
@@ -2004,7 +2060,9 @@ dtype: int64
     <tr>
       <th>29</th>
       <td>週刊少年マガジン</td>
+      <td>M536060</td>
       <td>週刊少年マガジン 1998年 表示号数27</td>
+      <td>C89971</td>
       <td>Dreams</td>
       <td>第81話　特訓の成果</td>
       <td>川三番地</td>
@@ -2019,7 +2077,9 @@ dtype: int64
     <tr>
       <th>30</th>
       <td>週刊少年ジャンプ</td>
+      <td>M543372</td>
       <td>週刊少年ジャンプ 1999年 表示号数2</td>
+      <td>C89162</td>
       <td>ホイッスル!</td>
       <td>俺の居場所!の巻</td>
       <td>樋口大輔</td>
@@ -2034,7 +2094,9 @@ dtype: int64
     <tr>
       <th>31</th>
       <td>週刊少年ジャンプ</td>
+      <td>M543371</td>
       <td>週刊少年ジャンプ 1999年 表示号数4</td>
+      <td>C87726</td>
       <td>I''s</td>
       <td>ウラ目ウラ目</td>
       <td>桂正和</td>
@@ -2049,7 +2111,9 @@ dtype: int64
     <tr>
       <th>32</th>
       <td>週刊少年チャンピオン</td>
+      <td>M556789</td>
       <td>週刊少年チャンピオン 1999年 表示号数48</td>
+      <td>C94192</td>
       <td>O-HA-YO</td>
       <td>にらめっこ　／　秋の高座　／　卵を割る娘　／　メロンの恋人たち　／　恋愛小説　／　石庭　／　...</td>
       <td>川島よしお</td>
@@ -2064,7 +2128,9 @@ dtype: int64
     <tr>
       <th>33</th>
       <td>週刊少年ジャンプ</td>
+      <td>M543308</td>
       <td>週刊少年ジャンプ 2000年 表示号数20</td>
+      <td>C88492</td>
       <td>ジョジョの奇妙な冒険 Part6 ストーンオーシャン</td>
       <td>捕獲計画</td>
       <td>荒木飛呂彦</td>
@@ -2079,7 +2145,9 @@ dtype: int64
     <tr>
       <th>34</th>
       <td>週刊少年マガジン</td>
+      <td>M535433</td>
       <td>週刊少年マガジン 2011年 表示号数18</td>
+      <td>C89995</td>
       <td>GTO</td>
       <td>SHONAN 14DAYS LESSON.60 この手につかんだ未来地図</td>
       <td>藤沢とおる</td>
@@ -2094,7 +2162,9 @@ dtype: int64
     <tr>
       <th>35</th>
       <td>週刊少年マガジン</td>
+      <td>M675760</td>
       <td>週刊少年マガジン 2015年 表示号数16</td>
+      <td>C110993</td>
       <td>リアルアカウント</td>
       <td>account 13 Real ＆ Virtual</td>
       <td>渡辺静</td>
@@ -2109,7 +2179,9 @@ dtype: int64
     <tr>
       <th>36</th>
       <td>週刊少年サンデー</td>
+      <td>M675826</td>
       <td>週刊少年サンデー 2015年 表示号数35</td>
+      <td>C110901</td>
       <td>戦争劇場</td>
       <td>第48戦:手を出したら最後…</td>
       <td>土星フジコ</td>
