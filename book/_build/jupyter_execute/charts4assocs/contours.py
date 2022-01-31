@@ -5,7 +5,11 @@
 
 # ## 概要
 
-# **等高線プロット**は，2種類の量的変数の分布を見るために用いられる手法です．集計したい変数をそれぞれ横軸・縦軸にとり，該当するデータの量の分布を曲線（等高線）で表現します．
+# **等高線プロット（Density Contours）** は， **二種類** の質的変数を対象として，その分布をカーネル密度推定による **曲線** （等高線）で表現するグラフです．
+# [二次元ヒストグラム](https://kakeami.github.io/viz-madb/charts4assocs/2d.html)が[ヒストグラム](https://kakeami.github.io/viz-madb/charts4dists/hist.html)の二次元版だとすると，等高線プロットは[密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)の二次元版と捉えることができます．
+# 
+# [二次元ヒストグラム](https://kakeami.github.io/viz-madb/charts4assocs/2d.html)と同様，[散布図やバブルチャート](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html)ではドットが重複してしまうほどデータ量が多いとき，特に効果的です．
+# [二次元ヒストグラム](https://kakeami.github.io/viz-madb/charts4assocs/2d.html)より豊かに分布の形状を表現可能ですが，等高線はあくまで **推定値** であることに注意が必要です．
 
 # ![contours](../figs/charts/contour.png)
 
@@ -14,6 +18,28 @@
 # 色が明るい領域ほど，多くの作品が存在しています．
 
 # ## Plotlyによる作図方法
+
+# Plotlyでは，`plotly.express.density_contour()`を用いて作図できます．
+
+# ```python
+# import plotly.express as px
+# fig = px.density_heatmap(
+#     df, x='col_x', y='col_y')
+# ```
+
+# 上記の例では，`df`の`col_x`および`col_y`について，階級ごとにデータの下図を集計した等高線プロットのオブジェクト`fig`を作成します．
+
+# ```python
+# fig.update_traces(
+#     contours_coloring="fill", 
+#     contours_showlabels = True)
+# ```
+
+# さらに上記のオプションを指定することで，
+# - 度数に応じた色の塗り分け
+# - 等高線への度数の付記
+# 
+# により視認性が向上します
 
 # ## MADB Labを用いた作図例
 
@@ -89,12 +115,16 @@ fig.update_traces(
 show_fig(fig)
 
 
+# このままでは少し見づらいので，表示範囲を変更します．
+
 # In[9]:
 
 
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
+
+# [二次元ヒストグラム](https://kakeami.github.io/viz-madb/charts4assocs/2d.html#id4)の結果と見比べて，表現力が豊かであることが確認できます．
 
 # ### 雑誌別・作品別の平均掲載位置と連載週数
 
@@ -120,6 +150,9 @@ fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
 
+# `contours_coloring="fill"`オプションを指定しなければ，重ねて描画することも可能です．
+# しかし，上記のように重複する場合は見づらくなってしまうので， **重複の少ない** 複数の分布に対して使うことをおすすめします．
+
 # In[12]:
 
 
@@ -139,11 +172,9 @@ fig.update_traces(showscale=False)
 show_fig(fig)
 
 
-# In[ ]:
-
-
-
-
+# このデータセットに関しては，雑誌別に等高線プロットを描いた方が良いでしょう．
+# 
+# 一方で，隣り合わない変数同士の比較が難しくなることにご注意ください．例えば，`週刊少年サンデー`と`週刊少年ジャンプ`を **ひと目で** 比較することができますか？
 
 # In[ ]:
 

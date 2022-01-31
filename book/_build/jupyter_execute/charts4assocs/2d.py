@@ -6,7 +6,7 @@
 # ## 概要
 # 
 # **二次元ヒストグラム（2D Bins）** とは， **二種類** の質的変数を対象として，その分布を **色** で表現するグラフです．
-# 集計したい変数の階級を横軸・縦軸にとり，その階級に含まれるデータの数を色で示します．
+# 文字通り[ヒストグラム](https://kakeami.github.io/viz-madb/charts4dists/hist.html)の二次元版と捉えることもできますし，[ヒートマップ](https://kakeami.github.io/viz-madb/charts4amounts/heatmap.html)の一種と捉えることもできます．
 
 # データ量が非常に多いと，[散布図やバブルチャート](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html)のドットが重複してしまい，解釈が難しくなることがあります．
 # このような場合は，二次元ヒストグラムや[等高線プロット](https://kakeami.github.io/viz-madb/charts4assocs/contours.html)を検討しましょう．
