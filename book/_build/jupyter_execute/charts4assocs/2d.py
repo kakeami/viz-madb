@@ -1,16 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 2次元ヒストグラム
+# # 二次元ヒストグラム
 
 # ## 概要
 # 
-# **2次元ヒストグラム**とは，2種類の量的変数の分布を見るために用いられる手法です．
+# **二次元ヒストグラム（2D Bins）** とは， **二種類** の質的変数を対象として，その分布を **色** で表現するグラフです．
 # 集計したい変数の階級を横軸・縦軸にとり，その階級に含まれるデータの数を色で示します．
+
+# データ量が非常に多いと，[散布図やバブルチャート](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html)のドットが重複してしまい，解釈が難しくなることがあります．
+# このような場合は，二次元ヒストグラムや[等高線プロット](https://kakeami.github.io/viz-madb/charts4assocs/contours.html)を検討しましょう．
 
 # ![2d](../figs/charts/2d.png)
 
-# 例えば上図は，雑誌別に掲載位置（X軸）と掲載週数（Y軸）の作品数を表した2次元ヒストグラムです．色が明るいほど，該当する作品が多いことを表します．
+# 例えば上図は，雑誌別に掲載位置（横軸）と掲載週数（縦軸）の作品数を表した二次元ヒストグラムです．色が明るいほど，該当する作品が多いことを表します．
 
 # ## Plotlyによる作図方法
 
@@ -90,12 +93,17 @@ fig.update_yaxes(title='掲載週数')
 show_fig(fig)
 
 
+# このままでは少し見づらいので，表示範囲を変更します．
+
 # In[8]:
 
 
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
+
+# 平均掲載位置と掲載週数の大まかな分布を理解することができました．
+# 一方で，[散布図](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html#id4)で表現できていた個別のデータの情報が欠落してしまうことにご注意ください．
 
 # ### 雑誌別・作品別の平均掲載位置と掲載週数
 
@@ -121,6 +129,9 @@ fig.for_each_annotation(
 fig.update_yaxes(range=[0, 200])
 show_fig(fig)
 
+
+# 二次元ヒストグラムでは，[散布図](https://kakeami.github.io/viz-madb/charts4assocs/scatter.html#id5)のように雑誌別の集計結果を重複して表示できません．
+# `facet_col`オプションを使って，サブプロットとして作図しました．
 
 # ## 練習問題
 
