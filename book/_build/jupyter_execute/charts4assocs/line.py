@@ -8,7 +8,7 @@
 # **折れ線グラフ（Line Chart）** は，主に **時間とともに変化する量的変数** を対象に， その推移を **直線** で表現するグラフです．
 # 横軸に日付や時刻等の変数をとり，縦軸に変化を追いたい量的変数を取ります．
 
-# ![](../figs/charts/lines.png)
+# ![](../figs/charts/line.png)
 
 # 例えば上図は，`ONE PIECE`の掲載位置の推移を表した折れ線グラフです．
 
@@ -116,17 +116,19 @@ for cname in cnames:
 
 # ### 番外編：`ONE PIECE`の企画ページを除外する
 
-# ところで，`ONE PIECE`にしては明らかに掲載順が後ろすぎるデータが散見されます．
+# ところで，`ONE PIECE`にしては明らかに掲載位置が後ろすぎるデータが散見されます．
 
 # In[42]:
 
 
+# 作品名ONE PIECEで抽出
 df_op = df_plot[df_plot['cname']=='ONE PIECE'].reset_index(drop=True)
 
 
-# In[43]:
+# In[67]:
 
 
+# 降順で先頭10例を表示
 df_op.sort_values('pageStartPosition', ascending=False).head(10)
 
 
@@ -134,7 +136,7 @@ df_op.sort_values('pageStartPosition', ascending=False).head(10)
 # 
 # そもそも合計データ数が
 
-# In[44]:
+# In[68]:
 
 
 df_op.shape[0]
@@ -142,7 +144,7 @@ df_op.shape[0]
 
 # であるのに対し，最新の話数は
 
-# In[45]:
+# In[69]:
 
 
 df_op.sort_values('datePublished').tail(1)['epname']
@@ -150,7 +152,7 @@ df_op.sort_values('datePublished').tail(1)['epname']
 
 # ですので，単純に考えると
 
-# In[46]:
+# In[70]:
 
 
 890 - 869
@@ -158,24 +160,24 @@ df_op.sort_values('datePublished').tail(1)['epname']
 
 # 話分のデータを除外する必要がありそうです．以下では，これらを除外することを考えます．
 
-# 企画ページは本編と比較して短いことが考えられますので，5ページ以下のデータを抽出してみます．
+# 企画ページは本編と比較して短いことが考えられるので，5ページ以下のデータを抽出してみます．
 
-# In[58]:
+# In[71]:
 
 
 (df_op['pages'] <= 5).sum()
 
 
-# In[60]:
+# In[72]:
 
 
 df_op[df_op['pages'] <= 5][['pages', 'epname']].reset_index()
 
 
 # この抽出条件で良さそうです．
-# 上記を除外したデータで，再度折れ線グラフを描いてみましょう．
+# 上記以外のデータで，再度折れ線グラフを描いてみましょう．
 
-# In[61]:
+# In[73]:
 
 
 df_op_new = df_op[df_op['pages'] > 5].reset_index(drop=True)
@@ -194,7 +196,7 @@ show_fig(fig)
 
 # 興味があるので，掲載位置で降順ソートしてみましょう．
 
-# In[65]:
+# In[74]:
 
 
 df_op_new.sort_values('pageStartPosition', ascending=False)[
@@ -203,10 +205,4 @@ df_op_new.sort_values('pageStartPosition', ascending=False)[
 
 
 # `ONE PIECE`は，`第565話 オーズの道`の除き，全て雑誌の前半に掲載されていることがわかります．
-# 掲載位置が人気を測るバロメータと言われる`週刊少年ジャンプ`では驚異的なことです．
-
-# In[ ]:
-
-
-
-
+# 人気（等）に応じて掲載位置が決まると言われる`週刊少年ジャンプ`では驚異的なことです．

@@ -14,19 +14,24 @@
 
 # ## Plotlyによる作図方法
 
-# Plotlyでは，`plotly.express.line()`で折れ線グラフを作図できます．
+# [折れ線グラフ（一変数）](https://kakeami.github.io/viz-madb/charts4assocs/line.html)と同様に，`plotly.express.line()`で折れ線グラフを作図できます．
 
 # ```python
 # import plotly.express as px
+# # 事前にcol_text（例：日付や時刻）で昇順ソート
+# df = df.sort_values('col_text', ignore_index=True)
 # fig = px.line(
 #     df, x='col_x', y='col_y', text='col_text')
 # ```
+
+# 上記の例は，`df`の`col_x`列を横軸，`col_y`列を縦軸に取り，`col_text`（多くの場合，日付や時刻）を付記した折れ線グラフのオブジェクト`fig`を作成します．
+# 時系列順に直線を引けるように，事前に`col_text`でソートする必要があることにご注意ください．
 
 # ## MADB Labを用いた作図例
 
 # ### 下準備
 
-# In[1]:
+# In[3]:
 
 
 import pandas as pd
@@ -36,7 +41,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[4]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -45,14 +50,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[5]:
 
 
 UNIT_YEARS = 5
 YEARS_TO_DROP = ['1970', '2015']
 
 
-# In[4]:
+# In[6]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -63,7 +68,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[5]:
+# In[7]:
 
 
 def show_fig(fig):
@@ -77,7 +82,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[6]:
+# In[8]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -85,7 +90,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品数と作家数の推移
 
-# In[7]:
+# In[9]:
 
 
 df = add_years_to_df(df, UNIT_YEARS)
@@ -94,23 +99,27 @@ df_plot =     df.groupby('years')['cname', 'creator'].nunique().reset_index()
 df_plot =     df_plot[~df_plot['years'].isin(YEARS_TO_DROP)]    .reset_index(drop=True)
 
 
-# In[8]:
+# In[11]:
 
 
 fig = px.line(
     df_plot, x='cname', y='creator', text='years',
+    labels={'cname': '作品数', 'creator': '作家数'},
     title='作品数と作家数の推移')
 fig.update_traces(
     marker={'size': 15, 'line_width':1, 'opacity':0.8},
     textposition='bottom right')
-fig.update_xaxes(title='作家数')
-fig.update_yaxes(title='作品数')
 show_fig(fig)
 
 
+# 作品数と作家数の推移がわかります．
+# 基本的に作品数・作家数は増加傾向にあるようですが，1985年から1995年は一時的に減少していたことがわかります．
+
 # ### 雑誌別の作品数と作家数の推移
 
-# In[9]:
+# 次に，雑誌別に同様の集計をしてみましょう．
+
+# In[12]:
 
 
 df = add_years_to_df(df, 5)
@@ -119,12 +128,13 @@ df_plot =     df.groupby(['mcname', 'years'])['cname', 'creator']    .nunique().
 df_plot =     df_plot[~df_plot['years'].isin(YEARS_TO_DROP)]    .reset_index(drop=True)
 
 
-# In[10]:
+# In[13]:
 
 
 fig = px.line(
     df_plot, x='cname', y='creator', text='years',
     facet_col='mcname', facet_col_wrap=2,
+    labels={'cname': '作品数', 'creator': '作家数'},
     height=600, title='雑誌別の作品数と作家数の推移')
 fig.update_traces(
     marker={'size': 15, 'line_width':1, 'opacity':0.8},
@@ -134,10 +144,4 @@ fig.for_each_annotation(
 show_fig(fig)
 
 
-# ## 練習問題
-
-# In[ ]:
-
-
-
-
+# 特に`週刊少年チャンピオン`に増加傾向がありそうに見えます．
