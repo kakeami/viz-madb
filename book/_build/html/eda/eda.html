@@ -789,7 +789,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(179931, 15)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(179931, 17)
 </pre></div>
 </div>
 </div>
@@ -803,9 +803,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;mcname&#39;, &#39;miname&#39;, &#39;cname&#39;, &#39;epname&#39;, &#39;creator&#39;, &#39;pageStart&#39;,
-       &#39;pageEnd&#39;, &#39;numberOfPages&#39;, &#39;datePublished&#39;, &#39;price&#39;, &#39;publisher&#39;,
-       &#39;editor&#39;, &#39;pages&#39;, &#39;pageEndMax&#39;, &#39;pageStartPosition&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;mcname&#39;, &#39;miid&#39;, &#39;miname&#39;, &#39;cid&#39;, &#39;cname&#39;, &#39;epname&#39;, &#39;creator&#39;,
+       &#39;pageStart&#39;, &#39;pageEnd&#39;, &#39;numberOfPages&#39;, &#39;datePublished&#39;, &#39;price&#39;,
+       &#39;publisher&#39;, &#39;editor&#39;, &#39;pages&#39;, &#39;pageEndMax&#39;, &#39;pageStartPosition&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
@@ -813,7 +813,9 @@
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">mcname</span></code>: 雑誌名（<strong>M</strong>gazine <strong>C</strong>ollection <strong>NAME</strong>）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">miid</span></code>：雑誌巻号ID（<strong>M</strong>agazine <strong>I</strong>tem <strong>ID</strong>）</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">miname</span></code>: 雑誌巻号名（<strong>M</strong>agazine <strong>I</strong>tem <strong>NAME</strong>）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cid</span></code>: マンガ作品ID（<strong>C</strong>omic <strong>ID</strong>）</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cname</span></code>: マンガ作品名（<strong>C</strong>omic <strong>NAME</strong>）</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">epname</span></code>: 各話タイトル（<strong>EP</strong>isode <strong>NAME</strong>）</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">creator</span></code>: 作者名</p></li>
@@ -855,7 +857,9 @@
     <tr style="text-align: right;">
       <th></th>
       <th>mcname</th>
+      <th>miid</th>
       <th>miname</th>
+      <th>cid</th>
       <th>cname</th>
       <th>epname</th>
       <th>creator</th>
@@ -875,7 +879,9 @@
     <tr>
       <th>0</th>
       <td>週刊少年ジャンプ</td>
+      <td>M616363</td>
       <td>週刊少年ジャンプ 1970年 表示号数31</td>
+      <td>C88180</td>
       <td>男一匹ガキ大将</td>
       <td>土佐の源蔵の巻</td>
       <td>本宮ひろ志</td>
@@ -893,7 +899,9 @@
     <tr>
       <th>1</th>
       <td>週刊少年チャンピオン</td>
+      <td>M558279</td>
       <td>週刊少年チャンピオン 1970年 表示号数14</td>
+      <td>C94272</td>
       <td>朝日の恋人</td>
       <td>NaN</td>
       <td>かざま鋭二</td>
@@ -911,7 +919,9 @@
     <tr>
       <th>2</th>
       <td>週刊少年ジャンプ</td>
+      <td>M616363</td>
       <td>週刊少年ジャンプ 1970年 表示号数31</td>
+      <td>C87448</td>
       <td>ど根性ガエル</td>
       <td>男はつらいよの巻</td>
       <td>吉沢やすみ</td>
@@ -929,7 +939,9 @@
     <tr>
       <th>3</th>
       <td>週刊少年チャンピオン</td>
+      <td>M558279</td>
       <td>週刊少年チャンピオン 1970年 表示号数14</td>
+      <td>C94289</td>
       <td>あばしり一家</td>
       <td>アバシリ吉三の美人地獄編</td>
       <td>永井豪</td>
@@ -947,7 +959,9 @@
     <tr>
       <th>4</th>
       <td>週刊少年ジャンプ</td>
+      <td>M616363</td>
       <td>週刊少年ジャンプ 1970年 表示号数31</td>
+      <td>C88021</td>
       <td>あらし!三匹</td>
       <td>ミヒル登場の巻</td>
       <td>池沢さとし</td>
@@ -1123,71 +1137,81 @@
     </tr>
     <tr>
       <th>1</th>
-      <td>miname</td>
+      <td>miid</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>miname</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>cid</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
       <td>cname</td>
       <td>9</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>5</th>
       <td>epname</td>
       <td>26807</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>6</th>
       <td>creator</td>
       <td>441</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>7</th>
       <td>pageStart</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>8</th>
       <td>pageEnd</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>9</th>
       <td>numberOfPages</td>
       <td>307</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>10</th>
       <td>datePublished</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>11</th>
       <td>price</td>
       <td>38</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>12</th>
       <td>publisher</td>
       <td>24658</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>13</th>
       <td>editor</td>
       <td>2092</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>14</th>
       <td>pages</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>15</th>
       <td>pageEndMax</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>14</th>
+      <th>16</th>
       <td>pageStartPosition</td>
       <td>0</td>
     </tr>
@@ -3495,7 +3519,9 @@
     <tr style="text-align: right;">
       <th></th>
       <th>mcname</th>
+      <th>miid</th>
       <th>miname</th>
+      <th>cid</th>
       <th>cname</th>
       <th>epname</th>
       <th>creator</th>
@@ -3515,7 +3541,9 @@
     <tr>
       <th>16949</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544483</td>
       <td>週刊少年ジャンプ 1976年 表示号数48</td>
+      <td>C89628</td>
       <td>ミオとヒロシの週間パトロール</td>
       <td>文化祭シーズン　／　トンガ力士廃業</td>
       <td>斉藤ヒロシ</td>
@@ -3533,7 +3561,9 @@
     <tr>
       <th>4908</th>
       <td>週刊少年サンデー</td>
+      <td>M579202</td>
       <td>週刊少年サンデー 1972年 表示号数20</td>
+      <td>C92386</td>
       <td>ウルトラ・ナンセンス劇場!</td>
       <td>ええかげんなエレベーターガール</td>
       <td>辰野落児</td>
@@ -3551,7 +3581,9 @@
     <tr>
       <th>12588</th>
       <td>週刊少年ジャンプ</td>
+      <td>M544565</td>
       <td>週刊少年ジャンプ 1975年 表示号数16</td>
+      <td>C88775</td>
       <td>鹿兵のケラケラ日記</td>
       <td>どれがホンモノ?都民党　／　野球</td>
       <td>南田鹿兵</td>
@@ -3569,7 +3601,9 @@
     <tr>
       <th>109575</th>
       <td>週刊少年チャンピオン</td>
+      <td>M556677</td>
       <td>週刊少年チャンピオン 2002年 表示号数12</td>
+      <td>C95074</td>
       <td>でじこの1ページ劇場</td>
       <td>第42幕</td>
       <td>コゲどんぼ</td>
@@ -3587,7 +3621,9 @@
     <tr>
       <th>118863</th>
       <td>週刊少年ジャンプ</td>
+      <td>M543111</td>
       <td>週刊少年ジャンプ 2004年 表示号数20</td>
+      <td>C87612</td>
       <td>BLEACH</td>
       <td>-17. 逸れゆく星々の為の前奏曲</td>
       <td>久保帯人</td>
@@ -3634,7 +3670,9 @@
     <tr style="text-align: right;">
       <th></th>
       <th>mcname</th>
+      <th>miid</th>
       <th>miname</th>
+      <th>cid</th>
       <th>cname</th>
       <th>epname</th>
       <th>creator</th>
@@ -3654,7 +3692,9 @@
     <tr>
       <th>172306</th>
       <td>週刊少年ジャンプ</td>
+      <td>M675741</td>
       <td>週刊少年ジャンプ 2015年 表示号数48</td>
+      <td>C88060</td>
       <td>磯部磯兵衛物語～浮世はつらいよ～</td>
       <td>第161話 御目出度いのに!で候</td>
       <td>仲間りょう</td>
@@ -3672,7 +3712,9 @@
     <tr>
       <th>92463</th>
       <td>週刊少年サンデー</td>
+      <td>M577883</td>
       <td>週刊少年サンデー 1998年 表示号数14</td>
+      <td>C91730</td>
       <td>アクシデンツ</td>
       <td>CASE83.ナギの島2</td>
       <td>山田貴敏</td>
@@ -3690,7 +3732,9 @@
     <tr>
       <th>76857</th>
       <td>週刊少年マガジン</td>
+      <td>M536262</td>
       <td>週刊少年マガジン 1994年 表示号数24</td>
+      <td>C91844</td>
       <td>宮田すすむと日本の社長!</td>
       <td>社長登場!　／　面接　／　サイン</td>
       <td>愛本ゆみ</td>
@@ -3708,7 +3752,9 @@
     <tr>
       <th>171023</th>
       <td>週刊少年サンデー</td>
+      <td>M675826</td>
       <td>週刊少年サンデー 2015年 表示号数35</td>
+      <td>C111084</td>
       <td>アンペア</td>
       <td>第9話 侵入者</td>
       <td>山仲剛太</td>
@@ -3726,7 +3772,9 @@
     <tr>
       <th>111687</th>
       <td>週刊少年マガジン</td>
+      <td>M535852</td>
       <td>週刊少年マガジン 2002年 表示号数36</td>
+      <td>C90219</td>
       <td>RAVE</td>
       <td>RAVE:152 裸の英雄!?</td>
       <td>真島ヒロ</td>

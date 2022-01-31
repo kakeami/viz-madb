@@ -117,18 +117,18 @@ COLS_CS = {
 }
 
 
-# In[11]:
+# In[12]:
 
 
 # 最終的に出力するカラム
 COLS_OUT = [
-    'mcname', 'miname', 'cname', 'epname',
+    'mcname', 'miid', 'miname', 'cid', 'cname', 'epname',
     'creator', 'pageStart', 'pageEnd', 'numberOfPages',
     'datePublished', 'price', 'publisher', 'editor',
 ]
 
 
-# In[12]:
+# In[13]:
 
 
 # 許容するpageEnd，pageStartの最大値
@@ -137,7 +137,7 @@ MAX_PAGES = 1000
 
 # ## 関数
 
-# In[13]:
+# In[14]:
 
 
 def read_json(path):
@@ -155,7 +155,7 @@ def read_json(path):
     return dct
 
 
-# In[14]:
+# In[15]:
 
 
 def save_json(path, dct):
@@ -170,7 +170,7 @@ def save_json(path, dct):
         json.dump(dct, f, ensure_ascii=False, indent=4)
 
 
-# In[15]:
+# In[16]:
 
 
 def read_json_w_filters(path, items, filters):
@@ -195,7 +195,7 @@ def read_json_w_filters(path, items, filters):
     return out
 
 
-# In[16]:
+# In[17]:
 
 
 def try_mkdirs(path) -> None:
@@ -208,7 +208,7 @@ def try_mkdirs(path) -> None:
 
 # ### 出力フォルダの生成
 
-# In[17]:
+# In[18]:
 
 
 try_mkdirs(DIR_TMP)
@@ -219,13 +219,13 @@ try_mkdirs(DIR_OUT)
 # 
 # マンガ系のデータ（`*cm*`）のみ`DIR_TMP`に解凍する．
 
-# In[18]:
+# In[19]:
 
 
 ps_cm = glob.glob(f'{DIR_IN}/*_cm*')
 
 
-# In[19]:
+# In[20]:
 
 
 for p_from in tqdm(ps_cm):
@@ -239,13 +239,13 @@ for p_from in tqdm(ps_cm):
 
 # ### 対象
 
-# In[20]:
+# In[21]:
 
 
 ps_cm = {cm: glob.glob(f'{DIR_TMP}/*{cm}*/*') for cm in FNS_CM}
 
 
-# In[21]:
+# In[22]:
 
 
 pprint(ps_cm)
@@ -255,7 +255,7 @@ pprint(ps_cm)
 # 
 # 漫画雑誌に関するデータを整形し，分析対象のIDを特定．
 
-# In[22]:
+# In[23]:
 
 
 def format_magazine_name(name):
@@ -266,14 +266,14 @@ def format_magazine_name(name):
     raise Exception(f'No magazine name in {name}!')
 
 
-# In[23]:
+# In[24]:
 
 
 cm105 = read_json(ps_cm['cm105'][0])
 df_cm105 = pd.DataFrame(cm105['@graph'])[COLS_CM105]
 
 
-# In[24]:
+# In[25]:
 
 
 # 雑誌名を取得
@@ -281,21 +281,21 @@ df_cm105['mcname'] = df_cm105['name'].apply(
     lambda x: format_magazine_name(x))
 
 
-# In[25]:
+# In[26]:
 
 
 # mcnameで抽出
 df_cm105[df_cm105['mcname'].isin(MCNAMES)].T
 
 
-# In[26]:
+# In[27]:
 
 
 # 雑誌ID:雑誌名
 mcid2mcname =     df_cm105[df_cm105['mcname'].isin(MCNAMES)].    groupby('identifier')['mcname'].first().to_dict()
 
 
-# In[27]:
+# In[28]:
 
 
 # 保存
@@ -306,7 +306,7 @@ save_json(os.path.join(DIR_TMP, 'mcid2mcname.json'), mcid2mcname)
 # 
 # 雑誌巻号およびマンガ作品に関するデータを整形し，一次保存．
 
-# In[28]:
+# In[29]:
 
 
 def format_cols(df, cols_rename):
@@ -317,7 +317,7 @@ def format_cols(df, cols_rename):
     return df_new
 
 
-# In[29]:
+# In[30]:
 
 
 def get_items_by_genre(graph, genre):
@@ -328,7 +328,7 @@ def get_items_by_genre(graph, genre):
     return items
 
 
-# In[30]:
+# In[31]:
 
 
 def get_id_from_url(url):
@@ -339,7 +339,7 @@ def get_id_from_url(url):
         return url.split('/')[-1]
 
 
-# In[31]:
+# In[32]:
 
 
 def format_nop(numberOfPages):
@@ -355,7 +355,7 @@ def format_nop(numberOfPages):
         return int(nop.replace('p', '').replace('P', ''))
 
 
-# In[32]:
+# In[33]:
 
 
 def format_price(price):
@@ -375,7 +375,7 @@ def format_price(price):
         return int(price_new)
 
 
-# In[33]:
+# In[34]:
 
 
 def format_creator(creator):
@@ -388,7 +388,7 @@ def format_creator(creator):
     raise Exception('No creator name!')
 
 
-# In[34]:
+# In[35]:
 
 
 def create_df_mis(path, mcids):
@@ -418,7 +418,7 @@ def create_df_mis(path, mcids):
     return df_mis
 
 
-# In[35]:
+# In[36]:
 
 
 def create_df_eps(path, miids):
@@ -442,7 +442,7 @@ def create_df_eps(path, miids):
     return df_eps
 
 
-# In[36]:
+# In[37]:
 
 
 for i, p in tqdm(enumerate(ps_cm['cm102'])):
@@ -463,7 +463,7 @@ for i, p in tqdm(enumerate(ps_cm['cm102'])):
 # 
 # 掲載作品に関するデータを整形し，一次保存．
 
-# In[37]:
+# In[38]:
 
 
 def format_cname(cname):
@@ -476,13 +476,13 @@ def format_cname(cname):
     raise Exception('No comic name!')
 
 
-# In[38]:
+# In[39]:
 
 
 cm106 = read_json(ps_cm['cm106'][0])
 
 
-# In[39]:
+# In[40]:
 
 
 # 雑誌掲載ジャンルのアイテムを抽出
@@ -496,7 +496,7 @@ df_cs['cname'] = df_cs['cname'].apply(
     lambda x: format_cname(x))
 
 
-# In[40]:
+# In[41]:
 
 
 # 保存
@@ -507,7 +507,7 @@ df_cs.to_csv(os.path.join(DIR_TMP, 'cs.csv'), index=False)
 
 # ### 結合
 
-# In[41]:
+# In[42]:
 
 
 def read_and_concat_csvs(pathes):
@@ -519,7 +519,7 @@ def read_and_concat_csvs(pathes):
     return df_all
 
 
-# In[42]:
+# In[43]:
 
 
 def sort_date(df, col_date):
@@ -530,7 +530,7 @@ def sort_date(df, col_date):
     return df_new
 
 
-# In[43]:
+# In[44]:
 
 
 # 各ファイルのパスを抽出
@@ -539,7 +539,7 @@ ps_eps = glob.glob(f'{DIR_TMP}/eps*.csv')
 ps_cs = glob.glob(f'{DIR_TMP}/cs*.csv')
 
 
-# In[44]:
+# In[45]:
 
 
 # データの読み出し
@@ -549,7 +549,7 @@ df_cs = read_and_concat_csvs(ps_cs)
 mcid2mcname = read_json(os.path.join(DIR_TMP, 'mcid2mcname.json'))
 
 
-# In[45]:
+# In[46]:
 
 
 # 結合
@@ -559,14 +559,14 @@ df_all['mcname'] = df_all['mcid'].apply(
     lambda x: mcid2mcname[x])
 
 
-# In[46]:
+# In[47]:
 
 
 # 必要な列のみ抽出
 df_all = df_all[COLS_OUT]
 
 
-# In[47]:
+# In[48]:
 
 
 # ソート
@@ -576,19 +576,19 @@ df_all = df_all.sort_values(['datePublished', 'pageStart'], ignore_index=True)
 
 # ### 各雑誌の`datePublished`を統一
 
-# In[48]:
+# In[49]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[49]:
+# In[50]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[50]:
+# In[51]:
 
 
 # 全雑誌のうちDBに存在する期間が最も短いものに合わせる
@@ -599,19 +599,19 @@ df_all = df_all[
     (df_all['datePublished']<=date_max)].reset_index(drop=True)
 
 
-# In[51]:
+# In[52]:
 
 
 df_all.groupby('mcname')['datePublished'].min()
 
 
-# In[52]:
+# In[53]:
 
 
 df_all.groupby('mcname')['datePublished'].max()
 
 
-# In[53]:
+# In[54]:
 
 
 df_all.value_counts('mcname')
@@ -619,7 +619,7 @@ df_all.value_counts('mcname')
 
 # ### 適切な`pageStart`/`pageEnd`を持つ行のみ抽出
 
-# In[54]:
+# In[55]:
 
 
 # pageStartがpageEndより小さい値であること
@@ -628,7 +628,7 @@ asst_ps_pe = df_all['pageStart'] <= df_all['pageEnd']
 asst_pe = df_all['pageEnd'] <= MAX_PAGES
 
 
-# In[55]:
+# In[56]:
 
 
 # 抽出後のデータ
@@ -639,7 +639,7 @@ df_drop = df_all[
     ~(asst_ps_pe&asst_pe)].reset_index(drop=True)
 
 
-# In[56]:
+# In[57]:
 
 
 # 検証
@@ -648,7 +648,7 @@ assert df_all.shape[0] == df_new.shape[0] + df_drop.shape[0]
 
 # 除外したデータの一覧．
 
-# In[57]:
+# In[58]:
 
 
 df_drop
@@ -656,7 +656,7 @@ df_drop
 
 # ### 各`episode`のページ数`pages`をカラムに追加
 
-# In[58]:
+# In[59]:
 
 
 df_new['pages'] = df_new['pageEnd'] - df_new['pageStart'] + 1
@@ -664,7 +664,7 @@ df_new['pages'] = df_new['pageEnd'] - df_new['pageStart'] + 1
 
 # ### 各雑誌巻号の最終ページ`pageEndMax`をカラムに追加
 
-# In[59]:
+# In[60]:
 
 
 # 各雑誌巻号の最終ページ
@@ -676,13 +676,13 @@ df_new['pageEndMax'] = df_new['miname'].apply(
 
 # ### 各episodeの掲載位置`pageStartPosition`をカラムに追加
 
-# In[60]:
+# In[61]:
 
 
 df_new['pageStartPosition'] =     df_new['pageStart'] / df_new['pageEndMax']
 
 
-# In[61]:
+# In[62]:
 
 
 df_new['pageStartPosition'].describe()
@@ -690,7 +690,7 @@ df_new['pageStartPosition'].describe()
 
 # ### 保存
 
-# In[62]:
+# In[63]:
 
 
 # 全データ
@@ -699,4 +699,10 @@ df_new.to_csv(
     encoding='utf_8_sig')
 # 除外したデータ
 df_new.to_csv(os.path.join(DIR_OUT, 'droped_episodes.csv'), index=False)
+
+
+# In[ ]:
+
+
+
 
