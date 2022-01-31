@@ -90,22 +90,3 @@ fig.update_layout(
     title='各変数の相関')
 show_fig(fig)
 
-
-# In[22]:
-
-
-fig = px.scatter_matrix(
-    df_plot[['平均掲載位置', '平均ページ数', '掲載週数']],
-    opacity=0.7, height=500)
-fig.update_traces(marker={'line_width':1})
-fig.update_layout(title='各変数の散布図行列')
-show_fig(fig)
-
-
-# ## 練習問題
-
-# In[ ]:
-
-
-
-
