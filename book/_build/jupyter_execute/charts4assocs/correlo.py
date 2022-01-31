@@ -6,9 +6,14 @@
 # ## 概要
 # 
 
+# **コレログラム（Correlogram）** とは，複数の量的変数を対象として，その **相関係数** を **色** で表すグラフです．
+# [ヒートマップ](https://kakeami.github.io/viz-madb/charts4amounts/heatmap.html)の一種と捉えることができます．
+
 # ::: {note}
 # 時系列解析において，自己相関を見るために時点をずらした系列との相関係数を示したものもコレログラムと呼びますが，ここで紹介するのは変数同士の相関係数を示したものです．
 # :::
+
+# ![](../figs/charts/correlo.png)
 
 # ## Plotlyによる作図方法
 
@@ -16,18 +21,19 @@
 
 # ### 下準備
 
-# In[1]:
+# In[10]:
 
 
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+import plotly.figure_factory as ff
 
 import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[11]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -36,14 +42,14 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[3]:
+# In[12]:
 
 
 # 連載週数の最小値
 MIN_WEEKS = 5
 
 
-# In[4]:
+# In[13]:
 
 
 def show_fig(fig):
@@ -52,7 +58,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[11]:
+# In[14]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -60,7 +66,7 @@ df = pd.read_csv(PATH_DATA)
 
 # ### 作品別の平均掲載位置と掲載週数
 
-# In[13]:
+# In[15]:
 
 
 df_plot =     df.groupby(['cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
@@ -73,20 +79,21 @@ df_corr = df_plot.corr()
 df_corr = df_corr.iloc[::-1]
 
 
-# In[14]:
+# In[16]:
 
 
 df_corr
 
 
-# In[21]:
+# In[26]:
 
 
-fig = go.Figure(go.Heatmap(
-    x=df_corr.index.values,
-    y=df_corr.columns.values,
-    z=df_corr.values,))
-fig.update_layout(
-    title='各変数の相関')
+fig = ff.create_annotated_heatmap(
+    df_corr.values,
+    x=list(df_corr.index.values),
+    y=list(df_corr.columns.values),
+    annotation_text=df_corr.values,
+    #colorscale='BlueRed_r'
+)
 show_fig(fig)
 
