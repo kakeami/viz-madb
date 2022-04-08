@@ -136,7 +136,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 や
 [密度プロット](https://kakeami.github.io/viz-madb/charts4dists/density.html)
 ですが，パラメータ設定に注意が必要です．
-複数の{term}`質的変数`の分布を比較する際は，
+複数の{term}`量的変数`の分布を比較する際は，
 [箱ひげ図](https://kakeami.github.io/viz-madb/charts4dists/box.html)，
 [バイオリンプロット](https://kakeami.github.io/viz-madb/charts4dists/violin.html)，
 そして
