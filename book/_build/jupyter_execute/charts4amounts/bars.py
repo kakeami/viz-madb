@@ -53,7 +53,7 @@
 
 # ### 下準備
 
-# In[ ]:
+# In[1]:
 
 
 import itertools
@@ -64,7 +64,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[ ]:
+# In[2]:
 
 
 # 前処理の結果，以下に分析対象ファイルが格納されていることを想定
@@ -73,7 +73,7 @@ PATH_DATA = '../../data/preprocess/out/episodes.csv'
 RENDERER = 'plotly_mimetype+notebook'
 
 
-# In[ ]:
+# In[3]:
 
 
 def show_fig(fig):
@@ -82,7 +82,7 @@ def show_fig(fig):
     fig.show(renderer=RENDERER)
 
 
-# In[ ]:
+# In[4]:
 
 
 def add_years_to_df(df, unit_years=10):
@@ -95,7 +95,7 @@ def add_years_to_df(df, unit_years=10):
     return df_new
 
 
-# In[ ]:
+# In[5]:
 
 
 def resample_df_by_cname_and_years(df):
@@ -119,7 +119,7 @@ def resample_df_by_cname_and_years(df):
     return df_new
 
 
-# In[ ]:
+# In[6]:
 
 
 def resample_df_by_creator_and_years(df):
@@ -143,7 +143,7 @@ def resample_df_by_creator_and_years(df):
     return df_new
 
 
-# In[ ]:
+# In[7]:
 
 
 df = pd.read_csv(PATH_DATA)
@@ -188,7 +188,7 @@ df = add_years_to_df(df)
 # プロット用に集計
 df_plot = df.groupby('cname')['years'].value_counts().\
     reset_index(name='weeks')
-# 連載週数上位10作品を抽出
+# 連載週数上位20作品を抽出
 cnames = list(df.value_counts('cname').head(20).index)
 df_plot = df_plot[df_plot['cname'].isin(cnames)].\
     reset_index(drop=True)
@@ -206,7 +206,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[15]:
+# In[12]:
 
 
 # 作図
@@ -240,7 +240,7 @@ show_fig(fig)
 # おそらく`px.bar()`の仕様ですが，`barmode='group'`あるいは`barmode='stack'`を選択した際に`color`で指定した列に欠測があると，X軸の順序が変わってしまうことを確認しました．これを回避するため，`resample_df_by_cname_and_years(df_plot)`で欠測を補完しています．以降も同様です．
 # ```
 
-# In[14]:
+# In[13]:
 
 
 # 作図
@@ -276,7 +276,7 @@ show_fig(fig)
 
 # 同様に，作家別に掲載週数を可視化してみましょう．
 
-# In[20]:
+# In[14]:
 
 
 df_plot = df.value_counts('creator').reset_index(name='weeks').head(20)
@@ -290,14 +290,14 @@ show_fig(fig)
 
 # ### 作家別・年代別の掲載週数（上位20名）
 
-# In[21]:
+# In[15]:
 
 
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df)
 
 
-# In[22]:
+# In[16]:
 
 
 # プロット用に集計
@@ -311,7 +311,7 @@ df_plot = df_plot[df_plot['creator'].isin(creators)].\
 df_plot = resample_df_by_creator_and_years(df_plot)
 
 
-# In[23]:
+# In[17]:
 
 
 # 合計連載週数で降順ソート
@@ -321,7 +321,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[24]:
+# In[18]:
 
 
 # 作図
@@ -334,7 +334,7 @@ fig.update_yaxes(title='掲載週数')
 show_fig(fig)
 
 
-# In[25]:
+# In[19]:
 
 
 # 作図

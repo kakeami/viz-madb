@@ -138,14 +138,14 @@ df = pd.read_csv(PATH_DATA)
 df = add_years_to_df(df, 1)
 
 
-# In[9]:
+# In[10]:
 
 
 # プロット用に集計
 df_plot = \
     df.groupby('cname')['years'].value_counts().\
     reset_index(name='weeks')
-# 連載週刊上位10作品を抽出
+# 連載週刊上位20作品を抽出
 cnames = list(df.value_counts('cname').head(20).index)
 df_plot = df_plot[df_plot['cname'].isin(cnames)].\
     reset_index(drop=True)
@@ -154,7 +154,7 @@ df_plot = \
     resample_df_by_cname_and_years(df_plot)
 
 
-# In[10]:
+# In[11]:
 
 
 # 合計連載週数で降順ソート
@@ -164,7 +164,7 @@ df_plot = df_plot.sort_values(
     ['order', 'years'], ignore_index=True)
 
 
-# In[11]:
+# In[12]:
 
 
 fig = px.density_heatmap(
@@ -193,7 +193,7 @@ df = add_years_to_df(df, 1)
 df_plot = \
     df.groupby('creator')['years'].value_counts().\
     reset_index(name='weeks')
-# 連載週刊上位10作品を抽出
+# 連載週刊上位20作品を抽出
 creators = list(df.value_counts('creator').head(20).index)
 df_plot = df_plot[df_plot['creator'].isin(creators)].\
     reset_index(drop=True)
