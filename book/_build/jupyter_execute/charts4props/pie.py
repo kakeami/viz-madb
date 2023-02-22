@@ -70,8 +70,10 @@ df = pd.read_csv(PATH_DATA)
 # In[10]:
 
 
-df_plot =     df.groupby('mcname')['cname'].nunique().reset_index()
-df_plot =     df_plot.sort_values(
+df_plot = \
+    df.groupby('mcname')['cname'].nunique().reset_index()
+df_plot = \
+    df_plot.sort_values(
     'cname', ascending=False, ignore_index=True)
 fig = px.pie(
     df_plot, values='cname', names='mcname',
@@ -85,8 +87,10 @@ show_fig(fig)
 # In[12]:
 
 
-df_plot =     df.groupby('mcname')['creator'].nunique().reset_index()
-df_plot =     df_plot.sort_values(
+df_plot = \
+    df.groupby('mcname')['creator'].nunique().reset_index()
+df_plot = \
+    df_plot.sort_values(
     'creator', ascending=False, ignore_index=True)
 fig = px.pie(
     df_plot, values='creator', names='mcname',

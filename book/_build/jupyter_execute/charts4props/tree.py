@@ -63,7 +63,9 @@ def show_fig(fig):
 def add_years_to_df(df, unit_years=10):
     """unit_years単位で区切ったyears列を追加"""
     df_new = df.copy()
-    df_new['years'] =         pd.to_datetime(df['datePublished']).dt.year         // unit_years * unit_years
+    df_new['years'] = \
+        pd.to_datetime(df['datePublished']).dt.year \
+        // unit_years * unit_years
     df_new['years'] = df_new['years'].astype(str)
     return df_new
 
@@ -88,8 +90,11 @@ col_count = 'cname'
 # 1年単位で区切ったyearsを追加
 df = add_years_to_df(df, 10)
 # mcname, yearsで集計
-df_plot =     df.groupby(['mcname', 'years'])[col_count].    nunique().reset_index()
-df_plot =     df_plot.sort_values(['years', 'mcname'], ignore_index=True)
+df_plot = \
+    df.groupby(['mcname', 'years'])[col_count].\
+    nunique().reset_index()
+df_plot = \
+    df_plot.sort_values(['years', 'mcname'], ignore_index=True)
 
 
 # In[8]:
@@ -107,7 +112,9 @@ show_fig(fig)
 # In[9]:
 
 
-df_plot =     df.groupby('mcname')['cname'].value_counts().    reset_index(name='weeks')
+df_plot = \
+    df.groupby('mcname')['cname'].value_counts().\
+    reset_index(name='weeks')
 # 描画用に10週以上の作品に絞る
 df_plot = df_plot[df_plot['weeks']>=10].reset_index(drop=True)
 fig = px.treemap(
@@ -131,8 +138,11 @@ col_count = 'creator'
 # 1年単位で区切ったyearsを追加
 df = add_years_to_df(df, 10)
 # mcname, yearsで集計
-df_plot =     df.groupby(['mcname', 'years'])[col_count].    nunique().reset_index()
-df_plot =     df_plot.sort_values(['years', 'mcname'], ignore_index=True)
+df_plot = \
+    df.groupby(['mcname', 'years'])[col_count].\
+    nunique().reset_index()
+df_plot = \
+    df_plot.sort_values(['years', 'mcname'], ignore_index=True)
 
 
 # In[12]:
@@ -150,7 +160,9 @@ show_fig(fig)
 # In[13]:
 
 
-df_plot =     df.groupby('mcname')['creator'].value_counts().    reset_index(name='weeks')
+df_plot = \
+    df.groupby('mcname')['creator'].value_counts().\
+    reset_index(name='weeks')
 # 描画用に10週以上の作者に絞る
 df_plot = df_plot[df_plot['weeks']>=10].reset_index(drop=True)
 fig = px.treemap(

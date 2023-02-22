@@ -124,9 +124,12 @@ df = pd.read_csv(PATH_DATA)
 # In[6]:
 
 
-df_plot =     df.groupby('cname')['pageStartPosition'].    agg(['count', 'mean']).reset_index()
+df_plot = \
+    df.groupby('cname')['pageStartPosition'].\
+    agg(['count', 'mean']).reset_index()
 df_plot.columns = ['cname', 'weeks', 'position']
-df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
+df_plot = \
+    df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
 # In[7]:
@@ -147,9 +150,12 @@ show_fig(fig)
 # In[8]:
 
 
-df_plot =     df.groupby(['mcname', 'cname'])['pageStartPosition'].    agg(['count', 'mean']).reset_index()
+df_plot = \
+    df.groupby(['mcname', 'cname'])['pageStartPosition'].\
+    agg(['count', 'mean']).reset_index()
 df_plot.columns = ['mcname', 'cname', 'weeks', 'position']
-df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
+df_plot = \
+    df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
 # In[9]:
@@ -173,11 +179,15 @@ show_fig(fig)
 # In[12]:
 
 
-df_plot =     df.groupby(['mcname', 'cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
+df_plot = \
+    df.groupby(['mcname', 'cname'])\
+    [['pages', 'pageStartPosition']].\
+    agg(['count', 'mean']).reset_index()
 df_plot.columns = [
     'mcname', 'cname', 'weeks', 'pages',
     '_weeks', 'position']
-df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
+df_plot = \
+    df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
 # In[14]:
@@ -202,13 +212,17 @@ show_fig(fig)
 # In[24]:
 
 
-df_plot =     df.groupby(['mcname', 'cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
+df_plot = \
+    df.groupby(['mcname', 'cname'])\
+    [['pages', 'pageStartPosition']].\
+    agg(['count', 'mean']).reset_index()
 df_plot.columns = [
     'mcname', 'cname', 'weeks', 'pages',
     '_weeks', 'position']
 df_plot = df_plot[[
     'mcname', 'position', 'pages', 'weeks']]
-df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
+df_plot = \
+    df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
 # In[25]:

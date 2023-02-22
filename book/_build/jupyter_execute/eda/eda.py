@@ -333,7 +333,8 @@ df_tmp['numberOfPages'].isna().sum()
 # In[31]:
 
 
-df_tmp = df.groupby('miname')[['datePublished']].    first().reset_index()
+df_tmp = df.groupby('miname')[['datePublished']].\
+    first().reset_index()
 # 日付処理を容易にするため，`pd.to_datetime`で型変換
 df_tmp['datePublished'] = pd.to_datetime(df_tmp['datePublished'])
 df_tmp['datePublished'].describe().reset_index()
@@ -345,7 +346,8 @@ df_tmp['datePublished'].describe().reset_index()
 
 
 df_tmp['yearPublished'] = df_tmp['datePublished'].dt.year
-df_tmp.value_counts('yearPublished').reset_index().    sort_values('yearPublished', ignore_index=True)
+df_tmp.value_counts('yearPublished').reset_index().\
+    sort_values('yearPublished', ignore_index=True)
 
 
 # 集計開始年（`1970`）および集計終了年（`2017`）以外は，年間およそ190-205回ほど発行していることがわかります．
@@ -358,7 +360,8 @@ df_tmp.value_counts('yearPublished').reset_index().    sort_values('yearPublishe
 # In[33]:
 
 
-df_tmp = df.groupby('miname')[['price']].    first().reset_index()
+df_tmp = df.groupby('miname')[['price']].\
+    first().reset_index()
 df_tmp['price'].describe().reset_index()
 
 
@@ -371,7 +374,8 @@ df_tmp['price'].describe().reset_index()
 # In[34]:
 
 
-df_tmp = df.groupby('miname')[['mcname', 'publisher']].    first().reset_index()
+df_tmp = df.groupby('miname')[['mcname', 'publisher']].\
+    first().reset_index()
 
 
 # 雑誌ごとに出版社名を集計します．
@@ -379,7 +383,8 @@ df_tmp = df.groupby('miname')[['mcname', 'publisher']].    first().reset_index()
 # In[35]:
 
 
-df_tmp.groupby('mcname')['publisher'].    value_counts().reset_index(name='count')
+df_tmp.groupby('mcname')['publisher'].\
+    value_counts().reset_index(name='count')
 
 
 # かなり表記がぶれているようですが，今後積極的に使う情報ではないため，このままにしておきます．
@@ -391,13 +396,15 @@ df_tmp.groupby('mcname')['publisher'].    value_counts().reset_index(name='count
 # In[36]:
 
 
-df_tmp = df.groupby('miname')[['mcname', 'editor']].    first().reset_index()
+df_tmp = df.groupby('miname')[['mcname', 'editor']].\
+    first().reset_index()
 
 
 # In[37]:
 
 
-df_tmp.groupby('mcname')['editor'].value_counts().    reset_index(name='count')
+df_tmp.groupby('mcname')['editor'].value_counts().\
+    reset_index(name='count')
 
 
 # 誤記と思われるものがいくつかあります：
@@ -466,7 +473,8 @@ df['pageStartPosition'].describe().reset_index()
 # In[43]:
 
 
-df[df['pageStartPosition']==1].    value_counts('cname').reset_index(name='counts')
+df[df['pageStartPosition']==1].\
+    value_counts('cname').reset_index(name='counts')
 
 
 # `ハレハレまんが時評`は週刊少年チャンピオンの巻末の目次ページに掲載されていた4コマ漫画のようです（恥ずかしながら，知りませんでした）．他のものに関しても同様でしょうか．

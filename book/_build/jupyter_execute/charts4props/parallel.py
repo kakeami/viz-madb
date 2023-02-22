@@ -66,7 +66,9 @@ WD2STR = {
 def add_years_to_df(df, unit_years=10):
     """unit_years単位で区切ったyears列を追加"""
     df_new = df.copy()
-    df_new['years'] =         pd.to_datetime(df['datePublished']).dt.year         // unit_years * unit_years
+    df_new['years'] = \
+        pd.to_datetime(df['datePublished']).dt.year \
+        // unit_years * unit_years
     df_new['years'] = df_new['years'].astype(str)
     return df_new
 
@@ -77,7 +79,8 @@ def add_years_to_df(df, unit_years=10):
 def add_weekday_to_df(df):
     """曜日情報をdfに追加"""
     df_new = df.copy()
-    df_new['weekday'] =         pd.to_datetime(df_new['datePublished']).dt.weekday
+    df_new['weekday'] = \
+        pd.to_datetime(df_new['datePublished']).dt.weekday
     df_new['weekday_str'] = df_new['weekday'].apply(
         lambda x: WD2STR[x])
     return df_new

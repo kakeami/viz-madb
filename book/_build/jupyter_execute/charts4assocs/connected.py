@@ -63,7 +63,9 @@ YEARS_TO_DROP = ['1970', '2015']
 def add_years_to_df(df, unit_years=10):
     """unit_years単位で区切ったyears列を追加"""
     df_new = df.copy()
-    df_new['years'] =         pd.to_datetime(df['datePublished']).dt.year         // unit_years * unit_years
+    df_new['years'] = \
+        pd.to_datetime(df['datePublished']).dt.year \
+        // unit_years * unit_years
     df_new['years'] = df_new['years'].astype(str)
     return df_new
 
@@ -94,9 +96,12 @@ df = pd.read_csv(PATH_DATA)
 
 
 df = add_years_to_df(df, UNIT_YEARS)
-df_plot =     df.groupby('years')['cname', 'creator'].nunique().reset_index()
+df_plot = \
+    df.groupby('years')['cname', 'creator'].nunique().reset_index()
 # 最初と最後の年度は不十分なデータなので除外
-df_plot =     df_plot[~df_plot['years'].isin(YEARS_TO_DROP)]    .reset_index(drop=True)
+df_plot = \
+    df_plot[~df_plot['years'].isin(YEARS_TO_DROP)]\
+    .reset_index(drop=True)
 
 
 # In[11]:
@@ -123,9 +128,13 @@ show_fig(fig)
 
 
 df = add_years_to_df(df, 5)
-df_plot =     df.groupby(['mcname', 'years'])['cname', 'creator']    .nunique().reset_index()
+df_plot = \
+    df.groupby(['mcname', 'years'])['cname', 'creator']\
+    .nunique().reset_index()
 # 最初と最後の年度は不十分なデータなので除外
-df_plot =     df_plot[~df_plot['years'].isin(YEARS_TO_DROP)]    .reset_index(drop=True)
+df_plot = \
+    df_plot[~df_plot['years'].isin(YEARS_TO_DROP)]\
+    .reset_index(drop=True)
 
 
 # In[13]:

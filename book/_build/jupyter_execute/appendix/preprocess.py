@@ -292,7 +292,9 @@ df_cm105[df_cm105['mcname'].isin(MCNAMES)].T
 
 
 # 雑誌ID:雑誌名
-mcid2mcname =     df_cm105[df_cm105['mcname'].isin(MCNAMES)].    groupby('identifier')['mcname'].first().to_dict()
+mcid2mcname = \
+    df_cm105[df_cm105['mcname'].isin(MCNAMES)].\
+    groupby('identifier')['mcname'].first().to_dict()
 
 
 # In[28]:
@@ -679,7 +681,8 @@ df_new['pageEndMax'] = df_new['miname'].apply(
 # In[61]:
 
 
-df_new['pageStartPosition'] =     df_new['pageStart'] / df_new['pageEndMax']
+df_new['pageStartPosition'] = \
+    df_new['pageStart'] / df_new['pageEndMax']
 
 
 # In[62]:

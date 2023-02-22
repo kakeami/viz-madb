@@ -85,15 +85,20 @@ df = pd.read_csv(PATH_DATA)
 # In[8]:
 
 
-df_tmp =     df.groupby('cname')['pageStartPosition']    .agg(['count', 'mean']).reset_index()
-df_tmp =     df_tmp.sort_values('count', ascending=False, ignore_index=True)    .head(10)
+df_tmp = \
+    df.groupby('cname')['pageStartPosition']\
+    .agg(['count', 'mean']).reset_index()
+df_tmp = \
+    df_tmp.sort_values('count', ascending=False, ignore_index=True)\
+    .head(10)
 cname2position = df_tmp.groupby('cname')['mean'].first().to_dict()
 
 
 # In[9]:
 
 
-df_plot = df[df['cname'].isin(list(cname2position.keys()))]    .reset_index(drop=True)
+df_plot = df[df['cname'].isin(list(cname2position.keys()))]\
+    .reset_index(drop=True)
 df_plot['position'] = df_plot['cname'].apply(
     lambda x: cname2position[x])
 df_plot = df_plot.sort_values('position', ignore_index=True)

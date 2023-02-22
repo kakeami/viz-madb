@@ -18,6 +18,7 @@ repository:
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
 html:
+  favicon: figs/logo.png
   use_issues_button: true
   use_repository_button: true
   use_multitoc_numbering: true

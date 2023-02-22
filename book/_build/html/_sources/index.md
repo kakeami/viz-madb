@@ -16,13 +16,14 @@
 [週刊少年マガジン](https://shonenmagazine.com/)
 ）のデータを用いて，データビジュアライゼーションの学習を手助けすることを目指しています．
 
-:::{panels}
-:container: +full-width
-:column: col-lg-6 px-2 py-2
-:card:
+::::{grid} 1 1 2 2
+:class-container: text-center
+:gutter: 3
 
----
-📚**約47年分の四大少年誌の掲載作品データを採用**📚
+:::{grid-item-card}
+:class-header: bg-light
+
+📚**約47年分の四大少年誌データを採用**📚
 ^^^
 データビジュアライゼーション（に限らずデータ分析全般）の学習において重要なのは，**分析対象のデータに興味を持てるかどうか**です．
 本書では約47年の四大少年誌のマンガ作品データを採用しているため，モチベーションを保ちつつ学習を進めることが可能です．
@@ -30,9 +31,13 @@
 <div style="text-align: center;">
 <video autoplay loop muted playsinline width="100%" src="demo.mp4"></video>
 </div>
+:::
 
----
-👁️**Plotlyによるインタラクティブなビジュアライゼーション**👁️
+
+:::{grid-item-card}
+:class-header: bg-light
+
+👁️**インタラクティブな可視化**👁️
 ^^^
 Plotlyで自由にズームイン・ズームアウトが可能なグラフを出力しています．
 興味の赴くまま，グリグリグラフを動かしてみましょう．
@@ -42,8 +47,13 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 <video autoplay loop muted playsinline width="100%" src="plotly.mp4"></video>
 </div>
 
----
-👩‍🎓**Docker + Jupyter Labで簡単に分析環境を構築可能**🧑‍🎓
+:::
+
+
+:::{grid-item-card}
+:class-header: bg-light
+
+👩‍🎓**Docker + Jupyter Labで環境構築**🧑‍🎓
 ^^^
 
 本書はJupyter Labで作成したソースコードをJupyter Bookで変換して構築しています．
@@ -52,8 +62,13 @@ Plotlyで自由にズームイン・ズームアウトが可能なグラフを�
 
 ![jupyter](figs/jupyter.png)
 
----
-🇯🇵**メディア芸術データベース・ラボ（MADB Lab）を利用**🇯🇵
+:::
+
+
+:::{grid-item-card}
+:class-header: bg-light
+
+🇯🇵**MADB Labを利用**🇯🇵
 ^^^
 
 MADB Labは，文化庁が提供する，メディア芸術作品に関するデータをより広く活用するためのウェブサイトです．
@@ -63,6 +78,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 ![madb](figs/madb.png)
 
 :::
+::::
 
 ## 本書で用いる用語
 
@@ -109,11 +125,13 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 に関しては高度な数理統計の知識が必要になるためスコープ外としました．
 
 
-:::{panels}
-:container: +full-width
-:column: col-lg-6 px-2 py-2
+::::{grid} 1 1 2 2
+:class-container: text-center
+:gutter: 3
 
----
+:::{grid-item-card}
+:class-header: bg-light
+
 **量を見たい**
 ^^^
 
@@ -127,7 +145,10 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 を選択肢に入れましょう．
 ただし，ヒートマップは{term}`質的変数`の組合せの量を**色**で表現するため，数値を付記しなければ絶対値の比較が難しいことにご注意ください．
 
----
+:::
+
+:::{grid-item-card}
+:class-header: bg-light
 **分布を見たい**[^dist]
 ^^^
 
@@ -147,7 +168,10 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 
 [^tb]: [TensorBoard](https://www.tensorflow.org/tensorboard)でパラメータの学習過程を表現する際に使われていたり
 
----
+:::
+
+:::{grid-item-card}
+:class-header: bg-light
 **比率を見たい**
 ^^^
 
@@ -170,7 +194,10 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 ツリーマップは階層構造を持つ{term}`質的変数`の比率を表現したいときに，
 そしてパラレルセットグラフは三つ以上の{term}`質的変数`の比率を表現したいときに力を発揮します．
 
----
+:::
+
+:::{grid-item-card}
+:class-header: bg-light
 **変数間の関係を見たい**[^assoc]
 ^^^
 
@@ -198,6 +225,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 すれば二変数の推移を表現することも可能です．
 
 :::
+::::
 
 
 [^dist]: [Claus O. Wilke, Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)で分布を見る手法として紹介されているもののうち，次のものは割愛しました．**[Sina plot](https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1366914?journalCode=ucgs20)**：Plotlyで簡易に作図する方法が見当たらず，かつバイオリンプロットとストリッププロットで雰囲気をつかめると判断したため．**[Quantile-quantile plot](https://clauswilke.com/dataviz/ecdf-qq.html#qq-plots)**：理論的な確率密度分布と標本分布の一致性を見る目的で用いられることが多く，解釈に高度な数理統計学の知識が必要であり，本書のスコープを超えるため
@@ -227,3 +255,30 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 - [visualizing.jp](https://visualizing.jp/)
 - [小久保 奈都弥，データ分析者のためのPythonデータビジュアライゼーション入門 コードと連動してわかる可視化手法](https://www.shoeisha.co.jp/book/detail/9784798163970)
 - [岡崎 直観，機械学習帳](https://chokkan.github.io/mlnote/index.html)
+
+## 作者
+
+::::{grid} 2 2 2 2
+
+:::{grid-item}
+:columns: 4
+```{image} figs/kakeami.jpg
+:class: m-auto
+:width: 200px
+```
+:::
+
+:::{grid-item}
+:columns: 7
+二児の父．
+都内マーケティング会社にて，機械学習・数理統計・数理最適化を用いたマーケティング技術の研究・開発に従事．
+2022年より[ジョージア工科大学大学院にてComputer Scienceを学ぶ](https://omscs.gatech.edu/)．
+マンガ好きが高じ，
+Web教材「[マンガと学ぶデータビジュアライゼーション](https://kakeami.github.io/viz-madb/index.html)」
+を作成．
+
+- GitHub: [`@kakeami`](https://github.com/kakeami)
+- Zenn: [`@kakeami`](https://zenn.dev/kakeami)
+- Twitter: [`@_kakeami`](https://twitter.com/_kakeami)
+:::
+::::

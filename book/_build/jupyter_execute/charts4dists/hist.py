@@ -100,8 +100,11 @@ df = pd.read_csv(PATH_DATA)
 # In[6]:
 
 
-df_plot =     df.groupby(['mcname', 'cname', 'creator'])['pageStartPosition']    .agg(['count', 'mean']).reset_index()
-df_plot = df_plot[df_plot['count'] >= MIN_WEEKS]    .reset_index(drop=True)
+df_plot = \
+    df.groupby(['mcname', 'cname', 'creator'])['pageStartPosition']\
+    .agg(['count', 'mean']).reset_index()
+df_plot = df_plot[df_plot['count'] >= MIN_WEEKS]\
+    .reset_index(drop=True)
 
 
 # In[7]:
@@ -148,7 +151,9 @@ df_plot.sort_values('mean').reset_index(drop=True).head(10)
 # In[79]:
 
 
-df_tmp =     df_plot.sort_values(['count'], ascending=False, ignore_index=True)    .head(10)
+df_tmp = \
+    df_plot.sort_values(['count'], ascending=False, ignore_index=True)\
+    .head(10)
 df_tmp
 
 

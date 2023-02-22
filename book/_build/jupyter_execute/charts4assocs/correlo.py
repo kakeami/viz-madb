@@ -90,11 +90,16 @@ df = pd.read_csv(PATH_DATA)
 # In[33]:
 
 
-df_plot =     df.groupby(['cname'])    [['pages', 'pageStartPosition']].    agg(['count', 'mean']).reset_index()
+df_plot = \
+    df.groupby(['cname'])\
+    [['pages', 'pageStartPosition']].\
+    agg(['count', 'mean']).reset_index()
 df_plot.columns = [
     '作品名', '掲載週数', '平均ページ数',
     '_weeks', '平均掲載位置']
-df_plot =     df_plot[df_plot['掲載週数'] >= MIN_WEEKS].    reset_index(drop=True)
+df_plot = \
+    df_plot[df_plot['掲載週数'] >= MIN_WEEKS].\
+    reset_index(drop=True)
 df_plot = df_plot.drop(columns=['_weeks'])
 df_corr = df_plot.corr().iloc[::-1]
 

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>そもそもどんなデータを扱うの？ &#8212; マンガと学ぶデータビジュアライゼーション</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,38 +20,38 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="1. 棒グラフ" href="../charts4amounts/bars.html" />
@@ -71,7 +73,21 @@
                     </script>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -80,9 +96,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -264,107 +281,209 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/eda/eda.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/kakeami/viz-madb"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Feda/eda.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/eda/eda.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/kakeami/viz-madb/master?urlpath=tree/book/eda/eda.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kakeami/viz-madb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Feda/eda.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/eda/eda.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
    下準備
@@ -540,12 +659,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>そもそもどんなデータを扱うの？</h1>
@@ -737,14 +855,15 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>そもそもどんなデータを扱うの？<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>そもそもどんなデータを扱うの？<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <p>ここでは，本書で分析対象とするデータについて簡単に紹介し，基礎分析を実施します．なお，このデータは<a class="reference external" href="https://github.com/mediaarts-db/dataset/tree/1.0">MADB Labでv1.0として公開されているもの</a>に<a class="reference external" href="https://kakeami.github.io/viz-madb/appendix/preprocess.html">こちらの前処理</a>を実施したものです．</p>
-<div class="section" id="id2">
-<h2>下準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<section id="id2">
+<h2>下準備<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -770,9 +889,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id3">
-<h2>概要<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2>概要<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">df</span></code>は</p>
 <ul class="simple">
 <li><p>週刊少年サンデー</p></li>
@@ -1224,11 +1343,11 @@
 <p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>，<code class="docutils literal notranslate"><span class="pre">price</span></code>に関しては，想定外のパターンのデータを<code class="docutils literal notranslate"><span class="pre">NaN</span></code>に変換するよう<a class="reference external" href="https://kakeami.github.io/viz-madb/appendix/preprocess.html#cm102">前処理</a>を施しています．詳細はAppendixをご参照ください．</p>
 </div>
 <p>特に<code class="docutils literal notranslate"><span class="pre">epname</span></code>と<code class="docutils literal notranslate"><span class="pre">publisher</span></code>の欠測が多いことがわかります．</p>
-</div>
-<div class="section" id="id4">
-<h2>列ごとの基礎分析<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="mcname">
-<h3><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌名）<a class="headerlink" href="#mcname" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id4">
+<h2>列ごとの基礎分析<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<section id="mcname">
+<h3><code class="docutils literal notranslate"><span class="pre">mcname</span></code>（雑誌名）<a class="headerlink" href="#mcname" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mcname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
@@ -1284,9 +1403,9 @@
 </div></div></div>
 </div>
 <p>上記は<code class="docutils literal notranslate"><span class="pre">mcname</span></code>ごとの行数を表します．それぞれ同一期間で集計しましたが，掲載作品数の違いが生じています．</p>
-</div>
-<div class="section" id="miname">
-<h3><code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号名）<a class="headerlink" href="#miname" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="miname">
+<h3><code class="docutils literal notranslate"><span class="pre">miname</span></code>（雑誌巻号名）<a class="headerlink" href="#miname" title="Permalink to this headline">#</a></h3>
 <p>ユニークな<code class="docutils literal notranslate"><span class="pre">miname</span></code>数を集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1448,9 +1567,9 @@
 </div></div></div>
 </div>
 <p>1970年付近の黎明期は掲載数が少なめだったようです．また，雑誌によってタイミングはバラバラですが，非常に沢山のマンガを掲載する<strong>外れ値</strong>が存在することもわかります．</p>
-</div>
-<div class="section" id="cname">
-<h3><code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品名）<a class="headerlink" href="#cname" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="cname">
+<h3><code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品名）<a class="headerlink" href="#cname" title="Permalink to this headline">#</a></h3>
 <p>ユニークな<code class="docutils literal notranslate"><span class="pre">cname</span></code>（マンガ作品）数を集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1727,9 +1846,9 @@
 </div></div></div>
 </div>
 <p>やはりジャンプの平均連載期間が，他誌と比べて短いことがわかります．</p>
-</div>
-<div class="section" id="epname">
-<h3><code class="docutils literal notranslate"><span class="pre">epname</span></code>（各話タイトル）<a class="headerlink" href="#epname" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="epname">
+<h3><code class="docutils literal notranslate"><span class="pre">epname</span></code>（各話タイトル）<a class="headerlink" href="#epname" title="Permalink to this headline">#</a></h3>
 <p>ユニークな<code class="docutils literal notranslate"><span class="pre">epname</span></code>（各話タイトル）数を集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1942,9 +2061,9 @@
 </div>
 </div>
 <p>プロ野球編以外のドカベンの各話タイトルは欠測しているため，これ以上のことはわからなそうです．</p>
-</div>
-<div class="section" id="creator">
-<h3><code class="docutils literal notranslate"><span class="pre">creator</span></code>（作者）<a class="headerlink" href="#creator" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="creator">
+<h3><code class="docutils literal notranslate"><span class="pre">creator</span></code>（作者）<a class="headerlink" href="#creator" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">df</span></code>に存在する<code class="docutils literal notranslate"><span class="pre">creator</span></code>（作者）数を集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2097,9 +2216,9 @@
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">秋本治</span></code>先生は，デビュー時<code class="docutils literal notranslate"><span class="pre">山止たつひこ</span></code>というペンネームを使っていました．</p>
 <p>（この101話分を足しても全然追いつかない<code class="docutils literal notranslate"><span class="pre">水島新司</span></code>先生がすごすぎますが…）</p>
-</div>
-<div class="section" id="pagestart">
-<h3><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>（開始ページ）<a class="headerlink" href="#pagestart" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pagestart">
+<h3><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>（開始ページ）<a class="headerlink" href="#pagestart" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pageStart</span></code>（開始ページ）について<code class="docutils literal notranslate"><span class="pre">describe()</span></code>で基礎集計すると，以下のようになります．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2175,9 +2294,9 @@
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="pageend">
-<h3><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>（終了ページ）<a class="headerlink" href="#pageend" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pageend">
+<h3><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>（終了ページ）<a class="headerlink" href="#pageend" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>（終了ページ）について<code class="docutils literal notranslate"><span class="pre">describe()</span></code>で基礎集計すると，以下のようになります．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2253,9 +2372,9 @@
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="numberofpages">
-<h3><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>（各号の合計ページ数）<a class="headerlink" href="#numberofpages" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="numberofpages">
+<h3><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>（各号の合計ページ数）<a class="headerlink" href="#numberofpages" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">numberOfPages</span></code>（雑誌の合計ページ数）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．
 なお，<code class="docutils literal notranslate"><span class="pre">df</span></code>をそのまま<code class="docutils literal notranslate"><span class="pre">describe</span></code>してしまうと掲載作品数が多い雑誌巻号にバイアスのかかった統計量になってしまうため注意が必要です．
 そこで，ここでは<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>を<code class="docutils literal notranslate"><span class="pre">describe</span></code>します．</p>
@@ -2520,9 +2639,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="datepublished">
-<h3><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>（発行日）<a class="headerlink" href="#datepublished" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="datepublished">
+<h3><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>（発行日）<a class="headerlink" href="#datepublished" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">datePublished</span></code>（発行日）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．
 前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接<code class="docutils literal notranslate"><span class="pre">describe</span></code>するとバイアスが乗るので，<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>に対して分析を実施します．</p>
 <div class="cell docutils container">
@@ -2871,9 +2990,9 @@
 </div></div></div>
 </div>
 <p>集計開始年（<code class="docutils literal notranslate"><span class="pre">1970</span></code>）および集計終了年（<code class="docutils literal notranslate"><span class="pre">2017</span></code>）以外は，年間およそ190-205回ほど発行していることがわかります．</p>
-</div>
-<div class="section" id="price">
-<h3><code class="docutils literal notranslate"><span class="pre">price</span></code>（雑誌価格）<a class="headerlink" href="#price" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="price">
+<h3><code class="docutils literal notranslate"><span class="pre">price</span></code>（雑誌価格）<a class="headerlink" href="#price" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">price</span></code>（雑誌価格）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．
 前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接<code class="docutils literal notranslate"><span class="pre">describe</span></code>するとバイアスが乗るので，<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>に対して分析を実施します．</p>
 <div class="cell docutils container">
@@ -2953,9 +3072,9 @@
 </div></div></div>
 </div>
 <p>一冊80円だった時代があったのでしょうか…？後ほど分析します．</p>
-</div>
-<div class="section" id="publisher">
-<h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（出版社）<a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="publisher">
+<h3><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（出版社）<a class="headerlink" href="#publisher" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">publisher</span></code>（出版社）に関して集計します． 前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接集計するとバイアスが乗るので，minameで中間集計したdf_tmpに対して分析を実施します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3081,9 +3200,9 @@
 </div></div></div>
 </div>
 <p>かなり表記がぶれているようですが，今後積極的に使う情報ではないため，このままにしておきます．</p>
-</div>
-<div class="section" id="editor">
-<h3><code class="docutils literal notranslate"><span class="pre">editor</span></code>（編集者）<a class="headerlink" href="#editor" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="editor">
+<h3><code class="docutils literal notranslate"><span class="pre">editor</span></code>（編集者）<a class="headerlink" href="#editor" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">editor</span></code>（編集者）に関して集計します． 前述したように<code class="docutils literal notranslate"><span class="pre">df</span></code>を直接集計するとバイアスが乗るので，<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>に対して分析を実施します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3414,9 +3533,9 @@
 </li>
 </ul>
 <p>数も少ないですし，確証が持てないため特に修正しないことにします．</p>
-</div>
-<div class="section" id="pages">
-<h3><code class="docutils literal notranslate"><span class="pre">pages</span></code>（各話のページ数）<a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pages">
+<h3><code class="docutils literal notranslate"><span class="pre">pages</span></code>（各話のページ数）<a class="headerlink" href="#pages" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pages</span></code>（各話のページ数）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3794,9 +3913,9 @@
 </div></div></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">週刊少年ジャンプ</span> <span class="pre">2015年</span> <span class="pre">表示号数48</span></code>について<a class="reference external" href="https://mediaarts-db.bunka.go.jp/id/M675741/">メディア芸術データベースで調べた</a>ところ，<code class="docutils literal notranslate"><span class="pre">磯部磯兵衛物語～浮世はつらいよ～</span></code>は二周年記念で巻頭カラーをもらっていたようです．巻末の定位置での掲載はなかったことから，おそらく<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>は誤入力と思われます．</p>
-</div>
-<div class="section" id="pageendmax-pageend">
-<h3><code class="docutils literal notranslate"><span class="pre">pageEndMax</span></code>（雑誌巻号の最大の<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>）<a class="headerlink" href="#pageendmax-pageend" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pageendmax-pageend">
+<h3><code class="docutils literal notranslate"><span class="pre">pageEndMax</span></code>（雑誌巻号の最大の<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>）<a class="headerlink" href="#pageendmax-pageend" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pageEndMax</span></code>（雑誌巻号の最大の<code class="docutils literal notranslate"><span class="pre">pageEnd</span></code>）を<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．なお，<code class="docutils literal notranslate"><span class="pre">df</span></code>をそのまま<code class="docutils literal notranslate"><span class="pre">describe</span></code>してしまうと掲載作品数が多い雑誌巻号にバイアスのかかった統計量になってしまうため注意が必要です． そこで，ここでは<code class="docutils literal notranslate"><span class="pre">miname</span></code>で中間集計した<code class="docutils literal notranslate"><span class="pre">df_tmp</span></code>を<code class="docutils literal notranslate"><span class="pre">describe</span></code>します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3874,9 +3993,9 @@
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="pagestartposition">
-<h3><code class="docutils literal notranslate"><span class="pre">pageStartPosition</span></code>（各話の相対的な掲載位置）<a class="headerlink" href="#pagestartposition" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pagestartposition">
+<h3><code class="docutils literal notranslate"><span class="pre">pageStartPosition</span></code>（各話の相対的な掲載位置）<a class="headerlink" href="#pagestartposition" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pageStartPosition</span></code>（各話の相対的な掲載位置）について，<code class="docutils literal notranslate"><span class="pre">describe</span></code>で基礎集計します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4164,9 +4283,9 @@
 </div></div></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">ハレハレまんが時評</span></code>は週刊少年チャンピオンの巻末の目次ページに掲載されていた4コマ漫画のようです（恥ずかしながら，知りませんでした）．他のものに関しても同様でしょうか．</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -4190,9 +4309,11 @@
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -4208,25 +4329,29 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      <div class="extra_footer">
-        © Copyright 2021 by <a rel="about" href="https://kakeami.github.io/blog/about/"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    <div class="extra_footer">
+      © Copyright 2021 by <a rel="about" href="https://kakeami.github.io/blog/about/"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

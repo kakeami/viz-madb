@@ -88,7 +88,9 @@ def show_fig(fig):
 def add_years_to_df(df, unit_years=10):
     """unit_years単位で区切ったyears列を追加"""
     df_new = df.copy()
-    df_new['years'] =         pd.to_datetime(df['datePublished']).dt.year         // unit_years * unit_years
+    df_new['years'] = \
+        pd.to_datetime(df['datePublished']).dt.year \
+        // unit_years * unit_years
     df_new['years'] = df_new['years'].astype(str)
     return df_new
 
@@ -184,10 +186,12 @@ df = add_years_to_df(df)
 
 
 # プロット用に集計
-df_plot = df.groupby('cname')['years'].value_counts().    reset_index(name='weeks')
+df_plot = df.groupby('cname')['years'].value_counts().\
+    reset_index(name='weeks')
 # 連載週数上位10作品を抽出
 cnames = list(df.value_counts('cname').head(20).index)
-df_plot = df_plot[df_plot['cname'].isin(cnames)].    reset_index(drop=True)
+df_plot = df_plot[df_plot['cname'].isin(cnames)].\
+    reset_index(drop=True)
 # cname，yearsでアップサンプリング
 df_plot = resample_df_by_cname_and_years(df_plot)
 
@@ -297,10 +301,12 @@ df = add_years_to_df(df)
 
 
 # プロット用に集計
-df_plot = df.groupby('creator')['years'].value_counts().    reset_index(name='weeks')
+df_plot = df.groupby('creator')['years'].value_counts().\
+    reset_index(name='weeks')
 # 連載週刊上位20作品を抽出
 creators = list(df.value_counts('creator').head(20).index)
-df_plot = df_plot[df_plot['creator'].isin(creators)].    reset_index(drop=True)
+df_plot = df_plot[df_plot['creator'].isin(creators)].\
+    reset_index(drop=True)
 # creator，yearsでアップサンプリング
 df_plot = resample_df_by_creator_and_years(df_plot)
 

@@ -66,7 +66,9 @@ def show_fig(fig):
 def add_years_to_df(df, unit_years=10):
     """unit_years単位で区切ったyears列を追加"""
     df_new = df.copy()
-    df_new['years'] =         pd.to_datetime(df['datePublished']).dt.year         // unit_years * unit_years
+    df_new['years'] = \
+        pd.to_datetime(df['datePublished']).dt.year \
+        // unit_years * unit_years
     df_new['years'] = df_new['years'].astype(str)
     return df_new
 
@@ -91,7 +93,9 @@ col_count = 'cname'
 # 1年単位で区切ったyearsを追加
 df = add_years_to_df(df, 1)
 # mcname, yearsで集計
-df_plot =     df.groupby(['mcname', 'years'])[col_count].    nunique().reset_index()
+df_plot = \
+    df.groupby(['mcname', 'years'])[col_count].\
+    nunique().reset_index()
 # years単位で集計してdf_plotにカラムを追加
 df_tmp = df_plot.groupby('years')[col_count].sum().reset_index(
     name='years_total')
@@ -126,7 +130,9 @@ col_count = 'creator'
 # 10年単位で区切ったyearsを追加
 df = add_years_to_df(df, 1)
 # mcname, yearsで集計
-df_plot =     df.groupby(['mcname', 'years'])[col_count].    nunique().reset_index()
+df_plot = \
+    df.groupby(['mcname', 'years'])[col_count].\
+    nunique().reset_index()
 # years単位で集計してdf_plotにカラムを追加
 df_tmp = df_plot.groupby('years')[col_count].sum().reset_index(
     name='years_total')

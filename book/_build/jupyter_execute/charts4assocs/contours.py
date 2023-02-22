@@ -95,9 +95,12 @@ df = pd.read_csv(PATH_DATA)
 # In[6]:
 
 
-df_plot =     df.groupby('cname')['pageStartPosition'].    agg(['count', 'mean']).reset_index()
+df_plot = \
+    df.groupby('cname')['pageStartPosition'].\
+    agg(['count', 'mean']).reset_index()
 df_plot.columns = ['cname', 'weeks', 'position']
-df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
+df_plot = \
+    df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
 # In[8]:
@@ -131,11 +134,15 @@ show_fig(fig)
 # In[10]:
 
 
-df_plot =     df.groupby(['mcname', 'cname'])['pageStartPosition'].    agg(['count', 'mean']).reset_index()
-df_plot.columns =     ['mcname', 'cname', 'weeks', 'position']
+df_plot = \
+    df.groupby(['mcname', 'cname'])['pageStartPosition'].\
+    agg(['count', 'mean']).reset_index()
+df_plot.columns = \
+    ['mcname', 'cname', 'weeks', 'position']
 df_plot = df_plot.sort_values(
     'mcname', ignore_index=True)
-df_plot =     df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
+df_plot = \
+    df_plot[df_plot['weeks'] >= MIN_WEEKS].reset_index(drop=True)
 
 
 # In[11]:
