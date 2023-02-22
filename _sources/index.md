@@ -253,7 +253,7 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 - [小久保 奈都弥，データ分析者のためのPythonデータビジュアライゼーション入門 コードと連動してわかる可視化手法](https://www.shoeisha.co.jp/book/detail/9784798163970)
 - [岡崎 直観，機械学習帳](https://chokkan.github.io/mlnote/index.html)
 
-## 作者
+## 作者（kakeami）
 
 ::::{grid} 2 2 2 2
 
