@@ -33,7 +33,6 @@
 </div>
 :::
 
-
 :::{grid-item-card}
 :class-header: bg-light
 
