@@ -1,540 +1,446 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>はじめに &#8212; マンガと学ぶデータビジュアライゼーション</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-195969608-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-195969608-1');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-195969608-1');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="shortcut icon" href="_static/logo.png"/>
+    <link rel="icon" href="_static/logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="そもそもどんなデータを扱うの？" href="eda/eda.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-195969608-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="#">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
         
       
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
       
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">マンガと学ぶデータビジュアライゼーション</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  分析対象
- </span>
-</p>
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="マンガと学ぶデータビジュアライゼーション - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="マンガと学ぶデータビジュアライゼーション - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">分析対象</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="eda/eda.html">
-   そもそもどんなデータを扱うの？
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="eda/eda.html">そもそもどんなデータを扱うの？</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  量を見たい
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">量を見たい</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4amounts/bars.html">
-   1. 棒グラフ
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4amounts/heatmap.html">
-   2. ヒートマップ
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="charts4amounts/bars.html">1. 棒グラフ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4amounts/heatmap.html">2. ヒートマップ</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  分布を見たい
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">分布を見たい</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4dists/hist.html">
-   3. ヒストグラム
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4dists/density.html">
-   4. 密度プロット
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4dists/box.html">
-   5. 箱ひげ図
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4dists/violin.html">
-   6. バイオリンプロット
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4dists/strip.html">
-   7. ストリッププロット
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4dists/ridgeline.html">
-   8. リッジラインプロット
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="charts4dists/hist.html">3. ヒストグラム</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4dists/density.html">4. 密度プロット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4dists/box.html">5. 箱ひげ図</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4dists/violin.html">6. バイオリンプロット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4dists/strip.html">7. ストリッププロット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4dists/ridgeline.html">8. リッジラインプロット</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  比率を見たい
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">比率を見たい</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4props/pie.html">
-   9. 円グラフ
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4props/bars.html">
-   10. 棒グラフ
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4props/stacked_den.html">
-   11. 積上げ密度プロット
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4props/mosaic.html">
-   12. モザイクプロット
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4props/tree.html">
-   13. ツリーマップ
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4props/parallel.html">
-   14. パラレルセットグラフ
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="charts4props/pie.html">9. 円グラフ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4props/bars.html">10. 棒グラフ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4props/stacked_den.html">11. 積上げ密度プロット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4props/mosaic.html">12. モザイクプロット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4props/tree.html">13. ツリーマップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4props/parallel.html">14. パラレルセットグラフ</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  変数間の関係を見たい
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">変数間の関係を見たい</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4assocs/scatter.html">
-   15. 散布図・バブルチャート
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4assocs/2d.html">
-   16. 二次元ヒストグラム
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4assocs/contours.html">
-   17. 等高線プロット
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4assocs/slope.html">
-   18. 並行座標プロット
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4assocs/correlo.html">
-   19. コレログラム
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4assocs/line.html">
-   20. 折れ線グラフ（1変数）
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="charts4assocs/connected.html">
-   21. 折れ線グラフ（2変数）
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="charts4assocs/scatter.html">15. 散布図・バブルチャート</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4assocs/2d.html">16. 二次元ヒストグラム</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4assocs/contours.html">17. 等高線プロット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4assocs/slope.html">18. 並行座標プロット</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4assocs/correlo.html">19. コレログラム</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4assocs/line.html">20. 折れ線グラフ（1変数）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts4assocs/connected.html">21. 折れ線グラフ（2変数）</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendix
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="appendix/preprocess.html">
-   前処理
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="appendix/setup.html">
-   環境構築
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/preprocess.html">前処理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/setup.html">環境構築</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kakeami/viz-madb" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/kakeami/viz-madb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/kakeami/viz-madb/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/index.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </button>
-
-      </li>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
+    </div>
   
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   本書で用いる用語
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   こんなとき何を描く？
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id9">
-   謝辞
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
-   参考文献
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#kakeami">
-   作者（kakeami）
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>はじめに</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   本書で用いる用語
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   こんなとき何を描く？
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id9">
-   謝辞
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
-   参考文献
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#kakeami">
-   作者（kakeami）
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>はじめに</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">本書で用いる用語</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">こんなとき何を描く？</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">謝辞</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">参考文献</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kakeami">作者（kakeami）</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>はじめに<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<h1>はじめに<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <p><a class="reference external" href="https://jupyterbook.org"><img alt="Jupyter Book Badge" src="https://jupyterbook.org/_images/badge.svg" /></a>
 <a class="reference external" href="https://www.python.org/"><img alt="made-with-python" src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg" /></a>
 <a class="reference external" href="https://pandas.pydata.org/"><img alt="made-with-pandas" src="https://img.shields.io/badge/Made%20with-Pandas-1f425f.svg" /></a>
@@ -606,29 +512,29 @@ title="Print to PDF"
 </div>
 </div>
 <section id="id2">
-<h2>本書で用いる用語<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
-<dl class="glossary simple">
-<dt id="term-0">量的変数<a class="headerlink" href="#term-0" title="Permalink to this term">#</a></dt><dd><p>数値で測ることができる変数です．例えば，ページ数，掲載位置，連載作品数，掲載週数，など．</p>
+<h2>本書で用いる用語<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<dl class="simple glossary">
+<dt id="term-0">量的変数<a class="headerlink" href="#term-0" title="Link to this term">#</a></dt><dd><p>数値で測ることができる変数です．例えば，ページ数，掲載位置，連載作品数，掲載週数，など．</p>
 </dd>
-<dt id="term-1">質的変数<a class="headerlink" href="#term-1" title="Permalink to this term">#</a></dt><dd><p>数値で測ることができず，分類や種類を区別するために用いられる変数です．例えば，雑誌名，作品名，作家名，曜日，など.</p>
+<dt id="term-1">質的変数<a class="headerlink" href="#term-1" title="Link to this term">#</a></dt><dd><p>数値で測ることができず，分類や種類を区別するために用いられる変数です．例えば，雑誌名，作品名，作家名，曜日，など.</p>
 </dd>
-<dt id="term-2">雑誌<a class="headerlink" href="#term-2" title="Permalink to this term">#</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">週刊少年ジャンプ</span></code>のように，マンガ雑誌を指します．
+<dt id="term-2">雑誌<a class="headerlink" href="#term-2" title="Link to this term">#</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">週刊少年ジャンプ</span></code>のように，マンガ雑誌を指します．
 データ中では<code class="docutils literal notranslate"><span class="pre">mcname</span></code>という変数名で管理されています．</p>
 </dd>
-<dt id="term-3">雑誌巻号<a class="headerlink" href="#term-3" title="Permalink to this term">#</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">週刊少年ジャンプ</span> <span class="pre">1970年</span> <span class="pre">表示号数31</span></code>のように，マンガ雑誌の号数を表します．
+<dt id="term-3">雑誌巻号<a class="headerlink" href="#term-3" title="Link to this term">#</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">週刊少年ジャンプ</span> <span class="pre">1970年</span> <span class="pre">表示号数31</span></code>のように，マンガ雑誌の号数を表します．
 データ中では<code class="docutils literal notranslate"><span class="pre">miname</span></code>という変数名で管理されています．</p>
 </dd>
-<dt id="term-4">作品<a class="headerlink" href="#term-4" title="Permalink to this term">#</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">男一匹ガキ大将</span></code>のように，マンガ雑誌に掲載されているマンガ作品を表します．
+<dt id="term-4">作品<a class="headerlink" href="#term-4" title="Link to this term">#</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">男一匹ガキ大将</span></code>のように，マンガ雑誌に掲載されているマンガ作品を表します．
 データ中では<code class="docutils literal notranslate"><span class="pre">cname</span></code>という変数名で管理されています．</p>
 </dd>
-<dt id="term-5">各話<a class="headerlink" href="#term-5" title="Permalink to this term">#</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">土佐の源蔵の巻</span></code>のように，マンガ作品を構成するエピソードを指します．通常，雑誌巻号に一話ずつ掲載されます．
+<dt id="term-5">各話<a class="headerlink" href="#term-5" title="Link to this term">#</a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">土佐の源蔵の巻</span></code>のように，マンガ作品を構成するエピソードを指します．通常，雑誌巻号に一話ずつ掲載されます．
 データ中では<code class="docutils literal notranslate"><span class="pre">epname</span></code>という変数名で管理されています．</p>
 </dd>
 </dl>
 </section>
 <section id="id3">
-<h2>こんなとき何を描く？<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
-<p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>を参考にビジュアライゼーション手法を分類<a class="footnote-reference brackets" href="#drop" id="id4">1</a>しました．</p>
+<h2>こんなとき何を描く？<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>を参考にビジュアライゼーション手法を分類<a class="footnote-reference brackets" href="#drop" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>しました．</p>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 text-center docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
 <div class="sd-col sd-d-flex-row docutils">
@@ -652,7 +558,7 @@ title="Print to PDF"
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
 <div class="sd-card-header bg-light docutils">
-<p class="sd-card-text"><strong>分布を見たい</strong><a class="footnote-reference brackets" href="#dist" id="id5">2</a></p>
+<p class="sd-card-text"><strong>分布を見たい</strong><a class="footnote-reference brackets" href="#dist" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 </div>
 <div class="sd-card-body docutils">
 <p class="sd-card-text"><a class="reference internal" href="#term-0"><span class="xref std std-term">量的変数</span></a>の分布を見る際に直感的にわかりやすいのは，
@@ -667,7 +573,7 @@ title="Print to PDF"
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4dists/strip.html">ストリッププロット</a>
 がおすすめです．
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4dists/ridgeline.html">リッジラインプロット</a>
-はバイオリンプロットと似ていますが，主に分布の時間的な変遷<a class="footnote-reference brackets" href="#tb" id="id6">3</a>を見る際に適しています．</p>
+はバイオリンプロットと似ていますが，主に分布の時間的な変遷<a class="footnote-reference brackets" href="#tb" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>を見る際に適しています．</p>
 </div>
 </div>
 </div>
@@ -701,7 +607,7 @@ title="Print to PDF"
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
 <div class="sd-card-header bg-light docutils">
-<p class="sd-card-text"><strong>変数間の関係を見たい</strong><a class="footnote-reference brackets" href="#assoc" id="id7">4</a></p>
+<p class="sd-card-text"><strong>変数間の関係を見たい</strong><a class="footnote-reference brackets" href="#assoc" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p>
 </div>
 <div class="sd-card-body docutils">
 <p class="sd-card-text">二つの<a class="reference internal" href="#term-0"><span class="xref std std-term">量的変数</span></a>の関係を表現する典型的な方法は
@@ -716,7 +622,7 @@ title="Print to PDF"
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/scatter.html">バブルチャート</a>
 や
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/slope.html">並行座標プロット</a>
-<a class="footnote-reference brackets" href="#slope" id="id8">5</a>でその関係性を表現できます．
+<a class="footnote-reference brackets" href="#slope" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>でその関係性を表現できます．
 変数同士の相関係数を表現したい場合は
 <a class="reference external" href="https://kakeami.github.io/viz-madb/charts4assocs/correlo.html">コレログラム</a>
 を使いましょう．
@@ -733,7 +639,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="id9">
-<h2>謝辞<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<h2>謝辞<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.python.org/">Python</a></p></li>
 <li><p><a class="reference external" href="https://pandas.pydata.org/">Pandas</a></p></li>
@@ -748,7 +654,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="id10">
-<h2>参考文献<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
+<h2>参考文献<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a></p></li>
 <li><p><a class="reference external" href="https://datareporting.kirikuroda.com/">Kiri Kuroda, いつか役に立つかもしれない資料</a></p></li>
@@ -759,7 +665,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="kakeami">
-<h2>作者（kakeami）<a class="headerlink" href="#kakeami" title="Permalink to this headline">#</a></h2>
+<h2>作者（kakeami）<a class="headerlink" href="#kakeami" title="Link to this heading">#</a></h2>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
 <div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
 <div class="sd-col sd-d-flex-column sd-col-4 sd-col-xs-4 sd-col-sm-4 sd-col-md-4 sd-col-lg-4 docutils">
@@ -773,17 +679,19 @@ title="Print to PDF"
 Web教材「<a class="reference external" href="https://kakeami.github.io/viz-madb/index.html">マンガと学ぶデータビジュアライゼーション</a>」
 を作成．</p>
 <ul class="simple">
-<li><p>GitHub: <a class="reference external" href="https://github.com/kakeami"><code class="docutils literal notranslate"><span class="pre">&#64;kakeami</span></code></a></p></li>
-<li><p>Zenn: <a class="reference external" href="https://zenn.dev/kakeami"><code class="docutils literal notranslate"><span class="pre">&#64;kakeami</span></code></a></p></li>
-<li><p>Twitter: <a class="reference external" href="https://twitter.com/_kakeami"><code class="docutils literal notranslate"><span class="pre">&#64;_kakeami</span></code></a></p></li>
+<li><p><strong>しずかなインターネット</strong> - <a class="reference external" href="https://sizu.me/kakeami"><code class="docutils literal notranslate"><span class="pre">kakeami</span></code></a></p></li>
+<li><p>Mixi2 - <a class="reference external" href="https://mixi.social/&#64;kakeami"><code class="docutils literal notranslate"><span class="pre">kakeami</span></code></a></p></li>
+<li><p>GitHub - <a class="reference external" href="https://github.com/kakeami"><code class="docutils literal notranslate"><span class="pre">kakeami</span></code></a></p></li>
+<li><p>Zenn.dev - <a class="reference external" href="https://zenn.dev/kakeami"><code class="docutils literal notranslate"><span class="pre">kakeami</span></code></a></p></li>
 </ul>
 </div>
 </div>
 </div>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="drop"><span class="brackets"><a class="fn-backref" href="#id4">1</a></span></dt>
-<dd><p><a class="reference external" href="https://clauswilke.com/dataviz/directory-of-visualizations.html">5 Directory of visualizations</a>の
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="drop" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://clauswilke.com/dataviz/directory-of-visualizations.html">5 Directory of visualizations</a>の
 <a class="reference external" href="https://clauswilke.com/dataviz/directory-of-visualizations.html#amounts">5.1 Amounts</a>
 が「量を見たい」に，
 <a class="reference external" href="https://clauswilke.com/dataviz/directory-of-visualizations.html#distributions">5.2 Distributions</a>
@@ -796,20 +704,24 @@ Web教材「<a class="reference external" href="https://kakeami.github.io/viz-ma
 に関してはMADB Labの漫画雑誌データ上に十分な量の地理データが存在しなかったため，
 <a class="reference external" href="https://clauswilke.com/dataviz/directory-of-visualizations.html#directory-uncertainty">5.6 Uncertainty</a>
 に関しては高度な数理統計の知識が必要になるためスコープ外としました．</p>
-</dd>
-<dt class="label" id="dist"><span class="brackets"><a class="fn-backref" href="#id5">2</a></span></dt>
-<dd><p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>で分布を見る手法として紹介されているもののうち，次のものは割愛しました．<strong><a class="reference external" href="https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1366914?journalCode=ucgs20">Sina plot</a></strong>：Plotlyで簡易に作図する方法が見当たらず，かつバイオリンプロットとストリッププロットで雰囲気をつかめると判断したため．<strong><a class="reference external" href="https://clauswilke.com/dataviz/ecdf-qq.html#qq-plots">Quantile-quantile plot</a></strong>：理論的な確率密度分布と標本分布の一致性を見る目的で用いられることが多く，解釈に高度な数理統計学の知識が必要であり，本書のスコープを超えるため</p>
-</dd>
-<dt class="label" id="tb"><span class="brackets"><a class="fn-backref" href="#id6">3</a></span></dt>
-<dd><p><a class="reference external" href="https://www.tensorflow.org/tensorboard">TensorBoard</a>でパラメータの学習過程を表現する際に使われていたり</p>
-</dd>
-<dt class="label" id="assoc"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
-<dd><p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>で分布を見る手法として紹介されているもののうち，次のものは割愛しました．<strong><a class="reference external" href="https://clauswilke.com/dataviz/overlapping-points.html#d-histograms">Hexagonal binning</a></strong>：Plotlyで簡易に作図する方法が見当たらず，かつ二次元ヒストグラムで雰囲気をつかめると判断したため．</p>
-</dd>
-<dt class="label" id="slope"><span class="brackets"><a class="fn-backref" href="#id8">5</a></span></dt>
-<dd><p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>ではペアとなる二変数の関係性を示す手法として<a class="reference external" href="https://clauswilke.com/dataviz/visualizing-associations.html#associations-paired-data">Slopegraph</a>が紹介されていますが，適切な例を見つけられなかったため割愛しました．代わりに（目的は全く異なりますが）似たような手段でデータを描画する並行座標プロットを追加しました．</p>
-</dd>
-</dl>
+</aside>
+<aside class="footnote brackets" id="dist" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">2</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>で分布を見る手法として紹介されているもののうち，次のものは割愛しました．<strong><a class="reference external" href="https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1366914?journalCode=ucgs20">Sina plot</a></strong>：Plotlyで簡易に作図する方法が見当たらず，かつバイオリンプロットとストリッププロットで雰囲気をつかめると判断したため．<strong><a class="reference external" href="https://clauswilke.com/dataviz/ecdf-qq.html#qq-plots">Quantile-quantile plot</a></strong>：理論的な確率密度分布と標本分布の一致性を見る目的で用いられることが多く，解釈に高度な数理統計学の知識が必要であり，本書のスコープを超えるため</p>
+</aside>
+<aside class="footnote brackets" id="tb" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">3</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.tensorflow.org/tensorboard">TensorBoard</a>でパラメータの学習過程を表現する際に使われていたり</p>
+</aside>
+<aside class="footnote brackets" id="assoc" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">4</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>で分布を見る手法として紹介されているもののうち，次のものは割愛しました．<strong><a class="reference external" href="https://clauswilke.com/dataviz/overlapping-points.html#d-histograms">Hexagonal binning</a></strong>：Plotlyで簡易に作図する方法が見当たらず，かつ二次元ヒストグラムで雰囲気をつかめると判断したため．</p>
+</aside>
+<aside class="footnote brackets" id="slope" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">5</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://clauswilke.com/dataviz/index.html">Claus O. Wilke, Fundamentals of Data Visualization</a>ではペアとなる二変数の関係性を示す手法として<a class="reference external" href="https://clauswilke.com/dataviz/visualizing-associations.html#associations-paired-data">Slopegraph</a>が紹介されていますが，適切な例を見つけられなかったため割愛しました．代わりに（目的は全く異なりますが）似たような手段でデータを描画する並行座標プロットを追加しました．</p>
+</aside>
+</aside>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -837,7 +749,7 @@ Web教材「<a class="reference external" href="https://kakeami.github.io/viz-ma
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -845,44 +757,91 @@ Web教材「<a class="reference external" href="https://kakeami.github.io/viz-ma
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="eda/eda.html" title="next page">
-    <div class="prev-next-info">
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="eda/eda.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">そもそもどんなデータを扱うの？</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">本書で用いる用語</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">こんなとき何を描く？</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">謝辞</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">参考文献</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kakeami">作者（kakeami）</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    <div class="extra_footer">
-      © Copyright 2021 by <a rel="about" href="https://kakeami.github.io/blog/about/"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
-
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  © Copyright 2021 by <a rel="about" href="https://kakeami.github.io/blog/about/"> Kakeami </a>. この作品は<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています． <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>　ただし，作品中のコードセル部分は<a rel="license" href="https://opensource.org/licenses/MIT">MITライセンス</a>の下に提供されています．
+
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

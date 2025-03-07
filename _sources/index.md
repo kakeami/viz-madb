@@ -274,8 +274,9 @@ MADB Labは，文化庁が提供する，メディア芸術作品に関するデ
 Web教材「[マンガと学ぶデータビジュアライゼーション](https://kakeami.github.io/viz-madb/index.html)」
 を作成．
 
-- GitHub: [`@kakeami`](https://github.com/kakeami)
-- Zenn: [`@kakeami`](https://zenn.dev/kakeami)
-- Twitter: [`@_kakeami`](https://twitter.com/_kakeami)
+- **しずかなインターネット** - [`kakeami`](https://sizu.me/kakeami)
+- Mixi2 - [`kakeami`](https://mixi.social/@kakeami)
+- GitHub - [`kakeami`](https://github.com/kakeami)
+- Zenn.dev - [`kakeami`](https://zenn.dev/kakeami)
 :::
 ::::
